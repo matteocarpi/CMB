@@ -11402,6 +11402,11 @@ react-side-effect@^2.1.0:
   resolved "https://registry.yarnpkg.com/react-side-effect/-/react-side-effect-2.1.0.tgz#1ce4a8b4445168c487ed24dab886421f74d380d3"
   integrity sha512-IgmcegOSi5SNX+2Snh1vqmF0Vg/CbkycU9XZbOHJlZ6kMzTmi3yc254oB1WCkgA7OQtIAoLmcSFuHTc/tlcqXg==
 
+react-spawn@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/react-spawn/-/react-spawn-0.0.10.tgz#a460fd75f352c26484c8337083396f3a309f9f0d"
+  integrity sha512-l/AlqFakOvshJfpJtLXnMe5q2IzX/UbpKtwykLyQxSGWx98jv4/gl+fv9e1vDLNbjAyQYhQoNd7KYzBM0iYV5g==
+
 react@^16.13.1:
   version "16.14.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
