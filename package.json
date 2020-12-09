@@ -15,6 +15,7 @@
     "gatsby-source-wordpress-experimental": "^3.0.1",
     "gatsby-transformer-sharp": "^2.6.0",
     "global": "^4.4.0",
+    "husky": "^4.3.5",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -46,7 +47,13 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "spawn": "react-spawn"
+    "spawn": "react-spawn",
+    "lint": "eslint 'src/**/*.jsx' 'src/**/*.js'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint"
+    }
   },
   "repository": {
     "type": "git",
