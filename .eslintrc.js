@@ -14,6 +14,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'prettier',
   ],
   parserOptions: {
     ecmaVersion: 12,
@@ -25,6 +26,7 @@ module.exports = {
   plugins: [
     'react',
     'react-hooks',
+    'prettier',
   ],
   settings: {
     // Cf. https://github.com/yannickcr/eslint-plugin-react#configuration
