@@ -1,14 +1,16 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { createGlobalStyle } from 'styled-components'
+import reset from 'styled-reset'
+
+const GlobalStyle = createGlobalStyle`
+  ${reset}
+`
 
 const Layout = ({ children }) => (
   <>
+    <GlobalStyle />
     {children}
   </>
 )
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
 
 export default Layout
