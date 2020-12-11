@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 module.exports = {
   siteMetadata: {
-    title: 'CMG Group',
+    title: 'CMB Group',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
