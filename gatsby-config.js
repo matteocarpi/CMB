@@ -32,7 +32,8 @@ module.exports = {
       options: {
         url:
           // allows a fallback url if WPGRAPHQL_URL is not set in the env, this may be a local or remote WP instance.
-          process.env.GRAPHQL_ENDPOINT || 'http://api-cmb.tametodesign.it/graphql',
+          process.env.GRAPHQL_ENDPOINT ||
+          'http://api-cmb.tametodesign.it/graphql',
         schema: {
           // Prefixes all WP Types with "Wp" so "Post and allPost" become "WpPost and allWpPost".
           typePrefix: 'Wp',
@@ -57,7 +58,7 @@ module.exports = {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
-          include: '/assets/logo',
+          include: `${__dirname}/src/assets`,
         },
       },
     },

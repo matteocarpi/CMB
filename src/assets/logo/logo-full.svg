@@ -1,0 +1,20 @@
+<svg id="Group_26" data-name="Group 26" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="101.153" height="43.706" viewBox="0 0 101.153 43.706">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_40" data-name="Rectangle 40" width="101.153" height="43.706" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Group_23" data-name="Group 23">
+    <g id="Group_22" data-name="Group 22" clip-path="url(#clip-path)">
+      <text id="GROUP" transform="translate(32.15 39.093)" fill="#0e101d" font-size="9" font-family="Jost-Regular, Jost"><tspan x="0" y="0" letter-spacing="0.12em">G</tspan><tspan y="0" letter-spacing="0.119em">R</tspan><tspan y="0" letter-spacing="0.12em">OU</tspan><tspan y="0">P</tspan></text>
+    </g>
+  </g>
+  <path id="Path_39" data-name="Path 39" d="M1.03,17.1l.546-.6V5.378l-.546-.6Z" transform="translate(-0.324 -1.504)" fill="#c88c00"/>
+  <path id="Path_40" data-name="Path 40" d="M17.589,30.291V5.682l-.822-.9V31.2Z" transform="translate(-5.278 -1.504)" fill="#c88c00"/>
+  <path id="Path_41" data-name="Path 41" d="M34.278,5.982V41.846l-1.1,1.2V4.777Z" transform="translate(-10.444 -1.504)" fill="#c88c00"/>
+  <g id="Group_25" data-name="Group 25">
+    <g id="Group_24" data-name="Group 24" clip-path="url(#clip-path)">
+      <text id="CMB" transform="translate(29.032 24.06)" fill="#0e101d" font-size="29" font-family="Cinzel-Regular, Cinzel"><tspan x="0" y="0">CMB</tspan></text>
+    </g>
+  </g>
+</svg>
