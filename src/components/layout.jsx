@@ -6,6 +6,14 @@ import MobileHeader from './MobileHeader'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
+  .logo {
+  height: 200px;
+  overflow: visible;
+
+  path {
+    transform: 
+  }
+}
 `
 
 const Layout = ({ children }) => (
