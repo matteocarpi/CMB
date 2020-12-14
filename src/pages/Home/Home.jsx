@@ -1,15 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
-import ColoredBackgroundImage from '../../components/ColoredBackgroundImage'
 
 import Layout from '../../components/layout'
 import SEO from '../../components/seo'
-
-const Image = styled(ColoredBackgroundImage)`
-  height: 80vh;
-  width: 100%;
-`
+import IntroSlide from '../../components/IntroSlide'
 
 const Home = () => {
   const data = useStaticQuery(graphql`
@@ -46,11 +40,8 @@ const Home = () => {
   return (
     <Layout>
       <SEO title={data.wpPage.title} />
-      <Image
-        fluid={data.wpPage.homeContent.image.localFile.childImageSharp.fluid}
-        color="#090F2D"
-        opacity={0.9}
-        backgroundPosition="left center"
+      <IntroSlide
+        img={data.wpPage.homeContent.image.localFile.childImageSharp.fluid}
       />
     </Layout>
   )

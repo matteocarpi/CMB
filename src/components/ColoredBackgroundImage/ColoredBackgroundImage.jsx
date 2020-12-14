@@ -2,6 +2,11 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import BackgroundImage from 'gatsby-background-image'
 
+const Container = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`
 const ColorOverlay = styled.div`
   background-color: ${({ color }) => color ?? 'blue'};
   opacity: ${({ opacity, onlyHover }) => (onlyHover ? 0 : opacity ?? 0.5)};
@@ -19,6 +24,7 @@ const ColorOverlay = styled.div`
 `
 
 const Img = styled(BackgroundImage)`
+  position: relative;
   ${({ backgroundPosition }) =>
     backgroundPosition &&
     css`
@@ -31,8 +37,10 @@ export default function ColoredBackgroundImage(props) {
   const { children, onlyHover, color, opacity } = props
   return (
     <Img {...props}>
-      <ColorOverlay color={color} onlyHover={onlyHover} opacity={opacity} />
-      {children}
+      <Container>
+        {children}
+        <ColorOverlay color={color} onlyHover={onlyHover} opacity={opacity} />
+      </Container>
     </Img>
   )
 }
