@@ -62,6 +62,13 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-google-fonts',
+      options: {
+        fonts: ['Cinzel:400:700', 'Jost:300:400'],
+        display: 'swap',
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

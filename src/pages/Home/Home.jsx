@@ -2,8 +2,10 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 
-import Layout from '../../components/layout'
-import SEO from '../../components/seo'
+import Image from 'gatsby-image'
+
+import Layout from '../../components/Layout'
+import SEO from '../../components/Seo'
 import IntroSlide from '../../components/IntroSlide'
 
 const IntroWrapper = styled.div`
@@ -12,10 +14,7 @@ const IntroWrapper = styled.div`
   z-index: -1;
 `
 
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const Wrapper = styled.div`
   margin-top: 70vh;
   height: 70vh;
   width: 100%;
@@ -31,6 +30,24 @@ const Content = styled.div`
     background-color: white;
   }
 `
+
+const Slogan = styled.h1`
+  width: min-content;
+`
+
+const Content = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -50px;
+  background-color: white;
+`
+const TeamImage = styled(Image)`
+  width: 100%;
+  margin-top: 30px;
+`
+
 const Home = () => {
   const data = useStaticQuery(graphql`
     {
@@ -47,12 +64,17 @@ const Home = () => {
             }
           }
           shortBio
-          shortBioCopy
+          longBio
           slogan1
           slogan2
           video {
-            uri
-            mediaItemUrl
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 1920) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
           badges {
             number
@@ -73,9 +95,13 @@ const Home = () => {
           img={data.wpPage.homeContent.image.localFile.childImageSharp.fluid}
         />
       </IntroWrapper>
-      <Content>
-        <h1>{content.slogan1}</h1>
-      </Content>
+      <Wrapper>
+        <Content>
+          <Slogan>{content.slogan1}</Slogan>
+          <TeamImage fluid={content.video.localFile.childImageSharp.fluid} />
+          <p>{content.shortBio}</p>
+        </Content>
+      </Wrapper>
     </Layout>
   )
 }
