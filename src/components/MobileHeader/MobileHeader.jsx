@@ -6,15 +6,23 @@ import BurgerSVG from '../../assets/icons/burger.svg'
 
 const Container = styled.header`
   position: sticky;
-  padding: 10px 15px;
+  position: -webkit-sticky;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `
 
-const Logo = styled(LogoSVG)``
+const Logo = styled(LogoSVG)`
+  margin: 15px;
+`
 
-const Burger = styled(BurgerSVG)``
+const Burger = styled(BurgerSVG)`
+  margin: 15px;
+`
 
 export default function MobileHeader() {
   return (

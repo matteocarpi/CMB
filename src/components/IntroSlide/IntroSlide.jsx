@@ -40,7 +40,6 @@ const lineVariants = {
 const Container = styled(ColoredBackgroundImage)`
   height: 80vh;
   width: 100%;
-  margin-bottom: 1000px;
   text-align: right;
   position: fixed;
   @media (min-width: 768px) {
