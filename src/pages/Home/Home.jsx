@@ -7,6 +7,7 @@ import Image from 'gatsby-image'
 import Layout from '../../components/Layout'
 import SEO from '../../components/Seo'
 import IntroSlide from '../../components/IntroSlide'
+import Counter from '../../components/Counter'
 
 const IntroWrapper = styled.div`
   position: fixed;
@@ -49,6 +50,12 @@ const TeamImage = styled(Image)`
   margin-top: 30px;
 `
 
+const Badges = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 0 1rem;
+`
 const Home = () => {
   const data = useStaticQuery(graphql`
     {
@@ -106,6 +113,11 @@ const Home = () => {
               __html: content.longBio.substring(0, 300),
             }}
           />
+          <Badges>
+            {content.badges.map(badge => (
+              <Counter number={badge.number} title={badge.title} />
+            ))}
+          </Badges>
         </Content>
       </Wrapper>
     </Layout>

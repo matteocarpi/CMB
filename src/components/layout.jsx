@@ -18,6 +18,14 @@ const GlobalStyle = createGlobalStyle`
     margin: 15px;
   }
 
+  h2 {
+    font-size: 21px;
+  }
+  
+  span {
+      font-family: Jost, sansf-serif;
+      font-weight: 300;
+  }
   p {
     font-family: Jost, sansf-serif;
     font-weight: 300;
