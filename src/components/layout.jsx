@@ -9,11 +9,9 @@ const GlobalStyle = createGlobalStyle`
   .logo {
   height: 200px;
   overflow: visible;
-
-  path {
-    transform: 
   }
-}
+
+  position: relative;
 `
 
 const Layout = ({ children }) => (
