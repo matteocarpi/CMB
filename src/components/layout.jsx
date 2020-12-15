@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
   h1, h2, h3, h4, h5, h6 {
     font-family: Cinzel, serif;
     color: ${({ theme }) => theme.black};
+    line-height: 1.2;
   }
 
   h1 {
@@ -21,12 +22,17 @@ const GlobalStyle = createGlobalStyle`
   h2 {
     font-size: 37px;
   }
-  
+
   h3 {
-    font-size: 21px;
+    font-size: 25px;
+  }
+
+  h4 {
+    font-size: 25px;
   }
 
   span {
+      font-size: 14px;
       font-family: Jost, sansf-serif;
       font-weight: 300;
   }

@@ -11,11 +11,7 @@ module.exports = {
     test: true,
     expect: true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
-    'prettier',
-  ],
+  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
   parserOptions: {
     ecmaVersion: 12,
     ecmaFeatures: {
@@ -23,11 +19,7 @@ module.exports = {
     },
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    'react-hooks',
-    'prettier',
-  ],
+  plugins: ['react', 'react-hooks', 'prettier'],
   settings: {
     // Cf. https://github.com/yannickcr/eslint-plugin-react#configuration
     react: {
@@ -46,5 +38,6 @@ module.exports = {
     'consistent-return': off,
     'no-plusplus': off,
     'no-unused-vars': warn,
+    'react/jsx-one-expression-per-line': off,
   },
 }

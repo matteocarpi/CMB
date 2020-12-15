@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Container = styled.div`
   text-align: center;
 `
-const Numero = styled.h3`
+const Numero = styled.h4`
   font-weight: 700;
 `
 const Title = styled.span`
