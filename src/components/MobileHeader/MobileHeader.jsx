@@ -14,6 +14,9 @@ const Container = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
+  background-color: white;
+  border-bottom: solid 1px lightgrey;
 `
 
 const Logo = styled(LogoSVG)`
