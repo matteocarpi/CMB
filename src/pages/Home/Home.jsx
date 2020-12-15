@@ -32,7 +32,8 @@ const Wrapper = styled.div`
 `
 
 const Slogan = styled.h1`
-  width: min-content;
+  ${'' /* width: min-content; */}
+  margin: 15px 30px
 `
 
 const Content = styled.div`
@@ -91,15 +92,20 @@ const Home = () => {
     <Layout>
       <SEO title={data.wpPage.title} />
       <IntroWrapper>
-        <IntroSlide
-          img={data.wpPage.homeContent.image.localFile.childImageSharp.fluid}
-        />
+        <IntroSlide img={content.image.localFile.childImageSharp.fluid} />
       </IntroWrapper>
       <Wrapper>
         <Content>
           <Slogan>{content.slogan1}</Slogan>
           <TeamImage fluid={content.video.localFile.childImageSharp.fluid} />
           <p>{content.shortBio}</p>
+          <Slogan>{content.slogan2}</Slogan>
+          <p
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: content.longBio.substring(0, 300),
+            }}
+          />
         </Content>
       </Wrapper>
     </Layout>
