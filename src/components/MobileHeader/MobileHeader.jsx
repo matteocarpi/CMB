@@ -24,7 +24,7 @@ const Logo = styled(LogoSVG)`
 `
 
 const Burger = styled(BurgerSVG)`
-  margin: 15px;
+  margin: 30px;
 `
 
 export default function MobileHeader() {
