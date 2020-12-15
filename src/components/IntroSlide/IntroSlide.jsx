@@ -56,6 +56,9 @@ const LogoContainer = styled.section`
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  .logo {
+    width: 60%;
+  }
 `
 
 export default function IntroSlide({ img }) {

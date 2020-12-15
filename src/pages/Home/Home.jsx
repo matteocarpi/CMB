@@ -16,8 +16,8 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 80vh;
-  height: 80vh;
+  margin-top: 70vh;
+  height: 70vh;
   width: 100%;
   background-color: white;
 
