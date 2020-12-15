@@ -19,9 +19,13 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h2 {
-    font-size: 21px;
+    font-size: 37px;
   }
   
+  h3 {
+    font-size: 21px;
+  }
+
   span {
       font-family: Jost, sansf-serif;
       font-weight: 300;

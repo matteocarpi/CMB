@@ -8,6 +8,7 @@ import Layout from '../../components/Layout'
 import SEO from '../../components/Seo'
 import IntroSlide from '../../components/IntroSlide'
 import Counter from '../../components/Counter'
+import SectionTitle from '../../components/SectionTitle'
 
 const IntroWrapper = styled.div`
   position: fixed;
@@ -118,6 +119,8 @@ const Home = () => {
               <Counter number={badge.number} title={badge.title} />
             ))}
           </Badges>
+
+          <SectionTitle>Servizi</SectionTitle>
         </Content>
       </Wrapper>
     </Layout>
