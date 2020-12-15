@@ -1,10 +1,14 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
+import ArrowRight from '../../assets/icons/arrow-right.svg'
 
 import Img from '../ImageCut'
 
 const Container = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
   margin: 4rem 0;
   background-color: white;
 `
@@ -20,7 +24,10 @@ const Text = styled.div`
 `
 const Testimonial = styled.h3``
 
-export default function ClientsPreview({ children }) {
+const StyledArrowRight = styled(ArrowRight)`
+  margin-right: 1rem;
+`
+export default function ClientsPreview() {
   const data = useStaticQuery(graphql`
     {
       wpPage(id: { eq: "cG9zdDoxOTc3OQ==" }) {
@@ -64,7 +71,7 @@ export default function ClientsPreview({ children }) {
           </Text>
         </Client>
       ))}
-      {children}
+      <StyledArrowRight style />
     </Container>
   )
 }
