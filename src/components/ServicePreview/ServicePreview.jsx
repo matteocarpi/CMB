@@ -86,7 +86,9 @@ const StyledLink = styled(Link)`
 `
 const Plus = styled(IconPlus)`
   &:hover {
-    stroke: ${({ theme }) => theme.gold};
+    path {
+      fill: ${({ theme }) => theme.gold};
+    }
   }
   align-self: flex-end;
   margin-top: 3rem;
