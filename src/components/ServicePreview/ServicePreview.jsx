@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
-import { useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql, Link } from 'gatsby'
 
 import SectionTitle from '../SectionTitle'
+import IconPlus from '../../assets/icons/plus.svg'
 
 const Container = styled.div`
   width: 100%;
@@ -51,15 +52,45 @@ const Menu = styled.div`
 
 const Preview = styled.div`
   background-color: ${({ theme }) => theme.navy};
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  position: relative;
+  &:after {
+    content: '';
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: rotate(45deg) translate(0px, 35px);
+  }
 `
 
 const Content = styled.div`
   color: white;
+  border-left: solid 1px ${({ theme }) => theme.gold};
+
+  p {
+    margin: 0;
+    padding-left: 1rem;
+  }
   * {
     color: white;
   }
 `
-
+const StyledLink = styled(Link)`
+  width: min-content;
+  align-self: flex-end;
+`
+const Plus = styled(IconPlus)`
+  &:hover {
+    stroke: ${({ theme }) => theme.gold};
+  }
+  align-self: flex-end;
+  margin-top: 3rem;
+`
 export default function ServicePreview() {
   const [currentService, setCurrentService] = useState(0)
 
@@ -115,6 +146,10 @@ export default function ServicePreview() {
             __html: servizi[currentService].descrizione,
           }}
         />
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <StyledLink to="#">
+          <Plus />
+        </StyledLink>
       </Preview>
     </Container>
   )

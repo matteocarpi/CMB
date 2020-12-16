@@ -65,7 +65,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
-        fonts: ['Cinzel:400:700', 'Jost:300:400'],
+        fonts: ['Cinzel:400:700', 'Jost:200:300:400'],
         display: 'swap',
       },
     },
