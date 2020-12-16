@@ -1,10 +1,11 @@
 import React from 'react'
-import { ThemeProvider, createGlobalStyle } from 'styled-components'
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 
 import { defaultTheme } from './Themes/Themes'
 
 import MobileHeader from './MobileHeader'
+import Footer from './Footer'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -48,6 +49,20 @@ const GlobalStyle = createGlobalStyle`
     margin: 45px 30px;
   }
 
+  a {
+    text-decoration: none;
+    font-family: Jost, sans-serif;
+  }
+
+  li {
+    font-family: Jost, sans-serif;
+  }
+
+  input {
+    font-family: Jost, sans-serif;
+    font-size: 14px;
+    
+  }
   button {
     font-family: Jost, sans-serif;
   }
@@ -58,11 +73,18 @@ const GlobalStyle = createGlobalStyle`
   position: relative;
 `
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 const Layout = ({ children }) => (
   <ThemeProvider theme={defaultTheme}>
     <GlobalStyle />
-    <MobileHeader />
-    {children}
+    <Container>
+      <MobileHeader />
+      {children}
+      <Footer />
+    </Container>
   </ThemeProvider>
 )
 

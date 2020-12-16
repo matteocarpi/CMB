@@ -11,6 +11,7 @@ import Counter from '../../components/Counter'
 import ClientsPreview from '../../components/ClientsPreview'
 import ServicePreview from '../../components/ServicePreview'
 import NewsPreview from '../../components/NewsPreview'
+import Footer from '../../components/Footer'
 
 const IntroWrapper = styled.div`
   position: fixed;
@@ -20,10 +21,9 @@ const IntroWrapper = styled.div`
 
 const Wrapper = styled.div`
   margin-top: 70vh;
-  height: 70vh;
+  min-height: 70vh;
   width: 100%;
   background-color: white;
-
   &:before {
     content: '';
     display: block;
