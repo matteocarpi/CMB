@@ -9,7 +9,7 @@ const Numero = styled.h4`
 `
 const Title = styled.span`
   text-transform: uppercase;
-  font-size: 7px;
+  font-size: 10px;
 `
 export default function Counter({ number = 0, title = 0 }) {
   const [count, setCount] = useState(0)
