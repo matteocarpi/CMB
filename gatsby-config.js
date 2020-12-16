@@ -63,10 +63,20 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-google-fonts',
+      resolve: 'gatsby-plugin-google-fonts-v2',
       options: {
-        fonts: ['Cinzel:400:700', 'Jost:200:300:400'],
-        display: 'swap',
+        fonts: [
+          {
+            family: 'Cinzel',
+            variable: true,
+            weights: ['400..700'],
+          },
+          {
+            family: 'Jost',
+            variable: true,
+            weights: ['200..400'],
+          },
+        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
