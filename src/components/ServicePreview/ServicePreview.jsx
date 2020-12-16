@@ -109,10 +109,6 @@ export default function ServicePreview() {
             descrizione
             titolo
           }
-          formazioneFinanziaria {
-            descrizione
-            titolo
-          }
           vigilanza {
             descrizione
             titolo
