@@ -9,9 +9,6 @@ import Footer from './Footer'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
-  * {
-    transition-duration: 0.5s;
-  }
   h1, h2, h3, h4, h5, h6 {
     font-family: Cinzel, serif;
     color: ${({ theme }) => theme.black};
