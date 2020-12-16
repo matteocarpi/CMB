@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import LogoSVG from '../../assets/logo/logo-full.svg'
+import LogoSVG from '../../assets/logo/logo-full-dark.svg'
 import BurgerSVG from '../../assets/icons/burger.svg'
 
 const Container = styled.header`
