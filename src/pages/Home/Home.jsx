@@ -11,7 +11,6 @@ import Counter from '../../components/Counter'
 import ClientsPreview from '../../components/ClientsPreview'
 import ServicePreview from '../../components/ServicePreview'
 import NewsPreview from '../../components/NewsPreview'
-import Footer from '../../components/Footer'
 
 const IntroWrapper = styled.div`
   position: fixed;
