@@ -122,9 +122,9 @@ const Home = () => {
             ))}
           </Badges>
 
-          <ClientsPreview />
-
           <ServicePreview />
+
+          <ClientsPreview />
 
           <NewsPreview />
         </Content>

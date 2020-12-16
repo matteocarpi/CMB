@@ -6,6 +6,7 @@ import SectionTitle from '../SectionTitle'
 import IconPlus from '../../assets/icons/plus.svg'
 
 const Container = styled.div`
+  margin: 4rem 0;
   width: 100%;
   display: flex;
   flex-direction: column;

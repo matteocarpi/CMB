@@ -9,7 +9,6 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  margin: 4rem 0;
   background-color: white;
 `
 const Client = styled.div`
