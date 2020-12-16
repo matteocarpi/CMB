@@ -44,6 +44,10 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.black};
     margin: 45px 30px;
   }
+
+  button {
+    font-family: Jost, sans-serif;
+  }
   .logo {
   height: 200px;
   overflow: visible;

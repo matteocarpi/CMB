@@ -10,6 +10,7 @@ import IntroSlide from '../../components/IntroSlide'
 import Counter from '../../components/Counter'
 import SectionTitle from '../../components/SectionTitle'
 import ClientsPreview from '../../components/ClientsPreview'
+import ServicePreview from '../../components/ServicePreview'
 
 const IntroWrapper = styled.div`
   position: fixed;
@@ -123,7 +124,8 @@ const Home = () => {
 
           <ClientsPreview />
 
-          <SectionTitle>Servizi</SectionTitle>
+          <ServicePreview />
+          
         </Content>
       </Wrapper>
     </Layout>
