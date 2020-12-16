@@ -1,0 +1,21 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: frontend
+    image: node
+    commands:
+      - yarn install
+      - yarn build
+
+  - name: deploy
+    image: node
+    environment:
+      NETLIFY_AUTH_TOKEN:
+        from_secret: NETLIFY_AUTH_TOKEN
+      NETLIFY_SITE_ID:
+        from_secret: NETLIFY_SITE_ID
+    commands:
+      - bash deploy.sh
