@@ -16,11 +16,12 @@ const IntroWrapper = styled.div`
   position: fixed;
   width: 100%;
   z-index: -1;
+  top: 100px;
 `
 
 const Wrapper = styled.div`
-  margin-top: 70vh;
-  min-height: 70vh;
+  margin-top: calc(85vh - 100px);
+  min-height: 80vh;
   width: 100%;
   background-color: white;
   &:before {
