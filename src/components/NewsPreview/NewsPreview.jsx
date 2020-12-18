@@ -1,13 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import styled from 'styled-components'
-import Img from 'gatsby-image'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import SectionTitle from '../SectionTitle'
 import PlusIcon from '../../assets/icons/plus.svg'
 import ImageCut from '../ImageCut'
-import ArrowLeft from '../../assets/icons/arrow-left.svg'
-import ArrowRight from '../../assets/icons/arrow-right.svg'
-import Button from '../Button'
+import 'swiper/swiper.scss'
 
 const Container = styled.div`
   width: 100%;
@@ -17,33 +15,10 @@ const Container = styled.div`
   align-items: center;
 `
 
-const News = styled.div`
-  width: 100%;
-`
-
 const NewsBottom = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
-const SingleNews = styled.div`
-  width: 100%;
-  @media (min-width: 768px) {
-    display: none;
-  }
-  margin-top: 2rem;
-`
-
-const NewsList = styled.div`
-  display: none;
-  @media (min-width: 768px) {
-    display: flex;
-  }
-  margin-top: 2rem;
-`
-
-const ImageWrapper = styled.div`
-  position: relative;
 `
 
 const NewsTitle = styled.span`
@@ -64,20 +39,9 @@ const Plus = styled(PlusIcon)`
   }
 `
 
-const LeftButton = styled(Button)`
-  position: absolute;
-  z-index: 2;
-  left: 15px;
-  top: 40%;
+const News = styled.div`
+  margin: 0 auto;
 `
-
-const RightButton = styled(Button)`
-  position: absolute;
-  z-index: 2;
-  right: 15px;
-  top: 40%;
-`
-
 export default function NewsPreview() {
   const data = useStaticQuery(graphql`
     {
@@ -110,66 +74,41 @@ export default function NewsPreview() {
     }
   `)
 
-  const [currentNewsIndex, setCurrentNewsIndex] = useState(0)
   const posts = data.posts.edges
-
-  console.log(posts.length)
-  const currentNews = data.posts.edges[currentNewsIndex].node
-
-  const currentFluid =
-    currentNews.featuredImage?.node.localFile.childImageSharp.fluid ??
-    data.placeholderImage.fluid
-  const nextNews = currentNewsIndex >= posts.length - 1 ? 0 : currentNewsIndex + 1
-  const prevNews = currentNewsIndex <= 0 ? 0 : currentNewsIndex - 1
 
   return (
     <Container>
       <SectionTitle>News</SectionTitle>
 
-      <SingleNews>
-        <News>
-          <ImageWrapper>
-            <LeftButton onClick={() => setCurrentNewsIndex(prevNews)}>
-              <ArrowLeft />
-            </LeftButton>
-            <ImageCut
-              dr
-              fluid={{
-                ...currentFluid,
-                aspectRatio: 16 / 9,
-              }}
-            />
-            <RightButton onClick={() => setCurrentNewsIndex(nextNews)}>
-              <ArrowRight />
-            </RightButton>
-          </ImageWrapper>
-
-          <NewsBottom>
-            <NewsTitle>{currentNews.title}</NewsTitle>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <Link to="#">
-              <Plus />
-            </Link>
-          </NewsBottom>
-        </News>
-      </SingleNews>
-
-      <NewsList>
+      <Swiper style={{ width: '100%', margin: '2rem 0' }}>
         {posts.map(post => {
-          const p = post.node
+          const fluid =
+            post.node.featuredImage?.node.localFile.childImageSharp.fluid ??
+            data.placeholderImage.fluid
 
           return (
-            <News key={p.id}>
-              <Img
-                fluid={
-                  p?.featuredImage?.node.localFile.childImageSharp.fluid ??
-                  data.placeholderImage.fluid
-                }
-              />
-            </News>
+            <SwiperSlide key={post.id}>
+              <News>
+                <ImageCut
+                  dr
+                  fluid={{
+                    ...fluid,
+                    aspectRatio: 16 / 9,
+                  }}
+                />
+
+                <NewsBottom>
+                  <NewsTitle>{post.node.title}</NewsTitle>
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                  <Link to="#">
+                    <Plus />
+                  </Link>
+                </NewsBottom>
+              </News>
+            </SwiperSlide>
           )
         })}
-      </NewsList>
+      </Swiper>
     </Container>
   )
 }
