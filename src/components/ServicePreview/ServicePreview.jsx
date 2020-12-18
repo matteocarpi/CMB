@@ -95,13 +95,14 @@ const Plus = styled(IconPlus)`
   margin-top: 3rem;
 `
 export default function ServicePreview() {
-  const [currentService, setCurrentService] = useState(0)
+  const [currentService, setCurrentService] = useState(null)
 
   const data = useStaticQuery(graphql`
     {
       wpPage(id: { eq: "cG9zdDoxOTgwMg==" }) {
         title
         serviziContent {
+          descrizione
           consulenza {
             descrizione
             titolo
@@ -119,13 +120,21 @@ export default function ServicePreview() {
     }
   `)
 
-  const servizi = Object.entries(data.wpPage.serviziContent).map(e => ({
-    ...e[1],
-  }))
+  const { serviziContent } = data.wpPage
+  const { consulenza } = serviziContent
+  const { formazione } = serviziContent
+  const { vigilanza } = serviziContent
+
+  const servizi = [consulenza, formazione, vigilanza]
+
+  const description =
+    servizi[currentService]?.descrizione ?? serviziContent.descrizione
 
   return (
     <Container>
-      <SectionTitle>{data.wpPage.title}</SectionTitle>
+      <SectionTitle onClick={() => setCurrentService(null)}>
+        {data.wpPage.title}
+      </SectionTitle>
       <Menu>
         {servizi.map((service, index) => (
           <ButtonWrap active={index === currentService}>
@@ -142,7 +151,7 @@ export default function ServicePreview() {
       <Preview>
         <Content
           dangerouslySetInnerHTML={{
-            __html: servizi[currentService].descrizione,
+            __html: description,
           }}
         />
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
