@@ -3,7 +3,6 @@ import Img from 'gatsby-image'
 import styled, { css } from 'styled-components'
 
 const Image = styled(Img)`
-  width: 25%;
   position: relative;
   &:before {
     content: '';

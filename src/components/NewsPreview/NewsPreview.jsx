@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 import SectionTitle from '../SectionTitle'
 import PlusIcon from '../../assets/icons/plus.svg'
+import ImageCut from '../ImageCut'
+import ArrowLeft from '../../assets/icons/arrow-left.svg'
+import ArrowRight from '../../assets/icons/arrow-right.svg'
+import Button from '../Button'
 
 const Container = styled.div`
   width: 100%;
@@ -38,8 +42,8 @@ const NewsList = styled.div`
   margin-top: 2rem;
 `
 
-const Image = styled(Img)`
-  width: 100%;
+const ImageWrapper = styled.div`
+  position: relative;
 `
 
 const NewsTitle = styled.span`
@@ -58,6 +62,20 @@ const Plus = styled(PlusIcon)`
       fill: ${({ theme }) => theme.gold};
     }
   }
+`
+
+const LeftButton = styled(Button)`
+  position: absolute;
+  z-index: 2;
+  left: 15px;
+  top: 40%;
+`
+
+const RightButton = styled(Button)`
+  position: absolute;
+  z-index: 2;
+  right: 15px;
+  top: 40%;
 `
 
 export default function NewsPreview() {
@@ -92,9 +110,17 @@ export default function NewsPreview() {
     }
   `)
 
+  const [currentNewsIndex, setCurrentNewsIndex] = useState(0)
   const posts = data.posts.edges
 
-  const latestPost = data.posts.edges[0].node
+  console.log(posts.length)
+  const currentNews = data.posts.edges[currentNewsIndex].node
+
+  const currentFluid =
+    currentNews.featuredImage?.node.localFile.childImageSharp.fluid ??
+    data.placeholderImage.fluid
+  const nextNews = currentNewsIndex >= posts.length - 1 ? 0 : currentNewsIndex + 1
+  const prevNews = currentNewsIndex <= 0 ? 0 : currentNewsIndex - 1
 
   return (
     <Container>
@@ -102,15 +128,24 @@ export default function NewsPreview() {
 
       <SingleNews>
         <News>
-          <Image
-            fluid={
-              latestPost.featuredImage?.node.localFile.childImageSharp.fluid ??
-              data.placeholderImage.fluid
-            }
-          />
+          <ImageWrapper>
+            <LeftButton onClick={() => setCurrentNewsIndex(prevNews)}>
+              <ArrowLeft />
+            </LeftButton>
+            <ImageCut
+              dr
+              fluid={{
+                ...currentFluid,
+                aspectRatio: 16 / 9,
+              }}
+            />
+            <RightButton onClick={() => setCurrentNewsIndex(nextNews)}>
+              <ArrowRight />
+            </RightButton>
+          </ImageWrapper>
 
           <NewsBottom>
-            <NewsTitle>{latestPost.title}</NewsTitle>
+            <NewsTitle>{currentNews.title}</NewsTitle>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <Link to="#">
               <Plus />
