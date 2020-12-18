@@ -13,17 +13,32 @@ const Container = styled.div`
   align-items: center;
 `
 const ButtonWrap = styled.div`
-  padding-left: 0.3rem;
-  z-index: 1;
-  border-left: solid 1px white;
-  &:hover {
-    border-left: solid 2px ${({ theme }) => theme.gold};
-  }
+  position: relative;
   ${({ active }) =>
     active &&
     css`
-      border-left: solid 2px ${({ theme }) => theme.gold};
+      &:before {
+        content: '';
+        height: 20px;
+        width: 30px;
+        border-left: solid 2px ${({ theme }) => theme.gold};
+        position: absolute;
+        left: -8px;
+        top: 8px;
+      }
     `}
+
+  &:hover {
+    &:before {
+      content: '';
+      height: 20px;
+      width: 30px;
+      border-left: solid 2px ${({ theme }) => theme.gold};
+      position: absolute;
+      left: -8px;
+      top: 8px;
+    }
+  }
 `
 
 const Button = styled.button`
@@ -37,9 +52,6 @@ const Button = styled.button`
   font-weight: 200;
   transform-origin: center left;
   transition-duration: 0.5s;
-  &:hover {
-    transform: scale(1.5);
-  }
 `
 
 const Menu = styled.div`
@@ -138,10 +150,7 @@ export default function ServicePreview() {
       <Menu>
         {servizi.map((service, index) => (
           <ButtonWrap key={service.titolo} active={index === currentService}>
-            <Button
-              key={service.title}
-              onClick={() => setCurrentService(index)}
-            >
+            <Button onClick={() => setCurrentService(index)}>
               {service.titolo}
             </Button>
           </ButtonWrap>
