@@ -54,7 +54,7 @@ export default function ClientsPreview() {
   return (
     <Container>
       {clienti.map(client => (
-        <Client>
+        <Client key={client.nome}>
           <Img
             style={{ width: '25%' }}
             fluid={client.immagine.localFile.childImageSharp.fluid}

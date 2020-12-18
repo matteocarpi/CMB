@@ -118,7 +118,7 @@ const Home = () => {
           />
           <Badges>
             {content.badges.map(badge => (
-              <Counter number={badge.number} title={badge.title} />
+              <Counter key={badge.title} number={badge.number} title={badge.title} />
             ))}
           </Badges>
 

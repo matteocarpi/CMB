@@ -124,7 +124,7 @@ export default function NewsPreview() {
           const p = post.node
 
           return (
-            <News>
+            <News key={p.id}>
               <Img
                 fluid={
                   p?.featuredImage?.node.localFile.childImageSharp.fluid ??

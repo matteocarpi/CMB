@@ -137,7 +137,7 @@ export default function ServicePreview() {
       </SectionTitle>
       <Menu>
         {servizi.map((service, index) => (
-          <ButtonWrap active={index === currentService}>
+          <ButtonWrap key={service.titolo} active={index === currentService}>
             <Button
               key={service.title}
               onClick={() => setCurrentService(index)}
