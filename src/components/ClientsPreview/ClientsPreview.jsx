@@ -1,6 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import ArrowRight from '../../assets/icons/arrow-right.svg'
 
 import Img from '../ImageCut'
@@ -23,9 +24,6 @@ const Text = styled.div`
 `
 const Testimonial = styled.h3``
 
-const StyledArrowRight = styled(ArrowRight)`
-  margin-right: 1rem;
-`
 export default function ClientsPreview() {
   const data = useStaticQuery(graphql`
     {
@@ -53,24 +51,27 @@ export default function ClientsPreview() {
   const { clienti } = data.wpPage.clientiContent
   return (
     <Container>
-      {clienti.map(client => (
-        <Client key={client.nome}>
-          <Img
-            style={{ width: '25%' }}
-            fluid={client.immagine.localFile.childImageSharp.fluid}
-            dr
-          />
-          <Text>
-            <Testimonial>{`"${client.testimonial}"`}</Testimonial>
-            <span>
-              {client.nome}
-              <br />
-              {client.societa}
-            </span>
-          </Text>
-        </Client>
-      ))}
-      <StyledArrowRight style />
+      <Swiper>
+        {clienti.map(client => (
+          <SwiperSlide>
+            <Client key={client.nome}>
+              <Img
+                style={{ width: '25%', minHeight: `200px` }}
+                fluid={client.immagine.localFile.childImageSharp.fluid}
+                dr
+              />
+              <Text>
+                <Testimonial>{`"${client.testimonial}"`}</Testimonial>
+                <span>
+                  {client.nome}
+                  <br />
+                  {client.societa}
+                </span>
+              </Text>
+            </Client>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </Container>
   )
 }
