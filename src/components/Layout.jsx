@@ -73,6 +73,7 @@ const GlobalStyle = createGlobalStyle`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `
 const Layout = ({ children }) => (
   <ThemeProvider theme={defaultTheme}>
