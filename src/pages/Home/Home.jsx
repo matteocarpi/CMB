@@ -25,22 +25,26 @@ const Wrapper = styled.div`
   width: 100%;
   background-color: white;
 
-  &:before {
-    content: '';
-    display: block;
-    width: 100px;
-    height: 100px;
-    align-self: flex-start;
-    transform: translate(-50px, -50px) rotate(-45deg);
-    background-color: white;
+  @media (max-width: 767px) {
+    &:before {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 100px;
+      align-self: flex-start;
+      transform: translate(-50px, -50px) rotate(-45deg);
+      background-color: white;
+    }
   }
+
   @media (min-width: 758px) {
-    margin-top: calc(100vh);
+    margin-top: calc(100vh - 100px);
+    background-color: transparent;
   }
 `
+
 const Slogan = styled.h1`
-  ${'' /* width: min-content; */}
-  margin: 15px 30px
+  margin: 15px 30px;
 `
 
 const Content = styled.div`
@@ -62,6 +66,41 @@ const Badges = styled.div`
   width: 100%;
   margin: 0 1rem;
 `
+
+const SloganContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+`
+
+const FirstSlogan = styled.h1`
+  margin: 0rem 2rem 15rem 2rem;
+`
+
+const IntroMask = styled.div`
+  display: none;
+  position: relative;
+  min-width: 55%;
+  background-color: white;
+  min-height: 6rem;
+  &:before {
+    background-color: white;
+    content: '';
+    width: 150px;
+    height: 150px;
+    transform: rotate(45deg) translateY(106px);
+    position: absolute;
+    z-index: 100;
+    top: -9.3rem;
+    left: 0;
+    z-index: 0;
+  }
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+`
+
 const Home = () => {
   const data = useStaticQuery(graphql`
     {
@@ -108,8 +147,11 @@ const Home = () => {
         <IntroSlide img={content.image.localFile.childImageSharp.fluid} />
       </IntroWrapper>
       <Wrapper>
+        <SloganContainer>
+          <FirstSlogan>{content.slogan1}</FirstSlogan>
+          <IntroMask />
+        </SloganContainer>
         <Content>
-          <Slogan>{content.slogan1}</Slogan>
           <TeamImage fluid={content.video.localFile.childImageSharp.fluid} />
           <p>{content.shortBio}</p>
           <Slogan>{content.slogan2}</Slogan>
