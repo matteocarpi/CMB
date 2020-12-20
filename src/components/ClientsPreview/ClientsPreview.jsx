@@ -74,8 +74,8 @@ export default function ClientsPreview() {
     <Container>
       <Swiper navigation>
         {clienti.map(client => (
-          <SwiperSlide>
-            <Client key={client.nome}>
+          <SwiperSlide key={client.nome}>
+            <Client>
               <Image
                 fluid={client.immagine.localFile.childImageSharp.fluid}
                 dr
