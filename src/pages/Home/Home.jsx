@@ -11,6 +11,7 @@ import Counter from '../../components/Counter'
 import ClientsPreview from '../../components/ClientsPreview'
 import ServicePreview from '../../components/ServicePreview'
 import NewsPreview from '../../components/NewsPreview'
+import SlidingLogo from '../../components/SlidingLogo'
 
 const IntroWrapper = styled.div`
   position: fixed;
@@ -117,6 +118,7 @@ const MoreInfoContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    margin-top: 3rem;
   }
 `
 
@@ -125,6 +127,17 @@ const MoreInfo = styled.div`
 
   @media (min-width: 768px) {
     margin-right: 4rem;
+    p {
+      margin-top: 0;
+    }
+  }
+`
+
+const StyledSlidingLogo = styled(SlidingLogo)`
+  margin-right: 2rem;
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `
 
@@ -186,6 +199,7 @@ const Home = () => {
           </FirstInfoContainer>
 
           <MoreInfoContainer>
+            <StyledSlidingLogo />
             <MoreInfo>
               <p
                 // eslint-disable-next-line react/no-danger
