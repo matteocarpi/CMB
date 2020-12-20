@@ -64,7 +64,6 @@ const Badges = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
-  margin: 0 1rem;
 `
 
 const SloganContainer = styled.div`
@@ -74,7 +73,10 @@ const SloganContainer = styled.div`
 `
 
 const FirstSlogan = styled.h1`
-  margin: 0rem 2rem 15rem 2rem;
+  margin: 0 2rem 4rem 2rem;
+  @media (min-width: 768px) {
+    margin: 0rem 2rem 15rem 2rem;
+  }
 `
 
 const IntroMask = styled.div`
@@ -98,6 +100,31 @@ const IntroMask = styled.div`
 
   @media (min-width: 768px) {
     display: block;
+  }
+`
+
+const FirstInfoContainer = styled.div`
+  max-width: 900px;
+
+  @media (min-width: 768px) {
+    align-self: flex-start;
+    margin-left: 3rem;
+  }
+`
+
+const MoreInfoContainer = styled.div`
+  @media (min-width: 768px) {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+`
+
+const MoreInfo = styled.div`
+  max-width: 600px;
+
+  @media (min-width: 768px) {
+    margin-right: 4rem;
   }
 `
 
@@ -153,23 +180,30 @@ const Home = () => {
         </SloganContainer>
         <Content>
           <TeamImage fluid={content.video.localFile.childImageSharp.fluid} />
-          <p>{content.shortBio}</p>
-          <Slogan>{content.slogan2}</Slogan>
-          <p
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: content.longBio.substring(0, 300),
-            }}
-          />
-          <Badges>
-            {content.badges.map(badge => (
-              <Counter
-                key={badge.title}
-                number={badge.number}
-                title={badge.title}
+          <FirstInfoContainer>
+            <p>{content.shortBio}</p>
+            <Slogan>{content.slogan2}</Slogan>
+          </FirstInfoContainer>
+
+          <MoreInfoContainer>
+            <MoreInfo>
+              <p
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{
+                  __html: content.longBio,
+                }}
               />
-            ))}
-          </Badges>
+              <Badges>
+                {content.badges.map(badge => (
+                  <Counter
+                    key={badge.title}
+                    number={badge.number}
+                    title={badge.title}
+                  />
+                ))}
+              </Badges>
+            </MoreInfo>
+          </MoreInfoContainer>
 
           <ServicePreview />
 
