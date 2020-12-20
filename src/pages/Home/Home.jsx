@@ -25,11 +25,19 @@ const Wrapper = styled.div`
   width: 100%;
   background-color: white;
 
+  &:before {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 100px;
+    align-self: flex-start;
+    transform: translate(-50px, -50px) rotate(-45deg);
+    background-color: white;
+  }
   @media (min-width: 758px) {
     margin-top: calc(100vh);
   }
 `
-
 const Slogan = styled.h1`
   ${'' /* width: min-content; */}
   margin: 15px 30px

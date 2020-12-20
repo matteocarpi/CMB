@@ -29,16 +29,18 @@ const LogoContainer = styled.section`
   .logo {
     width: 60%;
   }
-  &:before {
-    background-color: white;
-    content: '';
-    width: 150px;
-    height: 150px;
-    transform: rotate(45deg) translateY(106px);
-    position: absolute;
-    z-index: 100;
-    bottom: 0;
-    left: 0;
+  @media (min-width: 768px) {
+    &:before {
+      background-color: white;
+      content: '';
+      width: 150px;
+      height: 150px;
+      transform: rotate(45deg) translateY(106px);
+      position: absolute;
+      z-index: 100;
+      bottom: 0;
+      left: 0;
+    }
   }
 `
 
