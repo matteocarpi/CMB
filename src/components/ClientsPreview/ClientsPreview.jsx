@@ -1,8 +1,9 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
+
+import SwiperCore, { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import ArrowRight from '../../assets/icons/arrow-right.svg'
 
 import Img from '../ImageCut'
 
@@ -18,11 +19,31 @@ const Client = styled.div`
   justify-content: space-between;
 `
 
+const TextContainer = styled.div`
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const Text = styled.div`
-  width: 70%;
   margin: 1.7rem 1rem;
+  flex-grow: 1;
+  max-width: 500px;
+`
+
+const Image = styled(Img)`
+  width: 25%;
+  min-height: 200px;
+  max-height: 900px;
+  @media (min-width: 768px) {
+    width: 45%;
+    min-height: 660px;
+  }
 `
 const Testimonial = styled.h3``
+
+SwiperCore.use([Navigation])
 
 export default function ClientsPreview() {
   const data = useStaticQuery(graphql`
@@ -51,23 +72,24 @@ export default function ClientsPreview() {
   const { clienti } = data.wpPage.clientiContent
   return (
     <Container>
-      <Swiper>
+      <Swiper navigation>
         {clienti.map(client => (
           <SwiperSlide>
             <Client key={client.nome}>
-              <Img
-                style={{ width: '25%', minHeight: `200px` }}
+              <Image
                 fluid={client.immagine.localFile.childImageSharp.fluid}
                 dr
               />
-              <Text>
-                <Testimonial>{`"${client.testimonial}"`}</Testimonial>
-                <span>
-                  {client.nome}
-                  <br />
-                  {client.societa}
-                </span>
-              </Text>
+              <TextContainer>
+                <Text>
+                  <Testimonial>{`"${client.testimonial}"`}</Testimonial>
+                  <span>
+                    {client.nome}
+                    <br />
+                    {client.societa}
+                  </span>
+                </Text>
+              </TextContainer>
             </Client>
           </SwiperSlide>
         ))}

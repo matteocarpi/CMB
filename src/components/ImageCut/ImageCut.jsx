@@ -27,8 +27,8 @@ const Image = styled(Img)`
           background-color: white;
           position: absolute;
           bottom: 0;
-          left: 0;
-          transform: scale(2) rotate(-45deg) translate(-17.5px, 0px);
+          right: 0;
+          transform: scale(2) rotate(45deg) translate(17.5px, 0px);
         }
       }
     `}
@@ -60,8 +60,8 @@ const Image = styled(Img)`
         }
       }
     `}
-  ${({ dr }) =>
-    dr &&
+  ${({ ur }) =>
+    ur &&
     css`
       &:before {
         content: '';
@@ -70,13 +70,13 @@ const Image = styled(Img)`
         height: 50px;
         background-color: white;
         position: absolute;
-        bottom: 0;
+        top: 0;
         right: 0;
         transform: rotate(45deg) translate(35px, 0px);
       }
     `}
-  ${({ dr }) =>
-    dr &&
+  ${({ ul }) =>
+    ul &&
     css`
       &:before {
         content: '';
@@ -85,7 +85,7 @@ const Image = styled(Img)`
         height: 50px;
         background-color: white;
         position: absolute;
-        bottom: 0;
+        top: 0;
         right: 0;
         transform: rotate(45deg) translate(35px, 0px);
       }
