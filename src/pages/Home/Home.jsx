@@ -24,14 +24,9 @@ const Wrapper = styled.div`
   min-height: 80vh;
   width: 100%;
   background-color: white;
-  &:before {
-    content: '';
-    display: block;
-    width: 100px;
-    height: 100px;
-    align-self: flex-start;
-    transform: translate(-50px, -50px) rotate(-45deg);
-    background-color: white;
+
+  @media (min-width: 758px) {
+    margin-top: calc(100vh);
   }
 `
 
@@ -118,7 +113,11 @@ const Home = () => {
           />
           <Badges>
             {content.badges.map(badge => (
-              <Counter key={badge.title} number={badge.number} title={badge.title} />
+              <Counter
+                key={badge.title}
+                number={badge.number}
+                title={badge.title}
+              />
             ))}
           </Badges>
 
