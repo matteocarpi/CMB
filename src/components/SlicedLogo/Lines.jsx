@@ -10,7 +10,7 @@ const ShortSvg = styled(motion.svg)`
 const ShortPath = styled(motion.path)`
   fill: ${({ theme }) => theme.gold};
   transform-origin: top;
-  transform: translateY(320vh);
+  transform: translateY(370vh);
 `
 const MediumSvg = styled(motion.svg)`
   overflow: visible;
@@ -18,14 +18,15 @@ const MediumSvg = styled(motion.svg)`
 `
 const MediumPath = styled(motion.path)`
   fill: ${({ theme }) => theme.gold};
-  transform: translateY(140vh);
+  transform: translateY(170vh);
 `
 const LongSvg = styled(motion.svg)`
   overflow: visible;
+  width: 8px;
 `
 const LongPath = styled(motion.path)`
   fill: ${({ theme }) => theme.gold};
-  transform: translateY(100vh);
+  transform: translateY(120vh);
 `
 
 export const Short = props => (

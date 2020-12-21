@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useStaticQuery, graphql, Link } from 'gatsby'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import SwiperCore, { Navigation, Controller } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SectionTitle from '../SectionTitle'
 import PlusIcon from '../../assets/icons/plus.svg'
@@ -13,6 +14,25 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .swiper-container {
+    margin: 2rem 0;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    &:after {
+      margin-bottom: 5rem;
+    }
+  }
+  @media (min-width: 768px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+      &:after {
+        margin-bottom: 8rem;
+      }
+    }
+  }
 `
 
 const NewsBottom = styled.div`
@@ -41,7 +61,64 @@ const Plus = styled(PlusIcon)`
 
 const News = styled.div`
   margin: 0 auto;
+  @media (min-width: 768px) {
+    padding: 1rem;
+    ${({ isActive }) => isActive && css``}
+  }
 `
+
+const SwiperDesktop = styled.div`
+  display: none;
+  @media (min-width: 768px) {
+    display: flex;
+  }
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+
+  .swiper-button-next {
+    &:after {
+      margin-right: 2rem;
+      margin-bottom: 12rem;
+    }
+  }
+  .swiper-button-prev {
+    &:after {
+      margin-left: 2rem;
+      margin-bottom: 12rem;
+    }
+  }
+
+  div:first-child {
+    .swiper-button-next {
+      display: none;
+    }
+  }
+
+  div:nth-child(2) {
+    .swiper-button-prev {
+      display: none;
+    }
+  }
+  .swiper-container {
+    width: 50%;
+  }
+`
+
+const Image = styled(ImageCut)`
+  @media (min-width: 768px) {
+    height: 450px;
+  }
+`
+
+const SwiperMobile = styled(Swiper)`
+  width: 100%;
+  @media (min-width: 767px) {
+    display: none;
+  }
+`
+SwiperCore.use([Navigation, Controller])
+
 export default function NewsPreview() {
   const data = useStaticQuery(graphql`
     {
@@ -76,39 +153,129 @@ export default function NewsPreview() {
 
   const posts = data.posts.edges
 
+  const [controlledSwiper, setControlledSwiper] = useState(null)
+  const [secondControlledSwiper, setSecondControlledSwiper] = useState(null)
+
   return (
     <Container>
       <SectionTitle>News</SectionTitle>
 
-      <Swiper style={{ width: '100%', margin: '2rem 0' }}>
+      <SwiperMobile navigation slidesPerView={1}>
         {posts.map(post => {
           const fluid =
             post.node.featuredImage?.node.localFile.childImageSharp.fluid ??
             data.placeholderImage.fluid
 
           return (
-            <SwiperSlide key={post.id}>
-              <News>
-                <ImageCut
-                  dr
-                  fluid={{
-                    ...fluid,
-                    aspectRatio: 16 / 9,
-                  }}
-                />
+            <SwiperSlide style={{ width: '100%' }} key={post.node.id}>
+              {({ isActive }) => (
+                <News isActive={isActive}>
+                  <Image
+                    dr
+                    fluid={{
+                      ...fluid,
+                      aspectRatio: 16 / 9,
+                    }}
+                  />
 
-                <NewsBottom>
-                  <NewsTitle>{post.node.title}</NewsTitle>
-                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                  <Link to="#">
-                    <Plus />
-                  </Link>
-                </NewsBottom>
-              </News>
+                  <NewsBottom>
+                    <NewsTitle>{post.node.title}</NewsTitle>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                    <Link to="#">
+                      <Plus />
+                    </Link>
+                  </NewsBottom>
+                </News>
+              )}
             </SwiperSlide>
           )
         })}
-      </Swiper>
+      </SwiperMobile>
+
+      <SwiperDesktop>
+        {/* Primary */}
+        <Swiper
+          navigation
+          slidesPerView={1}
+          onSwiper={setControlledSwiper}
+          controller={{ control: secondControlledSwiper }}
+        >
+          {posts.map((post, index) => {
+            const fluid =
+              post.node.featuredImage?.node.localFile.childImageSharp.fluid ??
+              data.placeholderImage.fluid
+
+            return (
+              index + 2 < posts.length && (
+                <SwiperSlide style={{ width: '100%' }} key={post.node.id}>
+                  {({ isActive }) => (
+                    <News isActive={isActive}>
+                      <Image
+                        dr
+                        fluid={{
+                          ...fluid,
+                          aspectRatio: 16 / 9,
+                        }}
+                      />
+
+                      <NewsBottom>
+                        <NewsTitle>{post.node.title}</NewsTitle>
+                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                        <Link to="#">
+                          <Plus />
+                        </Link>
+                      </NewsBottom>
+                    </News>
+                  )}
+                </SwiperSlide>
+              )
+            )
+          })}
+        </Swiper>
+
+        {/* Secondary */}
+        <Swiper
+          navigation
+          slidesPerView={2}
+          // style={{ width: '100%', margin: '2rem 0' }}
+          controller={{ control: controlledSwiper }}
+          onSwiper={setSecondControlledSwiper}
+        >
+          {posts.map((post, index) => {
+            const fluid =
+              post.node.featuredImage?.node.localFile.childImageSharp.fluid ??
+              data.placeholderImage.fluid
+
+            return (
+              <>
+                {index !== 0 && (
+                  <SwiperSlide style={{ width: '100%' }} key={post.node.id}>
+                    {({ isActive }) => (
+                      <News isActive={isActive}>
+                        <Image
+                          dr
+                          fluid={{
+                            ...fluid,
+                            aspectRatio: 16 / 9,
+                          }}
+                        />
+
+                        <NewsBottom>
+                          <NewsTitle>{post.node.title}</NewsTitle>
+                          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                          <Link to="#">
+                            <Plus />
+                          </Link>
+                        </NewsBottom>
+                      </News>
+                    )}
+                  </SwiperSlide>
+                )}
+              </>
+            )
+          })}
+        </Swiper>
+      </SwiperDesktop>
     </Container>
   )
 }

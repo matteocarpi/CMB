@@ -79,6 +79,7 @@ const GlobalStyle = createGlobalStyle`
   button {
     font-family: Jost, sans-serif;
   }
+
   .logo {
   height: 200px;
   overflow: visible;
