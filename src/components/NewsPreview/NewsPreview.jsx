@@ -131,7 +131,7 @@ export default function NewsPreview() {
               node {
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 600) {
+                    fluid(maxWidth: 900) {
                       ...GatsbyImageSharpFluid
                     }
                   }
