@@ -21,7 +21,7 @@ const IntroWrapper = styled.div`
 `
 
 const Wrapper = styled.div`
-  margin-top: calc(85vh - 50px);
+  margin-top: calc(60vh);
   min-height: 80vh;
   width: 100%;
   background-color: white;
@@ -39,7 +39,7 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 758px) {
-    margin-top: calc(100vh + 100px);
+    margin-top: calc(100vh);
     background-color: transparent;
   }
 `

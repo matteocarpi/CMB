@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Cinzel, serif;
     color: ${({ theme }) => theme.black};
     line-height: 1.2;
+    text-transform: uppercase;
   }
   
 
@@ -43,6 +44,10 @@ const GlobalStyle = createGlobalStyle`
   
   h4 {
     font-size: 25px;
+
+    ${'' /* @media (min-width: 768px) {
+      font-size: 40px;
+    } */}
   }
 
   h5, h6 {
@@ -54,6 +59,10 @@ const GlobalStyle = createGlobalStyle`
   h5 {
     font-size: 14px;
     font-weight: 200;
+
+    @media (min-width: 768px) {
+      font-size: 30px;
+    }
   }
 
   span {
@@ -79,7 +88,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Jost, sans-serif;
     color: ${({ theme }) => theme.black};
     &:visited {
-    color: ${({ theme }) => theme.black}
+    color: ${({ theme }) => theme.black};
     }
   }
 
@@ -116,6 +125,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  padding-top: 100px;
 `
 const Layout = ({ children }) => (
   <ThemeProvider theme={defaultTheme}>

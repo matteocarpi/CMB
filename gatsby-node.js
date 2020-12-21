@@ -59,6 +59,17 @@ exports.createPages = async function ({ actions, graphql }) {
           }
         }
       }
+      allWpServizio {
+        edges {
+          node {
+            id
+            servizioContent {
+              categoria
+            }
+            slug
+          }
+        }
+      }
     }
   `)
 
@@ -67,13 +78,14 @@ exports.createPages = async function ({ actions, graphql }) {
   const { vigilanza } = data.wpPage.serviziContent
 
   const primaryServices = [consulenza, formazione, vigilanza]
+  const { sottotitolo } = data.wpPage.serviziContent
 
   primaryServices.forEach(service => {
     const slug = `/servizi/${service.titolo.toLowerCase()}`
     const { titolo } = service
-    const { sottotitolo } = data.wpPage.serviziContent
-    const serviceData = data.wpPage.serviziContent[service.titolo.toLowerCase()]
     const category = titolo.toLowerCase()
+
+    const serviceData = data.wpPage.serviziContent[titolo.toLowerCase()]
 
     actions.createPage({
       path: slug,
@@ -85,6 +97,23 @@ exports.createPages = async function ({ actions, graphql }) {
         primaryServices,
         serviceData,
         category,
+      },
+    })
+  })
+
+  const secondaryServices = data.allWpServizio.edges
+
+  secondaryServices.forEach(service => {
+    const slug = `/servizi/${service.node.servizioContent.categoria}/${service.node.slug}`
+    const category = service.node.servizioContent.categoria
+    actions.createPage({
+      path: slug,
+      component: require.resolve(`./src/templates/SecondaryService.jsx`),
+      context: {
+        id: service.node.id,
+        category,
+        primaryServices,
+        sottotitolo,
       },
     })
   })
