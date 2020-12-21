@@ -21,7 +21,7 @@ const IntroWrapper = styled.div`
 `
 
 const Wrapper = styled.div`
-  margin-top: calc(85vh - 100px);
+  margin-top: calc(85vh - 50px);
   min-height: 80vh;
   width: 100%;
   background-color: white;
@@ -39,7 +39,7 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 758px) {
-    margin-top: calc(100vh - 100px);
+    margin-top: calc(100vh + 100px);
     background-color: transparent;
   }
 `
@@ -76,7 +76,7 @@ const SloganContainer = styled.div`
 const FirstSlogan = styled.h1`
   margin: 0 2rem 4rem 2rem;
   @media (min-width: 768px) {
-    margin: 0rem 2rem 15rem 2rem;
+    margin: -10rem 2rem 15rem 2rem;
   }
 `
 

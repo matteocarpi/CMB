@@ -5,8 +5,7 @@ import LogoSVG from '../../assets/logo/logo-full-dark.svg'
 import BurgerSVG from '../../assets/icons/burger.svg'
 
 const Container = styled.header`
-  position: sticky;
-  position: -webkit-sticky;
+  position: fixed;
   width: 100%;
   top: 0;
   left: 0;
