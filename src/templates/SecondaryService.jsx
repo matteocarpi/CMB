@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
@@ -6,6 +6,7 @@ import Img from 'gatsby-image'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import PrimaryServicesBlock from '../components/PrimaryServicesBlock'
+import ThirdLevelServices from '../components/ThirdLevelServices/ThirdLevelServices'
 
 const Container = styled.section`
   margin-top: 3rem;
@@ -49,8 +50,10 @@ const Title = styled.h5`
 `
 
 const SecondaryService = ({ data, pageContext, location }) => {
+  const [collapsed, setCollapsed] = useState(false)
   const servizio = data.wpServizio
 
+  const { hasSottoServizi, sottoServizi } = servizio.servizioContent
   return (
     <Layout>
       <Seo title={servizio.title} />
@@ -69,10 +72,18 @@ const SecondaryService = ({ data, pageContext, location }) => {
           }}
         />
       </Container>
+
+      {hasSottoServizi && (
+        <ThirdLevelServices
+          sottoServizi={sottoServizi}
+          setCollapsed={setCollapsed}
+        />
+      )}
       <PrimaryServicesBlock
         pageContext={pageContext}
         data={data}
         location={location}
+        collapsed={collapsed}
       />
     </Layout>
   )

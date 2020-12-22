@@ -102,7 +102,14 @@ const GlobalStyle = createGlobalStyle`
     
   }
   button {
+    cursor: pointer;
     font-family: Jost, sans-serif;
+    background-color: transparent;
+    border: none;
+    font-weight: 200;
+    &:focus {
+      outline: none;
+    }
   }
 
   .logo {
