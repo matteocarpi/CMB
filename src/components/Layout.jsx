@@ -13,11 +13,12 @@ import 'swiper/components/navigation/navigation.scss'
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4 {
     font-family: Cinzel, serif;
     color: ${({ theme }) => theme.black};
     line-height: 1.2;
   }
+  
 
   h1 {
     font-size: 47px;
@@ -39,9 +40,20 @@ const GlobalStyle = createGlobalStyle`
       font-size: 60px;
     }
   }
-
+  
   h4 {
     font-size: 25px;
+  }
+
+  h5, h6 {
+    font-family: Jost, sans-serif;
+    color: ${({ theme }) => theme.black};
+    line-height: 1.2;
+  }
+
+  h5 {
+    font-size: 14px;
+    font-weight: 200;
   }
 
   span {
@@ -65,6 +77,10 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
     font-family: Jost, sans-serif;
+    color: ${({ theme }) => theme.black};
+    &:visited {
+    color: ${({ theme }) => theme.black}
+    }
   }
 
   li {
