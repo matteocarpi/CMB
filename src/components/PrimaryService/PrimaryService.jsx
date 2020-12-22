@@ -52,6 +52,7 @@ export default function PrimaryService({
   image,
   index,
   servicesNumber,
+  uri,
 }) {
   const isRight = index % 2 !== 0
   const isLeft = !isRight
@@ -67,7 +68,7 @@ export default function PrimaryService({
       <Text>
         <Title>{title}</Title>
         <Description dangerouslySetInnerHTML={{ __html: description }} />
-        <Plus to="#" />
+        <Plus to={uri} />
       </Text>
     </Container>
   )

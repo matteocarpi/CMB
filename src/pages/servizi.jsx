@@ -87,12 +87,13 @@ export default function Servizi() {
         <PrimaryServiceList>
           {primaryServices.map((service, index) => (
             <PrimaryService
-              key={service.title}
+              key={service.titolo}
               title={service.titolo}
               description={service.descrizione}
               image={service.immagine.localFile.childImageSharp.fluid}
               index={index}
               servicesNumber={primaryServices.length}
+              uri={service.titolo.toLowerCase()}
             />
           ))}
         </PrimaryServiceList>
