@@ -272,6 +272,9 @@ export default function ServicePreview() {
 
   const description =
     servizi[currentService]?.descrizione ?? serviziContent.descrizione
+
+  const uri = servizi[currentService]?.titolo.toLowerCase() ?? ''
+
   const image =
     servizi[currentService]?.immagine.localFile.childImageSharp.fluid ??
     serviziContent.immagine.localFile.childImageSharp.fluid
@@ -305,7 +308,7 @@ export default function ServicePreview() {
                 }}
               />
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <StyledLink to="#">
+              <StyledLink to={`servizi/${uri}`}>
                 <Plus />
               </StyledLink>
             </PreviewContainer>
