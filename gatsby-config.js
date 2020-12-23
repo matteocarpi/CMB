@@ -66,11 +66,7 @@ module.exports = {
       resolve: 'gatsby-plugin-google-fonts-v2',
       options: {
         fonts: [
-          {
-            family: 'Cinzel',
-            variable: true,
-            weights: ['400..700'],
-          },
+          // Cinzel is local
           {
             family: 'Jost',
             variable: true,

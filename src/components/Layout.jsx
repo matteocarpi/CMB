@@ -9,12 +9,12 @@ import Footer from './Footer'
 
 import 'swiper/swiper.scss'
 import 'swiper/components/navigation/navigation.scss'
+import './typography.css'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
-
   h1, h2, h3, h4 {
-    font-family: Cinzel, serif;
+    font-family: 'Cinzel', serif;
     color: ${({ theme }) => theme.black};
     line-height: 1.2;
     text-transform: uppercase;
