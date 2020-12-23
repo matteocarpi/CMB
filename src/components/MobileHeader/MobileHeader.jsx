@@ -18,6 +18,7 @@ const Container = styled.header`
   background-color: white;
   /* border-bottom: solid 1px lightgrey; */
   background-color: transparent;
+  box-shadow: 1px;
 `
 
 const HeaderTop = styled.div`
@@ -29,6 +30,12 @@ const HeaderTop = styled.div`
 
 const Logo = styled(LogoSVG)`
   margin: 15px;
+`
+
+const Button = styled.button`
+  @media (min-width: 900px) {
+    display: none;
+  }
 `
 
 const Burger = styled(BurgerSVG)`
@@ -56,6 +63,38 @@ const NavItem = styled.li`
     border-left: solid 1px ${({ theme }) => theme.gold};
     padding-left: calc(0.5rem - 1px);
     margin-left: -0.5rem;
+  }
+`
+
+const DesktopNavigationContainer = styled.nav`
+  display: none;
+  @media (min-width: 901px) {
+    display: block;
+  }
+`
+
+const DesktopNavigation = styled.ul`
+  display: flex;
+  margin-right: 1rem;
+`
+const DesktopNavItem = styled.li`
+  margin: 1rem 0;
+  font-weight: 200;
+  text-transform: uppercase;
+
+  a {
+    padding-left: 0.5rem;
+    white-space: nowrap;
+  }
+
+  a:hover,
+  a.active {
+    border-left: solid 1px ${({ theme }) => theme.gold};
+    padding-left: calc(0.5rem - 1px);
+  }
+
+  @media (min-width: 768px) {
+    margin: 0 1rem;
   }
 `
 
@@ -95,9 +134,25 @@ export default function MobileHeader() {
         <Link to="/">
           <Logo />
         </Link>
-        <button type="button" onClick={() => setIsOpen(!isOpen)}>
+        <Button type="button" onClick={() => setIsOpen(!isOpen)}>
           {!isOpen ? <Burger /> : <Close />}
-        </button>
+        </Button>
+
+        <DesktopNavigationContainer>
+          <DesktopNavigation>
+            {navigation.allWpPage.edges.map(page => (
+              <DesktopNavItem>
+                <Link
+                  to={`/${page.node.slug}`}
+                  key={page.node.id}
+                  activeClassName="active"
+                >
+                  {page.node.title}
+                </Link>
+              </DesktopNavItem>
+            ))}
+          </DesktopNavigation>
+        </DesktopNavigationContainer>
       </HeaderTop>
 
       <AnimatePresence>
