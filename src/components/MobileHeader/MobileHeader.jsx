@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 
 import LogoSVG from '../../assets/logo/logo-full-dark.svg'
 import BurgerSVG from '../../assets/icons/burger.svg'
+import CloseSVG from '../../assets/icons/close.svg'
 
 const Container = styled.header`
   position: fixed;
@@ -29,7 +30,10 @@ const Logo = styled(LogoSVG)`
 `
 
 const Burger = styled(BurgerSVG)`
-  margin: 30px;
+  margin: 0 30px;
+`
+const Close = styled(CloseSVG)`
+  margin: 0 30px;
 `
 
 const NavigationContainer = styled.nav`
@@ -53,8 +57,9 @@ const NavItem = styled.li`
 `
 
 export default function MobileHeader() {
+  const [isOpen, setIsOpen] = useState(false)
   const navigation = useStaticQuery(graphql`
-    query Nagivation {
+    query Navigation {
       allWpPage(
         filter: { id: { nin: "cG9zdDo5" } }
         sort: { fields: menuOrder, order: ASC }
@@ -76,24 +81,28 @@ export default function MobileHeader() {
         <Link to="/">
           <Logo />
         </Link>
-        <Burger />
+        <button type="button" onClick={() => setIsOpen(!isOpen)}>
+          {!isOpen ? <Burger /> : <Close />}
+        </button>
       </HeaderTop>
 
-      <NavigationContainer>
-        <Navigation>
-          {navigation.allWpPage.edges.map(page => {
-            const p = page.node
+      {isOpen && (
+        <NavigationContainer>
+          <Navigation>
+            {navigation.allWpPage.edges.map(page => {
+              const p = page.node
 
-            return (
-              <NavItem key={p.id}>
-                <Link to={`/${p.slug}`} activeClassName="active">
-                  {p.title}
-                </Link>
-              </NavItem>
-            )
-          })}
-        </Navigation>
-      </NavigationContainer>
+              return (
+                <NavItem key={p.id}>
+                  <Link to={`/${p.slug}`} activeClassName="active">
+                    {p.title}
+                  </Link>
+                </NavItem>
+              )
+            })}
+          </Navigation>
+        </NavigationContainer>
+      )}
     </Container>
   )
 }
