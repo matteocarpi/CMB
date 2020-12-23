@@ -35,6 +35,7 @@ const Text = styled.div`
 const Image = styled(Img)`
   width: 25%;
   min-height: 200px;
+  height: 70vh;
   max-height: 900px;
   @media (min-width: 768px) {
     width: 45%;
