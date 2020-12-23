@@ -81,7 +81,7 @@ const Preview = styled(motion.div)`
   flex-direction: column;
   padding: 2rem 1rem;
   position: relative;
-  /* &:after {
+  &:after {
     content: '';
     width: 50px;
     height: 50px;
@@ -93,16 +93,17 @@ const Preview = styled(motion.div)`
   }
   @media (min-width: 768px) {
     &:after {
-      content: '';
+      display: none;
+      /* content: '';
       width: 50px;
       height: 50px;
       background-color: white;
       position: absolute;
       bottom: 0;
       left: 0;
-      transform: scale(2) rotate(45deg) translate(0px, 17.5px);
+      transform: scale(2) rotate(45deg) translate(0px, 17.5px); */
     }
-  } */
+  }
 `
 
 const Content = styled.div`
