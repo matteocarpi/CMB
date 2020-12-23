@@ -13,10 +13,8 @@ const Container = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  min-height: 100px;
   z-index: 10000;
   background-color: white;
-  /* border-bottom: solid 1px lightgrey; */
   background-color: transparent;
   box-shadow: 1px;
 `
@@ -26,6 +24,8 @@ const HeaderTop = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: white;
+  border-bottom: solid 1px lightgrey;
+  min-height: 100px;
 `
 
 const Logo = styled(LogoSVG)`
@@ -49,6 +49,7 @@ const NavigationContainer = styled(motion.nav)`
   display: flex;
   justify-content: center;
   background-color: white;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
 `
 
 const Navigation = styled.ul``
