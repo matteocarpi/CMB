@@ -1,1 +1,1 @@
-# CMB Group
+# CMB-Group
