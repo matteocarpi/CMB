@@ -11,4 +11,15 @@ if [ -z "$NETLIFY_SITE_ID" ]; then
     exit 1
 fi
 
-    npx netlify deploy         --message="@$(git rev-parse --short HEAD)"         --auth=""         --site=""         --dir=public
+args=(
+    --message="@$(git rev-parse --short HEAD)"
+    --auth=""
+    --site=""
+    --dir=public
+)
+
+if [[ "$DRONE_BRANCH" = main ]]; then
+    args+=(--prod)
+fi
+  
+npx netlify deploy "${args[@]}"
