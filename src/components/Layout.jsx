@@ -57,6 +57,15 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h5 {
+    font-size: 18px;
+    font-weight: 200;
+    text-transform: uppercase;
+    @media (min-width: 768px) {
+      font-size: 30px;
+    }
+  }
+
+  h6 {
     font-size: 14px;
     font-weight: 200;
 

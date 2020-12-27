@@ -7,7 +7,7 @@ import Image from 'gatsby-image'
 import Layout from '../../components/Layout'
 import SEO from '../../components/Seo'
 import IntroSlide from '../../components/IntroSlide'
-import Counter from '../../components/Counter'
+import Badges from '../../components/Badges'
 import ClientsPreview from '../../components/ClientsPreview'
 import ServicePreview from '../../components/ServicePreview'
 import NewsPreview from '../../components/NewsPreview'
@@ -59,12 +59,6 @@ const Content = styled.div`
 const TeamImage = styled(Image)`
   width: 100%;
   margin-top: 30px;
-`
-
-const Badges = styled.div`
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
 `
 
 const SloganContainer = styled.div`
@@ -207,15 +201,7 @@ const Home = () => {
                   __html: content.longBio,
                 }}
               />
-              <Badges>
-                {content.badges.map(badge => (
-                  <Counter
-                    key={badge.title}
-                    number={badge.number}
-                    title={badge.title}
-                  />
-                ))}
-              </Badges>
+              <Badges badges={content.badges} />
             </MoreInfo>
           </MoreInfoContainer>
 
