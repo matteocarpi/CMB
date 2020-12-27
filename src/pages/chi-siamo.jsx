@@ -13,17 +13,29 @@ import Attachment from '../components/Attachment'
 
 const Container = styled.section`
   margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
 `
 
-const Descrizione = styled.article`
-  margin: 0 0 2rem 0;
-`
+const Descrizione = styled.article``
 
 const StyledLogo = styled(Logo)`
   float: left;
   margin: 0 2rem 1rem 2rem;
   max-width: 20%;
   height: 100%;
+`
+
+const LogoDescription = styled.section`
+  p {
+    margin-top: 0;
+  }
+
+  @media (min-width: 768px) {
+    width: 60%;
+    align-self: flex-end;
+    margin-bottom: 2rem;
+  }
 `
 
 const Image = styled(Img)`
@@ -40,6 +52,10 @@ const Organigramma = styled.section`
 
   h5 {
     margin-bottom: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    margin: 5rem 0;
   }
 `
 
@@ -113,14 +129,14 @@ const ChiSiamo = () => {
             __html: content.descrizione1,
           }}
         />
-
-        <StyledLogo />
-
-        <Descrizione
-          dangerouslySetInnerHTML={{
-            __html: content.descrizione2,
-          }}
-        />
+        <LogoDescription>
+          <StyledLogo />
+          <Descrizione
+            dangerouslySetInnerHTML={{
+              __html: content.descrizione2,
+            }}
+          />
+        </LogoDescription>
 
         <Image fluid={content.immagine.localFile.childImageSharp.fluid} />
         <Descrizione

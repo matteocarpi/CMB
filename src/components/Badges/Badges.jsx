@@ -6,6 +6,8 @@ const Container = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
 `
 
 export default function Badges({ badges }) {
