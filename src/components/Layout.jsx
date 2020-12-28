@@ -13,6 +13,10 @@ import './typography.css'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
+
+  body {
+    box-sizing: border-box;
+  }
   h1, h2, h3, h4 {
     font-family: 'Cinzel', serif;
     color: ${({ theme }) => theme.black};
@@ -140,7 +144,6 @@ const GlobalStyle = createGlobalStyle`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   padding-top: 100px;
 `
 const Layout = ({ children }) => (

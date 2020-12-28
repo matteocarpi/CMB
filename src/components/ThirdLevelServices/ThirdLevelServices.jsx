@@ -34,21 +34,26 @@ const SottoServizi = styled.section`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 `
 
 const Left = styled.section`
   width: 40%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: calc(100px + 1rem);
 `
 
 const Right = styled.section`
+  position: relative;
   background-color: ${({ theme }) => theme.navy};
+  width: 60%;
+  padding: 2rem;
+
   * {
     color: white;
   }
-  width: 60%;
-  padding: 2rem;
-  max-height: 60vh;
-  overflow: scroll;
+
   &:before {
     content: '';
     z-index: 1;
