@@ -17,6 +17,12 @@ const GlobalStyle = createGlobalStyle`
   body {
     box-sizing: border-box;
   }
+
+  div {
+    font-family: Jost, sans-serif;
+    font-weight: 400;
+  }
+
   h1, h2, h3, h4 {
     font-family: 'Cinzel', serif;
     color: ${({ theme }) => theme.black};
