@@ -7,13 +7,17 @@ import SectionTitle from '../SectionTitle'
 import IconPlus from '../../assets/icons/plus.svg'
 import Image from '../ImageCut'
 
+const Wrapper = styled.div`
+  width: 100%;
+  overflow: hidden;
+`
+
 const Container = styled.div`
   margin: 4rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
   @media (min-width: 768px) {
     margin: 10rem 0;
   }
@@ -281,42 +285,44 @@ export default function ServicePreview() {
     serviziContent.immagine.localFile.childImageSharp.fluid
 
   return (
-    <Container>
-      <Row>
-        <Left>
-          <SectionTitle onClick={() => setCurrentService(null)}>
-            {data.wpPage.title}
-          </SectionTitle>
-          <Menu>
-            {servizi.map((service, index) => (
-              <ButtonWrap
-                key={service.titolo}
-                active={index === currentService}
-              >
-                <Button onClick={() => setCurrentService(index)}>
-                  {service.titolo}
-                </Button>
-              </ButtonWrap>
-            ))}
-          </Menu>
-        </Left>
-        <Right>
-          <Preview ref={ref} style={{ x: translatePreview }}>
-            <PreviewContainer>
-              <Content
-                dangerouslySetInnerHTML={{
-                  __html: description,
-                }}
-              />
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <StyledLink to={`servizi/${uri}`}>
-                <Plus />
-              </StyledLink>
-            </PreviewContainer>
-          </Preview>
-          <Img dl fluid={image} />
-        </Right>
-      </Row>
-    </Container>
+    <Wrapper>
+      <Container>
+        <Row>
+          <Left>
+            <SectionTitle onClick={() => setCurrentService(null)}>
+              {data.wpPage.title}
+            </SectionTitle>
+            <Menu>
+              {servizi.map((service, index) => (
+                <ButtonWrap
+                  key={service.titolo}
+                  active={index === currentService}
+                >
+                  <Button onClick={() => setCurrentService(index)}>
+                    {service.titolo}
+                  </Button>
+                </ButtonWrap>
+              ))}
+            </Menu>
+          </Left>
+          <Right>
+            <Preview ref={ref} style={{ x: translatePreview }}>
+              <PreviewContainer>
+                <Content
+                  dangerouslySetInnerHTML={{
+                    __html: description,
+                  }}
+                />
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <StyledLink to={`servizi/${uri}`}>
+                  <Plus />
+                </StyledLink>
+              </PreviewContainer>
+            </Preview>
+            <Img dl fluid={image} />
+          </Right>
+        </Row>
+      </Container>
+    </Wrapper>
   )
 }
