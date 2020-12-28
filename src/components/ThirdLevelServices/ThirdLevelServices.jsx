@@ -8,7 +8,10 @@ const Container = styled.section`
 `
 
 const Title = styled.h5`
-  margin-left: 2rem;
+  margin: 0 2rem;
+  @media (min-width: 768px) {
+    margin-left: 2rem;
+  }
 `
 
 const Navigation = styled.ul`
