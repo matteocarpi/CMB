@@ -13,7 +13,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  overflow: hidden;
   @media (min-width: 768px) {
     margin: 10rem 0;
   }
