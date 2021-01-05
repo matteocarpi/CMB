@@ -4,7 +4,7 @@ import reset from 'styled-reset'
 
 import { defaultTheme } from './Themes/Themes'
 
-import MobileHeader from './MobileHeader'
+import Header from './Header'
 import Footer from './Footer'
 
 import 'swiper/swiper.scss'
@@ -156,7 +156,7 @@ const Layout = ({ children }) => (
   <ThemeProvider theme={defaultTheme}>
     <GlobalStyle />
     <Container>
-      <MobileHeader />
+      <Header />
       {children}
       <Footer />
     </Container>

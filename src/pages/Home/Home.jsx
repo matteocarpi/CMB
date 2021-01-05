@@ -17,7 +17,7 @@ const IntroWrapper = styled.div`
   position: fixed;
   width: 100%;
   z-index: -1;
-  top: 100px;
+  top: 50px;
 `
 
 const Wrapper = styled.div`

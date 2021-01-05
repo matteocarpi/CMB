@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import { motion, AnimatePresence } from 'framer-motion'
+
+import useViewportScroll from '../../hooks/useViewportScroll'
 
 import LogoSVG from '../../assets/logo/logo-full-dark.svg'
 import BurgerSVG from '../../assets/icons/burger.svg'
@@ -26,10 +28,25 @@ const HeaderTop = styled.div`
   background-color: white;
   border-bottom: solid 1px lightgrey;
   min-height: 100px;
+  transition: 0.5s;
+
+  ${({ hasScrolled }) =>
+    hasScrolled &&
+    css`
+      min-height: 50px;
+    `}
 `
 
 const Logo = styled(LogoSVG)`
   margin: 15px;
+  transition: 0.5s;
+  width: 120px;
+
+  ${({ hasScrolled }) =>
+    hasScrolled &&
+    css`
+      height: 30px;
+    `};
 `
 
 const Button = styled.button`
@@ -110,7 +127,9 @@ const navigationVariants = {
   },
 }
 
-export default function MobileHeader() {
+export default function Header() {
+  const scrollY = useViewportScroll()
+  const hasScrolled = scrollY > 200
   const [isOpen, setIsOpen] = useState(false)
   const navigation = useStaticQuery(graphql`
     query Navigation {
@@ -131,9 +150,9 @@ export default function MobileHeader() {
 
   return (
     <Container>
-      <HeaderTop>
+      <HeaderTop hasScrolled={hasScrolled}>
         <Link to="/">
-          <Logo />
+          <Logo hasScrolled={hasScrolled} />
         </Link>
         <Button type="button" onClick={() => setIsOpen(!isOpen)}>
           {!isOpen ? <Burger /> : <Close />}
