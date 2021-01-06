@@ -171,7 +171,7 @@ export default function NewsPreview() {
 
   return (
     <Container>
-      <SectionTitle>News</SectionTitle>
+      <SectionTitle small>News</SectionTitle>
 
       <SwiperMobile navigation slidesPerView={1}>
         {posts.map(post => {
