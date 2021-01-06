@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 `
 
 const Container = styled.div`
-  margin: 4rem;
+  margin-top: 4rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -65,7 +65,7 @@ const Button = styled.button`
 `
 
 const Menu = styled.div`
-  margin: 1rem 0;
+  margin: 2.5rem 0;
   padding-left: 1rem;
   align-self: flex-start;
   margin-left: 1rem;
@@ -97,15 +97,14 @@ const Preview = styled(motion.div)`
   }
   @media (min-width: 768px) {
     &:after {
-      display: none;
-      /* content: '';
+      content: '';
       width: 50px;
       height: 50px;
       background-color: white;
       position: absolute;
       bottom: 0;
       left: 0;
-      transform: scale(2) rotate(45deg) translate(0px, 17.5px); */
+      transform: scale(2) rotate(45deg) translate(0px, 17.5px);
     }
   }
 `
@@ -200,14 +199,13 @@ export default function ServicePreview() {
   }, [])
 
   const heightPercentage = scrollPercentageEnd - scrollPercentageStart
-  const middlePercentage = heightPercentage / 2
   const translatePreview = useTransform(
     scrollYProgress,
     [
       scrollPercentageStart - heightPercentage * 2,
-      scrollPercentageStart + middlePercentage / 2,
+      scrollPercentageStart - heightPercentage / 24,
     ],
-    [1000, 0],
+    [500, 0],
   )
   const data = useStaticQuery(graphql`
     {
@@ -319,7 +317,7 @@ export default function ServicePreview() {
                 </StyledLink>
               </PreviewContainer>
             </Preview>
-            <Img dl fluid={image} />
+            <Img fluid={image} />
           </Right>
         </Row>
       </Container>
