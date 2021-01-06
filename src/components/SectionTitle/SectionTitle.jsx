@@ -16,7 +16,6 @@ const Wrapper = styled.div`
 
 const Title = styled.h2`
   max-width: 850px;
-  padding-left: 0.7rem;
   cursor: pointer;
   align-self: flex-start;
 

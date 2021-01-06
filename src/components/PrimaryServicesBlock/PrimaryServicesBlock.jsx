@@ -7,7 +7,6 @@ import SectionTitle from '../SectionTitle'
 import SecondaryServiceThumb from '../SecondaryServiceThumb'
 
 const Content = styled.section`
-  margin: 5rem 0;
   @media (min-width: 768px) {
     padding: 0 2rem;
   }
@@ -20,9 +19,8 @@ const Navigation = styled.ul`
     display: flex;
     width: 100%;
     justify-content: space-between;
-    margin-bottom: 2rem;
-    padding: 3rem 0;
-    padding-left: 2rem;
+    padding: 1rem 0;
+    padding-left: 1rem;
   }
 `
 
@@ -30,7 +28,7 @@ const NavItem = styled.li`
   margin: 2rem 0;
   a {
     h4 {
-      font-size: calc(25px + 1vw);
+      font-size: calc(18px + 1vw);
       width: min-content;
       ${({ active }) =>
         active &&
