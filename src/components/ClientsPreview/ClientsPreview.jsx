@@ -42,7 +42,7 @@ const Image = styled(Img)`
     min-height: 660px;
   }
 `
-const Testimonial = styled.h2``
+const Testimonial = styled.h3``
 
 SwiperCore.use([Navigation])
 
