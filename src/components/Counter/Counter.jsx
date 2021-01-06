@@ -3,12 +3,15 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   text-align: center;
+  flex-basis: 0;
+  flex-grow: 1;
+  margin: 0 1rem;
 `
 const Numero = styled.h4`
   font-weight: 700;
 
   @media (min-width: 768px) {
-    font-size: 57px;
+    font-size: 43px;
   }
 `
 const Title = styled.span`
@@ -16,7 +19,7 @@ const Title = styled.span`
   font-size: 10px;
 
   @media (min-width: 768px) {
-    font-size: 19px;
+    font-size: 16px;
   }
 `
 export default function Counter({ number = 0, title = 0 }) {
