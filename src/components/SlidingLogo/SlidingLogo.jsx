@@ -35,27 +35,33 @@ export default function SlidingLogo(props) {
     setScrollPercentageEnd(elementScrollEnd)
   }, [])
 
+  const delayTranslation = 0.2
+  const delayFade = 0.02
+
   const translateMedium = useTransform(
     scrollYProgress,
-    [scrollPercentageStart - 1, scrollPercentageEnd - 0.05],
+    [scrollPercentageStart - 1 + delayTranslation, scrollPercentageEnd - 0.05],
     [-400, 0],
   )
 
   const translateShort = useTransform(
     scrollYProgress,
-    [scrollPercentageStart - 0.5, scrollPercentageEnd - 0.05],
+    [
+      scrollPercentageStart - 0.5 + delayTranslation,
+      scrollPercentageEnd - 0.05,
+    ],
     [-600, 0],
   )
 
   const fadeMedium = useTransform(
     scrollYProgress,
-    [scrollPercentageStart - 0.1, scrollPercentageEnd - 0.05],
+    [scrollPercentageStart - 0.1 + delayFade, scrollPercentageEnd - 0.05],
     [0, 1],
   )
 
   const fadeShort = useTransform(
     scrollYProgress,
-    [scrollPercentageStart - 0.05, scrollPercentageEnd - 0.05],
+    [scrollPercentageStart - 0.05 + delayFade, scrollPercentageEnd - 0.05],
     [0, 1],
   )
 
