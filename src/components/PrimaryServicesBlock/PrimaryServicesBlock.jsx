@@ -8,14 +8,14 @@ import SecondaryServiceThumb from '../SecondaryServiceThumb'
 
 const Content = styled.section`
   @media (min-width: 768px) {
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
 `
 
 const Navigation = styled.ul`
   padding-left: 2rem;
   @media (min-width: 768px) {
-    max-width: 1200px;
+    max-width: 900px;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -61,7 +61,6 @@ const PrimaryServicesBlock = ({
   pageContext,
   data: secondaryServices,
   location,
-  collapsed,
 }) => {
   const { titolo, sottotitolo, primaryServices } = pageContext
 
@@ -86,25 +85,23 @@ const PrimaryServicesBlock = ({
           })}
         </Navigation>
 
-        {!collapsed && (
-          <ServiceList>
-            {secondaryServices.allWpServizio.edges.map(s => {
-              const service = s.node
-              const uri = `/servizi/${service.servizioContent.categoria}/${service.slug}`
-              return (
-                <SecondaryServiceThumb
-                  key={service.id}
-                  title={service.title}
-                  image={
-                    service.servizioContent.immagine.localFile.childImageSharp
-                      .fluid
-                  }
-                  uri={uri}
-                />
-              )
-            })}
-          </ServiceList>
-        )}
+        <ServiceList>
+          {secondaryServices.allWpServizio.edges.map(s => {
+            const service = s.node
+            const uri = `/servizi/${service.servizioContent.categoria}/${service.slug}`
+            return (
+              <SecondaryServiceThumb
+                key={service.id}
+                title={service.title}
+                image={
+                  service.servizioContent.immagine.localFile.childImageSharp
+                    .fluid
+                }
+                uri={uri}
+              />
+            )
+          })}
+        </ServiceList>
       </Content>
     </>
   )

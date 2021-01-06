@@ -10,12 +10,14 @@ import ThirdLevelServices from '../components/ThirdLevelServices/ThirdLevelServi
 
 const Container = styled.section`
   margin-top: 3rem;
+  max-width: 1200px;
 `
 
 const Image = styled(Img)`
   display: none;
   height: 50vh;
   min-height: 300px;
+  margin-top: -100px;
 
   picture {
     img {
@@ -38,19 +40,17 @@ const Description = styled.article`
 
 const Title = styled.h5`
   margin: 0 auto;
-  padding-left: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: solid 1px ${({ theme }) => theme.gold};
   width: 90%;
 
   @media (min-width: 768px) {
     max-width: 850px;
-    margin: 0 0 0 1.5rem;
+    margin: 0 0 0 2rem;
   }
 `
 
 const SecondaryService = ({ data, pageContext, location }) => {
-  const [collapsed, setCollapsed] = useState(false)
   const servizio = data.wpServizio
 
   const { hasSottoServizi, sottoServizi } = servizio.servizioContent
@@ -73,17 +73,11 @@ const SecondaryService = ({ data, pageContext, location }) => {
         />
       </Container>
 
-      {hasSottoServizi && (
-        <ThirdLevelServices
-          sottoServizi={sottoServizi}
-          setCollapsed={setCollapsed}
-        />
-      )}
+      {hasSottoServizi && <ThirdLevelServices sottoServizi={sottoServizi} />}
       <PrimaryServicesBlock
         pageContext={pageContext}
         data={data}
         location={location}
-        collapsed={collapsed}
       />
     </Layout>
   )

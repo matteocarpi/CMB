@@ -83,7 +83,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 200;
 
     @media (min-width: 768px) {
-      font-size: 30px;
+      font-size: 18px;
     }
   }
 
@@ -157,7 +157,7 @@ const Container = styled.div`
 `
 
 const Content = styled.div`
-  margin: 60px 0;
+  margin: 100px 0;
 `
 const Layout = ({ children }) => (
   <ThemeProvider theme={defaultTheme}>

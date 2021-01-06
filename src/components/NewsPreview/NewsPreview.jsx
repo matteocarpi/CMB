@@ -40,12 +40,17 @@ const NewsBottom = styled.div`
   align-items: flex-start;
   justify-content: space-between;
 `
-const cutWidth = Math.sqrt(50 ** 2 * 2)
+const cutWidthSmall = Math.sqrt(25 ** 2 * 2)
+const cutWidthBig = Math.sqrt(50 ** 2 * 2)
 
 const NewsTitle = styled.span`
   font-size: 20px;
   padding: 1rem 0.5rem;
-  max-width: calc(100% - ${cutWidth}px);
+  max-width: calc(100% - ${cutWidthSmall}px);
+
+  @media (min-width: 768px) {
+    max-width: calc(100% - ${cutWidthBig}px);
+  }
 `
 
 const Plus = styled(PlusIcon)`

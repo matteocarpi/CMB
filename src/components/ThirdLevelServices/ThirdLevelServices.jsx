@@ -4,11 +4,12 @@ import Sel, { components } from 'react-select'
 import Burger from '../../assets/icons/burger-small.svg'
 
 const Container = styled.section`
-  margin-top: 2rem;
+  margin: 2rem 0;
 `
 
 const Title = styled.h5`
   margin: 0 2rem;
+  text-transform: none;
   @media (min-width: 768px) {
     margin-left: 2rem;
   }
@@ -20,25 +21,30 @@ const Navigation = styled.ul`
 
   @media (min-width: 768px) {
     display: block;
+    margin-top: 0;
+    padding-top: 0;
   }
 `
 
 const NavItem = styled.li`
+  padding-left: 0.7rem;
+  margin-left: -0.7rem;
   ${({ active }) =>
     active &&
     css`
-      margin-left: -1px;
+      margin-left: calc(-1px - 0.7rem);
       border-left: solid 1px ${({ theme }) => theme.gold};
     `}
 
   &:hover {
-    margin-left: -1px;
+    margin-left: calc(-1px - 0.7rem);
     border-left: solid 1px ${({ theme }) => theme.gold};
   }
 `
 
 const Button = styled.button`
   font-size: 25px;
+  padding: 0;
 `
 
 const SottoServizi = styled.section`
@@ -63,6 +69,7 @@ const Sidebar = styled.section`
   padding: 2rem 0;
   @media (min-width: 768px) {
     width: 40%;
+    padding: 0;
   }
 `
 
@@ -156,7 +163,7 @@ const selectStyles = {
 export default function ThirdLevelServices({ sottoServizi, setCollapsed }) {
   const globalTheme = useContext(ThemeContext)
 
-  const [currentSs, setCurrentSs] = useState()
+  const [currentSs, setCurrentSs] = useState(0)
 
   const { titolo, listaSottoServizi } = sottoServizi
 
@@ -196,7 +203,6 @@ export default function ThirdLevelServices({ sottoServizi, setCollapsed }) {
                     type="button"
                     onClick={() => {
                       setCurrentSs(index)
-                      setCollapsed(true)
                     }}
                   >
                     {sS.titolo}

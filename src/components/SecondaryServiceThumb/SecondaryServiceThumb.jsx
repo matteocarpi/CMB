@@ -5,15 +5,19 @@ import ImageCut from '../ImageCut'
 
 const Img = styled(ImageCut)``
 
-const Title = styled.h5`
-  width: 90%;
+const cutWidthSmall = Math.sqrt(25 ** 2 * 2)
+const cutWidthBig = Math.sqrt(50 ** 2 * 2)
+
+const Title = styled.h6`
+  width: 100%;
   text-align: right;
   margin-top: 0.5rem;
   border-bottom: solid 1px ${({ theme }) => theme.black};
   padding-bottom: 0.4rem;
-  font-size: calc(14px + 1vw);
-
+  text-transform: capitalize;
+  max-width: calc(100% - ${cutWidthSmall}px);
   @media (min-width: 768px) {
+    max-width: calc(100% - ${cutWidthBig}px);
     border-width: 2px;
   }
 `
