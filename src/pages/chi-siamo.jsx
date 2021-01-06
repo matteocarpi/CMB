@@ -44,18 +44,21 @@ const Image = styled(Img)`
 
 const Organigramma = styled.section`
   width: 100%;
-  margin: 3rem 0;
+  margin: 3rem 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-
-  h5 {
-    margin-bottom: 2rem;
-  }
 
   @media (min-width: 768px) {
     margin: 5rem 0;
   }
+`
+const DownloadWrapper = styled.section`
+  display: flex;
+  align-items: center;
+`
+
+const Subtitle = styled.h5`
+  margin: 0 2rem;
 `
 
 const Certificazioni = styled.section``
@@ -86,6 +89,8 @@ const ChiSiamo = () => {
           descrizione3
           organigramma {
             title
+            subtitle
+            descrizione
             allegato {
               mediaItemUrl
             }
@@ -147,12 +152,20 @@ const ChiSiamo = () => {
         <Badges badges={badges} />
 
         <Organigramma>
-          <h5>{content.organigramma.title}</h5>
-          <Download url={content.organigramma.allegato.mediaItemUrl} />
+          <SectionTitle tiny>{content.organigramma.title}</SectionTitle>
+          <Descrizione
+            dangerouslySetInnerHTML={{
+              __html: content.organigramma.descrizione,
+            }}
+          />
+          <DownloadWrapper>
+            <Subtitle>{content.organigramma.subtitle}</Subtitle>
+            <Download url={content.organigramma.allegato.mediaItemUrl} />
+          </DownloadWrapper>
         </Organigramma>
 
         <Certificazioni>
-          <SectionTitle>{content.certificazioni.title}</SectionTitle>
+          <SectionTitle tiny>{content.certificazioni.title}</SectionTitle>
           <Descrizione
             dangerouslySetInnerHTML={{
               __html: content.certificazioni.descrizione,

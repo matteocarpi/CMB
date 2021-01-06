@@ -19,12 +19,24 @@ const Title = styled.h2`
   padding-left: 0.7rem;
   cursor: pointer;
   align-self: flex-start;
+
+  ${({ tiny }) =>
+    tiny &&
+    css`
+      font-size: 37px;
+    `}
 `
 
 const Underline = styled(motion.div)`
   width: 100%;
   transform-origin: left center;
   border-bottom: solid 2px ${({ theme }) => theme.gold};
+
+  ${({ tiny }) =>
+    tiny &&
+    css`
+      border-bottom: none;
+    `}
 `
 
 const underlineVariants = {
@@ -39,14 +51,15 @@ const underlineVariants = {
     },
   },
 }
-export default function SectionTitle({ children, uri, small }) {
+export default function SectionTitle({ children, uri, small, tiny }) {
   return (
     <Wrapper small={small} to={uri}>
-      <Title>{children}</Title>
+      <Title tiny={tiny}>{children}</Title>
       <Underline
         variants={underlineVariants}
         initial="hidden"
         animate="visible"
+        tiny={tiny}
       />
     </Wrapper>
   )

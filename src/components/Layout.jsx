@@ -74,7 +74,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 200;
     text-transform: uppercase;
     @media (min-width: 768px) {
-      font-size: 30px;
+      font-size: 25px;
     }
   }
 
