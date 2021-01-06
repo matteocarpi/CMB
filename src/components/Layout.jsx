@@ -32,15 +32,15 @@ const GlobalStyle = createGlobalStyle`
   
 
   h1 {
-    font-size: 47px;
+    font-size: 60px;
     margin: 15px;
 
   }
 
   h2 {
-    font-size: 37px;
+    font-size: 47px;
     @media (min-width: 768px) {
-      font-size: 60px;
+      font-size: 47px;
     }
   }
 
@@ -95,7 +95,7 @@ const GlobalStyle = createGlobalStyle`
   }
   p {
     font-family: Jost, sansf-serif;
-    font-weight: 200;
+    font-weight: 300;
     line-height: 2;
     font-size: 15px;
     color: ${({ theme }) => theme.black};
