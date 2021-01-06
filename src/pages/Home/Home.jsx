@@ -58,7 +58,6 @@ const Content = styled.div`
 `
 const TeamImage = styled(Image)`
   width: 100%;
-  margin-top: 30px;
 `
 
 const SloganContainer = styled.div`
@@ -79,7 +78,7 @@ const IntroMask = styled.div`
   position: relative;
   min-width: 55%;
   background-color: white;
-  min-height: 6rem;
+  min-height: 3rem;
   &:before {
     background-color: white;
     content: '';
