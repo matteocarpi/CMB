@@ -67,7 +67,7 @@ const SloganContainer = styled.div`
 `
 
 const FirstSlogan = styled.h1`
-  margin: 0 2rem 4rem 2rem;
+  margin: -2rem 2rem 4rem 2rem;
   @media (min-width: 768px) {
     margin: -10rem 2rem 15rem 2rem;
   }

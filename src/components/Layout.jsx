@@ -32,9 +32,12 @@ const GlobalStyle = createGlobalStyle`
   
 
   h1 {
-    font-size: 60px;
+    font-size: 47px;
     margin: 15px;
 
+    @media (min-width: 768px) {
+      font-size: 60px;
+    }
   }
 
   h2 {
