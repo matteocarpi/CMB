@@ -37,13 +37,15 @@ const Container = styled.div`
 
 const NewsBottom = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 `
+const cutWidth = Math.sqrt(50 ** 2 * 2)
 
 const NewsTitle = styled.span`
-  text-transform: uppercase;
+  font-size: 20px;
   padding: 1rem 0.5rem;
+  max-width: calc(100% - ${cutWidth}px);
 `
 
 const Plus = styled(PlusIcon)`
@@ -56,6 +58,10 @@ const Plus = styled(PlusIcon)`
     path {
       fill: ${({ theme }) => theme.gold};
     }
+  }
+
+  @media (min-width: 768px) {
+    margin: 1rem 0 0 0;
   }
 `
 
@@ -76,6 +82,13 @@ const SwiperDesktop = styled.div`
   width: 100%;
   height: 100%;
 
+  .swiper-container:first-child {
+    width: 40%;
+  }
+
+  .swiper-container:nth-child(2) {
+    width: 60%;
+  }
   .swiper-button-next {
     &:after {
       margin-right: 2rem;
@@ -206,7 +219,7 @@ export default function NewsPreview() {
               data.placeholderImage.fluid
 
             return (
-              index + 2 < posts.length && (
+              index + 3 < posts.length && (
                 <SwiperSlide style={{ width: '100%' }} key={post.node.id}>
                   {({ isActive }) => (
                     <News isActive={isActive}>
@@ -236,7 +249,7 @@ export default function NewsPreview() {
         {/* Secondary */}
         <Swiper
           navigation
-          slidesPerView={2}
+          slidesPerView={3}
           // style={{ width: '100%', margin: '2rem 0' }}
           controller={{ control: controlledSwiper }}
           onSwiper={setSecondControlledSwiper}
