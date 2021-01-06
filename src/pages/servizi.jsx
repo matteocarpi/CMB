@@ -8,8 +8,8 @@ import SectionTitle from '../components/SectionTitle'
 import PrimaryService from '../components/PrimaryService'
 
 const Container = styled.section`
-  margin-top: 100px;
-  padding-top: 30px;
+  /* margin-top: 100px;
+  padding-top: 30px; */
 `
 
 const Introduction = styled.article``

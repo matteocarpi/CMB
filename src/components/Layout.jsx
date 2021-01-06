@@ -155,12 +155,16 @@ const Container = styled.div`
   flex-direction: column;
   padding-top: 100px;
 `
+
+const Content = styled.div`
+  margin: 60px 0;
+`
 const Layout = ({ children }) => (
   <ThemeProvider theme={defaultTheme}>
     <GlobalStyle />
     <Container>
       <Header />
-      {children}
+      <Content>{children}</Content>
       <Footer />
     </Container>
   </ThemeProvider>

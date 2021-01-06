@@ -12,7 +12,6 @@ import Download from '../components/Download'
 import Attachment from '../components/Attachment'
 
 const Container = styled.section`
-  margin: 2rem 0;
   display: flex;
   flex-direction: column;
 `
