@@ -160,7 +160,7 @@ const selectStyles = {
   }),
 }
 
-export default function ThirdLevelServices({ sottoServizi, setCollapsed }) {
+export default function ThirdLevelServices({ sottoServizi }) {
   const globalTheme = useContext(ThemeContext)
 
   const [currentSs, setCurrentSs] = useState(0)

@@ -157,7 +157,7 @@ const Container = styled.div`
 `
 
 const Content = styled.div`
-  margin: 100px 0;
+  margin-top: 100px;
 `
 const Layout = ({ children }) => (
   <ThemeProvider theme={defaultTheme}>

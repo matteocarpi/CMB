@@ -1,8 +1,10 @@
 import React from 'react'
+import { navigate } from 'gatsby'
 import styled, { css } from 'styled-components'
 import { motion } from 'framer-motion'
 
-const Wrapper = styled.div`
+const Wrapper = styled.button`
+  text-align: left;
   margin-left: 1rem;
   margin-right: auto;
   width: 90%;
@@ -11,6 +13,12 @@ const Wrapper = styled.div`
     small &&
     css`
       max-width: 300px;
+    `}
+
+  ${({ uri }) =>
+    uri ||
+    css`
+      cursor: default;
     `}
 `
 
@@ -52,7 +60,11 @@ const underlineVariants = {
 }
 export default function SectionTitle({ children, uri, small, tiny }) {
   return (
-    <Wrapper small={small} to={uri}>
+    <Wrapper
+      small={small}
+      onClick={e => (uri ? navigate(uri) : e.preventDefault())}
+      uri={uri}
+    >
       <Title tiny={tiny}>{children}</Title>
       <Underline
         variants={underlineVariants}

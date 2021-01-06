@@ -287,7 +287,7 @@ export default function ServicePreview() {
       <Container>
         <Row>
           <Left>
-            <SectionTitle small onClick={() => setCurrentService(null)}>
+            <SectionTitle uri="/servizi" small>
               {data.wpPage.title}
             </SectionTitle>
             <Menu>

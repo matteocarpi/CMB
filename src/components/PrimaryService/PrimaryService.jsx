@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
 import ImageCut from '../ImageCut'
 import PlusLink from '../PlusLink'
@@ -66,7 +67,9 @@ export default function PrimaryService({
     <Container reverseRow={isRight}>
       <Image dr={dr} dl={dl} ul={ul} ur={ur} fluid={image} />
       <Text>
-        <Title>{title}</Title>
+        <Link to={uri}>
+          <Title>{title}</Title>
+        </Link>
         <Description dangerouslySetInnerHTML={{ __html: description }} />
         <Plus to={uri} />
       </Text>
