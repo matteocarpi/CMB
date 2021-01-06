@@ -21,7 +21,7 @@ const IntroWrapper = styled.div`
 `
 
 const Wrapper = styled.div`
-  margin-top: calc(60vh);
+  margin-top: calc(60vh - 100px);
   min-height: 80vh;
   width: 100%;
   background-color: white;
@@ -69,14 +69,14 @@ const SloganContainer = styled.div`
 const FirstSlogan = styled.h1`
   margin: -2rem 2rem 4rem 2rem;
   @media (min-width: 768px) {
-    margin: -10rem 2rem 15rem 2rem;
+    margin: -17rem 2rem 15rem 2rem;
   }
 `
 
 const IntroMask = styled.div`
   display: none;
   position: relative;
-  min-width: 55%;
+  width: 55%;
   background-color: white;
   min-height: 3rem;
   &:before {
@@ -84,7 +84,7 @@ const IntroMask = styled.div`
     content: '';
     width: 150px;
     height: 150px;
-    transform: rotate(45deg) translateY(106px);
+    transform: rotate(45deg) translate(45px, 57px);
     position: absolute;
     z-index: 100;
     top: -9.3rem;
@@ -181,7 +181,7 @@ const Home = () => {
       </IntroWrapper>
       <Wrapper>
         <SloganContainer>
-          <FirstSlogan>{content.slogan1}</FirstSlogan>
+          <FirstSlogan dangerouslySetInnerHTML={{ __html: content.slogan1 }} />
           <IntroMask />
         </SloganContainer>
         <Content>
