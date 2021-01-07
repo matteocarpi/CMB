@@ -63,11 +63,12 @@ const SottoServizi = styled.section`
 const Sidebar = styled.section`
   position: -webkit-sticky;
   position: sticky;
-  top: 100px;
   background-color: white;
   width: 100%;
   padding: 2rem 0;
+  top: 60px;
   @media (min-width: 768px) {
+    top: 100px;
     width: 40%;
     padding: 0;
   }
@@ -183,6 +184,7 @@ export default function ThirdLevelServices({ sottoServizi }) {
           <Select
             styles={selectStyles}
             options={sottoServiziOptions}
+            defaultValue={0}
             onChange={({ value }) => setCurrentSs(value)}
             components={{ ValueContainer }}
             theme={theme => ({
@@ -192,7 +194,7 @@ export default function ThirdLevelServices({ sottoServizi }) {
                 primary: globalTheme.gold,
               },
             })}
-            placeholder="Seleziona un corso..."
+            placeholder={sottoServiziOptions[currentSs].label}
           />
           <Navigation>
             {listaSottoServizi.map((sottoServizio, index) => {
