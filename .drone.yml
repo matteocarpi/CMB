@@ -36,7 +36,7 @@ steps:
       archive_format: "gzip"
       mount:
         - "./node_modules"
-        -"./.wordpress-cache"
+        - "./.wordpress-cache"
     volumes:
       - name: cache
         path: /tmp/cache
