@@ -43,7 +43,7 @@ const NavItem = styled.li`
 `
 
 const Button = styled.button`
-  font-size: 25px;
+  font-size: 20px;
   padding: 0;
 `
 
