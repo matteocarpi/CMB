@@ -44,7 +44,7 @@ const Image = styled(Img)`
 
 const Organigramma = styled.section`
   width: 100%;
-  margin: 3rem 2rem;
+  margin: 3rem 0;
   display: flex;
   flex-direction: column;
 
@@ -55,6 +55,7 @@ const Organigramma = styled.section`
 const DownloadWrapper = styled.section`
   display: flex;
   align-items: center;
+  width: 90%;
 `
 
 const Subtitle = styled.h5`
