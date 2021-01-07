@@ -161,7 +161,7 @@ export default function Header() {
         <DesktopNavigationContainer>
           <DesktopNavigation>
             {navigation.allWpPage.edges.map(page => (
-              <DesktopNavItem>
+              <DesktopNavItem key={page.node.id}>
                 <Link
                   to={`/${page.node.slug}`}
                   key={page.node.id}
