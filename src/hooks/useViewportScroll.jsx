@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react'
 import throttle from 'lodash.throttle'
 
 const useViewportScroll = () => {
-  const [scroll, setScroll] = useState(window.scrollY)
+  const [scroll, setScroll] = useState(
+    typeof window !== 'undefined' && window.scrollY,
+  )
 
   useEffect(() => {
     window.addEventListener(
@@ -14,6 +16,7 @@ const useViewportScroll = () => {
       200,
     )
   })
+
   return scroll
 }
 
