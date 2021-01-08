@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import styled, { css } from 'styled-components'
 import SwiperCore, { Navigation, Controller } from 'swiper'
@@ -87,13 +87,6 @@ const SwiperDesktop = styled.div`
   width: 100%;
   height: 100%;
 
-  .swiper-container:first-child {
-    width: 40%;
-  }
-
-  .swiper-container:nth-child(2) {
-    width: 60%;
-  }
   .swiper-button-next {
     &:after {
       margin-right: 2rem;
@@ -118,14 +111,11 @@ const SwiperDesktop = styled.div`
       display: none;
     }
   }
-  .swiper-container {
-    width: 50%;
-  }
 `
 
 const Image = styled(ImageCut)`
   @media (min-width: 768px) {
-    height: 450px;
+    /* height: 450px; */
   }
 `
 
@@ -171,9 +161,6 @@ export default function NewsPreview() {
 
   const posts = data.posts.edges
 
-  const [controlledSwiper, setControlledSwiper] = useState(null)
-  const [secondControlledSwiper, setSecondControlledSwiper] = useState(null)
-
   return (
     <Container>
       <SectionTitle small>News</SectionTitle>
@@ -211,20 +198,15 @@ export default function NewsPreview() {
       </SwiperMobile>
 
       <SwiperDesktop>
-        {/* Primary */}
-        <Swiper
-          navigation
-          slidesPerView={1}
-          onSwiper={setControlledSwiper}
-          controller={{ control: secondControlledSwiper }}
-        >
-          {posts.map((post, index) => {
+        {/* Secondary */}
+        <Swiper navigation slidesPerView={4}>
+          {posts.map(post => {
             const fluid =
               post.node.featuredImage?.node.localFile.childImageSharp.fluid ??
               data.placeholderImage.fluid
 
             return (
-              index + 3 < posts.length && (
+              <>
                 <SwiperSlide style={{ width: '100%' }} key={post.node.id}>
                   {({ isActive }) => (
                     <News isActive={isActive}>
@@ -232,7 +214,7 @@ export default function NewsPreview() {
                         dr
                         fluid={{
                           ...fluid,
-                          aspectRatio: 16 / 9,
+                          aspectRatio: 1,
                         }}
                       />
 
@@ -246,49 +228,6 @@ export default function NewsPreview() {
                     </News>
                   )}
                 </SwiperSlide>
-              )
-            )
-          })}
-        </Swiper>
-
-        {/* Secondary */}
-        <Swiper
-          navigation
-          slidesPerView={3}
-          // style={{ width: '100%', margin: '2rem 0' }}
-          controller={{ control: controlledSwiper }}
-          onSwiper={setSecondControlledSwiper}
-        >
-          {posts.map((post, index) => {
-            const fluid =
-              post.node.featuredImage?.node.localFile.childImageSharp.fluid ??
-              data.placeholderImage.fluid
-
-            return (
-              <>
-                {index !== 0 && (
-                  <SwiperSlide style={{ width: '100%' }} key={post.node.id}>
-                    {({ isActive }) => (
-                      <News isActive={isActive}>
-                        <Image
-                          dr
-                          fluid={{
-                            ...fluid,
-                            aspectRatio: 16 / 9,
-                          }}
-                        />
-
-                        <NewsBottom>
-                          <NewsTitle>{post.node.title}</NewsTitle>
-                          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                          <Link to="#">
-                            <Plus />
-                          </Link>
-                        </NewsBottom>
-                      </News>
-                    )}
-                  </SwiperSlide>
-                )}
               </>
             )
           })}
