@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import { motion, useViewportScroll, useTransform } from 'framer-motion'
 
+import useViewportWidth from '../../hooks/useViewportWidth'
+
 import SectionTitle from '../SectionTitle'
 import IconPlus from '../../assets/icons/plus.svg'
 import Image from '../ImageCut'
@@ -175,6 +177,8 @@ const Img = styled(Image)`
 export default function ServicePreview() {
   const [currentService, setCurrentService] = useState(null)
 
+  const viewPortWidth = useViewportWidth()
+
   const ref = useRef()
 
   const [scrollPercentageStart, setScrollPercentageStart] = useState()
@@ -199,12 +203,18 @@ export default function ServicePreview() {
   }, [])
 
   const heightPercentage = scrollPercentageEnd - scrollPercentageStart
+
+  const isMobile = viewPortWidth < 768
+
+  const translateStart = scrollPercentageStart - heightPercentage * 2
+
+  const translateEnd = isMobile
+    ? scrollPercentageStart
+    : scrollPercentageStart + heightPercentage / 2
+
   const translatePreview = useTransform(
     scrollYProgress,
-    [
-      scrollPercentageStart - heightPercentage * 2,
-      scrollPercentageStart + heightPercentage / 1.5,
-    ],
+    [translateStart, translateEnd],
     [500, 0],
   )
   const data = useStaticQuery(graphql`
