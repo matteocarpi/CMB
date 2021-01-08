@@ -203,7 +203,7 @@ export default function ServicePreview() {
     scrollYProgress,
     [
       scrollPercentageStart - heightPercentage * 2,
-      scrollPercentageStart - heightPercentage / 24,
+      scrollPercentageStart + heightPercentage / 1.5,
     ],
     [500, 0],
   )
