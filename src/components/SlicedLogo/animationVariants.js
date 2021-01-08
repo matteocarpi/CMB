@@ -11,9 +11,11 @@ export const shortLineVariants = {
     originY: 'top',
     translateY: '370vh',
     scaleY: shortLineScale,
+    scaleX: 1.9,
   },
   enter: {
     scaleY: [shortLineScale, shortLineScale, 1],
+    scaleX: 1.9,
     translateY: ['370vh', '0vh', '0vh'],
     transition: {
       duration: entranceSpeed,
@@ -23,6 +25,7 @@ export const shortLineVariants = {
   exit: {
     originY: 'bottom',
     scaleY: [1, shortLineScale, shortLineScale],
+    scaleX: 1.9,
     translateY: ['0%', '0%', '-370vh'],
     transition: {
       duration: exitSpeed,

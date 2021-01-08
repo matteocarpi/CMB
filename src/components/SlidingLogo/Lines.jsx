@@ -8,12 +8,14 @@ const ShortSvg = styled(motion.svg)`
 `
 const ShortPath = styled(motion.path)`
   fill: ${({ theme }) => theme.gold};
+  transform: scaleX(1.9) !important;
 `
 const MediumSvg = styled(motion.svg)`
   height: 70%;
 `
 const MediumPath = styled(motion.path)`
   fill: ${({ theme }) => theme.gold};
+  width: 6px;
 `
 const LongSvg = styled(motion.svg)`
   width: 10px;

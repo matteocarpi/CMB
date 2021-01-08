@@ -10,7 +10,7 @@ const ShortSvg = styled(motion.svg)`
 const ShortPath = styled(motion.path)`
   fill: ${({ theme }) => theme.gold};
   transform-origin: top;
-  transform: translateY(370vh);
+  transform: translateY(370vh) scaleX(1.9);
 `
 const MediumSvg = styled(motion.svg)`
   overflow: visible;
