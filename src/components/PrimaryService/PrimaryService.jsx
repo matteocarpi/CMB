@@ -18,7 +18,8 @@ const Container = styled.article`
 const Image = styled(ImageCut)`
   width: 30%;
   min-height: 450px;
-
+  margin-bottom: -1px;
+  z-index: -1;
   @media (min-width: 768px) {
     width: 50%;
     min-height: 650px;
