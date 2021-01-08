@@ -40,7 +40,7 @@ export default function SlidingLogo(props) {
 
   const translateMedium = useTransform(
     scrollYProgress,
-    [scrollPercentageStart - 1 + delayTranslation, scrollPercentageEnd - 0.05],
+    [scrollPercentageStart - 1 + delayTranslation, scrollPercentageEnd - 0.03],
     [-400, 0],
   )
 
@@ -48,7 +48,7 @@ export default function SlidingLogo(props) {
     scrollYProgress,
     [
       scrollPercentageStart - 0.5 + delayTranslation,
-      scrollPercentageEnd - 0.05,
+      scrollPercentageEnd - 0.03,
     ],
     [-600, 0],
   )
