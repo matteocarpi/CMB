@@ -45,6 +45,7 @@ const Content = styled.div`
 `
 const TeamImage = styled(Image)`
   width: 100%;
+  z-index: 2;
 `
 
 const SloganContainer = styled.div`
@@ -63,11 +64,11 @@ const halfDiagonal = Math.sqrt((100 / 2) ** 2 * 2)
 
 const FirstSlogan = styled.h1`
   display: block;
-  padding: 40rem 0 5rem 0;
+  padding: 65vh 0 20vh 0;
   z-index: 1;
 
   @media (max-width: 980px) {
-    padding: 2rem;
+    padding: 2rem 0 2rem 2rem;
     margin: 0;
     margin-top: calc(80vh - 120px);
     background: white;
