@@ -39,6 +39,10 @@ const MenuItem = styled.li`
   margin: 1rem 0;
   a {
     color: white;
+
+    &:visited {
+      color: white;
+    }
   }
 `
 const Contacts = styled.ul`
@@ -92,6 +96,10 @@ export default function Footer() {
         <Logo />
 
         <Menu>
+          <MenuItem>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <Link to="#">News</Link>
+          </MenuItem>
           <MenuItem>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <Link to="#">Privacy</Link>
