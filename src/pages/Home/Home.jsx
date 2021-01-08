@@ -66,7 +66,7 @@ const FirstSlogan = styled.h1`
   display: block;
   padding: 65vh 0 20vh 0;
   z-index: 1;
-
+  font-size: calc(22px + 2vw);
   @media (max-width: 980px) {
     padding: 2rem 0 2rem 2rem;
     margin: 0;
