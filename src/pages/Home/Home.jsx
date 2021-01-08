@@ -21,25 +21,12 @@ const IntroWrapper = styled.div`
 `
 
 const Wrapper = styled.div`
-  margin-top: calc(60vh - 100px);
+  margin-top: 50px;
   min-height: 80vh;
   width: 100%;
   background-color: white;
 
-  @media (max-width: 767px) {
-    &:before {
-      content: '';
-      display: block;
-      width: 100px;
-      height: 100px;
-      align-self: flex-start;
-      transform: translate(-50px, -50px) rotate(-45deg);
-      background-color: white;
-    }
-  }
-
   @media (min-width: 758px) {
-    margin-top: calc(100vh);
     background-color: transparent;
   }
 `
@@ -63,37 +50,61 @@ const TeamImage = styled(Image)`
 const SloganContainer = styled.div`
   width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: flex-end;
+  margin-top: -100px;
+  @media (max-width: 980px) {
+    background-color: white;
+    background: transparent;
+  }
 `
 
+const halfDiagonal = Math.sqrt((100 / 2) ** 2 * 2)
+
 const FirstSlogan = styled.h1`
-  margin: -2rem 2rem 4rem 2rem;
-  @media (min-width: 768px) {
-    margin: -17rem 2rem 15rem 2rem;
+  display: block;
+  padding: 40rem 0 5rem 0;
+  z-index: 1;
+
+  @media (max-width: 980px) {
+    padding: 2rem;
+    margin: 0;
+    margin-top: calc(80vh - 120px);
+    background: white;
+    position: relative;
+    width: 100%;
+    &:after {
+      content: '';
+      width: 100px;
+      height: 100px;
+      background-color: white;
+      position: absolute;
+      top: -${halfDiagonal}px;
+      left: -${halfDiagonal}px;
+      transform: rotate(45deg) translate(14px, 16px);
+    }
   }
 `
 
 const IntroMask = styled.div`
   display: none;
-  position: relative;
-  width: 55%;
+  position: sticky;
+  bottom: 0;
+  min-width: 55%;
   background-color: white;
-  min-height: 3rem;
-  &:before {
-    background-color: white;
-    content: '';
-    width: 150px;
-    height: 150px;
-    transform: rotate(45deg) translate(45px, 57px);
-    position: absolute;
-    z-index: 100;
-    top: -9.3rem;
-    left: 0;
-    z-index: 0;
-  }
-
-  @media (min-width: 768px) {
+  @media (min-width: 980px) {
     display: block;
+
+    &:before {
+      content: '';
+      width: 150px;
+      height: 150px;
+      background-color: white;
+      position: absolute;
+      top: -75px;
+      left: -75px;
+      transform: rotate(45deg);
+    }
   }
 `
 
@@ -179,11 +190,11 @@ const Home = () => {
       <IntroWrapper>
         <IntroSlide img={content.image.localFile.childImageSharp.fluid} />
       </IntroWrapper>
+      <SloganContainer>
+        <FirstSlogan dangerouslySetInnerHTML={{ __html: content.slogan1 }} />
+        <IntroMask />
+      </SloganContainer>
       <Wrapper>
-        <SloganContainer>
-          <FirstSlogan dangerouslySetInnerHTML={{ __html: content.slogan1 }} />
-          <IntroMask />
-        </SloganContainer>
         <Content>
           <TeamImage fluid={content.video.localFile.childImageSharp.fluid} />
           <FirstInfoContainer>

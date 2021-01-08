@@ -9,7 +9,7 @@ const Container = styled(ColoredBackgroundImage)`
   width: 100%;
   text-align: right;
   position: fixed;
-  @media (min-width: 768px) {
+  @media (min-width: 980px) {
     height: calc(100vh - 50px);
     width: 55%;
     margin-left: auto;
