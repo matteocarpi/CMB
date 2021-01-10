@@ -206,11 +206,11 @@ export default function ServicePreview() {
 
   const isMobile = viewPortWidth < 768
 
-  const translateStart = scrollPercentageStart - heightPercentage * 2
+  const translateStart = scrollPercentageStart - heightPercentage
 
   const translateEnd = isMobile
     ? scrollPercentageStart
-    : scrollPercentageStart + heightPercentage / 2
+    : scrollPercentageStart * 1.37
 
   const translatePreview = useTransform(
     scrollYProgress,
