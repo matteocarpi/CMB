@@ -47,7 +47,9 @@ const Organigramma = styled.section`
   margin: 3rem 0;
   display: flex;
   flex-direction: column;
-
+  p {
+    margin: 0 22px;
+  }
   @media (min-width: 768px) {
     margin: 5rem 0;
   }
@@ -56,13 +58,19 @@ const DownloadWrapper = styled.section`
   display: flex;
   align-items: center;
   width: 90%;
+  margin-top: 1rem;
 `
 
 const Subtitle = styled.h5`
-  margin: 0 2rem;
+  margin: 0 22px;
+  font-size: 22px;
 `
 
-const Certificazioni = styled.section``
+const Certificazioni = styled.section`
+  p {
+    margin: 0 22px;
+  }
+`
 
 const AttachmentWrapper = styled.section`
   display: flex;
