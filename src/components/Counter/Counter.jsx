@@ -22,18 +22,22 @@ const Title = styled.span`
     font-size: 16px;
   }
 `
-export default function Counter({ number = 0, title = 0 }) {
+export default function Counter({ number = 0, title, visible }) {
   const [count, setCount] = useState(0)
   const realNumber = Number(number)
 
   const time = 10
   useEffect(() => {
-    if (count < realNumber) {
-      setTimeout(() => {
-        setCount(count + 1)
-      }, time)
+    if (visible) {
+      if (count < realNumber) {
+        setTimeout(() => {
+          setCount(count + 1)
+        }, time)
+      }
+    } else if (count > 0) {
+      setCount(0)
     }
-  }, [count, realNumber])
+  }, [count, realNumber, visible])
 
   return (
     <Container>

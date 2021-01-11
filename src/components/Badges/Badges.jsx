@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useRef, useState, useLayoutEffect } from 'react'
 import styled from 'styled-components'
 import Counter from '../Counter'
+
+import useViewportScroll from '../../hooks/useViewportScroll'
+import useViewportHeight from '../../hooks/useViewporHeight'
 
 const Container = styled.div`
   display: flex;
@@ -11,10 +14,33 @@ const Container = styled.div`
 `
 
 export default function Badges({ badges }) {
+  const ref = useRef()
+
+  const [elementStart, setElementStart] = useState()
+
+  const viewportHeight = useViewportHeight()
+  const scrollY = useViewportScroll()
+
+  useLayoutEffect(() => {
+    const rect = ref?.current?.getBoundingClientRect()
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+
+    const offsetStart = rect.top + scrollTop
+
+    setElementStart(offsetStart)
+  }, [])
+
+  const inView = elementStart - viewportHeight <= scrollY
+
   return (
-    <Container>
+    <Container ref={ref}>
       {badges.map(badge => (
-        <Counter key={badge.title} number={badge.number} title={badge.title} />
+        <Counter
+          visible={inView}
+          key={badge.title}
+          number={badge.number}
+          title={badge.title}
+        />
       ))}
     </Container>
   )
