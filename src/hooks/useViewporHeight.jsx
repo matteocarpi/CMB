@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react'
 import throttle from 'lodash.throttle'
 
 const useViewportHeight = () => {
-  const [height, setHeight] = useState(window.innerHeight)
+  const [height, setHeight] = useState(
+    typeof window !== 'undefined' && window.innerHeight,
+  )
 
   useEffect(() => {
     window.addEventListener(
