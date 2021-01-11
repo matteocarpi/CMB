@@ -7,8 +7,7 @@ import Seo from '../components/Seo'
 import SectionTitle from '../components/SectionTitle'
 import PrimaryService from '../components/PrimaryService'
 
-const Container = styled.section`
-`
+const Container = styled.section``
 
 const Introduction = styled.article``
 
