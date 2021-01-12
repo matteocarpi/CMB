@@ -102,16 +102,18 @@ const Image = styled(Img)`
         left: 0;
         transform: rotate(45deg) translate(-35px, 0px);
       }
-      &:after {
-        content: '';
-        z-index: 1;
-        width: 50px;
-        height: 50px;
-        background-color: white;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: scale(2) rotate(45deg) translate(-17.5px, 0px);
+      @media (min-width: 768px) {
+        &:after {
+          content: '';
+          z-index: 1;
+          width: 50px;
+          height: 50px;
+          background-color: white;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: scale(2) rotate(45deg) translate(-17.5px, 0px);
+        }
       }
     `}
 `

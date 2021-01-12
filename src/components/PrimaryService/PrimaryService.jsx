@@ -45,7 +45,9 @@ const Logo = styled(Lg)`
   width: 20%;
 `
 
-const Img = styled(Image)``
+const Img = styled(Image)`
+  min-height: 500px;
+`
 
 const Text = styled.section`
   width: 65%;
