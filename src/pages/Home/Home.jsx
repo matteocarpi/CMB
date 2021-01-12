@@ -64,7 +64,9 @@ const halfDiagonal = Math.sqrt((100 / 2) ** 2 * 2)
 
 const FirstSlogan = styled.h1`
   display: block;
-  padding: 65vh 0 20vh 0;
+  padding-bottom: 20vh;
+  margin-top: 0;
+  padding-top: calc(100vh - 155.6px);
   z-index: 1;
   font-size: calc(22px + 2vw);
   @media (max-width: 980px) {
