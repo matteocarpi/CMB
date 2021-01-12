@@ -1,6 +1,7 @@
 import React, { useRef, useState, useLayoutEffect } from 'react'
 import styled from 'styled-components'
 import { useViewportScroll, useTransform } from 'framer-motion'
+
 import { Short, Medium, Long } from './Lines'
 
 const Container = styled.div`
@@ -35,16 +36,14 @@ export default function SlidingLogo(props) {
     setScrollPercentageEnd(elementScrollEnd)
   }, [])
 
-  const delayTranslation = 1.15
-
-  const height = scrollPercentageStart - scrollPercentageEnd
-
-  const startFade = scrollPercentageStart - 2 * height
+  const startFade = scrollPercentageStart
   const startMedium = scrollPercentageStart
   const startShort = scrollPercentageStart
 
-  const finishMedium = scrollPercentageEnd * delayTranslation
-  const finishShort = scrollPercentageEnd * delayTranslation * 1.01
+  const heightPercentage = scrollPercentageEnd - scrollPercentageStart
+
+  const finishMedium = scrollPercentageEnd + heightPercentage
+  const finishShort = scrollPercentageEnd + heightPercentage
 
   const translateMedium = useTransform(
     scrollYProgress,

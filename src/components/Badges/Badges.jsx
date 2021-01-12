@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Counter from '../Counter'
 
 import useViewportScroll from '../../hooks/useViewportScroll'
-import useViewportHeight from '../../hooks/useViewporHeight'
+import useViewportHeight from '../../hooks/useViewportHeight'
 
 const Container = styled.div`
   display: flex;
