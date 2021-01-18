@@ -10,6 +10,7 @@ import ThirdLevelServices from '../components/ThirdLevelServices/ThirdLevelServi
 
 const Container = styled.section`
   margin-top: 3rem;
+  margin-bottom: 10rem;
   max-width: 1200px;
 
   @media (max-width: 767px) {
