@@ -20,7 +20,7 @@ const Container = styled(Link)`
 
 const ImageContainer = styled.div`
   position: relative;
-  width: 30%;
+  width: 20%;
   margin-bottom: -1px;
   z-index: -1;
   @media (min-width: 768px) {
@@ -51,12 +51,12 @@ const Img = styled(Image)`
 
 const Text = styled.section`
   width: 65%;
-  padding: 2rem;
+  padding: 2rem 4rem 2rem 2rem;
   display: flex;
   flex-direction: column;
 
   @media (min-width: 768px) {
-    width: 50%;
+    width: 60%;
   }
 `
 const Title = styled.h3``
@@ -182,7 +182,14 @@ export default function PrimaryService({
       to={uri}
     >
       <ImageContainer>
-        <Img dr={dr} dl={dl} ul={ul} ur={ur} fluid={image} isHover={isHover} />
+        <Img
+          dr={dr}
+          dl={dl}
+          ul={ul}
+          ur={ur}
+          fluid={{ ...image, aspectRatio: 1 }}
+          isHover={isHover}
+        />
 
         {isHover && (
           <Overlay>
