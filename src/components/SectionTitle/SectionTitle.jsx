@@ -30,7 +30,7 @@ const Title = styled.h2`
   ${({ tiny }) =>
     tiny &&
     css`
-      font-size: 37px;
+      font-size: 30px;
     `}
 `
 
