@@ -30,14 +30,15 @@ const NavItem = styled.li`
     h4 {
       font-size: calc(10px + 1vw);
       width: min-content;
+      padding-bottom: 0.7rem;
       ${({ active }) =>
         active &&
         css`
-          border-bottom: solid 1px ${({ theme }) => theme.gold};
+          border-bottom: solid 2px ${({ theme }) => theme.gold};
         `}
 
       &:hover {
-        border-bottom: solid 1px ${({ theme }) => theme.gold};
+        border-bottom: solid 2px ${({ theme }) => theme.gold};
       }
     }
   }

@@ -36,6 +36,7 @@ const Title = styled.h2`
 
 const Underline = styled(motion.div)`
   width: 100%;
+  margin-top: 1rem;
   transform-origin: left center;
   border-bottom: solid 2px ${({ theme }) => theme.gold};
 
