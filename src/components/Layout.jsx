@@ -100,7 +100,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Jost, sansf-serif;
     font-weight: 300;
     line-height: 2;
-    font-size: 15px;
+    font-size: 20px;
     color: ${({ theme }) => theme.black};
     margin: 45px 30px;
   }
