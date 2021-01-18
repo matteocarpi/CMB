@@ -28,7 +28,7 @@ const NavItem = styled.li`
   margin: 2rem 0;
   a {
     h4 {
-      font-size: calc(18px + 1vw);
+      font-size: calc(10px + 1vw);
       width: min-content;
       ${({ active }) =>
         active &&
