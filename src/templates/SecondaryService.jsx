@@ -11,6 +11,7 @@ import ThirdLevelServices from '../components/ThirdLevelServices/ThirdLevelServi
 const Container = styled.section`
   margin-top: 3rem;
   margin-bottom: 10rem;
+  margin-left: 1rem;
   max-width: 1200px;
 
   @media (max-width: 767px) {
@@ -36,6 +37,12 @@ const Image = styled(Img)`
 `
 
 const Description = styled.article`
+  border-bottom: solid 1px ${({ theme }) => theme.gold};
+  p {
+    margin-left: 0;
+  }
+
+  margin-left: 2rem;
   @media (max-width: 767px) {
     p {
       margin-bottom: 0;

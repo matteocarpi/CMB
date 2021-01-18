@@ -8,7 +8,7 @@ import SecondaryServiceThumb from '../SecondaryServiceThumb'
 
 const Content = styled.section`
   @media (min-width: 768px) {
-    padding: 0 1rem;
+    padding: 0 1.8rem;
   }
 `
 

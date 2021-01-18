@@ -9,6 +9,7 @@ const Wrapper = styled.button`
   margin-right: auto;
   width: 90%;
   max-width: 500px;
+  padding-left: 0;
   ${({ small }) =>
     small &&
     css`
