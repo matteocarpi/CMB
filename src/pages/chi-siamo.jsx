@@ -51,7 +51,7 @@ const Organigramma = styled.section`
     margin: 0 22px;
   }
   @media (min-width: 768px) {
-    margin: 5rem 0;
+    margin: 8rem 0;
   }
 `
 const DownloadWrapper = styled.section`
