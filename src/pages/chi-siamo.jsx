@@ -44,7 +44,7 @@ const Image = styled(Img)`
 
 const Organigramma = styled.section`
   width: 100%;
-  margin: 3rem 0;
+  margin: 8rem 0;
   display: flex;
   flex-direction: column;
   p {
