@@ -32,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
   
 
   h1 {
-    font-size: 47px;
+    font-size: 40px;
     margin: 15px;
 
     @media (min-width: 768px) {
@@ -112,7 +112,7 @@ const GlobalStyle = createGlobalStyle`
   strong {
     font-weight: 400;
   }
-  
+
   a {
     text-decoration: none;
     font-family: Jost, sans-serif;

@@ -66,7 +66,6 @@ const PrimaryServicesBlock = ({
 }) => {
   const { titolo, sottotitolo, primaryServices } = pageContext
 
-  console.log(secondaryServices)
   return (
     <>
       <Seo title={titolo} />
@@ -101,8 +100,6 @@ const PrimaryServicesBlock = ({
               ? `${baseUrl}${sottoServizioUri}`
               : baseUrl
 
-            console.log(uri, sottoServizioUri)
-            console.log(service.title, service)
             return (
               <SecondaryServiceThumb
                 key={service.id}
