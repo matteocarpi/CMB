@@ -174,11 +174,11 @@ function ThirdLevelServices({ sottoServizi, location }) {
 
   const queryObj = queryString.parse(location.search)
 
-  const { titolo, listaSottoServizi } = sottoServizi
+  const { titolo, listasottoservizi } = sottoServizi
 
   const sottoServiziList = {}
 
-  listaSottoServizi.forEach(servizio => {
+  listasottoservizi.forEach(servizio => {
     const slug = makeSlug(servizio.titolo)
 
     sottoServiziList[`${slug}`] = servizio.descrizione
@@ -189,7 +189,7 @@ function ThirdLevelServices({ sottoServizi, location }) {
 
   const articleParam = '?article'
 
-  const sottoServiziOptions = listaSottoServizi.map((s, index) => {
+  const sottoServiziOptions = listasottoservizi.map((s, index) => {
     const slug = makeSlug(s.titolo)
     const value = `${articleParam}=${slug}&index=${index}#sottoservizio`
     return {
@@ -220,7 +220,7 @@ function ThirdLevelServices({ sottoServizi, location }) {
             placeholder={sottoServiziOptions[currentIndex]?.label}
           />
           <Navigation>
-            {listaSottoServizi.map((sottoServizio, index) => {
+            {listasottoservizi.map((sottoServizio, index) => {
               const sS = sottoServizio
               const slug = makeSlug(sS.titolo)
               return (

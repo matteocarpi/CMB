@@ -66,6 +66,7 @@ const PrimaryServicesBlock = ({
 }) => {
   const { titolo, sottotitolo, primaryServices } = pageContext
 
+  console.log(secondaryServices)
   return (
     <>
       <Seo title={titolo} />
@@ -90,19 +91,18 @@ const PrimaryServicesBlock = ({
         <ServiceList>
           {secondaryServices.allWpServizio.edges.map(s => {
             const service = s.node
-            const { hasSottoServizi } = service.servizioContent
+            const hassottoservizi = service.sottoServizi?.hassottoservizi
             const baseUrl = `/servizi/${service.servizioContent.categoria}/${service.slug}/`
             const childSlug =
-              hasSottoServizi &&
-              makeSlug(
-                service.servizioContent.sottoServizi.listaSottoServizi[0]
-                  .titolo,
-              )
+              hassottoservizi &&
+              makeSlug(service.sottoServizi.listasottoservizi[0].titolo)
             const sottoServizioUri = `?article=${childSlug}&index=0`
-            const uri = hasSottoServizi
+            const uri = hassottoservizi
               ? `${baseUrl}${sottoServizioUri}`
               : baseUrl
 
+            console.log(uri, sottoServizioUri)
+            console.log(service.title, service)
             return (
               <SecondaryServiceThumb
                 key={service.id}

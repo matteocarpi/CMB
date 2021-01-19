@@ -65,7 +65,10 @@ const Title = styled.h5`
 const SecondaryService = ({ data, pageContext, location }) => {
   const servizio = data.wpServizio
 
-  const { hasSottoServizi, sottoServizi } = servizio.servizioContent
+  const { sottoServizi } = servizio
+
+  const { hassottoservizi } = sottoServizi
+
   return (
     <Layout>
       <Seo title={servizio.title} />
@@ -83,7 +86,7 @@ const SecondaryService = ({ data, pageContext, location }) => {
             __html: servizio.servizioContent.descrizione,
           }}
         />
-        {hasSottoServizi && (
+        {hassottoservizi && (
           <ThirdLevelServices sottoServizi={sottoServizi} location={location} />
         )}
       </Container>
@@ -114,13 +117,13 @@ export const data = graphql`
             }
           }
         }
-        hasSottoServizi
-        sottoServizi {
+      }
+      sottoServizi {
+        hassottoservizi
+        titolo
+        listasottoservizi {
           titolo
-          listaSottoServizi {
-            titolo
-            descrizione
-          }
+          descrizione
         }
       }
     }
@@ -132,14 +135,6 @@ export const data = graphql`
           id
           title
           servizioContent {
-            hasSottoServizi
-            sottoServizi {
-              titolo
-              listaSottoServizi {
-                titolo
-                descrizione
-              }
-            }
             categoria
             immagine {
               localFile {
@@ -149,6 +144,14 @@ export const data = graphql`
                   }
                 }
               }
+            }
+          }
+          sottoServizi {
+            titolo
+            hassottoservizi
+            listasottoservizi {
+              titolo
+              descrizione
             }
           }
           slug

@@ -105,6 +105,14 @@ const GlobalStyle = createGlobalStyle`
     margin: 45px 30px;
   }
 
+  em {
+    font-style: italic;
+  }
+
+  strong {
+    font-weight: 400;
+  }
+  
   a {
     text-decoration: none;
     font-family: Jost, sans-serif;
