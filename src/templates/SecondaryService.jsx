@@ -12,7 +12,6 @@ const Container = styled.section`
   margin-top: 3rem;
   margin-bottom: 10rem;
   margin-left: 1rem;
-  max-width: 1200px;
 
   @media (max-width: 767px) {
     margin-top: -3rem;
@@ -38,6 +37,7 @@ const Image = styled(Img)`
 
 const Description = styled.article`
   border-bottom: solid 1px ${({ theme }) => theme.gold};
+  max-width: 1200px;
   p {
     margin-left: 0;
   }
@@ -83,11 +83,11 @@ const SecondaryService = ({ data, pageContext, location }) => {
             __html: servizio.servizioContent.descrizione,
           }}
         />
+        {hasSottoServizi && (
+          <ThirdLevelServices sottoServizi={sottoServizi} location={location} />
+        )}
       </Container>
 
-      {hasSottoServizi && (
-        <ThirdLevelServices sottoServizi={sottoServizi} location={location} />
-      )}
       <PrimaryServicesBlock
         pageContext={pageContext}
         data={data}
@@ -132,6 +132,14 @@ export const data = graphql`
           id
           title
           servizioContent {
+            hasSottoServizi
+            sottoServizi {
+              titolo
+              listaSottoServizi {
+                titolo
+                descrizione
+              }
+            }
             categoria
             immagine {
               localFile {

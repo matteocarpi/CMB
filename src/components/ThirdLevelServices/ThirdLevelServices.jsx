@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Link, navigate } from 'gatsby'
 import queryString from 'query-string'
 import styled, { css, ThemeContext } from 'styled-components'
@@ -171,9 +171,6 @@ function ThirdLevelServices({ sottoServizi, location }) {
   const globalTheme = useContext(ThemeContext)
 
   const queryObj = queryString.parse(location.search)
-
-  console.log(queryObj)
-  const [currentSs, setCurrentSs] = useState(0)
 
   const { titolo, listaSottoServizi } = sottoServizi
 

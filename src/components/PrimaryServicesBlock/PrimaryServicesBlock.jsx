@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
 
+import { makeSlug } from '../../utils'
 import Seo from '../Seo'
 import SectionTitle from '../SectionTitle'
 import SecondaryServiceThumb from '../SecondaryServiceThumb'
@@ -89,7 +90,19 @@ const PrimaryServicesBlock = ({
         <ServiceList>
           {secondaryServices.allWpServizio.edges.map(s => {
             const service = s.node
-            const uri = `/servizi/${service.servizioContent.categoria}/${service.slug}/`
+            const { hasSottoServizi } = service.servizioContent
+            const baseUrl = `/servizi/${service.servizioContent.categoria}/${service.slug}/`
+            const childSlug =
+              hasSottoServizi &&
+              makeSlug(
+                service.servizioContent.sottoServizi.listaSottoServizi[0]
+                  .titolo,
+              )
+            const sottoServizioUri = `?article=${childSlug}&index=0`
+            const uri = hasSottoServizi
+              ? `${baseUrl}${sottoServizioUri}`
+              : baseUrl
+
             return (
               <SecondaryServiceThumb
                 key={service.id}

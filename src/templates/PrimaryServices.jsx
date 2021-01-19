@@ -31,6 +31,14 @@ export const data = graphql`
           id
           title
           servizioContent {
+            hasSottoServizi
+            sottoServizi {
+              listaSottoServizi {
+                titolo
+                descrizione
+              }
+              titolo
+            }
             categoria
             immagine {
               localFile {
