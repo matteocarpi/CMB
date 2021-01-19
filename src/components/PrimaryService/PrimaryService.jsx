@@ -59,7 +59,9 @@ const Text = styled.section`
     width: 60%;
   }
 `
-const Title = styled.h3``
+const Title = styled.h3`
+  font-size: 45px;
+`
 const Description = styled.article`
   p {
     margin: 1rem 0;
