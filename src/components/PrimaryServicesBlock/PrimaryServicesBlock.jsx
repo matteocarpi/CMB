@@ -89,7 +89,7 @@ const PrimaryServicesBlock = ({
         <ServiceList>
           {secondaryServices.allWpServizio.edges.map(s => {
             const service = s.node
-            const uri = `/servizi/${service.servizioContent.categoria}/${service.slug}`
+            const uri = `/servizi/${service.servizioContent.categoria}/${service.slug}/`
             return (
               <SecondaryServiceThumb
                 key={service.id}

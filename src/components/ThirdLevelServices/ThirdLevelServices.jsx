@@ -1,10 +1,14 @@
 import React, { useState, useContext } from 'react'
+import { Link, navigate } from 'gatsby'
+import queryString from 'query-string'
 import styled, { css, ThemeContext } from 'styled-components'
 import Sel, { components } from 'react-select'
+
+import { makeSlug } from '../../utils'
 import Burger from '../../assets/icons/burger-small.svg'
 
 const Container = styled.section`
-  margin: 2rem 0;
+  padding-top: 6rem;
 `
 
 const Title = styled.h5`
@@ -29,6 +33,7 @@ const Navigation = styled.ul`
 const NavItem = styled.li`
   padding-left: 0.7rem;
   margin-left: -0.7rem;
+  margin-bottom: 1rem;
   ${({ active }) =>
     active &&
     css`
@@ -42,8 +47,9 @@ const NavItem = styled.li`
   }
 `
 
-const Button = styled.button`
+const StyledLink = styled(Link)`
   font-size: 20px;
+  font-weight: 300;
   padding: 0;
 `
 
@@ -161,22 +167,39 @@ const selectStyles = {
   }),
 }
 
-export default function ThirdLevelServices({ sottoServizi }) {
+function ThirdLevelServices({ sottoServizi, location }) {
   const globalTheme = useContext(ThemeContext)
 
+  const queryObj = queryString.parse(location.search)
+
+  console.log(queryObj)
   const [currentSs, setCurrentSs] = useState(0)
 
   const { titolo, listaSottoServizi } = sottoServizi
 
-  const description = listaSottoServizi[currentSs]?.descrizione ?? null
+  const sottoServiziList = {}
 
-  const sottoServiziOptions = listaSottoServizi.map((s, index) => ({
-    value: index,
-    label: s.titolo,
-  }))
+  listaSottoServizi.forEach(servizio => {
+    const slug = makeSlug(servizio.titolo)
+
+    sottoServiziList[`${slug}`] = servizio.descrizione
+  })
+
+  const description = sottoServiziList[queryObj.article] ?? null
+
+  const articleParam = '?article'
+
+  const sottoServiziOptions = listaSottoServizi.map((s, index) => {
+    const slug = makeSlug(s.titolo)
+    const value = `${articleParam}=${slug}&index=${index}#sottoservizio`
+    return {
+      value,
+      label: s.titolo,
+    }
+  })
 
   return (
-    <Container>
+    <Container id="sottoservizio">
       <Title>{titolo}</Title>
 
       <SottoServizi>
@@ -185,7 +208,7 @@ export default function ThirdLevelServices({ sottoServizi }) {
             styles={selectStyles}
             options={sottoServiziOptions}
             defaultValue={0}
-            onChange={({ value }) => setCurrentSs(value)}
+            onChange={({ value }) => navigate(value)}
             components={{ ValueContainer }}
             theme={theme => ({
               ...theme,
@@ -194,21 +217,22 @@ export default function ThirdLevelServices({ sottoServizi }) {
                 primary: globalTheme.gold,
               },
             })}
-            placeholder={sottoServiziOptions[currentSs].label}
+            placeholder={sottoServiziOptions[queryObj.index].label}
           />
           <Navigation>
             {listaSottoServizi.map((sottoServizio, index) => {
               const sS = sottoServizio
+              const slug = makeSlug(sS.titolo)
               return (
-                <NavItem active={currentSs === index} key={sS.titolo}>
-                  <Button
-                    type="button"
-                    onClick={() => {
-                      setCurrentSs(index)
-                    }}
+                <NavItem
+                  active={Number(queryObj.index) === index}
+                  key={sS.titolo}
+                >
+                  <StyledLink
+                    to={`${articleParam}=${slug}&index=${index}#sottoservizio`}
                   >
                     {sS.titolo}
-                  </Button>
+                  </StyledLink>
                 </NavItem>
               )
             })}
@@ -225,3 +249,5 @@ export default function ThirdLevelServices({ sottoServizi }) {
     </Container>
   )
 }
+
+export default ThirdLevelServices

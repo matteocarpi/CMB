@@ -85,7 +85,9 @@ const SecondaryService = ({ data, pageContext, location }) => {
         />
       </Container>
 
-      {hasSottoServizi && <ThirdLevelServices sottoServizi={sottoServizi} />}
+      {hasSottoServizi && (
+        <ThirdLevelServices sottoServizi={sottoServizi} location={location} />
+      )}
       <PrimaryServicesBlock
         pageContext={pageContext}
         data={data}
