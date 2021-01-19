@@ -51,16 +51,20 @@ const Img = styled(Image)`
 
 const Text = styled.section`
   width: 65%;
-  padding: 2rem 4rem 2rem 2rem;
+  padding: 2rem 1rem 2rem 2rem;
   display: flex;
   flex-direction: column;
 
   @media (min-width: 768px) {
     width: 60%;
+    padding: 2rem 4rem 2rem 2rem;
   }
 `
 const Title = styled.h3`
-  font-size: 45px;
+  font-size: 35px;
+  @media (min-width: 768px) {
+    font-size: 45px;
+  }
 `
 const Description = styled.article`
   p {
