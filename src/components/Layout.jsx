@@ -14,6 +14,14 @@ import './typography.css'
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
+  * {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
   body {
     box-sizing: border-box;
   }

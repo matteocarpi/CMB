@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import styled, { css } from 'styled-components'
 import { motion, useAnimation } from 'framer-motion'
 
 import ImageCut from '../ImageCut'
 import Lg from '../../assets/logo/logo-lines.svg'
+import useViewportWidth from '../../hooks/useViewportWidth'
 
 const ImageContainer = styled.div`
   position: relative;
@@ -66,8 +67,19 @@ const Line = styled(motion.div)`
 const WrapperLink = styled(Link)`
   width: 45%;
   max-width: 500px;
-  margin: 2rem;
+  margin-bottom: 2rem;
   @media (min-width: 768px) {
+    margin: 2rem;
+    width: 20%;
+  }
+`
+
+const WrapperButton = styled.button`
+  width: 45%;
+  max-width: 500px;
+  margin-bottom: 2rem;
+  @media (min-width: 768px) {
+    margin: 2rem;
     width: 20%;
   }
 `
@@ -98,6 +110,9 @@ const lineVariants = {
 }
 
 export default function SecondaryServiceThumb({ image, title, uri }) {
+  const viewportWidth = useViewportWidth()
+  const isMobile = viewportWidth < 768
+
   const [isHover, setIsHover] = useState(false)
 
   const controls = useAnimation()
@@ -108,7 +123,32 @@ export default function SecondaryServiceThumb({ image, title, uri }) {
     }
   }, [isHover, controls])
 
-  return (
+  return isMobile ? (
+    <WrapperButton
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
+      onClick={() => {
+        setIsHover(true)
+        setTimeout(() => {
+          navigate(uri)
+        }, 1000)
+      }}
+      replace
+    >
+      <ImageContainer>
+        <Img fluid={{ ...image, aspectRatio: 1 }} dr />
+        {isHover && (
+          <Overlay>
+            <Logo />
+          </Overlay>
+        )}
+      </ImageContainer>
+      <TitleContainer>
+        <Title>{title}</Title>
+        <Line isHover={isHover} variants={lineVariants} animate={controls} />
+      </TitleContainer>
+    </WrapperButton>
+  ) : (
     <WrapperLink
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}

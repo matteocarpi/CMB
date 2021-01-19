@@ -1,13 +1,27 @@
 import React, { useState } from 'react'
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import styled, { css } from 'styled-components'
 import { motion, AnimatePresence } from 'framer-motion'
+
+import useViewportWidth from '../../hooks/useViewportWidth'
 import Image from '../ImageCut'
 import PlusIcon from '../../assets/icons/plus.svg'
 import Lg from '../../assets/logo/logo-lines.svg'
 
 const Container = styled(Link)`
   width: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  ${({ reverseRow }) =>
+    reverseRow &&
+    css`
+      flex-direction: row-reverse;
+    `}
+`
+const ContainerMobile = styled.button`
+  width: 100%;
+  padding: 0;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -170,6 +184,8 @@ export default function PrimaryService({
   servicesNumber,
   uri,
 }) {
+  const width = useViewportWidth()
+  const isMobile = width < 768
   const isRight = index % 2 !== 0
   const isLeft = !isRight
 
@@ -178,13 +194,62 @@ export default function PrimaryService({
   const ul = isRight && index !== 0
   const dl = isRight && index !== servicesNumber - 1
 
-  const [isHover, setisHover] = useState(false)
+  const [isHover, setIsHover] = useState(false)
 
-  return (
+  return isMobile ? (
+    <ContainerMobile
+      reverseRow={isRight}
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
+      onClick={() => {
+        setIsHover(true)
+        setTimeout(() => {
+          navigate(uri)
+        }, 1000)
+      }}
+    >
+      <ImageContainer>
+        <Img
+          dr={dr}
+          dl={dl}
+          ul={ul}
+          ur={ur}
+          fluid={{ ...image, aspectRatio: 1 }}
+          isHover={isHover}
+        />
+
+        {isHover && (
+          <Overlay>
+            <Logo />
+          </Overlay>
+        )}
+      </ImageContainer>
+      <Text>
+        <Title>{title}</Title>
+        <Description dangerouslySetInnerHTML={{ __html: description }} />
+
+        <Decorations isRight={isRight}>
+          <AnimatePresence>
+            {isHover && (
+              <Line
+                isHover={isHover}
+                isRight={isRight}
+                variants={isRight ? rightLineVariants : leftLineVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+              />
+            )}
+          </AnimatePresence>
+          <Plus isHover={isHover} to={uri} />
+        </Decorations>
+      </Text>
+    </ContainerMobile>
+  ) : (
     <Container
       reverseRow={isRight}
-      onMouseEnter={() => setisHover(true)}
-      onMouseLeave={() => setisHover(false)}
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
       to={uri}
     >
       <ImageContainer>
