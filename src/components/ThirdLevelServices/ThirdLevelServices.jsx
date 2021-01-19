@@ -170,6 +170,8 @@ const selectStyles = {
 function ThirdLevelServices({ sottoServizi, location }) {
   const globalTheme = useContext(ThemeContext)
 
+  const isBrowser = typeof window !== 'undefined'
+
   const queryObj = queryString.parse(location.search)
 
   const { titolo, listaSottoServizi } = sottoServizi
@@ -182,6 +184,7 @@ function ThirdLevelServices({ sottoServizi, location }) {
     sottoServiziList[`${slug}`] = servizio.descrizione
   })
 
+  const currentIndex = isBrowser ?? queryObj.index
   const description = sottoServiziList[queryObj.article] ?? null
 
   const articleParam = '?article'
@@ -214,7 +217,7 @@ function ThirdLevelServices({ sottoServizi, location }) {
                 primary: globalTheme.gold,
               },
             })}
-            placeholder={sottoServiziOptions[queryObj.index].label}
+            placeholder={sottoServiziOptions[currentIndex]?.label}
           />
           <Navigation>
             {listaSottoServizi.map((sottoServizio, index) => {
