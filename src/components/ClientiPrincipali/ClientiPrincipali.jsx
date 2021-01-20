@@ -1,24 +1,42 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
-
-import SwiperCore, { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-
 import Img from '../ImageCut'
 
-const Container = styled.div`
+const SwiperContainer = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
   background-color: white;
 `
+
 const Client = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
 `
 
+const Image = styled(Img)`
+  width: 25%;
+  min-height: 200px;
+  height: 70vh;
+  max-height: 900px;
+  @media (min-width: 768px) {
+    width: 45%;
+    min-height: 660px;
+  }
+`
+
+const Logo = styled(Img)`
+  max-height: 100px;
+  margin-top: 1rem;
+  width: 70%;
+  picture {
+    img {
+      object-fit: contain !important;
+    }
+  }
+`
 const TextContainer = styled.div`
   flex-grow: 1;
   display: flex;
@@ -32,51 +50,30 @@ const Text = styled.div`
   max-width: 500px;
 `
 
-const Image = styled(Img)`
-  width: 25%;
-  min-height: 200px;
-  height: 70vh;
-  max-height: 900px;
-  @media (min-width: 768px) {
-    width: 45%;
-    min-height: 660px;
-  }
-`
 const Testimonial = styled.h3`
+  margin-top: 2rem;
   @media (min-width: 768px) {
     font-size: 47px;
   }
 `
 
-SwiperCore.use([Navigation])
+const SwiperHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 
-export default function ClientsPreview() {
-  const data = useStaticQuery(graphql`
-    {
-      wpPage(id: { eq: "cG9zdDoxOTc3OQ==" }) {
-        clientiContent {
-          clientiprincipali {
-            immagine {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 1024) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-            cliente
-            citazione
-          }
-        }
-      }
-    }
-  `)
+const Voice = styled.p`
+  margin: 0;
+`
 
-  const { clientiprincipali } = data.wpPage.clientiContent
+const VoiceInfo = styled.p`
+  margin: 0;
+  font-weight: bold;
+`
 
+export default function ClientiPrincipali({ clientiprincipali }) {
   return (
-    <Container>
+    <SwiperContainer>
       <Swiper navigation>
         {clientiprincipali.map(client => (
           <SwiperSlide key={client.nome}>
@@ -87,14 +84,23 @@ export default function ClientsPreview() {
               />
               <TextContainer>
                 <Text>
+                  <SwiperHeader>
+                    <Voice>Cliente:</Voice>
+                    <VoiceInfo>{client.cliente}</VoiceInfo>
+                    <Voice>Commissione</Voice>
+                    <VoiceInfo>{client.commissione}</VoiceInfo>
+                  </SwiperHeader>
                   <Testimonial>{`"${client.citazione}"`}</Testimonial>
-                  <span>{client.cliente}</span>
+                  <Logo
+                    objectFit="contain"
+                    fluid={client.logo.localFile.childImageSharp.fluid}
+                  />
                 </Text>
               </TextContainer>
             </Client>
           </SwiperSlide>
         ))}
       </Swiper>
-    </Container>
+    </SwiperContainer>
   )
 }
