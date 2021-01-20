@@ -75,19 +75,24 @@ const VoiceInfo = styled.p`
   font-weight: bold;
 `
 
+const ThumbsContainer = styled.section`
+  width: 100%;
+  margin-bottom: 1rem;
+  .swiper-container {
+    .swiper-wrapper {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+  }
+`
 export default function ClientiPrincipali({ clientiprincipali }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
-
-  const [activeSlide, setActiveSlide] = useState()
 
   return (
     <>
       <SwiperContainer>
-        <Swiper
-          navigation
-          thumbs={{ swiper: thumbsSwiper }}
-          activeSlideKey={key}
-        >
+        <Swiper navigation thumbs={{ swiper: thumbsSwiper }}>
           {clientiprincipali.map(client => (
             <SwiperSlide key={client.nome}>
               <Client>
@@ -116,17 +121,21 @@ export default function ClientiPrincipali({ clientiprincipali }) {
         </Swiper>
       </SwiperContainer>
 
-      <Swiper
-        onSwiper={setThumbsSwiper}
-        watchSlidesVisibility
-        watchSlidesProgress
-      >
-        {clientiprincipali.map(client => (
-          <SwiperSlide>
-            <Logo fluid={client.logo.localFile.childImageSharp.fluid} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <ThumbsContainer>
+        <Swiper
+          onSwiper={setThumbsSwiper}
+          watchSlidesVisibility
+          watchSlidesProgress
+          slidesPerView={clientiprincipali.length}
+          className="thumbs"
+        >
+          {clientiprincipali.map(client => (
+            <SwiperSlide>
+              <Logo fluid={client.logo.localFile.childImageSharp.fluid} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </ThumbsContainer>
     </>
   )
 }
