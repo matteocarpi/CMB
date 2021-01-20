@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import SwiperCore, { Thumbs } from 'swiper'
+
 import Img from '../ImageCut'
+
+SwiperCore.use([Thumbs])
 
 const SwiperContainer = styled.div`
   display: flex;
@@ -72,35 +76,57 @@ const VoiceInfo = styled.p`
 `
 
 export default function ClientiPrincipali({ clientiprincipali }) {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null)
+
+  const [activeSlide, setActiveSlide] = useState()
+
   return (
-    <SwiperContainer>
-      <Swiper navigation>
+    <>
+      <SwiperContainer>
+        <Swiper
+          navigation
+          thumbs={{ swiper: thumbsSwiper }}
+          activeSlideKey={key}
+        >
+          {clientiprincipali.map(client => (
+            <SwiperSlide key={client.nome}>
+              <Client>
+                <Image
+                  fluid={client.immagine?.localFile.childImageSharp.fluid}
+                  dr
+                />
+                <TextContainer>
+                  <Text>
+                    <SwiperHeader>
+                      <Voice>Cliente:</Voice>
+                      <VoiceInfo>{client.cliente}</VoiceInfo>
+                      <Voice>Commissione</Voice>
+                      <VoiceInfo>{client.commissione}</VoiceInfo>
+                    </SwiperHeader>
+                    <Testimonial>{`"${client.citazione}"`}</Testimonial>
+                    <Logo
+                      objectFit="contain"
+                      fluid={client.logo.localFile.childImageSharp.fluid}
+                    />
+                  </Text>
+                </TextContainer>
+              </Client>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </SwiperContainer>
+
+      <Swiper
+        onSwiper={setThumbsSwiper}
+        watchSlidesVisibility
+        watchSlidesProgress
+      >
         {clientiprincipali.map(client => (
-          <SwiperSlide key={client.nome}>
-            <Client>
-              <Image
-                fluid={client.immagine?.localFile.childImageSharp.fluid}
-                dr
-              />
-              <TextContainer>
-                <Text>
-                  <SwiperHeader>
-                    <Voice>Cliente:</Voice>
-                    <VoiceInfo>{client.cliente}</VoiceInfo>
-                    <Voice>Commissione</Voice>
-                    <VoiceInfo>{client.commissione}</VoiceInfo>
-                  </SwiperHeader>
-                  <Testimonial>{`"${client.citazione}"`}</Testimonial>
-                  <Logo
-                    objectFit="contain"
-                    fluid={client.logo.localFile.childImageSharp.fluid}
-                  />
-                </Text>
-              </TextContainer>
-            </Client>
+          <SwiperSlide>
+            <Logo fluid={client.logo.localFile.childImageSharp.fluid} />
           </SwiperSlide>
         ))}
       </Swiper>
-    </SwiperContainer>
+    </>
   )
 }
