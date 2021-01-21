@@ -2,7 +2,10 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Thumbs } from 'swiper'
+import queryString from 'query-string'
+import { navigate } from 'gatsby'
 
+import { makeSlug } from '../../utils'
 import Img from '../ImageCut'
 
 SwiperCore.use([Thumbs])
@@ -86,15 +89,36 @@ const ThumbsContainer = styled.section`
     }
   }
 `
-export default function ClientiPrincipali({ clientiprincipali }) {
+
+const ThumbButton = styled.button`
+  width: 300px;
+  height: 100px;
+`
+export default function ClientiPrincipali({ clientiprincipali, location }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
+  const clientiList = clientiprincipali.map(client => makeSlug(client.cliente))
+
+  const isBrowser = typeof window !== 'undefined'
+  const queryObj = isBrowser && queryString.parse(location.search)
+  const initialSlide = clientiList.indexOf(queryObj?.client) ?? 0
 
   return (
     <>
       <SwiperContainer>
-        <Swiper navigation thumbs={{ swiper: thumbsSwiper }}>
+        <Swiper
+          initialSlide={initialSlide}
+          navigation
+          thumbs={{ swiper: thumbsSwiper }}
+          onSlideChangeTransitionEnd={swiper =>
+            navigate(`?client=${clientiList[swiper.activeIndex]}`, {
+              state: {
+                disableScrollUpdate: true,
+              },
+            })
+          }
+        >
           {clientiprincipali.map(client => (
-            <SwiperSlide key={client.nome}>
+            <SwiperSlide key={client.cliente}>
               <Client>
                 <Image
                   fluid={client.immagine?.localFile.childImageSharp.fluid}
@@ -130,8 +154,19 @@ export default function ClientiPrincipali({ clientiprincipali }) {
           className="thumbs"
         >
           {clientiprincipali.map(client => (
-            <SwiperSlide>
-              <Logo fluid={client.logo.localFile.childImageSharp.fluid} />
+            <SwiperSlide key={client.cliente}>
+              <ThumbButton
+                type="button"
+                onClick={() => {
+                  navigate(`?client=${makeSlug(client.cliente)}`, {
+                    state: {
+                      disableScrollUpdate: true,
+                    },
+                  })
+                }}
+              >
+                <Logo fluid={client.logo.localFile.childImageSharp.fluid} />
+              </ThumbButton>
             </SwiperSlide>
           ))}
         </Swiper>

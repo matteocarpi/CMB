@@ -39,5 +39,6 @@ module.exports = {
     'no-plusplus': off,
     'no-unused-vars': warn,
     'react/jsx-one-expression-per-line': off,
+    'react/jsx-curly-newline': off,
   },
 }

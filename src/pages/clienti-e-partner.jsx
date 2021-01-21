@@ -9,7 +9,7 @@ import ClientiPrincipali from '../components/ClientiPrincipali'
 
 const Descrizione = styled.section``
 
-const ClientiEPartner = () => {
+const ClientiEPartner = ({ location }) => {
   const data = useStaticQuery(graphql`
     query MyQuery {
       clientiPage: wpPage(id: { eq: "cG9zdDoxOTc3OQ==" }) {
@@ -80,7 +80,10 @@ const ClientiEPartner = () => {
       <SectionTitle>{clientiPage.title}</SectionTitle>
       <Descrizione dangerouslySetInnerHTML={{ __html: content.descrizione }} />
 
-      <ClientiPrincipali clientiprincipali={content.clientiprincipali} />
+      <ClientiPrincipali
+        clientiprincipali={content.clientiprincipali}
+        location={location}
+      />
     </Layout>
   )
 }
