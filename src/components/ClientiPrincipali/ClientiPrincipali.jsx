@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Thumbs } from 'swiper'
 import queryString from 'query-string'
@@ -35,13 +35,23 @@ const Image = styled(Img)`
 `
 
 const Logo = styled(Img)`
-  max-height: 100px;
+  max-height: 98px;
+  min-width: 100px;
   margin-top: 1rem;
   width: 70%;
   picture {
     img {
       object-fit: contain !important;
     }
+  }
+
+  ${({ active }) =>
+    active &&
+    css`
+      margin-bottom: -2px;
+    `}
+  &:hover {
+    margin-bottom: -2px;
   }
 `
 const TextContainer = styled.div`
@@ -86,21 +96,44 @@ const ThumbsContainer = styled.section`
       display: flex;
       justify-content: space-around;
       flex-wrap: wrap;
+      .swiper-slide {
+        width: min-content !important;
+      }
     }
   }
 `
 
 const ThumbButton = styled.button`
-  width: 300px;
-  height: 100px;
+  width: min-content;
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${({ active }) =>
+    active &&
+    css`
+      border-bottom: solid 2px ${({ theme }) => theme.gold};
+    `}
+  &:hover {
+    border-bottom: solid 2px ${({ theme }) => theme.gold};
+    padding-bottom: -2px;
+  }
 `
+
+const Descrizione = styled.article``
+
 export default function ClientiPrincipali({ clientiprincipali, location }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const clientiList = clientiprincipali.map(client => makeSlug(client.cliente))
 
   const isBrowser = typeof window !== 'undefined'
   const queryObj = isBrowser && queryString.parse(location.search)
-  const initialSlide = clientiList.indexOf(queryObj?.client) ?? 0
+  const initialSlide =
+    clientiList.indexOf(queryObj?.client) >= 0
+      ? clientiList.indexOf(queryObj?.client)
+      : 0
+
+  const [activeSlide, setActiveSlide] = useState(initialSlide)
 
   return (
     <>
@@ -109,13 +142,14 @@ export default function ClientiPrincipali({ clientiprincipali, location }) {
           initialSlide={initialSlide}
           navigation
           thumbs={{ swiper: thumbsSwiper }}
-          onSlideChangeTransitionEnd={swiper =>
+          onSlideChangeTransitionEnd={swiper => {
             navigate(`?client=${clientiList[swiper.activeIndex]}`, {
               state: {
                 disableScrollUpdate: true,
               },
             })
-          }
+            setActiveSlide(swiper.activeIndex)
+          }}
         >
           {clientiprincipali.map(client => (
             <SwiperSlide key={client.cliente}>
@@ -140,6 +174,9 @@ export default function ClientiPrincipali({ clientiprincipali, location }) {
                   </Text>
                 </TextContainer>
               </Client>
+              <Descrizione
+                dangerouslySetInnerHTML={{ __html: client.descrizione }}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -153,11 +190,13 @@ export default function ClientiPrincipali({ clientiprincipali, location }) {
           slidesPerView={clientiprincipali.length}
           className="thumbs"
         >
-          {clientiprincipali.map(client => (
+          {clientiprincipali.map((client, index) => (
             <SwiperSlide key={client.cliente}>
               <ThumbButton
+                active={activeSlide === index}
                 type="button"
                 onClick={() => {
+                  setActiveSlide(index)
                   navigate(`?client=${makeSlug(client.cliente)}`, {
                     state: {
                       disableScrollUpdate: true,
@@ -165,7 +204,10 @@ export default function ClientiPrincipali({ clientiprincipali, location }) {
                   })
                 }}
               >
-                <Logo fluid={client.logo.localFile.childImageSharp.fluid} />
+                <Logo
+                  active={activeSlide === index}
+                  fluid={client.logo.localFile.childImageSharp.fluid}
+                />
               </ThumbButton>
             </SwiperSlide>
           ))}
