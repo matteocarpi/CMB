@@ -110,7 +110,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 2;
     font-size: 20px;
     color: ${({ theme }) => theme.black};
-    margin: 45px 30px;
+    margin: 30px 30px;
   }
 
   em {
@@ -135,10 +135,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 300;
     line-height: 2;
     font-size: 20px;
+    margin-left: 2rem;
   }
 
   ul {
-    margin-left: 2rem;
     li {
       list-style: disc;
     }
