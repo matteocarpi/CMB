@@ -97,14 +97,16 @@ const ThumbsContainer = styled.section`
       justify-content: space-around;
       flex-wrap: wrap;
       .swiper-slide {
-        width: min-content !important;
+        width: 50% !important;
+        display: flex;
+        justify-content: center;
       }
     }
   }
 `
 
 const ThumbButton = styled.button`
-  width: min-content;
+  width: 50%;
   height: 110px;
   display: flex;
   justify-content: center;
