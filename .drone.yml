@@ -3,18 +3,21 @@ kind: pipeline
 type: docker
 name: default
 
+metadata:
+  namespace: default
+
 steps:
   - name: Restore Cache
     image: meltwater/drone-cache:dev
     pull: true
     settings:
-      backend: "filesystem"
+      backend: 'filesystem'
       restore: true
       cache_key: '{{ checksum "package.json" }}'
-      archive_format: "gzip"
+      archive_format: 'gzip'
       mount:
-        - "./node_modules"
-        - "./.wordpress-cache"
+        - './node_modules'
+        - './.wordpress-cache'
 
     volumes:
       - name: cache
@@ -30,13 +33,13 @@ steps:
     image: meltwater/drone-cache:dev
     pull: true
     settings:
-      backend: "filesystem"
+      backend: 'filesystem'
       rebuild: true
       cache_key: '{{ checksum "package.json" }}'
-      archive_format: "gzip"
+      archive_format: 'gzip'
       mount:
-        - "./node_modules"
-        - "./.wordpress-cache"
+        - './node_modules'
+        - './.wordpress-cache'
     volumes:
       - name: cache
         path: /tmp/cache
