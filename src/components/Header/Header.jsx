@@ -75,7 +75,7 @@ const NavItem = styled.li`
   margin: 1rem 0;
   font-weight: 200;
   text-transform: uppercase;
-
+  list-style: none;
   &:hover,
   a.active {
     border-left: solid 1px ${({ theme }) => theme.gold};
@@ -98,7 +98,9 @@ const DesktopNavigation = styled.ul`
 const DesktopNavItem = styled.li`
   margin: 1rem 0;
   font-weight: 200;
+  font-size: 17px;
   text-transform: uppercase;
+  list-style: none;
 
   a {
     padding-left: 0.5rem;

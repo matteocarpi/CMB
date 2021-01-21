@@ -26,6 +26,7 @@ const Navigation = styled.ul`
 `
 
 const NavItem = styled.li`
+  list-style: none;
   margin: 2rem 0;
   a {
     h4 {
