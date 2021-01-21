@@ -38,6 +38,11 @@ const ShowAllClients = styled.button`
       span {
         color: ${({ theme }) => theme.gold};
       }
+      svg {
+        path {
+          stroke: ${({ theme }) => theme.gold};
+        }
+      }
     }
   }
 `
@@ -54,12 +59,16 @@ const AltriClienti = styled.section`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+
+  @media (min-width: 768px) {
+    margin: 2rem 0;
+  }
 `
 
 const ClientLogo = styled(Image)`
   width: 40%;
   margin: 1rem;
-
+  max-width: 200px;
   picture {
     img {
       object-fit: contain !important;
@@ -68,18 +77,26 @@ const ClientLogo = styled(Image)`
 `
 
 const PartnersWrapper = styled.section`
-  margin: 2rem 0;
+  margin: 5rem 0;
+
+  p {
+    margin-bottom: 0;
+  }
 `
 
 const PartnersContainer = styled.section`
-  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 `
 
 const Partner = styled.article`
-  margin: 4rem 0;
+  margin: 4rem 0 0 0;
+  max-width: 500px;
 `
 
 const PartnerDescription = styled.article`
+  margin-bottom: 0;
   p {
     margin: 1rem 30px;
   }
@@ -87,13 +104,13 @@ const PartnerDescription = styled.article`
 
 const PartnerLogo = styled(Image)`
   max-width: 300px;
-  max-height: 150px;
+  height: 150px;
   margin: 0 30px;
 
   picture {
     img {
       object-fit: contain !important;
-      object-position: left center !important;
+      object-position: left bottom !important;
     }
   }
 `

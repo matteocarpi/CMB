@@ -203,10 +203,12 @@ export default function ClientiPrincipali({ clientiprincipali, location }) {
                           <Voice>Cliente:</Voice>
                           <VoiceInfo>{client.cliente}</VoiceInfo>
                         </SwiperHeader>
-                        <Logo
-                          objectFit="contain"
-                          fluid={client.logo.localFile.childImageSharp.fluid}
-                        />
+                        {!isMobile && (
+                          <Logo
+                            objectFit="contain"
+                            fluid={client.logo.localFile.childImageSharp.fluid}
+                          />
+                        )}
                       </FirstRow>
                       <Voice>Commissione:</Voice>
                       <VoiceInfo>{client.commissione}</VoiceInfo>
