@@ -55,7 +55,7 @@ export default function ClientsPreview() {
     {
       wpPage(id: { eq: "cG9zdDoxOTc3OQ==" }) {
         clientiContent {
-          testimonial {
+          clientiprincipali {
             immagine {
               localFile {
                 childImageSharp {
@@ -65,21 +65,20 @@ export default function ClientsPreview() {
                 }
               }
             }
-            nome
-            societa
-            testimonial
+            cliente
+            citazione
           }
         }
       }
     }
   `)
 
-  const { testimonial } = data.wpPage.clientiContent
+  const { clientiprincipali } = data.wpPage.clientiContent
 
   return (
     <Container>
       <Swiper navigation>
-        {testimonial.map(client => (
+        {clientiprincipali.map(client => (
           <SwiperSlide key={client.nome}>
             <Client>
               <Image
@@ -88,12 +87,8 @@ export default function ClientsPreview() {
               />
               <TextContainer>
                 <Text>
-                  <Testimonial>{`"${client.testimonial}"`}</Testimonial>
-                  <span>
-                    {client.nome}
-                    <br />
-                    {client.societa}
-                  </span>
+                  <Testimonial>{`"${client.citazione}"`}</Testimonial>
+                  <span>{client.cliente}</span>
                 </Text>
               </TextContainer>
             </Client>
