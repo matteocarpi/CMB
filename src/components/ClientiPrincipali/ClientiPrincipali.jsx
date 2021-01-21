@@ -5,6 +5,7 @@ import SwiperCore, { Thumbs } from 'swiper'
 import queryString from 'query-string'
 import { navigate } from 'gatsby'
 
+import useViewportWidth from '../../hooks/useViewportWidth'
 import { makeSlug } from '../../utils'
 import Img from '../ImageCut'
 
@@ -30,7 +31,7 @@ const Image = styled(Img)`
   max-height: 900px;
   @media (min-width: 768px) {
     width: 45%;
-    min-height: 660px;
+    min-height: 760px;
   }
 `
 
@@ -53,6 +54,12 @@ const Logo = styled(Img)`
   &:hover {
     margin-bottom: -2px;
   }
+
+  @media (min-width: 768px) {
+    width: min-content;
+    min-width: 200px;
+    margin-top: 0;
+  }
 `
 const TextContainer = styled.div`
   flex-grow: 1;
@@ -64,7 +71,16 @@ const TextContainer = styled.div`
 const Text = styled.div`
   margin: 1.7rem 1rem;
   flex-grow: 1;
-  max-width: 500px;
+  max-width: 1024px;
+  @media (min-width: 768px) {
+    padding: 0 4rem;
+  }
+`
+
+const FirstRow = styled.div`
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 2rem;
 `
 
 const Testimonial = styled.h3`
@@ -103,6 +119,17 @@ const ThumbsContainer = styled.section`
       }
     }
   }
+
+  @media (min-width: 768px) {
+    margin: 2rem 0;
+    .swiper-container {
+      .swiper-wrapper {
+        .swiper-slide {
+          width: 20% !important;
+        }
+      }
+    }
+  }
 `
 
 const ThumbButton = styled.button`
@@ -121,8 +148,13 @@ const ThumbButton = styled.button`
     padding-bottom: -2px;
   }
 `
-
 const Descrizione = styled.article``
+
+const CommissionDescription = styled.article`
+  p {
+    margin-left: 0;
+  }
+`
 
 export default function ClientiPrincipali({ clientiprincipali, location }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
@@ -136,6 +168,9 @@ export default function ClientiPrincipali({ clientiprincipali, location }) {
       : 0
 
   const [activeSlide, setActiveSlide] = useState(initialSlide)
+
+  const viewportWidth = useViewportWidth()
+  const isMobile = viewportWidth < 768
 
   return (
     <>
@@ -163,22 +198,39 @@ export default function ClientiPrincipali({ clientiprincipali, location }) {
                 <TextContainer>
                   <Text>
                     <SwiperHeader>
-                      <Voice>Cliente:</Voice>
-                      <VoiceInfo>{client.cliente}</VoiceInfo>
-                      <Voice>Commissione</Voice>
+                      <FirstRow>
+                        <SwiperHeader>
+                          <Voice>Cliente:</Voice>
+                          <VoiceInfo>{client.cliente}</VoiceInfo>
+                        </SwiperHeader>
+                        <Logo
+                          objectFit="contain"
+                          fluid={client.logo.localFile.childImageSharp.fluid}
+                        />
+                      </FirstRow>
+                      <Voice>Commissione:</Voice>
                       <VoiceInfo>{client.commissione}</VoiceInfo>
                     </SwiperHeader>
+                    {!isMobile && (
+                      <CommissionDescription
+                        dangerouslySetInnerHTML={{ __html: client.descrizione }}
+                      />
+                    )}
                     <Testimonial>{`"${client.citazione}"`}</Testimonial>
-                    <Logo
-                      objectFit="contain"
-                      fluid={client.logo.localFile.childImageSharp.fluid}
-                    />
+                    {isMobile && (
+                      <Logo
+                        objectFit="contain"
+                        fluid={client.logo.localFile.childImageSharp.fluid}
+                      />
+                    )}
                   </Text>
                 </TextContainer>
               </Client>
-              <Descrizione
-                dangerouslySetInnerHTML={{ __html: client.descrizione }}
-              />
+              {isMobile && (
+                <Descrizione
+                  dangerouslySetInnerHTML={{ __html: client.descrizione }}
+                />
+              )}
             </SwiperSlide>
           ))}
         </Swiper>

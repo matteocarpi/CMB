@@ -9,6 +9,7 @@ import SectionTitle from '../components/SectionTitle'
 import ClientiPrincipali from '../components/ClientiPrincipali'
 import PlusIcon from '../assets/icons/plus.svg'
 import MinusIcon from '../assets/icons/minus.svg'
+import useViewportWidth from '../hooks/useViewportWidth'
 
 const Descrizione = styled.section``
 
@@ -158,6 +159,9 @@ const ClientiEPartner = ({ location }) => {
       }
     }
   `)
+
+  const viewportWidth = useViewportWidth()
+  const isMobile = viewportWidth < 768
 
   const [showAllClients, setShowAllClients] = useState(false)
 
