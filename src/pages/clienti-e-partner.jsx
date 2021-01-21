@@ -66,6 +66,37 @@ const ClientLogo = styled(Image)`
   }
 `
 
+const PartnersWrapper = styled.section`
+  margin: 2rem 0;
+`
+
+const PartnersContainer = styled.section`
+  margin-top: 2rem;
+`
+
+const Partner = styled.article`
+  margin: 4rem 0;
+`
+
+const PartnerDescription = styled.article`
+  p {
+    margin: 1rem 30px;
+  }
+`
+
+const PartnerLogo = styled(Image)`
+  max-width: 300px;
+  max-height: 150px;
+  margin: 0 30px;
+
+  picture {
+    img {
+      object-fit: contain !important;
+      object-position: left center !important;
+    }
+  }
+`
+
 const ClientiEPartner = ({ location }) => {
   const data = useStaticQuery(graphql`
     query MyQuery {
@@ -155,10 +186,35 @@ const ClientiEPartner = ({ location }) => {
       {showAllClients && (
         <AltriClienti>
           {content.altriClienti.map(client => (
-            <ClientLogo fluid={client.localFile.childImageSharp.fluid} />
+            <ClientLogo
+              fluid={client.localFile.childImageSharp.fluid}
+              key={client.localFile.childImageSharp.fluid.src}
+            />
           ))}
         </AltriClienti>
       )}
+
+      <PartnersWrapper>
+        <SectionTitle>{content.convenzioniEPartners.titolo}</SectionTitle>
+
+        <Descrizione
+          dangerouslySetInnerHTML={{
+            __html: content.convenzioniEPartners.descrizione,
+          }}
+        />
+        <PartnersContainer>
+          {content.convenzioniEPartners.list.map(partner => (
+            <Partner>
+              <PartnerLogo
+                fluid={partner.logo.localFile.childImageSharp.fluid}
+              />
+              <PartnerDescription
+                dangerouslySetInnerHTML={{ __html: partner.descrizione }}
+              />
+            </Partner>
+          ))}
+        </PartnersContainer>
+      </PartnersWrapper>
     </Layout>
   )
 }
