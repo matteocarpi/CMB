@@ -132,6 +132,16 @@ const GlobalStyle = createGlobalStyle`
 
   li {
     font-family: Jost, sans-serif;
+    font-weight: 300;
+    line-height: 2;
+    font-size: 20px;
+  }
+
+  ul {
+    margin-left: 2rem;
+    li {
+      list-style: disc;
+    }
   }
 
   input {
