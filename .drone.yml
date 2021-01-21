@@ -58,7 +58,6 @@ steps:
     image: plugins/slack
     when:
       status:
-        - success
         - failure
     settings:
       webhook:
