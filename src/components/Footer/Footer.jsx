@@ -37,6 +37,7 @@ const Menu = styled.ul``
 
 const MenuItem = styled.li`
   margin: 1rem 0;
+  list-style: none;
   a {
     color: white;
 
