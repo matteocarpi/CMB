@@ -40,5 +40,6 @@ module.exports = {
     'no-unused-vars': warn,
     'react/jsx-one-expression-per-line': off,
     'react/jsx-curly-newline': off,
+    'array-callback-return': off,
   },
 }
