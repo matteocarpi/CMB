@@ -53,6 +53,7 @@ const Contacts = styled.ul`
 `
 
 const ContactInfo = styled.li`
+  list-style: none;
   color: white;
   a {
     color: white;
