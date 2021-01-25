@@ -23,6 +23,9 @@ const Navigation = styled.ul`
   display: none;
   margin: 0 2rem 2rem 2rem;
 
+  li {
+    list-style: none;
+  }
   @media (min-width: 768px) {
     display: block;
     margin-top: 0;
