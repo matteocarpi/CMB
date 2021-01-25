@@ -194,7 +194,7 @@ function ThirdLevelServices({ sottoServizi, location }) {
 
   const sottoServiziOptions = listasottoservizi.map((s, index) => {
     const slug = makeSlug(s.titolo)
-    const value = `${articleParam}=${slug}&index=${index}#sottoservizio`
+    const value = `${articleParam}=${slug}&index=${index}`
     return {
       value,
       label: s.titolo,
@@ -211,7 +211,13 @@ function ThirdLevelServices({ sottoServizi, location }) {
             styles={selectStyles}
             options={sottoServiziOptions}
             defaultValue={0}
-            onChange={({ value }) => navigate(value)}
+            onChange={({ value }) =>
+              navigate(value, {
+                state: {
+                  disableScrollUpdate: true,
+                },
+              })
+            }
             components={{ ValueContainer }}
             theme={theme => ({
               ...theme,
@@ -232,7 +238,8 @@ function ThirdLevelServices({ sottoServizi, location }) {
                   key={sS.titolo}
                 >
                   <StyledLink
-                    to={`${articleParam}=${slug}&index=${index}#sottoservizio`}
+                    to={`${articleParam}=${slug}&index=${index}`}
+                    state={{ disableScrollUpdate: true }}
                   >
                     {sS.titolo}
                   </StyledLink>
