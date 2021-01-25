@@ -87,7 +87,10 @@ const Contatti = () => {
               <ContactWrapper>
                 Tel:{' '}
                 {content.contatti.telefono.map((telefono, index) => (
-                  <Contact href={`tel: ${telefono.numero}`}>
+                  <Contact
+                    key={telefono.numero}
+                    href={`tel: ${telefono.numero}`}
+                  >
                     {telefono.numero}{' '}
                     {index + 1 !== content.contatti.telefono.length && ' /'}
                   </Contact>
@@ -115,7 +118,7 @@ const Contatti = () => {
             {content.sedi.map((sede, index) => {
               if (index <= (content.sedi.length - 1) / 2) {
                 return (
-                  <Location>
+                  <Location key={sede.nome}>
                     <Name>{sede.nome}</Name>
                     <Address>{sede.indirizzo}</Address>
                   </Location>
@@ -128,7 +131,7 @@ const Contatti = () => {
             {content.sedi.map((sede, index) => {
               if (index > (content.sedi.length - 1) / 2) {
                 return (
-                  <Location>
+                  <Location key={sede.nome}>
                     <Name>{sede.nome}</Name>
                     <Address>{sede.indirizzo}</Address>
                   </Location>
@@ -137,6 +140,14 @@ const Contatti = () => {
             })}
           </OtherLocations>
         </InfoWrapper>
+
+        <iframe
+          title="map"
+          src="https://snazzymaps.com/embed/286904"
+          width="100%"
+          height="600px"
+          style={{ border: 'none', marginTop: '2rem' }}
+        />
       </Container>
     </Layout>
   )
