@@ -133,7 +133,19 @@ const Cut = styled.div`
     }
   }
 `
-const Description = styled.article``
+const Description = styled.article`
+  ul {
+    li {
+      margin-left: 60px;
+    }
+  }
+
+  ol {
+    li {
+      margin-left: 60px;
+    }
+  }
+`
 
 const ValueWrapper = styled.div`
   width: 100%;
