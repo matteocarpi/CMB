@@ -90,34 +90,16 @@ const SwiperDesktop = styled.div`
   .swiper-button-next {
     &:after {
       margin-right: 2rem;
-      margin-bottom: 12rem;
     }
   }
   .swiper-button-prev {
     &:after {
       margin-left: 2rem;
-      margin-bottom: 12rem;
-    }
-  }
-
-  div:first-child {
-    .swiper-button-next {
-      display: none;
-    }
-  }
-
-  div:nth-child(2) {
-    .swiper-button-prev {
-      display: none;
     }
   }
 `
 
-const Image = styled(ImageCut)`
-  @media (min-width: 768px) {
-    /* height: 450px; */
-  }
-`
+const Image = styled(ImageCut)``
 
 const SwiperMobile = styled(Swiper)`
   width: 100%;
