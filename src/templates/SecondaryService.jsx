@@ -10,11 +10,14 @@ import ThirdLevelServices from '../components/ThirdLevelServices/ThirdLevelServi
 
 const Container = styled.section`
   margin-top: 3rem;
-  margin-bottom: 10rem;
-
   @media (max-width: 767px) {
     margin-top: -3rem;
   }
+`
+
+const Separator = styled.div`
+  border-bottom: solid 1px ${({ theme }) => theme.gold};
+  margin: 5rem 0;
 `
 
 const Image = styled(Img)`
@@ -35,7 +38,6 @@ const Image = styled(Img)`
 `
 
 const Description = styled.article`
-  border-bottom: solid 1px ${({ theme }) => theme.gold};
   max-width: 1200px;
   p {
     margin-left: 0;
@@ -89,6 +91,8 @@ const SecondaryService = ({ data, pageContext, location }) => {
           <ThirdLevelServices sottoServizi={sottoServizi} location={location} />
         )}
       </Container>
+
+      <Separator />
 
       <PrimaryServicesBlock
         pageContext={pageContext}
