@@ -32,6 +32,11 @@ steps:
 
   - name: Build
     image: node
+    environment:
+      GATSBY_MAILGUN_DOMAIN:
+        from_secret: GATSBY_MAILGUN_DOMAIN
+      GATSBY_MAILGUN_API_KEY:
+        from_secret: GATSBY_MAILGUN_API_KEY
     commands:
       - yarn install
       - yarn build

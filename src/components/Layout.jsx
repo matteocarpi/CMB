@@ -22,6 +22,9 @@ const GlobalStyle = createGlobalStyle`
     user-select: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     color: ${({ theme }) => theme.black};
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
   }
   body {
     box-sizing: border-box;
@@ -146,10 +149,9 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  input {
+  input, textarea {
     font-family: Jost, sans-serif;
     font-size: 14px;
-    
   }
   button {
     cursor: pointer;

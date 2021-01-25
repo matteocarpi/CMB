@@ -5,6 +5,7 @@ import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 
 import SectionTitle from '../components/SectionTitle'
+import ContactForm from '../components/ContactForm'
 
 const Container = styled.section`
   margin: 4rem 0;
@@ -15,6 +16,7 @@ const InfoWrapper = styled.section`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  flex-wrap: wrap;
 `
 const ContactWrapper = styled.p`
   margin: 0 2rem;
@@ -26,11 +28,13 @@ const MainLocation = styled.article``
 
 const OtherLocations = styled.article``
 
-const Location = styled.div``
+const Location = styled.div`
+  margin-bottom: 2rem;
+`
 
 const Name = styled.h5`
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 400;
   margin-left: 30px;
 `
 
@@ -118,7 +122,7 @@ const Contatti = () => {
             {content.sedi.map((sede, index) => {
               if (index <= (content.sedi.length - 1) / 2) {
                 return (
-                  <Location key={sede.nome}>
+                  <Location key={sede.indirizzo}>
                     <Name>{sede.nome}</Name>
                     <Address>{sede.indirizzo}</Address>
                   </Location>
@@ -131,7 +135,7 @@ const Contatti = () => {
             {content.sedi.map((sede, index) => {
               if (index > (content.sedi.length - 1) / 2) {
                 return (
-                  <Location key={sede.nome}>
+                  <Location key={sede.indirizzo}>
                     <Name>{sede.nome}</Name>
                     <Address>{sede.indirizzo}</Address>
                   </Location>
@@ -147,6 +151,11 @@ const Contatti = () => {
           width="100%"
           height="600px"
           style={{ border: 'none', marginTop: '2rem' }}
+        />
+
+        <ContactForm
+          titolo={content.form.titolo}
+          sottotitolo={content.form.sottotitolo}
         />
       </Container>
     </Layout>

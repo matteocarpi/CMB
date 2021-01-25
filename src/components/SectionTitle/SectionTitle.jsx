@@ -8,8 +8,14 @@ const Wrapper = styled.button`
   margin-left: 1rem;
   margin-right: auto;
   width: 90%;
-  max-width: 500px;
   padding-left: 0;
+
+  ${({ long }) =>
+    !long &&
+    css`
+      max-width: 500px;
+    `}
+
   ${({ small }) =>
     small &&
     css`
@@ -24,7 +30,6 @@ const Wrapper = styled.button`
 `
 
 const Title = styled.h2`
-  max-width: 850px;
   cursor: pointer;
   align-self: flex-start;
 
@@ -32,6 +37,21 @@ const Title = styled.h2`
     tiny &&
     css`
       font-size: 30px;
+    `}
+
+  ${({ medium }) =>
+    medium &&
+    css`
+      @media (min-width: 768px) {
+        font-size: 40px;
+      }
+      font-size: 30px;
+    `}
+
+    ${({ long }) =>
+    !long &&
+    css`
+      max-width: 850px;
     `}
 `
 
@@ -60,14 +80,24 @@ const underlineVariants = {
     },
   },
 }
-export default function SectionTitle({ children, uri, small, tiny }) {
+export default function SectionTitle({
+  children,
+  uri,
+  medium,
+  small,
+  tiny,
+  long,
+}) {
   return (
     <Wrapper
       small={small}
       onClick={e => (uri ? navigate(uri) : e.preventDefault())}
       uri={uri}
+      long={long}
     >
-      <Title tiny={tiny}>{children}</Title>
+      <Title long={long} medium={medium} tiny={tiny}>
+        {children}
+      </Title>
       <Underline
         variants={underlineVariants}
         initial="hidden"
