@@ -64,11 +64,6 @@
     "spawn": "react-spawn",
     "lint": "eslint 'src/**/*.jsx' 'src/**/*.js'"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn lint"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/gatsbyjs/gatsby-starter-default"
