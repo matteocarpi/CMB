@@ -136,8 +136,10 @@ export default function Header() {
   const navigation = useStaticQuery(graphql`
     query Navigation {
       allWpPage(
-        filter: { id: { nin: "cG9zdDo5" } }
         sort: { fields: menuOrder, order: ASC }
+        filter: {
+          id: { nin: ["cG9zdDo5", "cG9zdDoyMDkxOA==", "cG9zdDoyMDkzMg=="] }
+        }
       ) {
         edges {
           node {
