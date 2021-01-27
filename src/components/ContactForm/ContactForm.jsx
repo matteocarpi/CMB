@@ -102,6 +102,7 @@ const Sottotitolo = styled.span`
   font-size: 18px;
   margin: 1rem;
   line-height: 2;
+  max-width: 300px;
 `
 export default function ContactForm({ titolo, sottotitolo }) {
   const [success, setSuccess] = useState(false)
