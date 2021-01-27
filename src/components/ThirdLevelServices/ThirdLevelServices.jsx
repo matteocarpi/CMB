@@ -37,6 +37,8 @@ const NavItem = styled.li`
   padding-left: 0.7rem;
   margin-left: -0.7rem;
   margin-bottom: 1rem;
+  font-size: 20px;
+  font-weight: 300;
   ${({ active }) =>
     active &&
     css`

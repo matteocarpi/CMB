@@ -21,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
     -o-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    color: ${({ theme }) => theme.black};
   }
   body {
     box-sizing: border-box;
@@ -110,7 +111,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 2;
     font-size: 20px;
     color: ${({ theme }) => theme.black};
-    margin: 30px 30px;
+    margin: 30px 30px 0 30px;
   }
 
   em {
@@ -136,6 +137,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 2;
     font-size: 20px;
     margin-left: 2rem;
+    color: ${({ theme }) => theme.black};
   }
 
   ul {
