@@ -62,6 +62,15 @@ export default function Servizi() {
           }
         }
       }
+      vigilanza: allWpServizio(
+        filter: { servizioContent: { categoria: { eq: "vigilanza" } } }
+      ) {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
     }
   `)
 
@@ -70,6 +79,8 @@ export default function Servizi() {
   const { consulenza } = page.data.serviziContent
   const { formazione } = page.data.serviziContent
   const { vigilanza } = page.data.serviziContent
+
+  const vigilanzaUri = page.vigilanza.edges[0].node.slug
 
   const primaryServices = [consulenza, formazione, vigilanza]
 
@@ -90,7 +101,11 @@ export default function Servizi() {
               image={service.immagine.localFile.childImageSharp.fluid}
               index={index}
               servicesNumber={primaryServices.length}
-              uri={service.titolo.toLowerCase()}
+              uri={
+                service.titolo.toLowerCase() === 'vigilanza'
+                  ? `${service.titolo.toLowerCase()}/${vigilanzaUri}`
+                  : service.titolo.toLowerCase()
+              }
             />
           ))}
         </PrimaryServiceList>
