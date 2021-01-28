@@ -7,9 +7,8 @@ const Wrapper = styled.button`
   text-align: left;
   margin-left: 1rem;
   margin-right: auto;
-  width: 90%;
   padding-left: 0;
-
+  padding-right: 2rem;
   ${({ long }) =>
     !long &&
     css`
@@ -56,7 +55,7 @@ const Title = styled.h2`
 `
 
 const Underline = styled(motion.div)`
-  width: 100%;
+  width: 120%;
   margin-top: 1rem;
   transform-origin: left center;
   border-bottom: solid 2px ${({ theme }) => theme.gold};
