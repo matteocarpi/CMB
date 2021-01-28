@@ -57,6 +57,7 @@ const Minus = styled(MinusIcon)`
 const AllClients = styled.section`
   display: flex;
   flex-direction: column;
+  margin-top: 6rem;
 `
 
 const AltriClienti = styled(motion.div)`
@@ -66,13 +67,24 @@ const AltriClienti = styled(motion.div)`
   transform-origin: center top;
   width: 100%;
 `
+
 const ClientiList = styled.ul`
   width: max-content;
   margin: 0 auto;
+
+  @media (min-width: 768px) {
+    max-height: 200px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
 `
 
 const Cliente = styled.li`
   color: white;
+  white-space: nowrap;
+  width: min-content;
+  margin-left: 6rem;
 `
 
 const PartnersWrapper = styled.section`
