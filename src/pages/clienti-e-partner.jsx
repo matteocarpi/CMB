@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import Image from 'gatsby-image'
 import Layout from '../components/Layout'
@@ -13,8 +14,8 @@ import MinusIcon from '../assets/icons/minus.svg'
 const Descrizione = styled.section``
 
 const ShowAllClients = styled.button`
-  width: 100%;
   background-color: ${({ theme }) => theme.navy};
+  width: 100%;
   padding: 2rem 0;
   display: flex;
   justify-content: center;
@@ -53,26 +54,25 @@ const Minus = styled(MinusIcon)`
   margin: 0 1rem;
   stroke: ${({ theme }) => theme.gold};
 `
-
-const AltriClienti = styled.section`
+const AllClients = styled.section`
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-
-  @media (min-width: 768px) {
-    margin: 2rem 0;
-  }
+  flex-direction: column;
 `
 
-const ClientLogo = styled(Image)`
-  width: 40%;
-  margin: 1rem;
-  max-width: 200px;
-  picture {
-    img {
-      object-fit: contain !important;
-    }
-  }
+const AltriClienti = styled(motion.div)`
+  background-color: ${({ theme }) => theme.navy};
+  padding-bottom: 2rem;
+  margin: 0 auto;
+  transform-origin: center top;
+  width: 100%;
+`
+const ClientiList = styled.ul`
+  width: max-content;
+  margin: 0 auto;
+`
+
+const Cliente = styled.li`
+  color: white;
 `
 
 const PartnersWrapper = styled.section`
@@ -114,6 +114,18 @@ const PartnerLogo = styled(Image)`
   }
 `
 
+const otherClientsVariants = {
+  hidden: {
+    scaleY: 0,
+  },
+  visible: {
+    scaleY: 1,
+  },
+  exit: {
+    scaleY: 0,
+  },
+}
+
 const ClientiEPartner = ({ location }) => {
   const data = useStaticQuery(graphql`
     query MyQuery {
@@ -146,13 +158,7 @@ const ClientiEPartner = ({ location }) => {
             citazione
           }
           altriClienti {
-            localFile {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
+            cliente
           }
           convenzioniEPartners {
             titolo
@@ -192,24 +198,31 @@ const ClientiEPartner = ({ location }) => {
         location={location}
       />
 
-      <ShowAllClients
-        active={showAllClients}
-        onClick={() => setShowAllClients(!showAllClients)}
-      >
-        <span>Mostra tutti i clienti</span>
-        {!showAllClients ? <Plus /> : <Minus />}
-      </ShowAllClients>
-
-      {showAllClients && (
-        <AltriClienti>
-          {content.altriClienti.map(client => (
-            <ClientLogo
-              fluid={client.localFile.childImageSharp.fluid}
-              key={client.localFile.childImageSharp.fluid.src}
-            />
-          ))}
-        </AltriClienti>
-      )}
+      <AllClients>
+        <ShowAllClients
+          active={showAllClients}
+          onClick={() => setShowAllClients(!showAllClients)}
+        >
+          <span>Mostra tutti i clienti</span>
+          {!showAllClients ? <Plus /> : <Minus />}
+        </ShowAllClients>
+        <AnimatePresence>
+          {showAllClients && (
+            <AltriClienti
+              variants={otherClientsVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <ClientiList>
+                {content.altriClienti.map(client => (
+                  <Cliente key={client.cliente}>{client.cliente}</Cliente>
+                ))}
+              </ClientiList>
+            </AltriClienti>
+          )}
+        </AnimatePresence>
+      </AllClients>
 
       <PartnersWrapper>
         <SectionTitle long>{content.convenzioniEPartners.titolo}</SectionTitle>
