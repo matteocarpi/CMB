@@ -26,6 +26,7 @@ const StyledLogo = styled(Logo)`
 `
 
 const LogoDescription = styled.section`
+  margin-top: 2rem;
   p {
     margin-top: 0;
   }
@@ -153,6 +154,7 @@ const ChiSiamo = () => {
 
         <Image fluid={content.immagine.localFile.childImageSharp.fluid} />
         <Descrizione
+          style={{ marginBottom: '2rem' }}
           dangerouslySetInnerHTML={{
             __html: content.descrizione3,
           }}
