@@ -75,7 +75,10 @@ const PrimaryServicesBlock = ({
 
         <Navigation>
           {primaryServices.map(service => {
-            const uri = `/servizi/${service.titolo.toLowerCase()}`
+            const uri =
+              service.titolo.toLowerCase() === 'vigilanza'
+                ? `/servizi/${service.titolo.toLowerCase()}/vigilanza`
+                : `/servizi/${service.titolo.toLowerCase()}`
             const active = location.pathname.includes(uri)
 
             return (
