@@ -19,9 +19,10 @@ const Container = styled.section`
 const Descrizione = styled.article``
 
 const StyledLogo = styled(Logo)`
-  float: left;
-  margin: 0 2rem 1rem 2rem;
-  max-width: 20%;
+  margin: 0 2rem 0 0;
+  height: 100%;
+`
+const LogoWrapper = styled.div`
   height: 100%;
 `
 
@@ -35,6 +36,8 @@ const LogoDescription = styled.section`
     width: 60%;
     align-self: flex-end;
     margin-bottom: 2rem;
+    display: flex;
+    align-items: stretch;
   }
 `
 
@@ -144,7 +147,9 @@ const ChiSiamo = () => {
           }}
         />
         <LogoDescription>
-          <StyledLogo />
+          <LogoWrapper>
+            <StyledLogo />
+          </LogoWrapper>
           <Descrizione
             dangerouslySetInnerHTML={{
               __html: content.descrizione2,
