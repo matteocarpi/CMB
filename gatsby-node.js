@@ -70,6 +70,14 @@ exports.createPages = async function ({ actions, graphql }) {
           }
         }
       }
+      allWpPost {
+        edges {
+          node {
+            id
+            slug
+          }
+        }
+      }
     }
   `)
 
@@ -115,6 +123,16 @@ exports.createPages = async function ({ actions, graphql }) {
         primaryServices,
         sottotitolo,
       },
+    })
+  })
+
+  const newsList = data.allWpPost.edges
+
+  newsList.forEach(news => {
+    actions.createPage({
+      path: news.node.slug,
+      component: require.resolve(`./src/templates/Post.jsx`),
+      context: { id: news.node.id },
     })
   })
 }

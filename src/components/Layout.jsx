@@ -30,11 +30,6 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  div {
-    font-family: Jost, sans-serif;
-    font-weight: 400;
-  }
-
   h1, h2, h3, h4 {
     font-family: 'Cinzel', serif;
     color: ${({ theme }) => theme.black};
@@ -103,6 +98,13 @@ const GlobalStyle = createGlobalStyle`
       @media (min-width: 768px) {
         font-size: 25px;
       }
+  }
+  div {
+    font-family: Jost, sansf-serif;
+    font-weight: 300;
+    line-height: 2;
+    font-size: 20px;
+    color: ${({ theme }) => theme.black};
   }
   p {
     font-family: Jost, sansf-serif;
