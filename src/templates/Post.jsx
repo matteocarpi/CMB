@@ -66,7 +66,7 @@ const Post = ({ data }) => {
         {post.featuredImage && (
           <Image
             fluid={{
-              ...post.featuredImage.node.localFile.childImageSharp.fluid,
+              ...post.featuredImage?.node?.localFile?.childImageSharp?.fluid,
               aspectRatio: 4 / 3,
             }}
             dr
