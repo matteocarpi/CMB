@@ -1,15 +1,18 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import SectionTitle from '../components/SectionTitle'
+import ImageCut from '../components/ImageCut'
+
+const Wrapper = styled.section`
+  margin: 5rem auto;
+  max-width: 1200px;
+`
 
 const Content = styled.article`
-  margin: 5rem auto;
-  max-width: 1400px;
-
   h1,
   h2,
   h3,
@@ -18,6 +21,15 @@ const Content = styled.article`
   h6 {
     margin: 30px;
   }
+
+  h2 {
+    font-size: 30px;
+  }
+  
+  h3 {
+    font-size: 25px;
+  }
+
   div {
     margin: 30px;
   }
@@ -32,6 +44,15 @@ const Content = styled.article`
   }
 `
 
+const Image = styled(ImageCut)`
+  margin: 0 30px 30px 30px;
+  width: 40%;
+  float: right;
+`
+
+const BreadCrumb = styled(Link)`
+  margin-left: 16px;
+`
 const Post = ({ data }) => {
   const post = data.wpPost
 
@@ -39,7 +60,18 @@ const Post = ({ data }) => {
     <Layout>
       <Seo title={post.title} />
       <SectionTitle long>{post.title}</SectionTitle>
-      <Content dangerouslySetInnerHTML={{ __html: post.content }} />
+      <br />
+      <BreadCrumb to="/news">{`< Torna alle news`}</BreadCrumb>
+      <Wrapper>
+        <Image
+          fluid={{
+            ...post.featuredImage.node.localFile.childImageSharp.fluid,
+            aspectRatio: 4 / 3,
+          }}
+          dr
+        />
+        <Content dangerouslySetInnerHTML={{ __html: post.content }} />
+      </Wrapper>
     </Layout>
   )
 }
