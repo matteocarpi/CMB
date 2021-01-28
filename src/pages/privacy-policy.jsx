@@ -19,7 +19,7 @@ const PrivacyPolicy = () => {
   `)
 
   const { title } = data.privacy
-  const { content } = data.privacy.privacyPolicyContent.contenuto
+  const content = data.privacy.privacyPolicyContent.contenuto
 
   return (
     <Layout>
