@@ -258,7 +258,7 @@ function ThirdLevelServices({ sottoServizi, location }) {
                   primary25: globalTheme.navy,
                 },
               })}
-              placeholder={sottoServiziOptions[currentIndex ?? 0].label}
+              placeholder={sottoServiziOptions[currentIndex ?? 0]?.label}
             />
           )}
 
