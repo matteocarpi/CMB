@@ -25,7 +25,7 @@ const Content = styled.article`
   h2 {
     font-size: 30px;
   }
-  
+
   h3 {
     font-size: 25px;
   }
@@ -63,13 +63,15 @@ const Post = ({ data }) => {
       <br />
       <BreadCrumb to="/news">{`< Torna alle news`}</BreadCrumb>
       <Wrapper>
-        <Image
-          fluid={{
-            ...post.featuredImage.node.localFile.childImageSharp.fluid,
-            aspectRatio: 4 / 3,
-          }}
-          dr
-        />
+        {post.featuredImage && (
+          <Image
+            fluid={{
+              ...post.featuredImage.node.localFile.childImageSharp.fluid,
+              aspectRatio: 4 / 3,
+            }}
+            dr
+          />
+        )}
         <Content dangerouslySetInnerHTML={{ __html: post.content }} />
       </Wrapper>
     </Layout>
