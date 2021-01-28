@@ -65,7 +65,7 @@ const Line = styled(motion.div)`
 `
 
 const WrapperLink = styled(Link)`
-  width: 45%;
+  width: 100%;
   max-width: 500px;
   margin-bottom: 2rem;
   @media (min-width: 768px) {
@@ -75,7 +75,7 @@ const WrapperLink = styled(Link)`
 `
 
 const WrapperButton = styled.button`
-  width: 45%;
+  width: 100%;
   max-width: 500px;
   margin-bottom: 2rem;
   @media (min-width: 768px) {

@@ -91,12 +91,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h6 {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 200;
-
-    @media (min-width: 768px) {
-      font-size: 18px;
-    }
   }
 
   span {
