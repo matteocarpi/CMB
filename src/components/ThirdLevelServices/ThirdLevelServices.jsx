@@ -155,6 +155,11 @@ const ValueWrapper = styled.div`
   align-items: center;
 `
 
+const OptionComponent = styled.li`
+  color: white;
+  margin-left: 0.5rem;
+`
+
 const ValueContainer = ({ children, ...props }) => (
   <components.ValueContainer {...props}>
     <ValueWrapper>
@@ -163,26 +168,11 @@ const ValueContainer = ({ children, ...props }) => (
     </ValueWrapper>
   </components.ValueContainer>
 )
-
-const selectStyles = {
-  control: provided => ({
-    ...provided,
-    borderWidth: '0',
-    boxShadow: 'none',
-  }),
-  valueContainer: base => ({
-    ...base,
-    display: 'flex',
-  }),
-  placeholder: () => ({
-    position: 'relative',
-    marginLeft: '0.5rem',
-  }),
-  singleValue: () => ({
-    position: 'relative',
-    marginLeft: '0.5rem',
-  }),
-}
+const Option = ({ children, ...props }) => (
+  <components.Option {...props}>
+    <OptionComponent>{children}</OptionComponent>
+  </components.Option>
+)
 
 function ThirdLevelServices({ sottoServizi, location }) {
   const globalTheme = useContext(ThemeContext)
@@ -201,7 +191,7 @@ function ThirdLevelServices({ sottoServizi, location }) {
     sottoServiziList[`${slug}`] = servizio.descrizione
   })
 
-  const currentIndex = isBrowser ?? queryObj.index
+  const currentIndex = isBrowser && queryObj.index
   const description = sottoServiziList[queryObj.article] ?? null
 
   const articleParam = '?article'
@@ -215,33 +205,63 @@ function ThirdLevelServices({ sottoServizi, location }) {
     }
   })
 
+  const selectStyles = {
+    control: provided => ({
+      ...provided,
+      borderWidth: '0',
+      boxShadow: 'none',
+    }),
+    valueContainer: base => ({
+      ...base,
+      display: 'flex',
+    }),
+    placeholder: () => ({
+      position: 'relative',
+      marginLeft: '0.5rem',
+    }),
+    singleValue: () => ({
+      position: 'relative',
+      marginLeft: '0.5rem',
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      color: 'white',
+      padding: '1rem',
+      backgroundColor: state.isSelected ? globalTheme.gold : globalTheme.navy,
+    }),
+  }
+
   return (
     <Container id="sottoservizio">
       <Title>{titolo}</Title>
 
       <SottoServizi>
         <Sidebar>
-          <Select
-            styles={selectStyles}
-            options={sottoServiziOptions}
-            defaultValue={0}
-            onChange={({ value }) =>
-              navigate(value, {
-                state: {
-                  disableScrollUpdate: true,
+          {sottoServiziOptions && (
+            <Select
+              styles={selectStyles}
+              options={sottoServiziOptions}
+              defaultValue={Number(currentIndex)}
+              onChange={({ value }) =>
+                navigate(value, {
+                  state: {
+                    disableScrollUpdate: true,
+                  },
+                })
+              }
+              components={{ ValueContainer, Option }}
+              theme={theme => ({
+                ...theme,
+                colors: {
+                  ...theme.colors,
+                  primary: globalTheme.navy,
+                  primary25: globalTheme.navy,
                 },
-              })
-            }
-            components={{ ValueContainer }}
-            theme={theme => ({
-              ...theme,
-              colors: {
-                ...theme.colors,
-                primary: globalTheme.gold,
-              },
-            })}
-            placeholder={sottoServiziOptions[currentIndex]?.label}
-          />
+              })}
+              placeholder={sottoServiziOptions[currentIndex ?? 0].label}
+            />
+          )}
+
           <Navigation>
             {listasottoservizi.map((sottoServizio, index) => {
               const sS = sottoServizio
