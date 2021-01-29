@@ -37,7 +37,6 @@ const Wrapper = styled.button`
 const Title = styled.h2`
   cursor: pointer;
   align-self: flex-start;
-
   ${({ tiny }) =>
     tiny &&
     css`
@@ -92,9 +91,11 @@ export default function SectionTitle({
   tiny,
   long,
   main,
+  className,
 }) {
   return (
     <Wrapper
+      className={className}
       small={small}
       onClick={e => (uri ? navigate(uri) : e.preventDefault())}
       uri={uri}

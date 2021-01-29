@@ -17,6 +17,13 @@ const Header = styled.div`
   display: flex;
   flex-direction: column;
 `
+const Title = styled(SectionTitle)`
+  @media (max-width: 767px) {
+    h2 {
+      font-size: 30px;
+    }
+  }
+`
 
 const Content = styled.article`
   h1,
@@ -51,9 +58,13 @@ const Content = styled.article`
 `
 
 const Image = styled(ImageCut)`
-  margin: 0 30px 30px 30px;
-  width: 40%;
-  float: right;
+  margin: 1rem auto;
+  width: 80%;
+  @media (min-width: 768px) {
+    margin: 0 30px 30px 30px;
+    width: 40%;
+    float: right;
+  }
 `
 
 const BreadCrumb = styled(Link)`
@@ -62,6 +73,7 @@ const BreadCrumb = styled(Link)`
 
 const RelatedPosts = styled.section`
   display: flex;
+  flex-wrap: wrap;
 `
 
 const Post = ({ data }) => {
@@ -76,7 +88,7 @@ const Post = ({ data }) => {
     <Layout>
       <Seo title={post.title} />
       <Header>
-        <SectionTitle long>{post.title}</SectionTitle>
+        <Title long>{post.title}</Title>
         <BreadCrumb to="/news">{`< Torna alle news`}</BreadCrumb>
       </Header>
       <Wrapper>
