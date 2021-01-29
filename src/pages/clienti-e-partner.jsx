@@ -203,7 +203,7 @@ const ClientiEPartner = ({ location }) => {
   return (
     <Layout>
       <Seo title={clientiPage.title} />
-      <SectionTitle>{clientiPage.title}</SectionTitle>
+      <SectionTitle main>{clientiPage.title}</SectionTitle>
       <Descrizione dangerouslySetInnerHTML={{ __html: content.descrizione }} />
       <ClientiPrincipali
         clientiprincipali={content.clientiprincipali}

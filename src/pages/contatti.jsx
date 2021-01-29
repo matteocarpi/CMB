@@ -78,7 +78,7 @@ const Contatti = () => {
   return (
     <Layout>
       <Seo title={data.wpPage.title} />
-      <SectionTitle>{data.wpPage.title}</SectionTitle>
+      <SectionTitle main>{data.wpPage.title}</SectionTitle>
 
       <Container>
         <InfoWrapper>

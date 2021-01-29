@@ -26,6 +26,12 @@ const Wrapper = styled.button`
     css`
       cursor: default;
     `}
+
+    ${({ main }) =>
+    main &&
+    css`
+      min-width: 50%;
+    `}
 `
 
 const Title = styled.h2`
@@ -85,6 +91,7 @@ export default function SectionTitle({
   small,
   tiny,
   long,
+  main,
 }) {
   return (
     <Wrapper
@@ -92,6 +99,7 @@ export default function SectionTitle({
       onClick={e => (uri ? navigate(uri) : e.preventDefault())}
       uri={uri}
       long={long}
+      main={main}
     >
       <Title long={long} medium={medium} tiny={tiny}>
         {children}

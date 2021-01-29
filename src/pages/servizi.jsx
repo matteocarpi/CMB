@@ -88,7 +88,7 @@ export default function Servizi() {
     <Layout>
       <Seo title={page.data.title} />
       <Container>
-        <SectionTitle>{data.sottotitolo}</SectionTitle>
+        <SectionTitle main>{data.sottotitolo}</SectionTitle>
 
         <Introduction dangerouslySetInnerHTML={{ __html: data.descrizione }} />
 

@@ -12,7 +12,7 @@ const Content = styled.section`
 export default function SimplePage({ title, content }) {
   return (
     <Container>
-      <SectionTitle>{title}</SectionTitle>
+      <SectionTitle main>{title}</SectionTitle>
       <Content dangerouslySetInnerHTML={{ __html: content }} />
     </Container>
   )

@@ -139,7 +139,7 @@ const ChiSiamo = () => {
     <Layout>
       <Seo title={data.chiSiamo.title} />
       <Container>
-        <SectionTitle>{data.chiSiamo.title}</SectionTitle>
+        <SectionTitle main>{data.chiSiamo.title}</SectionTitle>
 
         <Descrizione
           dangerouslySetInnerHTML={{
