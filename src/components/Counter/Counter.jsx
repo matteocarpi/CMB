@@ -17,7 +17,7 @@ const Numero = styled.h4`
 const Title = styled.span`
   text-transform: uppercase;
   font-size: 10px;
-
+  line-height: 1;
   @media (min-width: 768px) {
     font-size: 16px;
   }

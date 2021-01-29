@@ -21,9 +21,17 @@ const Descrizione = styled.article``
 const StyledLogo = styled(Logo)`
   margin: 0 2rem 0 0;
   height: 100%;
+
+  @media (max-width: 767px) {
+    margin: 1rem auto;
+  }
 `
 const LogoWrapper = styled.div`
   height: 100%;
+  @media (max-width: 767px) {
+    display: flex;
+    justify-content: center;
+  }
 `
 
 const LogoDescription = styled.section`
@@ -44,6 +52,10 @@ const LogoDescription = styled.section`
 const Image = styled(Img)`
   width: 100%;
   min-height: 80vh;
+
+  @media (max-width: 767px) {
+    margin: 2rem 0 0 0;
+  }
 `
 
 const Organigramma = styled.section`
@@ -56,6 +68,19 @@ const Organigramma = styled.section`
   }
   @media (min-width: 768px) {
     margin: 8rem 0;
+  }
+`
+
+const Brochure = styled.section`
+  width: 100%;
+  margin: 8rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  p {
+    margin: 0 22px;
+  }
+  @media (min-width: 768px) {
+    margin: 8rem 0 0 0;
   }
 `
 const DownloadWrapper = styled.section`
@@ -100,6 +125,14 @@ const ChiSiamo = () => {
             }
           }
           descrizione3
+          brochure {
+            title
+            subtitle
+            descrizione
+            allegato {
+              mediaItemUrl
+            }
+          }
           organigramma {
             title
             subtitle
@@ -166,6 +199,19 @@ const ChiSiamo = () => {
         />
 
         <Badges big badges={badges} />
+
+        <Brochure>
+          <SectionTitle tiny>{content.brochure.title}</SectionTitle>
+          <Descrizione
+            dangerouslySetInnerHTML={{
+              __html: content.brochure.descrizione,
+            }}
+          />
+          <DownloadWrapper>
+            <Subtitle>{content.brochure.subtitle}</Subtitle>
+            <Download url={content.brochure.allegato.mediaItemUrl} />
+          </DownloadWrapper>
+        </Brochure>
 
         <Organigramma>
           <SectionTitle tiny>{content.organigramma.title}</SectionTitle>
