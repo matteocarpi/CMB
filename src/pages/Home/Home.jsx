@@ -1,8 +1,9 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
-
 import Image from 'gatsby-image'
+
+import useViewportWidth from '../../hooks/useViewportWidth'
 
 import Layout from '../../components/Layout'
 import SEO from '../../components/Seo'
@@ -12,6 +13,7 @@ import ClientsPreview from '../../components/ClientsPreview'
 import ServicePreview from '../../components/ServicePreview'
 import NewsPreview from '../../components/NewsPreview'
 import SlidingLogo from '../../components/SlidingLogo'
+import SlidingLogoMobile from '../../components/SlidingLogoMobile'
 
 const IntroWrapper = styled.div`
   position: fixed;
@@ -122,9 +124,12 @@ const FirstInfoContainer = styled.div`
 `
 
 const MoreInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   @media (min-width: 768px) {
     width: 100%;
-    display: flex;
     justify-content: flex-end;
   }
 `
@@ -145,6 +150,14 @@ const StyledSlidingLogo = styled(SlidingLogo)`
 
   @media (max-width: 768px) {
     display: none;
+  }
+`
+const StyledSlidingLogoMobile = styled(SlidingLogoMobile)`
+  margin-right: 2rem;
+  margin-bottom: 6rem;
+  display: none;
+  @media (max-width: 768px) {
+    display: flex;
   }
 `
 
@@ -187,6 +200,10 @@ const Home = () => {
 
   const content = data.wpPage.homeContent
 
+  const viewportWidth = useViewportWidth()
+
+  const isMobile = viewportWidth < 768
+
   return (
     <Layout>
       <SEO title={data.wpPage.title} />
@@ -206,7 +223,7 @@ const Home = () => {
           </FirstInfoContainer>
 
           <MoreInfoContainer>
-            <StyledSlidingLogo />
+            {isMobile ? <StyledSlidingLogoMobile /> : <StyledSlidingLogo />}
             <MoreInfo>
               <p
                 // eslint-disable-next-line react/no-danger
