@@ -40,8 +40,14 @@ export default function SlidingLogo(props) {
   const startMedium = scrollPercentageStart / 2
   const startShort = scrollPercentageStart
 
-  const finishMedium = scrollPercentageEnd * 1.2
-  const finishShort = scrollPercentageEnd * 1.25
+  const finishMedium = scrollPercentageEnd * 1.05
+  const finishShort = scrollPercentageEnd * 1.1
+
+  const translateLong = useTransform(
+    scrollYProgress,
+    [startMedium, finishMedium],
+    [-200, 0],
+  )
 
   const translateMedium = useTransform(
     scrollYProgress,
@@ -75,7 +81,9 @@ export default function SlidingLogo(props) {
       <Medium
         style={{ overflow: 'visible', x: translateMedium, opacity: fadeMedium }}
       />
-      <Long />
+      <Long
+        style={{ overflow: 'visible', x: translateLong, opacity: fadeMedium }}
+      />
     </Container>
   )
 }
