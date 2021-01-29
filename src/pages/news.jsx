@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 
@@ -104,32 +104,44 @@ const News = () => {
       }
     }
   `)
-  const news = data.allWpPost.edges.map(post => {
-    const categories = post.node.categories.nodes.map(category => category.name)
+  const news = useMemo(
+    () =>
+      data.allWpPost.edges.map(post => {
+        const categories = post.node.categories.nodes.map(
+          category => category.name,
+        )
 
-    return { ...post.node, categories }
-  })
+        return { ...post.node, categories }
+      }),
+    [data],
+  )
 
-  const allCategories = data.categories.edges
+  const allCategories = useMemo(() => data.categories.edges, [data])
 
-  const allYears = data.years.edges.map(y => y.node.date)
+  const allYears = useMemo(() => data.years.edges.map(y => y.node.date), [data])
 
-  const uniqueYears = new Set(allYears)
+  const uniqueYears = useMemo(() => new Set(allYears), [allYears])
 
   const [categoryFilter, setCategoryFilter] = useState([])
   const [yearsFilter, setYearsFilter] = useState([])
 
-  const categorySet = new Set(categoryFilter)
+  const categorySet = useMemo(() => new Set(categoryFilter), [categoryFilter])
 
-  const categoryFilteredNews =
-    categoryFilter.length > 0
-      ? news.filter(post => post.categories.some(c => categorySet.has(c)))
-      : news
+  const categoryFilteredNews = useMemo(() => {
+    if (categoryFilter.length > 0) {
+      return news.filter(post => post.categories.some(c => categorySet.has(c)))
+    }
+    return news
+  }, [categoryFilter, categorySet, news])
 
-  const yearFilteredNews =
-    yearsFilter.length > 0
-      ? categoryFilteredNews.filter(post => yearsFilter.includes(post.date))
-      : categoryFilteredNews
+  const yearFilteredNews = useMemo(() => {
+    if (yearsFilter.length > 0) {
+      return categoryFilteredNews.filter(post =>
+        yearsFilter.includes(post.date),
+      )
+    }
+    return categoryFilteredNews
+  }, [yearsFilter, categoryFilteredNews])
 
   const filteredNews = yearFilteredNews
 
@@ -164,21 +176,25 @@ const News = () => {
           </Filter>
         </SideBar>
         <NewsList>
-          {filteredNews.map((post, index) => {
-            const image =
-              post.featuredImage?.node.localFile.childImageSharp?.fluid ??
-              data.placeholderImage.fluid
-            return (
-              <Post
-                key={post.id}
-                title={post.title}
-                image={image}
-                uri={`${post.slug}`}
-                original={index === 0}
-                large={index === 0}
-              />
-            )
-          })}
+          {useMemo(
+            () =>
+              filteredNews.map((post, index) => {
+                const image =
+                  post.featuredImage?.node.localFile.childImageSharp?.fluid ??
+                  data.placeholderImage.fluid
+                return (
+                  <Post
+                    key={post.id}
+                    title={post.title}
+                    image={image}
+                    uri={`${post.slug}`}
+                    original={index === 0}
+                    large={index === 0}
+                  />
+                )
+              }),
+            [data.placeholderImage.fluid, filteredNews],
+          )}
           {filteredNews.length < 1 && <Empty>Nessun articolo trovato...</Empty>}
         </NewsList>
       </Container>
