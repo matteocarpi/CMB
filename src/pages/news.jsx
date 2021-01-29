@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import InfiniteScroll from 'react-infinite-scroller'
 
+import useViewportWidth from '../hooks/useViewportWidth'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import PostThumb from '../components/PostThumb'
@@ -13,6 +14,9 @@ const Container = styled.section`
   display: flex;
   margin-top: 2rem;
   align-items: flex-start;
+  @media (max-width: 817px) {
+    flex-direction: column;
+  }
 `
 
 const SideBar = styled.section`
@@ -21,6 +25,9 @@ const SideBar = styled.section`
   position: sticky;
   padding: 30px;
   width: 30%;
+  @media (max-width: 817px) {
+    display: none;
+  }
 `
 
 const Filter = styled.div`
@@ -35,16 +42,22 @@ const NewsList = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  @media (max-width: 817px) {
+    flex-direction: column;
+  }
 `
 
 const Post = styled(PostThumb)`
   min-width: 20%;
   max-width: 20%;
   max-width: 300px;
-  &:first-child {
-    min-width: 45%;
-    max-width: 630px;
-    max-height: 300px;
+
+  @media (min-width: 817px) {
+    &:first-child {
+      min-width: 45%;
+      max-width: 630px;
+      max-height: 300px;
+    }
   }
 `
 
@@ -172,6 +185,9 @@ const News = () => {
       )
     : yearFilteredNews
 
+  const viewportWidth = useViewportWidth()
+  const isMobile = viewportWidth < 817
+
   return (
     <Layout>
       <Seo title="News" />
@@ -223,8 +239,8 @@ const News = () => {
                   title={post.title}
                   image={image}
                   uri={`${post.slug}`}
-                  original={index === 0}
-                  large={index === 0}
+                  original={!isMobile && index === 0}
+                  large={!isMobile && index === 0}
                 />
               )
             })}
