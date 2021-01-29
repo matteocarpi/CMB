@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import InfiniteScroll from 'react-infinite-scroller'
+import ReactSelect from 'react-select'
 
 import useViewportWidth from '../hooks/useViewportWidth'
 import Layout from '../components/Layout'
@@ -30,6 +31,17 @@ const SideBar = styled.section`
   }
 `
 
+const TopBar = styled.div`
+  width: 100%;
+  @media (min-width: 817px) {
+    display: none;
+  }
+`
+
+const Select = styled(ReactSelect)`
+  margin: 1rem;
+`
+
 const Filter = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,6 +55,8 @@ const NewsList = styled.section`
   flex-wrap: wrap;
   justify-content: space-between;
   @media (max-width: 817px) {
+    width: 100%;
+    margin: 0 auto;
     flex-direction: column;
   }
 `
@@ -144,8 +158,21 @@ const News = () => {
 
   const allCategories = useMemo(() => data.categories.edges, [data])
 
+  const categoryOptions = useMemo(
+    () =>
+      allCategories.map(category => ({
+        label: category.node.name,
+        value: category.node.name,
+      })),
+    [allCategories],
+  )
+
   const allYears = useMemo(() => data.years.edges.map(y => y.node.date), [data])
 
+  const yearsOptions = useMemo(
+    () => allYears.map(year => ({ label: year, value: year })),
+    [allYears],
+  )
   const uniqueYears = useMemo(() => new Set(allYears), [allYears])
 
   const [categoryFilter, setCategoryFilter] = useState([])
@@ -188,13 +215,64 @@ const News = () => {
   const viewportWidth = useViewportWidth()
   const isMobile = viewportWidth < 817
 
+  const handleSelect = (value, setter) => {
+    if (value && value.length > 0) {
+      setter(value.map(v => v.value))
+    } else {
+      setter([])
+    }
+  }
+
+  const selectStyles = {
+    control: provided => ({
+      ...provided,
+      borderWidth: '0',
+      boxShadow: 'none',
+    }),
+    valueContainer: base => ({
+      ...base,
+      display: 'flex',
+    }),
+    placeholder: () => ({
+      position: 'relative',
+      marginLeft: '0.5rem',
+    }),
+    singleValue: () => ({
+      position: 'relative',
+      marginLeft: '0.5rem',
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      color: 'white',
+      padding: '1rem',
+      backgroundColor: state.isSelected ? '#dab25b' : 'rgba(13, 18, 46, 1)',
+    }),
+  }
+
   return (
     <Layout>
       <Seo title="News" />
       <SectionTitle>News</SectionTitle>
 
       <Container>
-        <SideBar>
+        <TopBar>
+          <Select
+            styles={selectStyles}
+            isMulti
+            options={categoryOptions}
+            placeholder="Seleziona le categorie..."
+            onChange={value => handleSelect(value, setCategoryFilter)}
+            theme={theme => ({
+              ...theme,
+              colors: {
+                ...theme.colors,
+                primary: 'rgba(13, 18, 46, 1)',
+                primary25: 'rgba(13, 18, 46, 1)',
+              },
+            })}
+          />
+        </TopBar>
+        <SideBar key="sidebar">
           <SearchBox
             onChange={e => setSearchKey(e.target.value)}
             placeholder="Cerca..."
@@ -223,12 +301,13 @@ const News = () => {
           </Filter>
         </SideBar>
         <InfiniteScroll
+          key="infinite-scroll"
           pageStart={0}
           loadMore={() => handleFetch(news.length + newsPerPage)}
           hasMore={news.length < allNews.length}
           loader={<div>Loading...</div>}
         >
-          <NewsList>
+          <NewsList key="porcoddio">
             {filteredNews.map((post, index) => {
               const image =
                 post.featuredImage?.node.localFile.childImageSharp?.fluid ??
