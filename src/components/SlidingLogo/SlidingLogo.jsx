@@ -36,14 +36,12 @@ export default function SlidingLogo(props) {
     setScrollPercentageEnd(elementScrollEnd)
   }, [])
 
-  const startFade = scrollPercentageStart
-  const startMedium = scrollPercentageStart
+  const startFade = scrollPercentageStart / 2
+  const startMedium = scrollPercentageStart / 2
   const startShort = scrollPercentageStart
 
-  const heightPercentage = scrollPercentageEnd - scrollPercentageStart
-
-  const finishMedium = scrollPercentageEnd - heightPercentage / 10
-  const finishShort = scrollPercentageEnd - heightPercentage / 10
+  const finishMedium = scrollPercentageEnd * 1.2
+  const finishShort = scrollPercentageEnd * 1.25
 
   const translateMedium = useTransform(
     scrollYProgress,
