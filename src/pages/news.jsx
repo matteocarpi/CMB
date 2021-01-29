@@ -51,6 +51,8 @@ const Empty = styled.h4`
   margin: 2rem auto;
 `
 
+const SearchBox = styled.input``
+
 const News = () => {
   const data = useStaticQuery(graphql`
     query News {
@@ -124,6 +126,7 @@ const News = () => {
 
   const [categoryFilter, setCategoryFilter] = useState([])
   const [yearsFilter, setYearsFilter] = useState([])
+  const [searchKey, setSearchKey] = useState()
 
   const categorySet = useMemo(() => new Set(categoryFilter), [categoryFilter])
 
@@ -143,7 +146,11 @@ const News = () => {
     return categoryFilteredNews
   }, [yearsFilter, categoryFilteredNews])
 
-  const filteredNews = yearFilteredNews
+  const filteredNews = searchKey
+    ? yearFilteredNews.filter(post =>
+        post.title.toLowerCase().includes(searchKey.toLowerCase()),
+      )
+    : yearFilteredNews
 
   return (
     <Layout>
@@ -152,6 +159,7 @@ const News = () => {
 
       <Container>
         <SideBar>
+          <SearchBox onChange={e => setSearchKey(e.target.value)} />
           <Filter>
             <FilterTitle>Categoria</FilterTitle>
             {allCategories.map(category => (
