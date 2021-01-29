@@ -165,7 +165,7 @@ const ChiSiamo = () => {
           }}
         />
 
-        <Badges badges={badges} />
+        <Badges big badges={badges} />
 
         <Organigramma>
           <SectionTitle tiny>{content.organigramma.title}</SectionTitle>

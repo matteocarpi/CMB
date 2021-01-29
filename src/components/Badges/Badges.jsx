@@ -1,5 +1,5 @@
 import React, { useRef, useState, useLayoutEffect } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Counter from '../Counter'
 
 import useViewportScroll from '../../hooks/useViewportScroll'
@@ -11,7 +11,13 @@ const Container = styled.div`
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
-  margin-top: 2rem;
+  margin-top: 4rem;
+
+  ${({ big }) =>
+    big &&
+    css`
+      mergin-top: 4rem;
+    `}
 `
 
 export default function Badges({ badges }) {
