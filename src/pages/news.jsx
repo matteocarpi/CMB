@@ -26,6 +26,8 @@ const Filter = styled.div`
   flex-direction: column;
 `
 
+const FilterTitle = styled.span``
+
 const NewsList = styled.section`
   width: 100%;
   display: flex;
@@ -121,6 +123,7 @@ const News = () => {
       <Container>
         <SideBar>
           <Filter>
+            <FilterTitle>Categoria</FilterTitle>
             {allCategories.map(category => (
               <Checkbox
                 key={category.node.id}

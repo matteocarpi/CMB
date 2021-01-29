@@ -30,23 +30,27 @@ const HeaderTop = styled.div`
   min-height: 100px;
   transition: 0.5s;
 
-  ${({ hasScrolled }) =>
-    hasScrolled &&
+  ${({ isScrolled }) =>
+    isScrolled &&
     css`
       min-height: 50px;
     `}
+
+  a {
+    svg {
+      ${({ isScrolled }) =>
+        isScrolled &&
+        css`
+          height: 30px;
+        `};
+    }
+  }
 `
 
 const Logo = styled(LogoSVG)`
   margin: 15px;
   transition: 0.5s;
   width: 120px;
-
-  ${({ hasScrolled }) =>
-    hasScrolled &&
-    css`
-      height: 30px;
-    `};
 `
 
 const Button = styled.button`
@@ -118,6 +122,15 @@ const DesktopNavItem = styled.li`
   }
 `
 
+const StyledLink = styled(Link)`
+  svg {
+    ${({ isScrolled }) =>
+      isScrolled &&
+      css`
+        height: 30px;
+      `};
+  }
+`
 const navigationVariants = {
   hidden: {
     scaleY: 0,
@@ -131,7 +144,7 @@ const navigationVariants = {
 
 export default function Header() {
   const scrollY = useViewportScroll()
-  const hasScrolled = scrollY > 200
+  const isScrolled = scrollY > 200
   const [isOpen, setIsOpen] = useState(false)
   const navigation = useStaticQuery(graphql`
     query Navigation {
@@ -154,10 +167,10 @@ export default function Header() {
 
   return (
     <Container>
-      <HeaderTop hasScrolled={hasScrolled}>
-        <Link to="/">
-          <Logo hasScrolled={hasScrolled} />
-        </Link>
+      <HeaderTop isScrolled={isScrolled}>
+        <StyledLink to="/">
+          <Logo />
+        </StyledLink>
         <Button type="button" onClick={() => setIsOpen(!isOpen)}>
           {!isOpen ? <Burger /> : <Close />}
         </Button>
