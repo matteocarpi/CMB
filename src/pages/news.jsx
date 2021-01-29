@@ -32,6 +32,11 @@ const SideBar = styled.section`
 `
 
 const TopBar = styled.div`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 70px;
+  z-index: 20;
+  background-color: white;
   width: 100%;
   @media (min-width: 817px) {
     display: none;
@@ -169,11 +174,12 @@ const News = () => {
 
   const allYears = useMemo(() => data.years.edges.map(y => y.node.date), [data])
 
-  const yearsOptions = useMemo(
-    () => allYears.map(year => ({ label: year, value: year })),
-    [allYears],
-  )
   const uniqueYears = useMemo(() => new Set(allYears), [allYears])
+
+  const yearsOptions = useMemo(
+    () => [...uniqueYears].map(year => ({ label: year, value: year })),
+    [uniqueYears],
+  )
 
   const [categoryFilter, setCategoryFilter] = useState([])
   const [yearsFilter, setYearsFilter] = useState([])
@@ -262,6 +268,21 @@ const News = () => {
             options={categoryOptions}
             placeholder="Seleziona le categorie..."
             onChange={value => handleSelect(value, setCategoryFilter)}
+            theme={theme => ({
+              ...theme,
+              colors: {
+                ...theme.colors,
+                primary: 'rgba(13, 18, 46, 1)',
+                primary25: 'rgba(13, 18, 46, 1)',
+              },
+            })}
+          />
+          <Select
+            styles={selectStyles}
+            isMulti
+            options={yearsOptions}
+            placeholder="Seleziona le date..."
+            onChange={value => handleSelect(value, setYearsFilter)}
             theme={theme => ({
               ...theme,
               colors: {
