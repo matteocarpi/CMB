@@ -39,13 +39,13 @@ const NewsBottom = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  margin-top: 1rem;
 `
 const cutWidthSmall = Math.sqrt(25 ** 2 * 2)
 const cutWidthBig = Math.sqrt(50 ** 2 * 2)
 
 const NewsTitle = styled.span`
   font-size: 20px;
-  padding: 1rem 0.5rem;
   max-width: calc(100% - ${cutWidthSmall}px);
 
   @media (min-width: 768px) {
@@ -54,6 +54,7 @@ const NewsTitle = styled.span`
 `
 
 const Plus = styled(PlusIcon)`
+  width: 30px;
   margin: 1rem;
   path {
     fill: ${({ theme }) => theme.navy};

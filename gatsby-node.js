@@ -75,6 +75,11 @@ exports.createPages = async function ({ actions, graphql }) {
           node {
             id
             slug
+            categories {
+              nodes {
+                id
+              }
+            }
           }
         }
       }
@@ -132,7 +137,7 @@ exports.createPages = async function ({ actions, graphql }) {
     actions.createPage({
       path: news.node.slug,
       component: require.resolve(`./src/templates/Post.jsx`),
-      context: { id: news.node.id },
+      context: { id: news.node.id, category: news.node.categories.nodes[0].id },
     })
   })
 }

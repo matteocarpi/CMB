@@ -6,10 +6,16 @@ import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import SectionTitle from '../components/SectionTitle'
 import ImageCut from '../components/ImageCut'
+import PostThumb from '../components/PostThumb'
 
 const Wrapper = styled.section`
   margin: 5rem auto;
   max-width: 1200px;
+`
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
 const Content = styled.article`
@@ -51,17 +57,28 @@ const Image = styled(ImageCut)`
 `
 
 const BreadCrumb = styled(Link)`
-  margin-left: 16px;
+  margin: 1rem;
 `
+
+const RelatedPosts = styled.section`
+  display: flex;
+`
+
 const Post = ({ data }) => {
   const post = data.wpPost
+
+  const relatedPosts =
+    data.articoliCorrelati.edges.length > 0
+      ? data.articoliCorrelati.edges
+      : data.altriArticoli.edges
 
   return (
     <Layout>
       <Seo title={post.title} />
-      <SectionTitle long>{post.title}</SectionTitle>
-      <br />
-      <BreadCrumb to="/news">{`< Torna alle news`}</BreadCrumb>
+      <Header>
+        <SectionTitle long>{post.title}</SectionTitle>
+        <BreadCrumb to="/news">{`< Torna alle news`}</BreadCrumb>
+      </Header>
       <Wrapper>
         {post.featuredImage && (
           <Image
@@ -74,6 +91,23 @@ const Post = ({ data }) => {
         )}
         <Content dangerouslySetInnerHTML={{ __html: post.content }} />
       </Wrapper>
+
+      <SectionTitle>Articoli Correlati</SectionTitle>
+      <RelatedPosts>
+        {relatedPosts.map(relatedPost => {
+          const image =
+            relatedPost.node.featuredImage?.node.localFile.childImageSharp
+              .fluid ?? data.placeholderImage.fluid
+          return (
+            <PostThumb
+              key={relatedPost.node.id}
+              uri={relatedPost.node.slug}
+              image={{ ...image, aspectRatio: 1 }}
+              title={relatedPost.node.title}
+            />
+          )
+        })}
+      </RelatedPosts>
     </Layout>
   )
 }
@@ -81,7 +115,7 @@ const Post = ({ data }) => {
 export default Post
 
 export const data = graphql`
-  query Post($id: String = "") {
+  query Post($category: String = "", $id: String = "") {
     wpPost(id: { eq: $id }) {
       id
       title
@@ -90,12 +124,65 @@ export const data = graphql`
         node {
           localFile {
             childImageSharp {
-              fluid {
+              fluid(maxWidth: 1024) {
                 ...GatsbyImageSharpFluid
               }
             }
           }
         }
+      }
+    }
+    articoliCorrelati: allWpPost(
+      filter: {
+        categories: { nodes: { elemMatch: { id: { eq: $category } } } }
+        id: { ne: $id }
+      }
+      limit: 4
+    ) {
+      edges {
+        node {
+          id
+          title
+          slug
+          featuredImage {
+            node {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 400) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    altriArticoli: allWpPost(filter: { id: { ne: $id } }, limit: 4) {
+      edges {
+        node {
+          id
+          title
+          slug
+          featuredImage {
+            node {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 400) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    placeholderImage: imageSharp(
+      fluid: { originalName: { eq: "logo-full.png" } }
+    ) {
+      fluid {
+        ...GatsbyImageSharpFluid
       }
     }
   }
