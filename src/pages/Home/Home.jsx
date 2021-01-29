@@ -31,8 +31,10 @@ const Wrapper = styled.div`
   }
 `
 
-const Slogan = styled.h1`
-  margin: 15px 30px;
+const SecondSlogan = styled.h1`
+  margin: 3rem 30px;
+  text-align: center;
+  font-size: calc(22px + 2vw);
 `
 
 const Content = styled.div`
@@ -112,11 +114,10 @@ const IntroMask = styled.div`
 `
 
 const FirstInfoContainer = styled.div`
-  max-width: 900px;
+  width: 100%;
 
   @media (min-width: 768px) {
     align-self: flex-start;
-    margin-left: 3rem;
   }
 `
 
@@ -125,7 +126,6 @@ const MoreInfoContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    margin-top: 3rem;
   }
 `
 
@@ -202,7 +202,7 @@ const Home = () => {
           <TeamImage fluid={content.video.localFile.childImageSharp.fluid} />
           <FirstInfoContainer>
             <p>{content.shortBio}</p>
-            <Slogan>{content.slogan2}</Slogan>
+            <SecondSlogan>{content.slogan2}</SecondSlogan>
           </FirstInfoContainer>
 
           <MoreInfoContainer>
