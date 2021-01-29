@@ -9,16 +9,17 @@ import SectionTitle from '../components/SectionTitle'
 import Checkbox from '../components/Checkbox'
 
 const Container = styled.section`
-  position: relative;
   display: flex;
   margin-top: 2rem;
+  align-items: flex-start;
 `
 
 const SideBar = styled.section`
+  top: 60px;
+  position: -webkit-sticky;
+  position: sticky;
   padding: 30px;
   width: 20%;
-  position: sticky;
-  top: 150px;
 `
 
 const Filter = styled.div`
