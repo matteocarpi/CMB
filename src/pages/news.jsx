@@ -1,7 +1,23 @@
 import React from 'react'
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
+import styled from 'styled-components'
+
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
+import PostThumb from '../components/PostThumb'
+import SectionTitle from '../components/SectionTitle'
+
+const Container = styled.section`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+`
+
+const Post = styled(PostThumb)`
+  min-width: 20%;
+  max-width: 20%;
+  max-width: 300px;
+`
 
 const News = () => {
   const data = useStaticQuery(graphql`
@@ -12,7 +28,25 @@ const News = () => {
             id
             title
             slug
+            featuredImage {
+              node {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+              }
+            }
           }
+        }
+      }
+      placeholderImage: imageSharp(
+        fluid: { originalName: { eq: "logo-full.png" } }
+      ) {
+        fluid {
+          ...GatsbyImageSharpFluid
         }
       }
     }
@@ -21,15 +55,23 @@ const News = () => {
   return (
     <Layout>
       <Seo title="News" />
-      <h1>News</h1>
+      <SectionTitle>News</SectionTitle>
 
-      <ul>
-        {data.allWpPost.edges.map(news => (
-          <li key={news.node.id}>
-            <Link to={`/${news.node.slug}`}>{news.node.title}</Link>
-          </li>
-        ))}
-      </ul>
+      <Container>
+        {data.allWpPost.edges.map(news => {
+          const image =
+            news.node.featuredImage?.node.localFile.childImageSharp.fluid ??
+            data.placeholderImage.fluid
+          return (
+            <Post
+              key={news.node.id}
+              title={news.node.title}
+              image={image}
+              uri={`${news.node.slug}`}
+            />
+          )
+        })}
+      </Container>
     </Layout>
   )
 }
