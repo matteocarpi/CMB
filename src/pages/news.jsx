@@ -60,6 +60,7 @@ const News = () => {
             id
             title
             slug
+            date(formatString: "Y")
             categories {
               nodes {
                 name
@@ -94,27 +95,43 @@ const News = () => {
           }
         }
       }
+      years: allWpPost {
+        edges {
+          node {
+            date(formatString: "Y")
+          }
+        }
+      }
     }
   `)
-
-  const allCategories = data.categories.edges
-
-  const [categoryFilter, setCategoryFilter] = useState([])
-
-  const categorySet = new Set(categoryFilter)
-
   const news = data.allWpPost.edges.map(post => {
     const categories = post.node.categories.nodes.map(category => category.name)
 
     return { ...post.node, categories }
   })
 
+  const allCategories = data.categories.edges
+
+  const allYears = data.years.edges.map(y => y.node.date)
+
+  const uniqueYears = new Set(allYears)
+
+  const [categoryFilter, setCategoryFilter] = useState([])
+  const [yearsFilter, setYearsFilter] = useState([])
+
+  const categorySet = new Set(categoryFilter)
+
   const categoryFilteredNews =
     categoryFilter.length > 0
       ? news.filter(post => post.categories.some(c => categorySet.has(c)))
       : news
 
-  const filteredNews = [...categoryFilteredNews]
+  const yearFilteredNews =
+    yearsFilter.length > 0
+      ? categoryFilteredNews.filter(post => yearsFilter.includes(post.date))
+      : categoryFilteredNews
+
+  const filteredNews = yearFilteredNews
 
   return (
     <Layout>
@@ -134,11 +151,22 @@ const News = () => {
               />
             ))}
           </Filter>
+          <Filter>
+            <FilterTitle>Data</FilterTitle>
+            {[...uniqueYears].map(y => (
+              <Checkbox
+                key={y}
+                list={yearsFilter}
+                setList={setYearsFilter}
+                name={y}
+              />
+            ))}
+          </Filter>
         </SideBar>
         <NewsList>
           {filteredNews.map((post, index) => {
             const image =
-              post.featuredImage?.node.localFile.childImageSharp.fluid ??
+              post.featuredImage?.node.localFile.childImageSharp?.fluid ??
               data.placeholderImage.fluid
             return (
               <Post

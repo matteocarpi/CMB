@@ -97,7 +97,7 @@ const Post = ({ data }) => {
         {relatedPosts.map(relatedPost => {
           const image =
             relatedPost.node.featuredImage?.node.localFile.childImageSharp
-              .fluid ?? data.placeholderImage.fluid
+              ?.fluid ?? data.placeholderImage.fluid
           return (
             <PostThumb
               key={relatedPost.node.id}
