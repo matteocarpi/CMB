@@ -52,7 +52,13 @@ const Empty = styled.h4`
   margin: 2rem auto;
 `
 
-const SearchBox = styled.input``
+const SearchBox = styled.input`
+  height: 30px;
+  width: 200px;
+  border: solid 1px ${({ theme }) => theme.gold};
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+`
 
 const News = () => {
   const data = useStaticQuery(graphql`
@@ -166,8 +172,6 @@ const News = () => {
       )
     : yearFilteredNews
 
-  console.log(news.length)
-
   return (
     <Layout>
       <Seo title="News" />
@@ -175,7 +179,10 @@ const News = () => {
 
       <Container>
         <SideBar>
-          <SearchBox onChange={e => setSearchKey(e.target.value)} />
+          <SearchBox
+            onChange={e => setSearchKey(e.target.value)}
+            placeholder="Cerca..."
+          />
           <Filter>
             <FilterTitle>Categoria</FilterTitle>
             {allCategories.map(category => (
