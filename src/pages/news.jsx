@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
+import InfiniteScroll from 'react-infinite-scroller'
 
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
@@ -19,7 +20,7 @@ const SideBar = styled.section`
   position: -webkit-sticky;
   position: sticky;
   padding: 30px;
-  width: 20%;
+  width: 30%;
 `
 
 const Filter = styled.div`
@@ -106,7 +107,7 @@ const News = () => {
       }
     }
   `)
-  const news = useMemo(
+  const allNews = useMemo(
     () =>
       data.allWpPost.edges.map(post => {
         const categories = post.node.categories.nodes.map(
@@ -118,6 +119,10 @@ const News = () => {
     [data],
   )
 
+  const [news, setNews] = useState([])
+
+  const newsPerPage = 10
+
   const allCategories = useMemo(() => data.categories.edges, [data])
 
   const allYears = useMemo(() => data.years.edges.map(y => y.node.date), [data])
@@ -127,6 +132,15 @@ const News = () => {
   const [categoryFilter, setCategoryFilter] = useState([])
   const [yearsFilter, setYearsFilter] = useState([])
   const [searchKey, setSearchKey] = useState()
+
+  useEffect(() => {
+    handleFetch(newsPerPage)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categoryFilter])
+
+  function handleFetch(limit) {
+    setNews(allNews.slice(0, limit))
+  }
 
   const categorySet = useMemo(() => new Set(categoryFilter), [categoryFilter])
 
@@ -151,6 +165,8 @@ const News = () => {
         post.title.toLowerCase().includes(searchKey.toLowerCase()),
       )
     : yearFilteredNews
+
+  console.log(news.length)
 
   return (
     <Layout>
@@ -183,28 +199,33 @@ const News = () => {
             ))}
           </Filter>
         </SideBar>
-        <NewsList>
-          {useMemo(
-            () =>
-              filteredNews.map((post, index) => {
-                const image =
-                  post.featuredImage?.node.localFile.childImageSharp?.fluid ??
-                  data.placeholderImage.fluid
-                return (
-                  <Post
-                    key={post.id}
-                    title={post.title}
-                    image={image}
-                    uri={`${post.slug}`}
-                    original={index === 0}
-                    large={index === 0}
-                  />
-                )
-              }),
-            [data.placeholderImage.fluid, filteredNews],
-          )}
-          {filteredNews.length < 1 && <Empty>Nessun articolo trovato...</Empty>}
-        </NewsList>
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={() => handleFetch(news.length + newsPerPage)}
+          hasMore={news.length < allNews.length}
+          loader={<div>Loading...</div>}
+        >
+          <NewsList>
+            {filteredNews.map((post, index) => {
+              const image =
+                post.featuredImage?.node.localFile.childImageSharp?.fluid ??
+                data.placeholderImage.fluid
+              return (
+                <Post
+                  key={post.id}
+                  title={post.title}
+                  image={image}
+                  uri={`${post.slug}`}
+                  original={index === 0}
+                  large={index === 0}
+                />
+              )
+            })}
+            {filteredNews.length < 1 && (
+              <Empty>Nessun articolo trovato...</Empty>
+            )}
+          </NewsList>
+        </InfiniteScroll>
       </Container>
     </Layout>
   )

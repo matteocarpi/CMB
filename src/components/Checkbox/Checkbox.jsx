@@ -5,11 +5,15 @@ import Box from '../../assets/icons/box.svg'
 
 const CheckboxContainer = styled.label`
   cursor: pointer;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
 `
 
 const Name = styled.span`
   font-size: 20px;
   white-space: nowrap;
+  margin-top: 6px;
 `
 
 const Input = styled.input`
