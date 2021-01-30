@@ -71,6 +71,7 @@ const WrapperLink = styled(Link)`
   @media (min-width: 768px) {
     margin: 2rem;
     width: 20%;
+    min-width: 320px;
   }
 `
 

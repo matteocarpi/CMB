@@ -57,7 +57,9 @@ const NavItem = styled.li`
 const ServiceList = styled.section`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
 `
 
 const PrimaryServicesBlock = ({
@@ -83,7 +85,7 @@ const PrimaryServicesBlock = ({
 
             return (
               <NavItem active={active} key={uri}>
-                <Link to={uri} replace>
+                <Link to={uri}>
                   <h4>{service.titolo}</h4>
                 </Link>
               </NavItem>
