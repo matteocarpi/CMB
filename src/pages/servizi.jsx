@@ -9,7 +9,12 @@ import PrimaryService from '../components/PrimaryService'
 
 const Container = styled.section``
 
-const Introduction = styled.article``
+const Introduction = styled.article`
+  p {
+    margin-left: 16px;
+  }
+  margin-bottom: 30px;
+`
 
 const PrimaryServiceList = styled.section``
 
