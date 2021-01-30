@@ -66,9 +66,7 @@ module.exports = {
         fonts: [
           // Cinzel is local
           {
-            family: 'Jost',
-            variable: true,
-            weights: ['200..400'],
+            family: 'Jost:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&',
           },
         ],
       },
