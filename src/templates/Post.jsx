@@ -86,7 +86,14 @@ const Post = ({ data }) => {
 
   return (
     <Layout>
-      <Seo title={post.title} />
+      <Seo
+        title={post.title}
+        description={data.wpPost.excerpt.slice(3, 140)}
+        uri={data.wpPost.uri}
+        post
+        date={data.wpPost.date}
+        image={data.wpPost.featuredImage.node.sourceUrl}
+      />
       <Header>
         <Title long>{post.title}</Title>
         <BreadCrumb to="/news">{`< Torna alle news`}</BreadCrumb>
@@ -132,8 +139,12 @@ export const data = graphql`
       id
       title
       content
+      excerpt
+      uri
+      date
       featuredImage {
         node {
+          sourceUrl
           localFile {
             childImageSharp {
               fluid(maxWidth: 1024) {

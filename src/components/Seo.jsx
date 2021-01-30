@@ -10,9 +10,7 @@ import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-function SEO({
-  description, lang, meta, title,
-}) {
+function SEO({ description, lang, meta, title, uri, post, date, image }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -28,6 +26,8 @@ function SEO({
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
 
+  const fullUrl = `https://www.gruppocmb.com${uri}`
+
   return (
     <Helmet
       htmlAttributes={{
@@ -39,6 +39,14 @@ function SEO({
         {
           name: 'description',
           content: metaDescription,
+        },
+        {
+          name: 'article:published_time',
+          content: post && date,
+        },
+        {
+          property: 'og:site_name',
+          content: site.siteMetadata.title,
         },
         {
           property: 'og:title',
@@ -53,12 +61,56 @@ function SEO({
           content: 'website',
         },
         {
+          property: 'og:locale',
+          content: 'it_IT',
+        },
+        {
+          property: 'og:type',
+          content: post ? 'article' : 'page',
+        },
+        {
+          property: 'og:url',
+          content: fullUrl,
+        },
+        {
+          property: 'og:image',
+          content: image,
+        },
+        {
+          property: 'og:image:width',
+          content: '1200',
+        },
+        {
+          property: 'og:image:height',
+          content: '630',
+        },
+        {
+          property: 'twitter:card',
+          content: 'summary',
+        },
+        {
+          property: 'twitter:creator',
+          content: '@Gruppo_Cmb',
+        },
+        {
+          property: 'twitter:site',
+          content: '@Gruppo_Cmb',
+        },
+        {
+          property: 'twitter:label1',
+          content: 'Scritto da',
+        },
+        {
+          property: 'twitter:data1',
+          content: site.siteMetadata.title,
+        },
+        {
           name: 'twitter:card',
           content: 'summary',
         },
         {
           name: 'twitter:creator',
-          content: site.siteMetadata?.author || '',
+          content: site.siteMetadata.title || '',
         },
         {
           name: 'twitter:title',
@@ -69,7 +121,9 @@ function SEO({
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <link rel="canonical" href={fullUrl} />
+    </Helmet>
   )
 }
 

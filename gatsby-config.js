@@ -2,7 +2,8 @@
 /* eslint-disable max-len */
 module.exports = {
   siteMetadata: {
-    title: 'CMB Group',
+    title: 'Gruppo CMB',
+    host: 'https://www.gruppocmb.com',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
