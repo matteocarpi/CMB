@@ -8,6 +8,7 @@ import { navigate } from 'gatsby'
 import useViewportWidth from '../../hooks/useViewportWidth'
 import { makeSlug } from '../../utils'
 import Img from '../ImageCut'
+import Video from '../Video'
 
 SwiperCore.use([Thumbs])
 
@@ -16,6 +17,7 @@ const SwiperContainer = styled.div`
   width: 100%;
   align-items: center;
   background-color: white;
+  margin-top: 2rem;
 `
 
 const Client = styled.div`
@@ -25,6 +27,16 @@ const Client = styled.div`
 `
 
 const Image = styled(Img)`
+  width: 25%;
+  min-height: 200px;
+  height: 70vh;
+  max-height: 900px;
+  @media (min-width: 768px) {
+    width: 45%;
+    min-height: 760px;
+  }
+`
+const StyledVideo = styled(Video)`
   width: 25%;
   min-height: 200px;
   height: 70vh;
@@ -191,10 +203,18 @@ export default function ClientiPrincipali({ clientiprincipali, location }) {
           {clientiprincipali.map(client => (
             <SwiperSlide key={client.cliente}>
               <Client>
-                <Image
-                  fluid={client.immagine?.localFile.childImageSharp.fluid}
-                  dr
-                />
+                {client.videoOFoto === 'Foto' ? (
+                  <Image
+                    fluid={client.immagine?.localFile.childImageSharp.fluid}
+                    dr
+                  />
+                ) : (
+                  <StyledVideo
+                    mp4={client.video.mp4.mediaItemUrl}
+                    webm={client.video.webm.mediaItemUrl}
+                    dr
+                  />
+                )}
                 <TextContainer>
                   <Text>
                     <SwiperHeader>

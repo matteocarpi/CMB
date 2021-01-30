@@ -149,6 +149,7 @@ const ClientiEPartner = ({ location }) => {
             cliente
             logo {
               localFile {
+                id
                 childImageSharp {
                   fluid {
                     ...GatsbyImageSharpFluid
@@ -158,6 +159,15 @@ const ClientiEPartner = ({ location }) => {
             }
             commissione
             descrizione
+            videoOFoto
+            video {
+              mp4 {
+                mediaItemUrl
+              }
+              webm {
+                mediaItemUrl
+              }
+            }
             immagine {
               localFile {
                 childImageSharp {
@@ -246,7 +256,7 @@ const ClientiEPartner = ({ location }) => {
         />
         <PartnersContainer>
           {content.convenzioniEPartners.list.map(partner => (
-            <Partner>
+            <Partner key={partner.logo.localFile.id}>
               <PartnerLogo
                 fluid={partner.logo.localFile.childImageSharp.fluid}
               />
