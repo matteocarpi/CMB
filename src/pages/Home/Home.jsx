@@ -131,6 +131,8 @@ const MoreInfoContainer = styled.div`
   @media (min-width: 768px) {
     width: 100%;
     justify-content: flex-end;
+    align-items: flex-start;
+    flex-direction: row;
   }
 `
 

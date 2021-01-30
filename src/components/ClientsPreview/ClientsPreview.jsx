@@ -6,6 +6,7 @@ import SwiperCore, { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import Img from '../ImageCut'
+import Video from '../Video'
 
 const Container = styled.div`
   display: flex;
@@ -42,6 +43,18 @@ const Image = styled(Img)`
     min-height: 660px;
   }
 `
+
+const StyledVideo = styled(Video)`
+  width: 25%;
+  min-height: 200px;
+  height: 70vh;
+  max-height: 900px;
+  @media (min-width: 768px) {
+    width: 45%;
+    min-height: 760px;
+  }
+`
+
 const Testimonial = styled.h3`
   @media (min-width: 768px) {
     font-size: 47px;
@@ -56,6 +69,15 @@ export default function ClientsPreview() {
       wpPage(id: { eq: "cG9zdDoxOTc3OQ==" }) {
         clientiContent {
           clientiprincipali {
+            videoOFoto
+            video {
+              mp4 {
+                mediaItemUrl
+              }
+              webm {
+                mediaItemUrl
+              }
+            }
             immagine {
               localFile {
                 childImageSharp {
@@ -81,10 +103,18 @@ export default function ClientsPreview() {
         {clientiprincipali.map(client => (
           <SwiperSlide key={client.nome}>
             <Client>
-              <Image
-                fluid={client.immagine?.localFile.childImageSharp.fluid}
-                dr
-              />
+              {client.videoOFoto === 'Foto' ? (
+                <Image
+                  fluid={client.immagine?.localFile.childImageSharp.fluid}
+                  dr
+                />
+              ) : (
+                <StyledVideo
+                  mp4={client.video.mp4.mediaItemUrl}
+                  webm={client.video.webm.mediaItemUrl}
+                  dr
+                />
+              )}
               <TextContainer>
                 <Text>
                   <Testimonial>{`"${client.citazione}"`}</Testimonial>
