@@ -92,7 +92,7 @@ const Post = ({ data }) => {
         uri={data.wpPost.uri}
         post
         date={data.wpPost.date}
-        image={data.wpPost.featuredImage.node.sourceUrl}
+        image={data.wpPost.featuredImage?.node.sourceUrl ?? ''}
       />
       <Header>
         <Title long>{post.title}</Title>
