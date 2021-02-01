@@ -108,11 +108,11 @@ export default function Footer() {
           </MenuItem>
           <MenuItem>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <Link to="#">Cookie</Link>
+            <Link to="/cookie">Cookie</Link>
           </MenuItem>
           <MenuItem>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <Link to="#">Normative</Link>
+            <Link to="/normative">Normative</Link>
           </MenuItem>
         </Menu>
       </Left>

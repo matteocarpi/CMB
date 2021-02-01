@@ -1,13 +1,21 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import DownloadIcon from '../../assets/icons/download.svg'
 
 const Container = styled.a``
 
-export default function Download({ url }) {
+const StyledDownloadIcon = styled(DownloadIcon)`
+  ${({ tiny }) =>
+    tiny &&
+    css`
+      max-width: 20px;
+    `}
+`
+
+export default function Download({ url, tiny, className }) {
   return (
-    <Container href={url} target="_blank">
-      <DownloadIcon />
+    <Container className={className} tiny={tiny} href={url} target="_blank">
+      <StyledDownloadIcon style={tiny && { width: '20px' }} />
     </Container>
   )
 }
