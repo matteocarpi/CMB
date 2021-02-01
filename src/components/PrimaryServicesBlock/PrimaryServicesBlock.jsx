@@ -67,11 +67,10 @@ const PrimaryServicesBlock = ({
   data: secondaryServices,
   location,
 }) => {
-  const { titolo, sottotitolo, primaryServices } = pageContext
+  const { sottotitolo, primaryServices } = pageContext
 
   return (
     <>
-      <Seo title={titolo} />
       <Content>
         <SectionTitle>{sottotitolo}</SectionTitle>
 

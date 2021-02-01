@@ -66,7 +66,7 @@ function SEO({ description, lang, meta, title, uri, post, date, image }) {
         },
         {
           property: 'og:type',
-          content: post ? 'article' : 'page',
+          content: 'article',
         },
         {
           property: 'og:url',

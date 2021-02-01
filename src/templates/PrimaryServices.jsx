@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
-
+import Seo from '../components/Seo'
 import PrimaryServicesBlock from '../components/PrimaryServicesBlock'
 
 const PrimaryServices = ({
@@ -11,6 +11,11 @@ const PrimaryServices = ({
   location,
 }) => (
   <Layout>
+    <Seo
+      title={secondaryServices.serviziPage.title}
+      description={secondaryServices.serviziPage.serviziContent.descrizione}
+      uri={location.pathname}
+    />
     <PrimaryServicesBlock
       pageContext={pageContext}
       data={secondaryServices}
@@ -52,6 +57,12 @@ export const data = graphql`
           }
           slug
         }
+      }
+    }
+    serviziPage: wpPage(id: { eq: "cG9zdDoxOTgwMg==" }) {
+      title
+      serviziContent {
+        descrizione
       }
     }
   }

@@ -91,7 +91,11 @@ export default function Servizi() {
 
   return (
     <Layout>
-      <Seo title={page.data.title} />
+      <Seo
+        title={page.data.title}
+        description={data.descrizione}
+        uri="/servizi"
+      />
       <Container>
         <SectionTitle main>{data.sottotitolo}</SectionTitle>
 

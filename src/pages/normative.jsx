@@ -59,7 +59,11 @@ const PrivacyPolicy = () => {
 
   return (
     <Layout>
-      <Seo title={title} />
+      <Seo
+        title={title}
+        description={data.normative.normativeContent.descrizione}
+        uri="/normative"
+      />
 
       <NormativeContainer>
         <SectionTitle main>{title}</SectionTitle>

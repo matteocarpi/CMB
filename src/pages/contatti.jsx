@@ -77,7 +77,11 @@ const Contatti = () => {
 
   return (
     <Layout>
-      <Seo title={data.wpPage.title} />
+      <Seo
+        title={data.wpPage.title}
+        description="Contattaci per un avere più informazioni"
+        uri="/contatti"
+      />
       <SectionTitle main>{data.wpPage.title}</SectionTitle>
 
       <Container>

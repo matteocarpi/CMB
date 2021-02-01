@@ -72,7 +72,11 @@ const SecondaryService = ({ data, pageContext, location }) => {
 
   return (
     <Layout>
-      <Seo title={servizio.title} />
+      <Seo
+        title={servizio.title}
+        description={data.wpServizio.servizioContent.description}
+        uri={location.pathname}
+      />
 
       <Image
         fluid={

@@ -170,7 +170,11 @@ const ChiSiamo = () => {
 
   return (
     <Layout>
-      <Seo title={data.chiSiamo.title} />
+      <Seo
+        title={data.chiSiamo.title}
+        description={content.descrizione1}
+        uri="/chi-siamo"
+      />
       <Container>
         <SectionTitle main>{data.chiSiamo.title}</SectionTitle>
 

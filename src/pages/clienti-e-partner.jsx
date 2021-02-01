@@ -212,7 +212,11 @@ const ClientiEPartner = ({ location }) => {
 
   return (
     <Layout>
-      <Seo title={clientiPage.title} />
+      <Seo
+        title={clientiPage.title}
+        description={content.descrizione}
+        uri="clienti-e-partner"
+      />
       <SectionTitle main>{clientiPage.title}</SectionTitle>
       <Descrizione dangerouslySetInnerHTML={{ __html: content.descrizione }} />
       <ClientiPrincipali
