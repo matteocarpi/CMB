@@ -72,6 +72,16 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-plugin-prefetch-google-fonts',
+      options: {
+        fonts: [
+          {
+            family: 'Jost:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&',
+          },
+        ],
+      },
+    },
     'gatsby-plugin-sass',
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-advanced-sitemap`,

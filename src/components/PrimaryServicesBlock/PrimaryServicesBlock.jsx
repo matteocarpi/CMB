@@ -3,7 +3,6 @@ import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
 
 import { makeSlug } from '../../utils'
-import Seo from '../Seo'
 import SectionTitle from '../SectionTitle'
 import SecondaryServiceThumb from '../SecondaryServiceThumb'
 
