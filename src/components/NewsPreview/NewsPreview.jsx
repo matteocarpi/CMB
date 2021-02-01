@@ -132,7 +132,7 @@ export default function NewsPreview() {
         }
       }
       placeholderImage: imageSharp(
-        fluid: { originalName: { eq: "logo-full.png" } }
+        fluid: { originalName: { eq: "placeholder-image.png" } }
       ) {
         fluid {
           ...GatsbyImageSharpFluid

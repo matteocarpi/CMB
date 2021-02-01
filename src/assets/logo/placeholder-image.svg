@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1418" height="1418" viewBox="0 0 1418 1418">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_42" data-name="Rectangle 42" width="1052.804" height="462.844" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Group_119" data-name="Group 119" transform="translate(9705 2113)">
+    <rect id="Rectangle_127" data-name="Rectangle 127" width="1418" height="1418" transform="translate(-9705 -2113)" fill="#090f2d"/>
+    <g id="Group_118" data-name="Group 118" transform="translate(-9522 -1635)">
+      <g id="Group_28" data-name="Group 28" transform="translate(0 0)">
+        <g id="Group_27" data-name="Group 27" clip-path="url(#clip-path)">
+          <text id="GROUP" transform="translate(340.461 421.088)" fill="#fff" font-size="106" font-family="Jost-Regular, Jost"><tspan x="0" y="0" letter-spacing="0.12em">GR</tspan><tspan y="0" letter-spacing="0.119em">O</tspan><tspan y="0" letter-spacing="0.12em">U</tspan><tspan y="0">P</tspan></text>
+        </g>
+      </g>
+      <path id="Path_44" data-name="Path 44" d="M1.03,135.318l5.784-6.35V11.142L1.03,4.777Z" transform="translate(6.442 29.89)" fill="#c88c00"/>
+      <path id="Path_45" data-name="Path 45" d="M25.469,274.965V14.349l-8.7-9.572V284.537Z" transform="translate(104.912 29.891)" fill="#c88c00"/>
+      <path id="Path_46" data-name="Path 46" d="M44.779,17.534v379.8l-11.6,12.735V4.777Z" transform="translate(207.612 29.887)" fill="#c88c00"/>
+      <g id="Group_30" data-name="Group 30" transform="translate(0 0)">
+        <g id="Group_29" data-name="Group 29" clip-path="url(#clip-path)">
+          <text id="CMB" transform="translate(307.441 273.273)" fill="#fff" font-size="323" font-family="Cinzel-Regular, Cinzel"><tspan x="0" y="0">CMB</tspan></text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
