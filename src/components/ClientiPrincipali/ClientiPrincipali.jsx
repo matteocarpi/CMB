@@ -40,10 +40,10 @@ const StyledVideo = styled(Video)`
   width: 25%;
   min-height: 200px;
   height: 70vh;
-  max-height: 900px;
+  max-height: 600px;
   @media (min-width: 768px) {
     width: 45%;
-    min-height: 760px;
+    min-height: 600px;
   }
 `
 
@@ -84,23 +84,24 @@ const Text = styled.div`
   margin: 1.7rem 1rem;
   flex-grow: 1;
   max-width: 1024px;
-  @media (min-width: 768px) {
-    padding: 0 4rem;
-  }
-`
-
-const FirstRow = styled.div`
   display: flex;
-  align-items: flex-end;
-  margin-bottom: 2rem;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 4rem;
 `
 
-const Testimonial = styled.h3`
-  margin-top: 2rem;
-  @media (min-width: 768px) {
-    font-size: 47px;
-  }
-`
+// const FirstRow = styled.div`
+//   display: flex;
+//   align-items: flex-end;
+//   margin-bottom: 2rem;
+// `
+
+// const Testimonial = styled.h3`
+//   margin-top: 2rem;
+//   @media (min-width: 768px) {
+//     font-size: 47px;
+//   }
+// `
 
 const SwiperHeader = styled.div`
   display: flex;
@@ -168,6 +169,18 @@ const CommissionDescription = styled.article`
   }
 `
 
+const Bit = styled.div`
+  margin: 1rem 0;
+`
+
+const Person = styled.span`
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 2rem;
+  margin-right: 2rem;
+  align-self: flex-end;
+`
+
 export default function ClientiPrincipali({ location, home }) {
   const data = useStaticQuery(graphql`
     query ClientiPrincipali {
@@ -208,6 +221,7 @@ export default function ClientiPrincipali({ location, home }) {
               }
             }
             citazione
+            persona
           }
         }
       }
@@ -264,33 +278,28 @@ export default function ClientiPrincipali({ location, home }) {
                 <TextContainer>
                   <Text>
                     <SwiperHeader>
-                      <FirstRow>
-                        <SwiperHeader>
-                          <Voice>Cliente:</Voice>
-                          <VoiceInfo>{client.cliente}</VoiceInfo>
-                        </SwiperHeader>
-                        {!isMobile && (
-                          <Logo
-                            objectFit="contain"
-                            fluid={client.logo.localFile.childImageSharp.fluid}
-                          />
-                        )}
-                      </FirstRow>
-                      <Voice>Commissione:</Voice>
-                      <VoiceInfo>{client.commissione}</VoiceInfo>
+                      <Bit>
+                        <Logo
+                          objectFit="contain"
+                          fluid={client.logo.localFile.childImageSharp.fluid}
+                        />
+                      </Bit>
+                      <Bit>
+                        <Voice>Cliente:</Voice>
+                        <VoiceInfo>{client.cliente}</VoiceInfo>
+                      </Bit>
+                      <Bit>
+                        <Voice>Commissione:</Voice>
+                        <VoiceInfo>{client.commissione}</VoiceInfo>
+                      </Bit>
                     </SwiperHeader>
                     {!isMobile && (
                       <CommissionDescription
                         dangerouslySetInnerHTML={{ __html: client.descrizione }}
                       />
                     )}
-                    <Testimonial>{`"${client.citazione}"`}</Testimonial>
-                    {isMobile && (
-                      <Logo
-                        objectFit="contain"
-                        fluid={client.logo.localFile.childImageSharp.fluid}
-                      />
-                    )}
+                    <Person>{client.persona}</Person>
+                    {/* <Testimonial>{`"${client.citazione}"`}</Testimonial> */}
                   </Text>
                 </TextContainer>
               </Client>
@@ -336,7 +345,6 @@ export default function ClientiPrincipali({ location, home }) {
           </Swiper>
         </ThumbsContainer>
       )}
-      }
     </>
   )
 }
