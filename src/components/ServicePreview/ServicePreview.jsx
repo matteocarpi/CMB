@@ -75,7 +75,9 @@ const PreviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 700px;
-  height: 630px;
+  @media (min-width: 768px) {
+    height: 630px;
+  }
 `
 
 const Preview = styled.div`
@@ -113,6 +115,7 @@ const Content = styled.div`
   color: white;
   border-left: solid 1px ${({ theme }) => theme.gold};
   max-width: 700px;
+  width: 100%;
   p {
     margin: 0.5rem;
     padding-left: 1rem;
@@ -241,9 +244,10 @@ export default function ServicePreview() {
 
   const servizi = [consulenza, formazione, vigilanza]
 
-  const description =
+  const rawDescription =
     servizi[currentService]?.descrizione ?? serviziContent.descrizione
 
+  const description = rawDescription
   const uri = servizi[currentService]?.titolo.toLowerCase() ?? ''
 
   const image =
@@ -274,11 +278,8 @@ export default function ServicePreview() {
           <Right>
             <Preview>
               <PreviewContainer>
-                <Content
-                  dangerouslySetInnerHTML={{
-                    __html: description,
-                  }}
-                />
+                {/* Magic. Do not touch. */}
+                <Content dangerouslySetInnerHTML={{ __html: description }} />
                 <StyledLink to={`servizi/${uri}`}>
                   <Plus />
                 </StyledLink>
