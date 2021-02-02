@@ -21,13 +21,14 @@ const Descrizione = styled.article``
 const StyledLogo = styled(Logo)`
   margin: 0 2rem 0 0;
   height: 100%;
-
+  width: 100%;
   @media (max-width: 767px) {
     margin: 0;
   }
 `
 const LogoWrapper = styled.div`
   height: 100%;
+  width: 80%;
   @media (max-width: 767px) {
     display: flex;
     justify-content: center;
