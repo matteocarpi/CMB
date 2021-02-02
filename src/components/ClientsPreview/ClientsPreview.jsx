@@ -13,6 +13,10 @@ const Container = styled.div`
   width: 100%;
   align-items: center;
   background-color: white;
+
+  @media (max-width: 767px) {
+    margin-top: 2rem;
+  }
 `
 const Client = styled.div`
   width: 100%;
