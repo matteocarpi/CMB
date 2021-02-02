@@ -1,8 +1,11 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React, { useState } from 'react'
+import { Link, navigate } from 'gatsby'
 import styled, { css } from 'styled-components'
+
+import useViewportWidth from '../../hooks/useViewportWidth'
 import ImageCut from '../ImageCut'
 import PlusIcon from '../../assets/icons/plus.svg'
+import Lg from '../../assets/logo/logo-lines.svg'
 
 const Container = styled(Link)`
   flex-basis: 0;
@@ -17,6 +20,22 @@ const Container = styled(Link)`
     }
   }
 `
+const ContainerButton = styled.button`
+  flex-basis: 0;
+  flex-grow: 1;
+  margin: 30px;
+
+  &:hover {
+    svg {
+      path {
+        fill: ${({ theme }) => theme.gold};
+      }
+    }
+  }
+`
+const ImageContainer = styled.div`
+  position: relative;
+`
 
 const Image = styled(ImageCut)`
   max-height: 300px;
@@ -25,6 +44,23 @@ const Image = styled(ImageCut)`
     css`
       max-width: 300px;
     `}
+`
+
+const Logo = styled(Lg)`
+  width: 20%;
+`
+
+const Overlay = styled.div`
+  position: absolute;
+  background-color: ${({ theme }) => theme.transparentNavy};
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const cutWidthSmall = Math.sqrt(25 ** 2 * 2)
@@ -60,13 +96,58 @@ export default function PostThumb({
   original,
   large,
 }) {
-  return (
-    <Container className={className} to={`/${uri}`}>
-      <Image
-        large={large}
-        dr
-        fluid={original ? image : { ...image, aspectRatio: 1 }}
-      />
+  const [isHover, setIsHover] = useState(false)
+  const viewportWidth = useViewportWidth()
+  const isMobile = viewportWidth < 768
+
+  return isMobile ? (
+    <ContainerButton
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
+      className={className}
+      onClick={() => {
+        setIsHover(true)
+        setTimeout(() => {
+          navigate(`/${uri}`)
+        }, 1000)
+      }}
+    >
+      <ImageContainer>
+        <Image
+          large={large}
+          dr
+          fluid={original ? image : { ...image, aspectRatio: 1 }}
+        />
+        {isHover && (
+          <Overlay>
+            <Logo />
+          </Overlay>
+        )}
+      </ImageContainer>
+      <Footer>
+        <Title>{title}</Title>
+        <Plus />
+      </Footer>
+    </ContainerButton>
+  ) : (
+    <Container
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
+      className={className}
+      to={`/${uri}`}
+    >
+      <ImageContainer>
+        <Image
+          large={large}
+          dr
+          fluid={original ? image : { ...image, aspectRatio: 1 }}
+        />
+        {isHover && (
+          <Overlay>
+            <Logo />
+          </Overlay>
+        )}
+      </ImageContainer>
       <Footer>
         <Title>{title}</Title>
         <Plus />
