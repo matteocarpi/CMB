@@ -220,10 +220,7 @@ const ClientiEPartner = ({ location }) => {
       />
       <SectionTitle main>{clientiPage.title}</SectionTitle>
       <Descrizione dangerouslySetInnerHTML={{ __html: content.descrizione }} />
-      <ClientiPrincipali
-        clientiprincipali={content.clientiprincipali}
-        location={location}
-      />
+      <ClientiPrincipali location={location} />
 
       <AllClients>
         <ShowAllClients

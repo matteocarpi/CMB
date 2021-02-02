@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import Img from '../ImageCut'
 import Video from '../Video'
+import SectionTitle from '../SectionTitle'
 
 const Container = styled.div`
   display: flex;
@@ -72,8 +73,23 @@ export default function ClientsPreview() {
   const data = useStaticQuery(graphql`
     {
       wpPage(id: { eq: "cG9zdDoxOTc3OQ==" }) {
+        title
         clientiContent {
           clientiprincipali {
+            cliente
+            logo {
+              localFile {
+                id
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+            commissione
+            descrizione
+            citazione
             videoOFoto
             video {
               mp4 {
@@ -92,8 +108,6 @@ export default function ClientsPreview() {
                 }
               }
             }
-            cliente
-            citazione
           }
         }
       }
@@ -103,33 +117,36 @@ export default function ClientsPreview() {
   const { clientiprincipali } = data.wpPage.clientiContent
 
   return (
-    <Container>
-      <Swiper navigation>
-        {clientiprincipali.map(client => (
-          <SwiperSlide key={client.nome}>
-            <Client>
-              {client.videoOFoto === 'Foto' ? (
-                <Image
-                  fluid={client.immagine?.localFile.childImageSharp.fluid}
-                  dr
-                />
-              ) : (
-                <StyledVideo
-                  mp4={client.video.mp4.mediaItemUrl}
-                  webm={client.video.webm.mediaItemUrl}
-                  dr
-                />
-              )}
-              <TextContainer>
-                <Text>
-                  <Testimonial>{`"${client.citazione}"`}</Testimonial>
-                  <span>{client.cliente}</span>
-                </Text>
-              </TextContainer>
-            </Client>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </Container>
+    <>
+      <SectionTitle sub>{data.wpPage.title}</SectionTitle>
+      <Container>
+        <Swiper navigation>
+          {clientiprincipali.map(client => (
+            <SwiperSlide key={client.nome}>
+              <Client>
+                {client.videoOFoto === 'Foto' ? (
+                  <Image
+                    fluid={client.immagine?.localFile.childImageSharp.fluid}
+                    dr
+                  />
+                ) : (
+                  <StyledVideo
+                    mp4={client.video.mp4.mediaItemUrl}
+                    webm={client.video.webm.mediaItemUrl}
+                    dr
+                  />
+                )}
+                <TextContainer>
+                  <Text>
+                    <Testimonial>{`"${client.citazione}"`}</Testimonial>
+                    <span>{client.cliente}</span>
+                  </Text>
+                </TextContainer>
+              </Client>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Container>
+    </>
   )
 }

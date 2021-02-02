@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Thumbs } from 'swiper'
 import queryString from 'query-string'
-import { navigate } from 'gatsby'
+import { useStaticQuery, graphql, navigate } from 'gatsby'
 
 import useViewportWidth from '../../hooks/useViewportWidth'
 import { makeSlug } from '../../utils'
@@ -168,12 +168,58 @@ const CommissionDescription = styled.article`
   }
 `
 
-export default function ClientiPrincipali({ clientiprincipali, location }) {
+export default function ClientiPrincipali({ location, home }) {
+  const data = useStaticQuery(graphql`
+    query ClientiPrincipali {
+      clientiPage: wpPage(id: { eq: "cG9zdDoxOTc3OQ==" }) {
+        title
+        clientiContent {
+          descrizione
+          clientiprincipali {
+            cliente
+            logo {
+              localFile {
+                id
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+            commissione
+            descrizione
+            videoOFoto
+            video {
+              mp4 {
+                mediaItemUrl
+              }
+              webm {
+                mediaItemUrl
+              }
+            }
+            immagine {
+              localFile {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+            citazione
+          }
+        }
+      }
+    }
+  `)
+  const { clientiprincipali } = data.clientiPage.clientiContent
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const clientiList = clientiprincipali.map(client => makeSlug(client.cliente))
 
   const isBrowser = typeof window !== 'undefined'
-  const queryObj = isBrowser && queryString.parse(location.search)
+  const queryObj = isBrowser && queryString?.parse(location?.search)
   const initialSlide =
     clientiList.indexOf(queryObj?.client) >= 0
       ? clientiList.indexOf(queryObj?.client)
@@ -257,38 +303,40 @@ export default function ClientiPrincipali({ clientiprincipali, location }) {
           ))}
         </Swiper>
       </SwiperContainer>
-
-      <ThumbsContainer>
-        <Swiper
-          onSwiper={setThumbsSwiper}
-          watchSlidesVisibility
-          watchSlidesProgress
-          slidesPerView={clientiprincipali.length}
-          className="thumbs"
-        >
-          {clientiprincipali.map((client, index) => (
-            <SwiperSlide key={client.cliente}>
-              <ThumbButton
-                active={activeSlide === index}
-                type="button"
-                onClick={() => {
-                  setActiveSlide(index)
-                  navigate(`?client=${makeSlug(client.cliente)}`, {
-                    state: {
-                      disableScrollUpdate: true,
-                    },
-                  })
-                }}
-              >
-                <Logo
+      {!home && (
+        <ThumbsContainer>
+          <Swiper
+            onSwiper={setThumbsSwiper}
+            watchSlidesVisibility
+            watchSlidesProgress
+            slidesPerView={clientiprincipali.length}
+            className="thumbs"
+          >
+            {clientiprincipali.map((client, index) => (
+              <SwiperSlide key={client.cliente}>
+                <ThumbButton
                   active={activeSlide === index}
-                  fluid={client.logo.localFile.childImageSharp.fluid}
-                />
-              </ThumbButton>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </ThumbsContainer>
+                  type="button"
+                  onClick={() => {
+                    setActiveSlide(index)
+                    navigate(`?client=${makeSlug(client.cliente)}`, {
+                      state: {
+                        disableScrollUpdate: true,
+                      },
+                    })
+                  }}
+                >
+                  <Logo
+                    active={activeSlide === index}
+                    fluid={client.logo.localFile.childImageSharp.fluid}
+                  />
+                </ThumbButton>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </ThumbsContainer>
+      )}
+      }
     </>
   )
 }

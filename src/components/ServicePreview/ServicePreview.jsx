@@ -20,6 +20,7 @@ const Container = styled.div`
   @media (min-width: 768px) {
     margin: 10rem 0;
   }
+  margin-bottom: 4rem;
 `
 const ButtonWrap = styled.div`
   position: relative;
