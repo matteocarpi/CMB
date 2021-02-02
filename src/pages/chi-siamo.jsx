@@ -23,7 +23,7 @@ const StyledLogo = styled(Logo)`
   height: 100%;
 
   @media (max-width: 767px) {
-    margin: 1rem auto;
+    margin: 0;
   }
 `
 const LogoWrapper = styled.div`
@@ -31,6 +31,9 @@ const LogoWrapper = styled.div`
   @media (max-width: 767px) {
     display: flex;
     justify-content: center;
+    float: left;
+    width: 30%;
+    margin: 0 1rem 0.5rem 2rem;
   }
 `
 
