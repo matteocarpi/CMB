@@ -97,7 +97,9 @@ export default function Servizi() {
         uri="/servizi"
       />
       <Container>
-        <SectionTitle main>{data.sottotitolo}</SectionTitle>
+        <SectionTitle main uri="/servizi">
+          {data.sottotitolo}
+        </SectionTitle>
 
         <Introduction dangerouslySetInnerHTML={{ __html: data.descrizione }} />
 

@@ -56,9 +56,13 @@ const NavItem = styled.li`
 const ServiceList = styled.section`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  max-width: 1200px;
+  justify-content: space-between;
   margin: 0 auto;
+
+  &:after {
+    content: '';
+    flex: auto;
+  }
 `
 
 const PrimaryServicesSecondaryBlock = ({
@@ -71,7 +75,9 @@ const PrimaryServicesSecondaryBlock = ({
   return (
     <>
       <Content>
-        <SectionTitle medium>{sottotitolo}</SectionTitle>
+        <SectionTitle medium uri="/servizi">
+          {sottotitolo}
+        </SectionTitle>
 
         <Navigation>
           {primaryServices.map(service => {
@@ -108,10 +114,6 @@ const PrimaryServicesSecondaryBlock = ({
               <SecondaryServiceTag
                 key={service.id}
                 title={service.title}
-                image={
-                  service.servizioContent.immagine.localFile.childImageSharp
-                    .fluid
-                }
                 uri={uri}
               />
             )

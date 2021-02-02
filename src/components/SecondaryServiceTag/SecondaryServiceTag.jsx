@@ -1,134 +1,37 @@
-import React, { useState, useEffect } from 'react'
-import { Link, navigate } from 'gatsby'
-import styled, { css } from 'styled-components'
-import { motion, useAnimation } from 'framer-motion'
+import React from 'react'
+import styled from 'styled-components'
+import { Link } from 'gatsby'
 
-import ImageCut from '../ImageCut'
 import Lg from '../../assets/logo/logo-lines.svg'
-import useViewportWidth from '../../hooks/useViewportWidth'
 
-const ImageContainer = styled.div`
-  position: relative;
-`
-const Img = styled(ImageCut)``
-
-const Overlay = styled.div`
-  position: absolute;
-  background-color: ${({ theme }) => theme.transparentNavy};
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
+const Container = styled(Link)`
   display: flex;
-  justify-content: center;
+  flex-basis: 0;
+  flex-grow: 1;
+  justify-content: space-between;
+  margin: 2rem;
   align-items: center;
+  max-width: 300px;
+`
+
+const Title = styled.h5`
+  font-size: 18px;
+  min-width: 200px;
+  font-weight: 300;
 `
 
 const Logo = styled(Lg)`
-  width: 20%;
-  height: 100%;
+  min-width: 35px;
+  max-width: 35px;
+  height: min-content;
+  margin-left: 2rem;
 `
 
-const Title = styled.h6`
-  margin-top: 0.5rem;
-  padding-bottom: 0.4rem;
-  text-transform: capitalize;
-`
+const SecondaryServiceTag = ({ title, uri }) => (
+  <Container to={uri}>
+    <Title>{title}</Title>
+    <Logo />
+  </Container>
+)
 
-const Line = styled(motion.div)`
-  width: 100%;
-  border-bottom: solid 1px ${({ theme }) => theme.black};
-  transform-origin: left center;
-
-  @media (min-width: 768px) {
-    border-width: 2px;
-  }
-
-  ${({ isHover }) =>
-    isHover &&
-    css`
-      border-color: ${({ theme }) => theme.gold};
-    `}
-`
-
-const WrapperLink = styled(Link)`
-  display: flex;
-`
-
-const WrapperButton = styled.button`
-  width: 100%;
-  max-width: 500px;
-  margin-bottom: 2rem;
-  @media (min-width: 768px) {
-    margin: 2rem;
-    width: 20%;
-  }
-`
-
-const duration = 0.5
-
-const lineVariants = {
-  initial: {
-    scaleX: 0,
-    transition: {
-      duration: 0,
-    },
-  },
-  hover: {
-    scaleX: 1,
-    transition: {
-      duration,
-      ease: 'easeInOut',
-    },
-  },
-  exit: {
-    scaleX: 0,
-    transition: {
-      duration,
-      ease: 'easeInOut',
-    },
-  },
-}
-
-export default function SecondaryServiceTag({ image, title, uri }) {
-  const viewportWidth = useViewportWidth()
-  const isMobile = viewportWidth < 768
-
-  const [isHover, setIsHover] = useState(false)
-
-  const controls = useAnimation()
-
-  useEffect(() => {
-    if (isHover) {
-      controls.start('initial').then(() => controls.start('hover'))
-    }
-  }, [isHover, controls])
-
-  return isMobile ? (
-    <WrapperButton
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      onClick={() => {
-        setIsHover(true)
-        setTimeout(() => {
-          navigate(uri)
-        }, 1000)
-      }}
-      replace
-    >
-      <Title>{title}</Title>
-      <Line isHover={isHover} variants={lineVariants} animate={controls} />
-    </WrapperButton>
-  ) : (
-    <WrapperLink
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      to={uri}
-      replace
-    >
-      <Title>{title}</Title>
-      <Logo />
-    </WrapperLink>
-  )
-}
+export default SecondaryServiceTag

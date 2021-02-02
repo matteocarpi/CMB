@@ -71,7 +71,7 @@ const PrimaryServicesBlock = ({
   return (
     <>
       <Content>
-        <SectionTitle>{sottotitolo}</SectionTitle>
+        <SectionTitle uri="/servizi">{sottotitolo}</SectionTitle>
 
         <Navigation>
           {primaryServices.map(service => {
