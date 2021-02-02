@@ -27,17 +27,17 @@ const Client = styled.div`
 `
 
 const Image = styled(Img)`
-  width: 25%;
+  width: 20%;
   min-height: 200px;
   height: 70vh;
   max-height: 900px;
   @media (min-width: 768px) {
     width: 45%;
-    min-height: 760px;
+    min-height: 600px;
   }
 `
 const StyledVideo = styled(Video)`
-  width: 25%;
+  width: 20%;
   min-height: 200px;
   height: 70vh;
   max-height: 600px;
@@ -88,6 +88,10 @@ const Text = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 0 4rem;
+  @media (max-width: 767px) {
+    padding: 0 1rem;
+    margin-top: 0;
+  }
 `
 
 // const FirstRow = styled.div`
