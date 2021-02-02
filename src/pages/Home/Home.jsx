@@ -139,6 +139,12 @@ const MoreInfoContainer = styled.div`
 const MoreInfo = styled.div`
   max-width: 600px;
 
+  @media (max-width: 767px) {
+    p {
+      margin-top: 0;
+    }
+  }
+
   @media (min-width: 768px) {
     margin-right: 4rem;
     p {
@@ -155,9 +161,11 @@ const StyledSlidingLogo = styled(SlidingLogo)`
   }
 `
 const StyledSlidingLogoMobile = styled(SlidingLogoMobile)`
-  margin-right: 2rem;
-  margin-bottom: 6rem;
+  margin: 0 2rem;
+  width: 100px;
+  max-height: 200px;
   display: none;
+  float: left;
   @media (max-width: 768px) {
     display: flex;
   }
@@ -225,8 +233,9 @@ const Home = () => {
           </FirstInfoContainer>
 
           <MoreInfoContainer>
-            {isMobile ? <StyledSlidingLogoMobile /> : <StyledSlidingLogo />}
+            {!isMobile && <StyledSlidingLogo />}
             <MoreInfo>
+              {isMobile && <StyledSlidingLogoMobile />}
               <p
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{

@@ -19,10 +19,10 @@ const MediumPath = styled(motion.path)`
 `
 const LongSvg = styled(motion.svg)`
   width: 10px;
+  height: 100%;
 `
 const LongPath = styled(motion.path)`
   fill: ${({ theme }) => theme.gold};
-  overflow: visible;
 `
 
 export const Short = props => (
