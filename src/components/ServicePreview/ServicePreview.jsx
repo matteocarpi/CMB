@@ -1,14 +1,10 @@
-import React, { useState, useLayoutEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import { useStaticQuery, graphql, Link } from 'gatsby'
-import { motion, useViewportScroll, useTransform } from 'framer-motion'
-
-import useViewportWidth from '../../hooks/useViewportWidth'
-import useViewportHeight from '../../hooks/useViewportHeight'
+import Image from 'gatsby-image'
 
 import SectionTitle from '../SectionTitle'
 import IconPlus from '../../assets/icons/plus.svg'
-import Image from '../ImageCut'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -32,24 +28,24 @@ const ButtonWrap = styled.div`
     css`
       &:before {
         content: '';
-        height: 20px;
+        height: 26px;
         width: 30px;
         border-left: solid 2px ${({ theme }) => theme.gold};
         position: absolute;
         left: -8px;
-        top: 8px;
+        top: 10px;
       }
     `}
 
   &:hover {
     &:before {
       content: '';
-      height: 20px;
+      height: 26px;
       width: 30px;
       border-left: solid 2px ${({ theme }) => theme.gold};
       position: absolute;
       left: -8px;
-      top: 8px;
+      top: 10px;
     }
   }
 `
@@ -61,8 +57,8 @@ const Button = styled.button`
   box-shadow: none;
   text-align: left;
   padding: 0.3rem 0;
-  font-size: 18px;
-  font-weight: 200;
+  font-size: 24px;
+  font-weight: 300;
   transform-origin: center left;
   transition-duration: 0.5s;
 `
@@ -79,14 +75,15 @@ const PreviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 700px;
+  height: 630px;
 `
 
-const Preview = styled(motion.div)`
+const Preview = styled.div`
   background-color: ${({ theme }) => theme.navy};
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  padding: 2rem 1rem;
+  padding: 2rem 2rem 2rem 1rem;
   position: relative;
   &:after {
     content: '';
@@ -171,54 +168,13 @@ const Img = styled(Image)`
     display: block;
   }
   width: 20%;
-  height: 150%;
+  height: 100%;
   align-self: center;
 `
 
 export default function ServicePreview() {
   const [currentService, setCurrentService] = useState(null)
 
-  const viewportWidth = useViewportWidth()
-  const viewportHeight = useViewportHeight()
-
-  const ref = useRef()
-
-  const [scrollPercentageStart, setScrollPercentageStart] = useState()
-  const [scrollPercentageEnd, setScrollPercentageEnd] = useState()
-
-  const { scrollYProgress } = useViewportScroll()
-
-  useLayoutEffect(() => {
-    // Get the distance from the start of the page to the element start
-    const rect = ref?.current?.getBoundingClientRect()
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-    const offsetTop = rect.top + scrollTop
-
-    const offsetStart = rect.top + scrollTop
-    const offsetEnd = offsetTop + rect.height
-
-    const elementScrollStart = offsetStart / document.body.clientHeight
-    const elementScrollEnd = offsetEnd / document.body.clientHeight
-
-    setScrollPercentageStart(elementScrollStart)
-    setScrollPercentageEnd(elementScrollEnd)
-  }, [])
-
-  const heightPercentage = scrollPercentageEnd - scrollPercentageStart
-
-  const isMobile = viewportWidth < 768
-
-  const translateStart = scrollPercentageStart - heightPercentage
-
-  const translateEnd = isMobile
-    ? scrollPercentageStart
-    : scrollPercentageStart + viewportHeight / 1000 / 7
-
-  const translatePreview = useTransform(
-    scrollYProgress,
-    [translateStart, translateEnd],
-    [500, 0],
-  )
   const data = useStaticQuery(graphql`
     {
       wpPage(id: { eq: "cG9zdDoxOTgwMg==" }) {
@@ -299,7 +255,7 @@ export default function ServicePreview() {
       <Container>
         <Row>
           <Left>
-            <SectionTitle small sub uri="/servizi">
+            <SectionTitle sub uri="/servizi">
               {data.wpPage.title}
             </SectionTitle>
             <Menu>
@@ -316,14 +272,13 @@ export default function ServicePreview() {
             </Menu>
           </Left>
           <Right>
-            <Preview ref={ref} style={{ x: translatePreview }}>
+            <Preview>
               <PreviewContainer>
                 <Content
                   dangerouslySetInnerHTML={{
                     __html: description,
                   }}
                 />
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <StyledLink to={`servizi/${uri}`}>
                   <Plus />
                 </StyledLink>

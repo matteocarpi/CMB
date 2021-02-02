@@ -50,6 +50,7 @@ const Wrapper = styled.button`
 const Title = styled.h2`
   cursor: pointer;
   align-self: flex-start;
+  font-size: calc(22px + 2vw);
   ${({ tiny }) =>
     tiny &&
     css`
