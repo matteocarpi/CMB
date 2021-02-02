@@ -75,7 +75,8 @@ const ClientiList = styled.ul`
   @media (min-width: 768px) {
     max-height: 200px;
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    justify-content: center;
     flex-wrap: wrap;
   }
 `

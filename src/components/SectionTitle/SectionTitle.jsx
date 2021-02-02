@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 const Wrapper = styled.button`
   text-align: left;
-  margin-left: 1rem;
+  margin-left: 2rem;
   margin-right: auto;
   padding-left: 0;
   ${({ long, longer }) =>

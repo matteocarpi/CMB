@@ -133,7 +133,7 @@ const ThumbsContainer = styled.section`
   }
 
   @media (min-width: 768px) {
-    margin: 2rem 0;
+    margin: 7rem 0 2rem 0;
     .swiper-container {
       .swiper-wrapper {
         .swiper-slide {
