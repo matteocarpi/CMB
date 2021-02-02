@@ -14,10 +14,11 @@ const Numero = styled.h4`
     font-size: 43px;
   }
 `
-const Title = styled.span`
+const Title = styled.p`
   text-transform: uppercase;
   font-size: 10px;
   line-height: 1;
+  margin: 0;
   @media (min-width: 768px) {
     font-size: 16px;
   }
