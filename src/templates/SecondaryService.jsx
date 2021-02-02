@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
-import PrimaryServicesBlock from '../components/PrimaryServicesBlock'
+import PrimaryServicesSecondaryBlock from '../components/PrimaryServicesSecondaryBlock'
 import ThirdLevelServices from '../components/ThirdLevelServices/ThirdLevelServices'
 
 const Container = styled.section`
@@ -98,7 +98,7 @@ const SecondaryService = ({ data, pageContext, location }) => {
 
       <Separator />
 
-      <PrimaryServicesBlock
+      <PrimaryServicesSecondaryBlock
         pageContext={pageContext}
         data={data}
         location={location}
