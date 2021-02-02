@@ -18,6 +18,7 @@ const Container = styled.div`
     margin-top: 2rem;
   }
 `
+
 const Client = styled.div`
   width: 100%;
   display: flex;

@@ -47,8 +47,9 @@ const cutWidthBig = Math.sqrt(50 ** 2 * 2)
 const NewsTitle = styled.span`
   font-size: 20px;
   max-width: calc(100% - ${cutWidthSmall}px);
-
+  padding-left: 1rem;
   @media (min-width: 768px) {
+    padding-left: 0;
     max-width: calc(100% - ${cutWidthBig}px);
   }
 `
@@ -118,6 +119,7 @@ export default function NewsPreview() {
           node {
             id
             title
+            slug
             featuredImage {
               node {
                 localFile {
@@ -169,7 +171,7 @@ export default function NewsPreview() {
                   <NewsBottom>
                     <NewsTitle>{post.node.title}</NewsTitle>
                     {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                    <Link to="#">
+                    <Link to={post.node.slug}>
                       <Plus />
                     </Link>
                   </NewsBottom>
