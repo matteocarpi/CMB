@@ -59,9 +59,11 @@ const ServiceList = styled.section`
   justify-content: space-between;
   margin: 0 auto;
 
-  &:after {
-    content: '';
-    flex: auto;
+  @media (min-width: 768px) {
+    &:after {
+      content: '';
+      flex: auto;
+    }
   }
 `
 
