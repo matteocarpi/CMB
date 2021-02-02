@@ -8,9 +8,9 @@ const Wrapper = styled.button`
   margin-left: 1rem;
   margin-right: auto;
   padding-left: 0;
-  /* padding-right: 2rem; */
-  ${({ long }) =>
+  ${({ long, longer }) =>
     !long &&
+    !longer &&
     css`
       max-width: 500px;
     `}
@@ -22,7 +22,7 @@ const Wrapper = styled.button`
     `}
 
   ${({ uri }) =>
-    uri ||
+    !uri &&
     css`
       cursor: default;
     `}
@@ -31,6 +31,19 @@ const Wrapper = styled.button`
     main &&
     css`
       min-width: 50%;
+    `}
+    
+    ${({ sub }) =>
+    sub &&
+    css`
+      width: 50%;
+      max-width: 240px;
+    `}
+
+    ${({ longer }) =>
+    longer &&
+    css`
+      width: 80%;
     `}
 `
 
@@ -52,8 +65,9 @@ const Title = styled.h2`
       font-size: 30px;
     `}
 
-    ${({ long }) =>
+    ${({ long, longer }) =>
     !long &&
+    !longer &&
     css`
       max-width: 850px;
     `}
@@ -83,6 +97,7 @@ const underlineVariants = {
     },
   },
 }
+
 export default function SectionTitle({
   children,
   uri,
@@ -91,7 +106,9 @@ export default function SectionTitle({
   tiny,
   long,
   main,
+  sub,
   className,
+  longer,
 }) {
   return (
     <Wrapper
@@ -101,8 +118,10 @@ export default function SectionTitle({
       uri={uri}
       long={long}
       main={main}
+      sub={sub}
+      longer={longer}
     >
-      <Title long={long} medium={medium} tiny={tiny}>
+      <Title longer={longer} long={long} medium={medium} tiny={tiny}>
         {children}
       </Title>
       <Underline

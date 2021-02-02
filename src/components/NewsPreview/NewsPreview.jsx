@@ -148,7 +148,9 @@ export default function NewsPreview() {
 
   return (
     <Container>
-      <SectionTitle small>News</SectionTitle>
+      <SectionTitle small sub>
+        News
+      </SectionTitle>
 
       <SwiperMobile navigation slidesPerView={1}>
         {posts.map(post => {
@@ -184,7 +186,7 @@ export default function NewsPreview() {
 
       <SwiperDesktop>
         {/* Secondary */}
-        <Swiper navigation slidesPerView={4}>
+        <Swiper navigation slidesPerView={5}>
           {posts.map(post => {
             const fluid =
               post.node.featuredImage?.node.localFile.childImageSharp.fluid ??
@@ -206,7 +208,7 @@ export default function NewsPreview() {
                       <NewsBottom>
                         <NewsTitle>{post.node.title}</NewsTitle>
                         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                        <Link to="#">
+                        <Link to={post.node.slug}>
                           <Plus />
                         </Link>
                       </NewsBottom>

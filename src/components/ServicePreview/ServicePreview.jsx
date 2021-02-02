@@ -299,7 +299,7 @@ export default function ServicePreview() {
       <Container>
         <Row>
           <Left>
-            <SectionTitle uri="/servizi" small>
+            <SectionTitle small sub uri="/servizi">
               {data.wpPage.title}
             </SectionTitle>
             <Menu>

@@ -251,7 +251,9 @@ const ClientiEPartner = ({ location }) => {
       </AllClients>
 
       <PartnersWrapper>
-        <SectionTitle long>{content.convenzioniEPartners.titolo}</SectionTitle>
+        <SectionTitle long main>
+          {content.convenzioniEPartners.titolo}
+        </SectionTitle>
 
         <Descrizione
           dangerouslySetInnerHTML={{
