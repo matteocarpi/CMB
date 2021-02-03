@@ -1,13 +1,17 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import LogoSVG from '../../assets/logo/logo-full-light.svg'
 
-const Container = styled.footer`
+const Wrapper = styled.footer`
+  width: 100%;
+  background-color: ${({ theme }) => theme.navy};
+`
+
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2rem 1.5rem;
-  background-color: ${({ theme }) => theme.navy};
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -28,6 +32,14 @@ const Center = styled.div`
 const Right = styled.div`
   flex-basis: 0;
   flex-grow: 1;
+`
+
+const Bottom = styled.p`
+  color: white;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  font-size: 12px;
+  text-align: center;
 `
 
 const Logo = styled(LogoSVG)`
@@ -92,55 +104,86 @@ const Input = styled.input`
 `
 
 export default function Footer() {
+  const data = useStaticQuery(graphql`
+    query Footer {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+      footer: wpMenu(id: { eq: "dGVybToyNzM=" }) {
+        id
+        footerContent {
+          indirizzo
+          telefono
+          fax
+          email
+          infoAzienda
+        }
+      }
+    }
+  `)
+
+  const { footerContent } = data.footer
+
+  const date = new Date()
+
+  const year = date.getFullYear()
+
   return (
-    <Container>
-      <Left>
-        <Logo />
+    <Wrapper>
+      <Container>
+        <Left>
+          <Logo />
 
-        <Menu>
-          <MenuItem>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <Link to="#">News</Link>
-          </MenuItem>
-          <MenuItem>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <Link to="/privacy-policy">Privacy</Link>
-          </MenuItem>
-          <MenuItem>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <Link to="/cookie">Cookie</Link>
-          </MenuItem>
-          <MenuItem>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <Link to="/normative">Normative</Link>
-          </MenuItem>
-        </Menu>
-      </Left>
+          <Menu>
+            <MenuItem>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <Link to="#">News</Link>
+            </MenuItem>
+            <MenuItem>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <Link to="/privacy-policy">Privacy</Link>
+            </MenuItem>
+            <MenuItem>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <Link to="/cookie">Cookie</Link>
+            </MenuItem>
+            <MenuItem>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <Link to="/normative">Normative</Link>
+            </MenuItem>
+          </Menu>
+        </Left>
 
-      <Center>
-        <Contacts>
-          <ContactInfo>Piazzale Cardinal Consalvi 9, Roma</ContactInfo>
+        <Center>
+          <Contacts>
+            <ContactInfo>{footerContent.indirizzo}</ContactInfo>
 
-          <ContactInfo>
-            <a href="tel:+390636003897">Tel +39.06.3600.3897</a>
-          </ContactInfo>
-          <ContactInfo>
-            <a href="tel:+390689280816">Fax +39.06.8928.0816</a>
-          </ContactInfo>
-          <ContactInfo>
-            <a href="mailto:comunicazione@gruppocmb.it">
-              Mail comunicazione@gruppocmb.it
-            </a>
-          </ContactInfo>
-        </Contacts>
-      </Center>
+            <ContactInfo>
+              <a href={`tel:${footerContent.telefono}`}>
+                Tel {footerContent.telefono}
+              </a>
+            </ContactInfo>
+            <ContactInfo>Fax {footerContent.fax}</ContactInfo>
+            <ContactInfo>
+              <a href={`mailto:${footerContent.email}`}>
+                Mail {footerContent.email}
+              </a>
+            </ContactInfo>
+          </Contacts>
+        </Center>
 
-      <Right>
-        <NewsLetterForm>
-          <NewsLetterFormTitle>Iscriviti alla newsletter</NewsLetterFormTitle>
-          <Input />
-        </NewsLetterForm>
-      </Right>
-    </Container>
+        <Right>
+          <NewsLetterForm>
+            <NewsLetterFormTitle>Iscriviti alla newsletter</NewsLetterFormTitle>
+            <Input />
+          </NewsLetterForm>
+        </Right>
+      </Container>
+      <Bottom>
+        ©{data.site.siteMetadata.title} {year} | {footerContent.infoAzienda}
+      </Bottom>
+    </Wrapper>
   )
 }
