@@ -8,6 +8,8 @@ import Image from '../ImageCut'
 import PlusIcon from '../../assets/icons/plus.svg'
 import Lg from '../../assets/logo/logo-lines.svg'
 
+const breakPoint = 1000
+
 const Container = styled(Link)`
   width: 100%;
   display: flex;
@@ -34,10 +36,10 @@ const ContainerMobile = styled.button`
 
 const ImageContainer = styled.div`
   position: relative;
-  width: 20%;
+  width: 15%;
   margin-bottom: -1px;
   z-index: -1;
-  @media (min-width: 768px) {
+  @media (min-width: ${breakPoint}px) {
     width: 50%;
   }
 `
@@ -64,23 +66,36 @@ const Img = styled(Image)`
 `
 
 const Text = styled.section`
-  width: 65%;
-  padding: 2rem 1rem 2rem 2rem;
+  width: 80%;
+  padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 768px) {
+  @media (min-width: ${breakPoint}px) {
     width: 60%;
     padding: 2rem 4rem 2rem 2rem;
   }
 `
 const Title = styled.h3`
+  text-align: left;
   font-size: 35px;
-  @media (min-width: 768px) {
+  @media (min-width: ${breakPoint}px) {
     font-size: 45px;
   }
 `
-const Description = styled.article`
+
+const Informazioni = styled.article`
+  margin: 2rem;
+  p {
+    margin: 1rem 0;
+  }
+  @media (min-width: ${breakPoint}px) {
+    margin: 0;
+  }
+`
+
+const Quote = styled.article`
+  text-align: left;
   p {
     margin: 1rem 0;
   }
@@ -178,14 +193,15 @@ const leftLineVariants = {
 
 export default function PrimaryService({
   title,
-  description,
+  citazione,
+  informazioni,
   image,
   index,
   servicesNumber,
   uri,
 }) {
   const width = useViewportWidth()
-  const isMobile = width < 768
+  const isMobile = width < breakPoint
   const isRight = index % 2 !== 0
   const isLeft = !isRight
 
@@ -197,54 +213,57 @@ export default function PrimaryService({
   const [isHover, setIsHover] = useState(false)
 
   return isMobile ? (
-    <ContainerMobile
-      reverseRow={isRight}
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      onClick={() => {
-        setIsHover(true)
-        setTimeout(() => {
-          navigate(uri)
-        }, 1000)
-      }}
-    >
-      <ImageContainer>
-        <Img
-          dr={dr}
-          dl={dl}
-          ul={ul}
-          ur={ur}
-          fluid={{ ...image, aspectRatio: 1 }}
-          isHover={isHover}
-        />
+    <>
+      <ContainerMobile
+        reverseRow={isRight}
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+        onClick={() => {
+          setIsHover(true)
+          setTimeout(() => {
+            navigate(uri)
+          }, 1000)
+        }}
+      >
+        <ImageContainer>
+          <Img
+            dr={dr}
+            dl={dl}
+            ul={ul}
+            ur={ur}
+            fluid={{ ...image, aspectRatio: 1 }}
+            isHover={isHover}
+          />
 
-        {isHover && (
-          <Overlay>
-            <Logo />
-          </Overlay>
-        )}
-      </ImageContainer>
-      <Text>
-        <Title>{title}</Title>
-        <Description dangerouslySetInnerHTML={{ __html: description }} />
+          {isHover && (
+            <Overlay>
+              <Logo />
+            </Overlay>
+          )}
+        </ImageContainer>
+        <Text>
+          <Title>{title}</Title>
+          <Quote dangerouslySetInnerHTML={{ __html: citazione }} />
 
-        <Decorations isRight={isRight}>
-          <AnimatePresence>
-            {isHover && (
-              <Line
-                isHover={isHover}
-                isRight={isRight}
-                variants={isRight ? rightLineVariants : leftLineVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-              />
-            )}
-          </AnimatePresence>
-          <Plus isHover={isHover} to={uri} />
-        </Decorations>
-      </Text>
-    </ContainerMobile>
+          <Decorations isRight={isRight}>
+            <AnimatePresence>
+              {isHover && (
+                <Line
+                  isHover={isHover}
+                  isRight={isRight}
+                  variants={isRight ? rightLineVariants : leftLineVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                />
+              )}
+            </AnimatePresence>
+            <Plus isHover={isHover} to={uri} />
+          </Decorations>
+        </Text>
+      </ContainerMobile>
+      <Informazioni dangerouslySetInnerHTML={{ __html: informazioni }} />
+    </>
   ) : (
     <Container
       reverseRow={isRight}
@@ -270,8 +289,9 @@ export default function PrimaryService({
       </ImageContainer>
       <Text>
         <Title>{title}</Title>
-        <Description dangerouslySetInnerHTML={{ __html: description }} />
+        <Quote dangerouslySetInnerHTML={{ __html: citazione }} />
 
+        <Informazioni dangerouslySetInnerHTML={{ __html: informazioni }} />
         <Decorations isRight={isRight}>
           <AnimatePresence>
             {isHover && (

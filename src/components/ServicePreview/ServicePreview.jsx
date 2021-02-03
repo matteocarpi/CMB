@@ -195,7 +195,8 @@ export default function ServicePreview() {
             }
           }
           consulenza {
-            descrizione
+            citazione
+            informazioni
             immagine {
               localFile {
                 childImageSharp {
@@ -208,7 +209,8 @@ export default function ServicePreview() {
             titolo
           }
           formazione {
-            descrizione
+            citazione
+            informazioni
             immagine {
               localFile {
                 childImageSharp {
@@ -221,7 +223,8 @@ export default function ServicePreview() {
             titolo
           }
           vigilanza {
-            descrizione
+            citazione
+            informazioni
             immagine {
               localFile {
                 childImageSharp {
@@ -245,10 +248,12 @@ export default function ServicePreview() {
 
   const servizi = [consulenza, formazione, vigilanza]
 
-  const rawDescription =
-    servizi[currentService]?.descrizione ?? serviziContent.descrizione
+  const description =
+    servizi[currentService]?.citazione.concat(
+      ' ',
+      servizi[currentService]?.informazioni,
+    ) ?? serviziContent.descrizione
 
-  const description = rawDescription
   const uri = servizi[currentService]?.titolo.toLowerCase() ?? ''
 
   const image =

@@ -11,7 +11,7 @@ const Container = styled.section``
 
 const Introduction = styled.article`
   p {
-    margin-left: 16px;
+    margin-left: 30px;
   }
   margin-bottom: 30px;
 `
@@ -28,7 +28,8 @@ export default function Servizi() {
           sottotitolo
           consulenza {
             titolo
-            descrizione
+            citazione
+            informazioni
             immagine {
               localFile {
                 childImageSharp {
@@ -41,7 +42,8 @@ export default function Servizi() {
           }
           formazione {
             titolo
-            descrizione
+            citazione
+            informazioni
             immagine {
               localFile {
                 childImageSharp {
@@ -54,7 +56,8 @@ export default function Servizi() {
           }
           vigilanza {
             titolo
-            descrizione
+            citazione
+            informazioni
             immagine {
               localFile {
                 childImageSharp {
@@ -108,7 +111,8 @@ export default function Servizi() {
             <PrimaryService
               key={service.titolo}
               title={service.titolo}
-              description={service.descrizione}
+              citazione={service.citazione}
+              informazioni={service.informazioni}
               image={service.immagine.localFile.childImageSharp.fluid}
               index={index}
               servicesNumber={primaryServices.length}
