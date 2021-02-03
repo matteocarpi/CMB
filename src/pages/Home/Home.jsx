@@ -3,8 +3,6 @@ import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import Image from 'gatsby-image'
 
-import useViewportWidth from '../../hooks/useViewportWidth'
-
 import Layout from '../../components/Layout'
 import SEO from '../../components/Seo'
 import IntroSlide from '../../components/IntroSlide'
@@ -210,10 +208,6 @@ const Home = () => {
 
   const content = data.wpPage.homeContent
 
-  const viewportWidth = useViewportWidth()
-
-  const isMobile = viewportWidth < 768
-
   return (
     <Layout>
       <SEO title={data.wpPage.title} />
@@ -233,9 +227,9 @@ const Home = () => {
           </FirstInfoContainer>
 
           <MoreInfoContainer>
-            {!isMobile && <StyledSlidingLogo />}
+            <StyledSlidingLogo />
             <MoreInfo>
-              {isMobile && <StyledSlidingLogoMobile />}
+              <StyledSlidingLogoMobile />
               <p
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{

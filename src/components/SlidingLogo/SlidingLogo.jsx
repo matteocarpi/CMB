@@ -10,6 +10,7 @@ const Container = styled.div`
   justify-content: space-between;
   width: 150px;
   height: 250px;
+  max-height: 250px;
 `
 
 export default function SlidingLogo(props) {
