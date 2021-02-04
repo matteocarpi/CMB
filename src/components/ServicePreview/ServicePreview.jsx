@@ -62,6 +62,9 @@ const Button = styled.button`
   font-weight: 300;
   transform-origin: center left;
   transition-duration: 0.5s;
+  @media (max-width: 767px) {
+    font-size: 16px;
+  }
 `
 
 const Menu = styled.div`
@@ -71,6 +74,13 @@ const Menu = styled.div`
   margin-left: 1rem;
   display: flex;
   flex-direction: column;
+  @media (max-width: 767px) {
+    margin: 1rem 0;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    padding: 0;
+  }
 `
 const PreviewContainer = styled.div`
   display: flex;

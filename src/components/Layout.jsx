@@ -113,6 +113,11 @@ const GlobalStyle = createGlobalStyle`
     font-size: 20px;
     color: ${({ theme }) => theme.black};
     margin: 30px 30px 0 30px;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+      line-height: 2;
+    }
   }
 
   em {

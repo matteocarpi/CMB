@@ -12,6 +12,7 @@ import ServicePreview from '../../components/ServicePreview'
 import NewsPreview from '../../components/NewsPreview'
 import SlidingLogo from '../../components/SlidingLogo'
 import SlidingLogoMobile from '../../components/SlidingLogoMobile'
+import SectionTitle from '../../components/SectionTitle'
 
 const IntroWrapper = styled.div`
   position: fixed;
@@ -160,6 +161,7 @@ const StyledSlidingLogo = styled(SlidingLogo)`
 `
 const StyledSlidingLogoMobile = styled(SlidingLogoMobile)`
   margin: 0 2rem;
+  margin-top: 0.5rem;
   width: 100px;
   max-height: 200px;
   display: none;
@@ -225,7 +227,6 @@ const Home = () => {
             <p>{content.shortBio}</p>
             <SecondSlogan>{content.slogan2}</SecondSlogan>
           </FirstInfoContainer>
-
           <MoreInfoContainer>
             <StyledSlidingLogo />
             <MoreInfo>
@@ -239,11 +240,13 @@ const Home = () => {
               <Badges badges={content.badges} />
             </MoreInfo>
           </MoreInfoContainer>
-
+          
           <ServicePreview />
 
+          <SectionTitle sub uri="/clienti">
+            Clienti
+          </SectionTitle>
           <ClientiPrincipali home />
-
           <NewsPreview />
         </Content>
       </Wrapper>
