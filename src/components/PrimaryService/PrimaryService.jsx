@@ -14,7 +14,7 @@ const Container = styled(Link)`
   width: 100%;
   display: flex;
   align-items: center;
-  cursor: pointer;
+  cursor: default;
   ${({ reverseRow }) =>
     reverseRow &&
     css`
@@ -36,9 +36,10 @@ const ContainerMobile = styled.button`
 
 const ImageContainer = styled.div`
   position: relative;
+  cursor: pointer;
   width: 15%;
   margin-bottom: -1px;
-  z-index: -1;
+  z-index: 10;
   @media (min-width: ${breakPoint}px) {
     width: 50%;
   }
@@ -66,6 +67,7 @@ const Img = styled(Image)`
 `
 
 const Text = styled.section`
+  cursor: pointer;
   width: 80%;
   padding: 2rem 1rem;
   display: flex;
@@ -216,8 +218,6 @@ export default function PrimaryService({
     <>
       <ContainerMobile
         reverseRow={isRight}
-        onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
         onClick={() => {
           setIsHover(true)
           setTimeout(() => {
@@ -225,7 +225,10 @@ export default function PrimaryService({
           }, 1000)
         }}
       >
-        <ImageContainer>
+        <ImageContainer
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
+        >
           <Img
             dr={dr}
             dl={dl}
@@ -241,7 +244,10 @@ export default function PrimaryService({
             </Overlay>
           )}
         </ImageContainer>
-        <Text>
+        <Text
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
+        >
           <Title>{title}</Title>
           <Quote dangerouslySetInnerHTML={{ __html: citazione }} />
 
@@ -265,13 +271,11 @@ export default function PrimaryService({
       <Informazioni dangerouslySetInnerHTML={{ __html: informazioni }} />
     </>
   ) : (
-    <Container
-      reverseRow={isRight}
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      to={uri}
-    >
-      <ImageContainer>
+    <Container reverseRow={isRight} to={uri}>
+      <ImageContainer
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+      >
         <Img
           dr={dr}
           dl={dl}
@@ -287,7 +291,10 @@ export default function PrimaryService({
           </Overlay>
         )}
       </ImageContainer>
-      <Text>
+      <Text
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
+      >
         <Title>{title}</Title>
         <Quote dangerouslySetInnerHTML={{ __html: citazione }} />
 
