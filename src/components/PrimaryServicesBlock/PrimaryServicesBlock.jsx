@@ -16,6 +16,7 @@ const Navigation = styled.ul`
   display: flex;
   justify-content: space-around;
   @media (min-width: 768px) {
+    justify-content: space-between;
     max-width: 900px;
     width: 100%;
     padding: 1rem 0;
@@ -61,6 +62,17 @@ const NavItem = styled.li`
     a {
       h4 {
         width: 130%;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    h4 {
+      font-size: calc(5px + 1vw);
+    }
+    a {
+      h4 {
+        font-size: calc(5px + 1vw);
       }
     }
   }

@@ -13,12 +13,12 @@ const Content = styled.section`
 `
 
 const Navigation = styled.ul`
-  padding-left: 2rem;
+  display: flex;
+  justify-content: space-around;
   @media (min-width: 768px) {
-    max-width: 900px;
-    display: flex;
-    width: 100%;
     justify-content: space-between;
+    max-width: 900px;
+    width: 100%;
     padding: 1rem 0;
     padding-left: 1rem;
   }
@@ -27,9 +27,23 @@ const Navigation = styled.ul`
 const NavItem = styled.li`
   list-style: none;
   margin: 2rem 0;
+  h4 {
+    font-size: calc(10px + 1vw);
+    width: min-content;
+    padding-bottom: 0.7rem;
+    ${({ active }) =>
+      active &&
+      css`
+        border-bottom: solid 2px ${({ theme }) => theme.gold};
+      `}
+
+    &:hover {
+      border-bottom: solid 2px ${({ theme }) => theme.gold};
+    }
+  }
   a {
     h4 {
-      font-size: calc(5px + 1vw);
+      font-size: calc(10px + 1vw);
       width: min-content;
       padding-bottom: 0.7rem;
       ${({ active }) =>
@@ -48,6 +62,16 @@ const NavItem = styled.li`
     a {
       h4 {
         width: 130%;
+      }
+    }
+  }
+  @media (min-width: 768px) {
+    h4 {
+      font-size: calc(5px + 1vw);
+    }
+    a {
+      h4 {
+        font-size: calc(5px + 1vw);
       }
     }
   }
@@ -113,9 +137,13 @@ const PrimaryServicesSecondaryBlock = ({
 
             return (
               <NavItem active={active} key={uri}>
-                <Link to={uri}>
+                {active ? (
                   <h4>{service.titolo}</h4>
-                </Link>
+                ) : (
+                  <Link to={uri}>
+                    <h4>{service.titolo}</h4>
+                  </Link>
+                )}
               </NavItem>
             )
           })}
