@@ -8,6 +8,8 @@ exports.createPages = async function ({ actions, graphql }) {
           sottotitolo
           consulenza {
             titolo
+            citazione
+            informazioni
             descrizione
             immagine {
               localFile {
@@ -25,6 +27,8 @@ exports.createPages = async function ({ actions, graphql }) {
           }
           formazione {
             titolo
+            citazione
+            informazioni
             descrizione
             immagine {
               localFile {
@@ -42,6 +46,8 @@ exports.createPages = async function ({ actions, graphql }) {
           }
           vigilanza {
             titolo
+            citazione
+            informazioni
             descrizione
             immagine {
               localFile {

@@ -43,6 +43,20 @@ const NavItem = styled.li`
       }
     }
   }
+  h4 {
+    font-size: calc(10px + 1vw);
+    width: min-content;
+    padding-bottom: 0.7rem;
+    ${({ active }) =>
+      active &&
+      css`
+        border-bottom: solid 2px ${({ theme }) => theme.gold};
+      `}
+
+    &:hover {
+      border-bottom: solid 2px ${({ theme }) => theme.gold};
+    }
+  }
 
   @media (min-width: 1000px) {
     a {
@@ -58,19 +72,26 @@ const ServiceList = styled.section`
   flex-wrap: wrap;
   justify-content: center;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 2rem auto;
 `
+
+const Description = styled.article``
 
 const PrimaryServicesBlock = ({
   pageContext,
   data: secondaryServices,
   location,
 }) => {
-  const { sottotitolo, primaryServices } = pageContext
+  const { titolo, sottotitolo, primaryServices } = pageContext
+  const { citazione, informazioni } = pageContext.serviceData
+
+  const descrizione = citazione.concat(' ', informazioni)
 
   return (
     <>
       <Content>
+        <SectionTitle main>{titolo}</SectionTitle>
+        <Description dangerouslySetInnerHTML={{ __html: descrizione }} />
         <ServiceList>
           {secondaryServices.allWpServizio.edges.map(s => {
             const service = s.node
@@ -97,7 +118,7 @@ const PrimaryServicesBlock = ({
             )
           })}
         </ServiceList>
-        
+
         <SectionTitle uri="/servizi">{sottotitolo}</SectionTitle>
 
         <Navigation>
@@ -110,9 +131,13 @@ const PrimaryServicesBlock = ({
 
             return (
               <NavItem active={active} key={uri}>
-                <Link to={uri}>
+                {active ? (
                   <h4>{service.titolo}</h4>
-                </Link>
+                ) : (
+                  <Link to={uri}>
+                    <h4>{service.titolo}</h4>
+                  </Link>
+                )}
               </NavItem>
             )
           })}
