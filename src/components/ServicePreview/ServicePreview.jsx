@@ -87,7 +87,7 @@ const PreviewContainer = styled.div`
   flex-direction: column;
   max-width: 700px;
   @media (min-width: 768px) {
-    height: 630px;
+    height: 500px;
   }
 `
 
@@ -130,6 +130,10 @@ const Content = styled.div`
   p {
     margin: 0.5rem;
     padding-left: 1rem;
+
+    &:first-child {
+      margin-bottom: 2rem;
+    }
   }
   * {
     color: white;

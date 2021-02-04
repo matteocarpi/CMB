@@ -16,8 +16,11 @@ const SwiperContainer = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  background-color: white;
+  background-color: ${({ theme }) => theme.navy};
   margin-top: 2rem;
+  * {
+    color: white;
+  }
 `
 
 const Client = styled.div`
@@ -180,9 +183,14 @@ const Bit = styled.div`
 const Person = styled.span`
   font-size: 16px;
   font-weight: 400;
-  margin-top: 2rem;
+  margin: 2rem;
   margin-right: 2rem;
   align-self: flex-end;
+`
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
 export default function ClientiPrincipali({ location, home }) {
@@ -297,20 +305,22 @@ export default function ClientiPrincipali({ location, home }) {
                         <VoiceInfo>{client.commissione}</VoiceInfo>
                       </Bit>
                     </SwiperHeader>
-                    {!isMobile && (
+                    {!isMobile && !home && (
                       <CommissionDescription
                         dangerouslySetInnerHTML={{ __html: client.descrizione }}
                       />
                     )}
-                    <Person>{client.persona}</Person>
                     {/* <Testimonial>{`"${client.citazione}"`}</Testimonial> */}
                   </Text>
                 </TextContainer>
               </Client>
-              {isMobile && (
-                <Descrizione
-                  dangerouslySetInnerHTML={{ __html: client.descrizione }}
-                />
+              {isMobile && !home && (
+                <Wrapper>
+                  <Descrizione
+                    dangerouslySetInnerHTML={{ __html: client.descrizione }}
+                  />
+                  {!home && <Person>{client.persona}</Person>}
+                </Wrapper>
               )}
             </SwiperSlide>
           ))}

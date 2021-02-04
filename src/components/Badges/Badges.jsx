@@ -16,7 +16,7 @@ const Container = styled.div`
   ${({ big }) =>
     big &&
     css`
-      mergin-top: 4rem;
+      margin-top: 4rem;
     `}
 `
 
