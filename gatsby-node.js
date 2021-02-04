@@ -10,7 +10,6 @@ exports.createPages = async function ({ actions, graphql }) {
             titolo
             citazione
             informazioni
-            descrizione
             immagine {
               localFile {
                 childImageSharp {
@@ -29,7 +28,6 @@ exports.createPages = async function ({ actions, graphql }) {
             titolo
             citazione
             informazioni
-            descrizione
             immagine {
               localFile {
                 childImageSharp {
@@ -48,7 +46,6 @@ exports.createPages = async function ({ actions, graphql }) {
             titolo
             citazione
             informazioni
-            descrizione
             immagine {
               localFile {
                 childImageSharp {

@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import InfiniteScroll from 'react-infinite-scroller'
 import ReactSelect from 'react-select'
 
-import useViewportWidth from '../hooks/useViewportWidth'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import PostThumb from '../components/PostThumb'
