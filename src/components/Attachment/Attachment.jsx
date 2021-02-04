@@ -8,6 +8,7 @@ const Container = styled.div`
 
   h5 {
     margin-bottom: 1rem;
+    font-size: 15px;
   }
 `
 
