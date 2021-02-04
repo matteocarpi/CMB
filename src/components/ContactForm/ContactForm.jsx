@@ -179,7 +179,7 @@ export default function ContactForm({ titolo, sottotitolo }) {
       {({ errors, touched }) => (
         <Form>
           <FormWrapper>
-            <SectionTitle longer>{titolo}</SectionTitle>
+            <SectionTitle longest>{titolo}</SectionTitle>
 
             <Sottotitolo>{sottotitolo}</Sottotitolo>
             <FormContainer>

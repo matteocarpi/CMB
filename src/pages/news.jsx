@@ -52,7 +52,9 @@ const Filter = styled.div`
   flex-direction: column;
 `
 
-const FilterTitle = styled.span``
+const FilterTitle = styled.span`
+  font-size: 18px;
+`
 
 const NewsList = styled.section`
   width: 100%;
@@ -67,17 +69,9 @@ const NewsList = styled.section`
 `
 
 const Post = styled(PostThumb)`
-  min-width: 20%;
-  max-width: 20%;
-  max-width: 300px;
-
-  @media (min-width: 817px) {
-    &:first-child {
-      min-width: 45%;
-      max-width: 630px;
-      max-height: 300px;
-    }
-  }
+  min-width: 18%;
+  max-width: 18%;
+  max-width: 280px;
 `
 
 const Empty = styled.h4`
@@ -218,9 +212,6 @@ const News = () => {
       )
     : yearFilteredNews
 
-  const viewportWidth = useViewportWidth()
-  const isMobile = viewportWidth < 817
-
   const handleSelect = (value, setter) => {
     if (value && value.length > 0) {
       setter(value.map(v => v.value))
@@ -329,7 +320,7 @@ const News = () => {
           loader={<div>Loading...</div>}
         >
           <NewsList key="porcoddio">
-            {filteredNews.map((post, index) => {
+            {filteredNews.map(post => {
               const image =
                 post.featuredImage?.node.localFile.childImageSharp?.fluid ??
                 data.placeholderImage.fluid
@@ -339,8 +330,6 @@ const News = () => {
                   title={post.title}
                   image={image}
                   uri={`${post.slug}`}
-                  original={!isMobile && index === 0}
-                  large={!isMobile && index === 0}
                 />
               )
             })}

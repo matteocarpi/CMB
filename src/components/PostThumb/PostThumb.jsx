@@ -67,25 +67,55 @@ const cutWidthSmall = Math.sqrt(25 ** 2 * 2)
 const cutWidthBig = Math.sqrt(50 ** 2 * 2)
 
 const Title = styled.span`
-  font-size: 20px;
+  font-size: 16px;
   max-width: calc(100% - ${cutWidthSmall}px);
-
   @media (min-width: 768px) {
     max-width: calc(100% - ${cutWidthBig}px);
   }
+  padding: 1rem;
 `
 
 const Plus = styled(PlusIcon)`
   path {
-    fill: ${({ theme }) => theme.black};
+    fill: white;
   }
   width: 30px;
 `
 
 const Footer = styled.div`
-  margin-top: 1rem;
+  position: relative;
+  padding-top: 1rem;
   display: flex;
   justify-content: space-between;
+  background-color: ${({ theme }) => theme.navy};
+  * {
+    color: white;
+  }
+
+  &:before {
+    content: '';
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: rotate(45deg) translate(35px, 0px);
+  }
+  @media (min-width: 768px) {
+    &:before {
+      content: '';
+      z-index: 1;
+      width: 50px;
+      height: 50px;
+      background-color: white;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      transform: scale(1.5) rotate(45deg) translate(26.25px, 0px);
+    }
+  }
 `
 
 export default function PostThumb({
@@ -115,7 +145,6 @@ export default function PostThumb({
       <ImageContainer>
         <Image
           large={large}
-          dr
           fluid={original ? image : { ...image, aspectRatio: 1 }}
         />
         {isHover && (
@@ -139,7 +168,6 @@ export default function PostThumb({
       <ImageContainer>
         <Image
           large={large}
-          dr
           fluid={original ? image : { ...image, aspectRatio: 1 }}
         />
         {isHover && (

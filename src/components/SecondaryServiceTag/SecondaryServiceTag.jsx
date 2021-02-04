@@ -9,15 +9,16 @@ const Container = styled(Link)`
   flex-basis: 0;
   flex-grow: 1;
   justify-content: space-between;
-  margin: 2rem;
+  margin: 1rem;
   align-items: center;
   max-width: 300px;
 `
 
 const Title = styled.h5`
-  font-size: 18px;
+  font-size: 14px;
   min-width: 200px;
   font-weight: 300;
+  text-transform: capitalize;
 `
 
 const Logo = styled(Lg)`

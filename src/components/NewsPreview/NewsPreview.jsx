@@ -45,7 +45,7 @@ const cutWidthSmall = Math.sqrt(25 ** 2 * 2)
 const cutWidthBig = Math.sqrt(50 ** 2 * 2)
 
 const NewsTitle = styled.span`
-  font-size: 20px;
+  font-size: 16px;
   max-width: calc(100% - ${cutWidthSmall}px);
   padding-left: 1rem;
   @media (min-width: 768px) {

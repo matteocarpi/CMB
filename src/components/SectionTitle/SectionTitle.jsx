@@ -46,6 +46,14 @@ const Wrapper = styled.button`
     css`
       width: 80%;
     `}
+    
+    ${({ longest }) =>
+    longest &&
+    css`
+      width: 100%;
+      margin-right: 1rem;
+      max-width: unset;
+    `}
 `
 
 const Title = styled.h2`
@@ -72,6 +80,12 @@ const Title = styled.h2`
     !longer &&
     css`
       max-width: 850px;
+    `}
+
+    ${({ longest }) =>
+    longest &&
+    css`
+      max-width: unset;
     `}
 `
 
@@ -111,6 +125,7 @@ export default function SectionTitle({
   sub,
   className,
   longer,
+  longest,
 }) {
   return (
     <Wrapper
@@ -122,8 +137,15 @@ export default function SectionTitle({
       main={main}
       sub={sub}
       longer={longer}
+      longest={longest}
     >
-      <Title longer={longer} long={long} medium={medium} tiny={tiny}>
+      <Title
+        longest={longest}
+        longer={longer}
+        long={long}
+        medium={medium}
+        tiny={tiny}
+      >
         {children}
       </Title>
       <Underline

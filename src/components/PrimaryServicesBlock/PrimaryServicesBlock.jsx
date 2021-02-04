@@ -71,26 +71,6 @@ const PrimaryServicesBlock = ({
   return (
     <>
       <Content>
-        <SectionTitle uri="/servizi">{sottotitolo}</SectionTitle>
-
-        <Navigation>
-          {primaryServices.map(service => {
-            const uri =
-              service.titolo.toLowerCase() === 'vigilanza'
-                ? `/servizi/${service.titolo.toLowerCase()}/vigilanza`
-                : `/servizi/${service.titolo.toLowerCase()}`
-            const active = location.pathname.includes(uri)
-
-            return (
-              <NavItem active={active} key={uri}>
-                <Link to={uri}>
-                  <h4>{service.titolo}</h4>
-                </Link>
-              </NavItem>
-            )
-          })}
-        </Navigation>
-
         <ServiceList>
           {secondaryServices.allWpServizio.edges.map(s => {
             const service = s.node
@@ -117,6 +97,26 @@ const PrimaryServicesBlock = ({
             )
           })}
         </ServiceList>
+        
+        <SectionTitle uri="/servizi">{sottotitolo}</SectionTitle>
+
+        <Navigation>
+          {primaryServices.map(service => {
+            const uri =
+              service.titolo.toLowerCase() === 'vigilanza'
+                ? `/servizi/${service.titolo.toLowerCase()}/vigilanza`
+                : `/servizi/${service.titolo.toLowerCase()}`
+            const active = location.pathname.includes(uri)
+
+            return (
+              <NavItem active={active} key={uri}>
+                <Link to={uri}>
+                  <h4>{service.titolo}</h4>
+                </Link>
+              </NavItem>
+            )
+          })}
+        </Navigation>
       </Content>
     </>
   )

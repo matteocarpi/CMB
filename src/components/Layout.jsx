@@ -144,6 +144,11 @@ const GlobalStyle = createGlobalStyle`
     font-size: 20px;
     margin-left: 2rem;
     color: ${({ theme }) => theme.black};
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+      line-height: 2;
+    }
   }
 
   ul {

@@ -291,7 +291,6 @@ export default function PrimaryService({
         <Title>{title}</Title>
         <Quote dangerouslySetInnerHTML={{ __html: citazione }} />
 
-        <Informazioni dangerouslySetInnerHTML={{ __html: informazioni }} />
         <Decorations isRight={isRight}>
           <AnimatePresence>
             {isHover && (

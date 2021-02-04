@@ -16,7 +16,7 @@ const Container = styled.section`
 `
 
 const Separator = styled.div`
-  border-bottom: solid 1px ${({ theme }) => theme.gold};
+  border-bottom: solid 1px ${({ theme }) => theme.navy};
   margin: 5rem 0;
 `
 

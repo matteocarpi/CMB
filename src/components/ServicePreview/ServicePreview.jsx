@@ -82,6 +82,7 @@ const Menu = styled.div`
     padding: 0;
   }
 `
+
 const PreviewContainer = styled.div`
   display: flex;
   flex-direction: column;

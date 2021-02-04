@@ -11,7 +11,7 @@ const CheckboxContainer = styled.label`
 `
 
 const Name = styled.span`
-  font-size: 20px;
+  font-size: 16px;
   white-space: nowrap;
   margin-top: 6px;
 `

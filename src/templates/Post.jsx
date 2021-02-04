@@ -36,7 +36,7 @@ const Content = styled.article`
   }
 
   h2 {
-    font-size: 30px;
+    font-size: 20px;
   }
 
   h3 {
