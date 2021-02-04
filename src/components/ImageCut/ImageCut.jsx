@@ -13,6 +13,12 @@ const Image = styled(Img)`
         width: 50px;
         height: 50px;
         background-color: white;
+        ${({ blue }) =>
+          blue &&
+          css`
+            background-color: ${({ theme }) => theme.navy};
+          `}
+
         position: absolute;
         bottom: 0;
         right: 0;
@@ -25,6 +31,12 @@ const Image = styled(Img)`
           width: 50px;
           height: 50px;
           background-color: white;
+          ${({ blue }) =>
+            blue &&
+            css`
+              background-color: ${({ theme }) => theme.navy};
+            `}
+
           position: absolute;
           bottom: 0;
           right: 0;
@@ -41,6 +53,12 @@ const Image = styled(Img)`
         width: 50px;
         height: 50px;
         background-color: white;
+        ${({ blue }) =>
+          blue &&
+          css`
+            background-color: ${({ theme }) => theme.navy};
+          `}
+
         position: absolute;
         bottom: 0;
         left: 0;
@@ -53,6 +71,12 @@ const Image = styled(Img)`
           width: 50px;
           height: 50px;
           background-color: white;
+          ${({ blue }) =>
+            blue &&
+            css`
+              background-color: ${({ theme }) => theme.navy};
+            `}
+
           position: absolute;
           bottom: 0;
           left: 0;
@@ -69,6 +93,12 @@ const Image = styled(Img)`
         width: 50px;
         height: 50px;
         background-color: white;
+        ${({ blue }) =>
+          blue &&
+          css`
+            background-color: ${({ theme }) => theme.navy};
+          `}
+
         position: absolute;
         top: 0;
         right: 0;
@@ -81,6 +111,12 @@ const Image = styled(Img)`
           width: 50px;
           height: 50px;
           background-color: white;
+          ${({ blue }) =>
+            blue &&
+            css`
+              background-color: ${({ theme }) => theme.navy};
+            `}
+
           position: absolute;
           top: 0;
           right: 0;
@@ -97,6 +133,12 @@ const Image = styled(Img)`
         width: 50px;
         height: 50px;
         background-color: white;
+        ${({ blue }) =>
+          blue &&
+          css`
+            background-color: ${({ theme }) => theme.navy};
+          `}
+
         position: absolute;
         top: 0;
         left: 0;
@@ -109,6 +151,12 @@ const Image = styled(Img)`
           width: 50px;
           height: 50px;
           background-color: white;
+          ${({ blue }) =>
+            blue &&
+            css`
+              background-color: ${({ theme }) => theme.navy};
+            `}
+
           position: absolute;
           top: 0;
           left: 0;

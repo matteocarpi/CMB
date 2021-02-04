@@ -128,6 +128,7 @@ export default function ClientsPreview() {
                   <Image
                     fluid={client.immagine?.localFile.childImageSharp.fluid}
                     dr
+                    blue
                   />
                 ) : (
                   <StyledVideo

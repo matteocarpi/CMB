@@ -5,7 +5,6 @@ import SwiperCore, { Thumbs } from 'swiper'
 import queryString from 'query-string'
 import { useStaticQuery, graphql, navigate } from 'gatsby'
 
-import useViewportWidth from '../../hooks/useViewportWidth'
 import { makeSlug } from '../../utils'
 import Img from '../ImageCut'
 import Video from '../Video'
@@ -27,10 +26,12 @@ const Client = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 `
 
 const Image = styled(Img)`
   width: 20%;
+  min-width: 75px;
   min-height: 200px;
   height: 70vh;
   max-height: 900px;
@@ -41,6 +42,7 @@ const Image = styled(Img)`
 `
 const StyledVideo = styled(Video)`
   width: 20%;
+  min-width: 75px;
   min-height: 200px;
   height: 70vh;
   max-height: 600px;
@@ -85,6 +87,7 @@ const TextContainer = styled.div`
 
 const Text = styled.div`
   margin: 1.7rem 1rem;
+  margin-bottom: 0;
   flex-grow: 1;
   max-width: 1024px;
   display: flex;
@@ -96,19 +99,6 @@ const Text = styled.div`
     margin-top: 0;
   }
 `
-
-// const FirstRow = styled.div`
-//   display: flex;
-//   align-items: flex-end;
-//   margin-bottom: 2rem;
-// `
-
-// const Testimonial = styled.h3`
-//   margin-top: 2rem;
-//   @media (min-width: 768px) {
-//     font-size: 47px;
-//   }
-// `
 
 const SwiperHeader = styled.div`
   display: flex;
@@ -168,7 +158,6 @@ const ThumbButton = styled.button`
     padding-bottom: -2px;
   }
 `
-const Descrizione = styled.article``
 
 const CommissionDescription = styled.article`
   p {
@@ -186,11 +175,6 @@ const Person = styled.span`
   margin: 2rem;
   margin-right: 2rem;
   align-self: flex-end;
-`
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
 `
 
 export default function ClientiPrincipali({ location, home }) {
@@ -253,9 +237,6 @@ export default function ClientiPrincipali({ location, home }) {
 
   const [activeSlide, setActiveSlide] = useState(initialSlide)
 
-  const viewportWidth = useViewportWidth()
-  const isMobile = viewportWidth < 768
-
   return (
     <>
       <SwiperContainer>
@@ -279,12 +260,14 @@ export default function ClientiPrincipali({ location, home }) {
                   <Image
                     fluid={client.immagine?.localFile.childImageSharp.fluid}
                     dr
+                    blue
                   />
                 ) : (
                   <StyledVideo
                     mp4={client.video.mp4.mediaItemUrl}
                     webm={client.video.webm.mediaItemUrl}
                     dr
+                    blue
                   />
                 )}
                 <TextContainer>
@@ -305,23 +288,15 @@ export default function ClientiPrincipali({ location, home }) {
                         <VoiceInfo>{client.commissione}</VoiceInfo>
                       </Bit>
                     </SwiperHeader>
-                    {!isMobile && !home && (
+                    {!home && (
                       <CommissionDescription
                         dangerouslySetInnerHTML={{ __html: client.descrizione }}
                       />
                     )}
-                    {/* <Testimonial>{`"${client.citazione}"`}</Testimonial> */}
+                    {!home && <Person>{client.persona}</Person>}
                   </Text>
                 </TextContainer>
               </Client>
-              {isMobile && !home && (
-                <Wrapper>
-                  <Descrizione
-                    dangerouslySetInnerHTML={{ __html: client.descrizione }}
-                  />
-                  {!home && <Person>{client.persona}</Person>}
-                </Wrapper>
-              )}
             </SwiperSlide>
           ))}
         </Swiper>

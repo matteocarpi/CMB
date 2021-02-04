@@ -12,6 +12,11 @@ const VideoContainer = styled.div`
         width: 50px;
         height: 50px;
         background-color: white;
+        ${({ blue }) =>
+          blue &&
+          css`
+            background-color: ${({ theme }) => theme.navy};
+          `}
         position: absolute;
         bottom: 0;
         right: 0;
@@ -24,6 +29,11 @@ const VideoContainer = styled.div`
           width: 50px;
           height: 50px;
           background-color: white;
+          ${({ blue }) =>
+            blue &&
+            css`
+              background-color: ${({ theme }) => theme.navy};
+            `}
           position: absolute;
           bottom: 0;
           right: 0;
@@ -43,9 +53,9 @@ const VideoBox = styled.video`
   object-fit: cover;
 `
 
-export default function Video({ mp4, webm, className, dr }) {
+export default function Video({ mp4, webm, className, dr, blue }) {
   return (
-    <VideoContainer className={className} dr={dr}>
+    <VideoContainer className={className} dr={dr} blue={blue}>
       <VideoBox playsInline autoPlay muted loop>
         <source src={mp4} type="video/mp4" />
         <source src={webm} type="video/webm" />
