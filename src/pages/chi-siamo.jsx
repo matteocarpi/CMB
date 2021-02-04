@@ -74,6 +74,18 @@ const Organigramma = styled.section`
     margin: 8rem 0;
   }
 `
+const Futura = styled.section`
+  width: 100%;
+  margin-bottom: 8rem;
+  display: flex;
+  flex-direction: column;
+  p {
+    margin: 0 22px;
+  }
+  @media (min-width: 768px) {
+    margin-bottom: 8rem;
+  }
+`
 
 const Brochure = styled.section`
   width: 100%;
@@ -155,6 +167,10 @@ const ChiSiamo = () => {
               }
             }
           }
+          sicurezza {
+            title
+            descrizione
+          }
         }
       }
       home: wpPage(id: { eq: "cG9zdDo5" }) {
@@ -233,6 +249,15 @@ const ChiSiamo = () => {
             <Download url={content.organigramma.allegato.mediaItemUrl} />
           </DownloadWrapper>
         </Organigramma>
+
+        <Futura>
+          <SectionTitle tiny>{content.sicurezza.title}</SectionTitle>
+          <Descrizione
+            dangerouslySetInnerHTML={{
+              __html: content.sicurezza.descrizione,
+            }}
+          />
+        </Futura>
 
         <Certificazioni>
           <SectionTitle tiny>{content.certificazioni.title}</SectionTitle>
