@@ -13,12 +13,11 @@ const Content = styled.section`
 `
 
 const Navigation = styled.ul`
-  padding-left: 2rem;
+  display: flex;
+  justify-content: space-around;
   @media (min-width: 768px) {
     max-width: 900px;
-    display: flex;
     width: 100%;
-    justify-content: space-between;
     padding: 1rem 0;
     padding-left: 1rem;
   }
@@ -44,7 +43,7 @@ const NavItem = styled.li`
     }
   }
   h4 {
-    font-size: calc(5px + 1vw);
+    font-size: calc(10px + 1vw);
     width: min-content;
     padding-bottom: 0.7rem;
     ${({ active }) =>
