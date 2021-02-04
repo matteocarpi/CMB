@@ -58,7 +58,7 @@ const ServiceList = styled.section`
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 auto;
-
+  margin-bottom: 4rem;
   @media (min-width: 768px) {
     &:after {
       content: '';
@@ -77,28 +77,6 @@ const PrimaryServicesSecondaryBlock = ({
   return (
     <>
       <Content>
-        <SectionTitle medium uri="/servizi">
-          {sottotitolo}
-        </SectionTitle>
-
-        <Navigation>
-          {primaryServices.map(service => {
-            const uri =
-              service.titolo.toLowerCase() === 'vigilanza'
-                ? `/servizi/${service.titolo.toLowerCase()}/vigilanza`
-                : `/servizi/${service.titolo.toLowerCase()}`
-            const active = location.pathname.includes(uri)
-
-            return (
-              <NavItem active={active} key={uri}>
-                <Link to={uri}>
-                  <h4>{service.titolo}</h4>
-                </Link>
-              </NavItem>
-            )
-          })}
-        </Navigation>
-
         <ServiceList>
           {secondaryServices.allWpServizio.edges.map(s => {
             const service = s.node
@@ -121,6 +99,27 @@ const PrimaryServicesSecondaryBlock = ({
             )
           })}
         </ServiceList>
+        <SectionTitle medium uri="/servizi">
+          {sottotitolo}
+        </SectionTitle>
+
+        <Navigation>
+          {primaryServices.map(service => {
+            const uri =
+              service.titolo.toLowerCase() === 'vigilanza'
+                ? `/servizi/${service.titolo.toLowerCase()}/vigilanza`
+                : `/servizi/${service.titolo.toLowerCase()}`
+            const active = location.pathname.includes(uri)
+
+            return (
+              <NavItem active={active} key={uri}>
+                <Link to={uri}>
+                  <h4>{service.titolo}</h4>
+                </Link>
+              </NavItem>
+            )
+          })}
+        </Navigation>
       </Content>
     </>
   )

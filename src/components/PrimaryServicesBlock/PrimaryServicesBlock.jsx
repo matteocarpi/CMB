@@ -44,7 +44,7 @@ const NavItem = styled.li`
     }
   }
   h4 {
-    font-size: calc(10px + 1vw);
+    font-size: calc(5px + 1vw);
     width: min-content;
     padding-bottom: 0.7rem;
     ${({ active }) =>
@@ -119,7 +119,9 @@ const PrimaryServicesBlock = ({
           })}
         </ServiceList>
 
-        <SectionTitle uri="/servizi">{sottotitolo}</SectionTitle>
+        <SectionTitle medium uri="/servizi">
+          {sottotitolo}
+        </SectionTitle>
 
         <Navigation>
           {primaryServices.map(service => {
