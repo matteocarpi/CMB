@@ -11,12 +11,12 @@ const Container = styled.div`
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
-  margin-top: 4rem;
+  margin-top: 2rem;
 
   ${({ big }) =>
     big &&
     css`
-      margin-top: 4rem;
+      margin-top: 2rem;
     `}
 `
 
