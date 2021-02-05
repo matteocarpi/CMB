@@ -94,9 +94,9 @@ const PrimaryServicesBlock = ({
   location,
 }) => {
   const { titolo, sottotitolo, primaryServices } = pageContext
-  const { citazione, informazioni } = pageContext.serviceData
+  const { informazioni } = pageContext.serviceData
 
-  const descrizione = citazione.concat(' ', informazioni)
+  const descrizione = informazioni
 
   return (
     <>
@@ -130,6 +130,7 @@ const PrimaryServicesBlock = ({
           })}
         </ServiceList>
 
+          
         <SectionTitle medium uri="/servizi">
           {sottotitolo}
         </SectionTitle>

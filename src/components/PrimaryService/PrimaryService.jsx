@@ -268,7 +268,6 @@ export default function PrimaryService({
           </Decorations>
         </Text>
       </ContainerMobile>
-      <Informazioni dangerouslySetInnerHTML={{ __html: informazioni }} />
     </>
   ) : (
     <Container reverseRow={isRight} to={uri}>
