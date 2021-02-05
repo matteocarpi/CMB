@@ -116,8 +116,13 @@ const Certificazioni = styled.section`
 
 const AttachmentWrapper = styled.section`
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   flex-wrap: wrap;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `
 
 const ChiSiamo = () => {

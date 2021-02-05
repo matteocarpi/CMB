@@ -4,11 +4,14 @@ import Download from '../Download'
 
 const Container = styled.div`
   text-align: center;
-  margin: 2rem;
-
+  margin: 1rem;
   h5 {
     margin-bottom: 1rem;
     font-size: 15px;
+  }
+
+  @media (min-width: 768px) {
+    margin: 2rem;
   }
 `
 
