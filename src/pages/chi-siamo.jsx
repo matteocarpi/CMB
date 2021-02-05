@@ -89,14 +89,11 @@ const Futura = styled.section`
 
 const Brochure = styled.section`
   width: 100%;
-  margin: 2rem 0 0 0;
+  margin: 4rem 0 0 0;
   display: flex;
   flex-direction: column;
   p {
     margin: 0 22px;
-  }
-  @media (min-width: 768px) {
-    margin: 4rem 0 0 0;
   }
 `
 const DownloadWrapper = styled.section`
