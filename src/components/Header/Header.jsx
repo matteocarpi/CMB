@@ -157,7 +157,7 @@ export default function Header() {
               "cG9zdDoyMDkxOA=="
               "cG9zdDoyMDkzMg=="
               "cG9zdDoyMTU5Nw=="
-              # Here is the Id for the E-Shop in case we need to hide it "cG9zdDo1Nw=="
+              "cG9zdDo1Nw=="
             ]
           }
         }
