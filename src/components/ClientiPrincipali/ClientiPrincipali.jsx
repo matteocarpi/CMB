@@ -5,6 +5,7 @@ import SwiperCore, { Thumbs } from 'swiper'
 import queryString from 'query-string'
 import { useStaticQuery, graphql, navigate } from 'gatsby'
 
+import useViewportWidth from '../../hooks/useViewportWidth'
 import { makeSlug } from '../../utils'
 import Img from '../ImageCut'
 import Video from '../Video'
@@ -237,6 +238,8 @@ export default function ClientiPrincipali({ location, home }) {
 
   const [activeSlide, setActiveSlide] = useState(initialSlide)
 
+  const isMobile = useViewportWidth() < 768
+
   return (
     <>
       <SwiperContainer>
@@ -288,12 +291,16 @@ export default function ClientiPrincipali({ location, home }) {
                         <VoiceInfo>{client.commissione}</VoiceInfo>
                       </Bit>
                     </SwiperHeader>
-                    {!home && (
-                      <CommissionDescription
-                        dangerouslySetInnerHTML={{ __html: client.descrizione }}
-                      />
-                    )}
-                    {!home && <Person>{client.persona}</Person>}
+                    {!home ||
+                      (home && !isMobile && (
+                        <CommissionDescription
+                          dangerouslySetInnerHTML={{
+                            __html: client.descrizione,
+                          }}
+                        />
+                      ))}
+                    {!home ||
+                      (home && !isMobile && <Person>{client.persona}</Person>)}
                   </Text>
                 </TextContainer>
               </Client>
