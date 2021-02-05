@@ -6,6 +6,7 @@ import LogoSVG from '../../assets/logo/logo-full-light.svg'
 const Wrapper = styled.footer`
   width: 100%;
   background-color: ${({ theme }) => theme.navy};
+  z-index: 1;
 `
 
 const Container = styled.div`
