@@ -112,7 +112,6 @@ export default function Servizi() {
               key={service.titolo}
               title={service.titolo}
               citazione={service.citazione}
-              informazioni={service.informazioni}
               image={service.immagine.localFile.childImageSharp.fluid}
               index={index}
               servicesNumber={primaryServices.length}

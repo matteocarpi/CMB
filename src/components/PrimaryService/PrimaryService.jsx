@@ -86,16 +86,6 @@ const Title = styled.h3`
   }
 `
 
-const Informazioni = styled.article`
-  margin: 2rem;
-  p {
-    margin: 1rem 0;
-  }
-  @media (min-width: ${breakPoint}px) {
-    margin: 0;
-  }
-`
-
 const Quote = styled.article`
   text-align: left;
   p {
@@ -196,7 +186,6 @@ const leftLineVariants = {
 export default function PrimaryService({
   title,
   citazione,
-  informazioni,
   image,
   index,
   servicesNumber,
