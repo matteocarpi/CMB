@@ -8,7 +8,7 @@ import SecondaryServiceTag from '../SecondaryServiceTag'
 
 const Content = styled.section`
   @media (min-width: 768px) {
-    padding: 0 1.8rem;
+    /* padding: 0 1.8rem; */
   }
 `
 
@@ -91,6 +91,11 @@ const ServiceList = styled.section`
   }
 `
 
+const Separator = styled.div`
+  border-bottom: solid 1px ${({ theme }) => theme.navy};
+  margin: 5rem 0;
+`
+
 const PrimaryServicesSecondaryBlock = ({
   pageContext,
   data: secondaryServices,
@@ -123,6 +128,9 @@ const PrimaryServicesSecondaryBlock = ({
             )
           })}
         </ServiceList>
+
+        <Separator />
+
         <SectionTitle medium uri="/servizi">
           {sottotitolo}
         </SectionTitle>
