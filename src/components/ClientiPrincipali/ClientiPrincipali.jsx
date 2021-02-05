@@ -36,7 +36,7 @@ const Client = styled.div`
 const Image = styled(Img)`
   width: 20%;
   min-width: 75px;
-  min-height: 200px;
+  min-height: 420px;
   /* height: 70vh; */
   max-height: 900px;
   @media (min-width: 768px) {
@@ -45,13 +45,13 @@ const Image = styled(Img)`
   }
   @media (max-width: 767px) {
     float: left;
-    margin: 0 2rem 1rem 0;
+    margin: 0 2rem 0 0;
   }
 `
 const StyledVideo = styled(Video)`
   width: 20%;
   min-width: 75px;
-  min-height: 400px;
+  min-height: 420px;
   max-height: 600px;
   @media (min-width: 768px) {
     width: 45%;
@@ -59,7 +59,7 @@ const StyledVideo = styled(Video)`
   }
   @media (max-width: 767px) {
     float: left;
-    margin: 0 2rem 1rem 0;
+    margin: 0 2rem 0 0;
   }
 `
 
