@@ -25,31 +25,41 @@ const SwiperContainer = styled.div`
 
 const Client = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  height: 100%;
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+  }
 `
 
 const Image = styled(Img)`
   width: 20%;
   min-width: 75px;
   min-height: 200px;
-  height: 70vh;
+  /* height: 70vh; */
   max-height: 900px;
   @media (min-width: 768px) {
     width: 45%;
-    min-height: 600px;
+    min-height: 700px;
+  }
+  @media (max-width: 767px) {
+    float: left;
+    margin: 0 2rem 1rem 0;
   }
 `
 const StyledVideo = styled(Video)`
   width: 20%;
   min-width: 75px;
-  min-height: 200px;
-  height: 70vh;
+  min-height: 400px;
   max-height: 600px;
   @media (min-width: 768px) {
     width: 45%;
-    min-height: 600px;
+    min-height: 700px;
+  }
+  @media (max-width: 767px) {
+    float: left;
+    margin: 0 2rem 1rem 0;
   }
 `
 
@@ -98,6 +108,8 @@ const Text = styled.div`
   @media (max-width: 767px) {
     padding: 0 1rem;
     margin-top: 0;
+    margin: 0;
+    padding: 0;
   }
 `
 
@@ -161,21 +173,24 @@ const ThumbButton = styled.button`
 `
 
 const CommissionDescription = styled.article`
+  margin: 1rem;
   p {
     margin-left: 0;
   }
+  z-index: 5;
 `
 
 const Bit = styled.div`
   margin: 1rem 0;
 `
 
-const Person = styled.span`
+const Person = styled.p`
   font-size: 16px;
   font-weight: 400;
   margin: 2rem;
   margin-right: 2rem;
   align-self: flex-end;
+  text-align: right;
 `
 
 export default function ClientiPrincipali({ location, home }) {
@@ -291,18 +306,27 @@ export default function ClientiPrincipali({ location, home }) {
                         <VoiceInfo>{client.commissione}</VoiceInfo>
                       </Bit>
                     </SwiperHeader>
-                    {!home ||
-                      (home && !isMobile && (
+                    {!isMobile && (
+                      <>
                         <CommissionDescription
                           dangerouslySetInnerHTML={{
                             __html: client.descrizione,
                           }}
                         />
-                      ))}
-                    {!home ||
-                      (home && !isMobile && <Person>{client.persona}</Person>)}
+                        <Person>{client.persona}</Person>
+                      </>
+                    )}
                   </Text>
                 </TextContainer>
+                {isMobile && !home && (
+                  <CommissionDescription
+                    dangerouslySetInnerHTML={{
+                      __html: client.descrizione,
+                    }}
+                  />
+                )}
+                {isMobile && !home && <Person>{client.persona}</Person>}
+                {home && !isMobile && <Person>{client.persona}</Person>}
               </Client>
             </SwiperSlide>
           ))}
