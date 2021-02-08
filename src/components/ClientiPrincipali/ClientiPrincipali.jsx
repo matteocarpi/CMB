@@ -178,6 +178,10 @@ const CommissionDescription = styled.article`
     margin-left: 0;
   }
   z-index: 5;
+
+  @media (min-width: 768px) {
+    margin: 0;
+  }
 `
 
 const Bit = styled.div`
@@ -326,7 +330,6 @@ export default function ClientiPrincipali({ location, home }) {
                   />
                 )}
                 {isMobile && !home && <Person>{client.persona}</Person>}
-                {home && !isMobile && <Person>{client.persona}</Person>}
               </Client>
             </SwiperSlide>
           ))}
