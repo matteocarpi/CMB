@@ -191,8 +191,8 @@ const Img = styled(Image)`
   align-self: center;
 `
 
-export default function ServicePreview() {
-  const [currentService, setCurrentService] = useState(null)
+export default function ServicePreview({ services }) {
+  const [currentService, setCurrentService] = useState(0)
 
   const data = useStaticQuery(graphql`
     {
@@ -209,57 +209,13 @@ export default function ServicePreview() {
               }
             }
           }
-          consulenza {
-            citazione
-            informazioni
-            immagine {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 600) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-            titolo
-          }
-          formazione {
-            citazione
-            informazioni
-            immagine {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 600) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-            titolo
-          }
-          vigilanza {
-            citazione
-            informazioni
-            immagine {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 600) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-            titolo
-          }
         }
       }
     }
   `)
 
   const { serviziContent } = data.wpPage
-  const { consulenza } = serviziContent
-  const { formazione } = serviziContent
-  const { vigilanza } = serviziContent
+  const { consulenza, formazione, vigilanza } = services
 
   const servizi = [consulenza, formazione, vigilanza]
 

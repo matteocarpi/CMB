@@ -199,6 +199,50 @@ const Home = () => {
               }
             }
           }
+          servizi {
+            consulenza {
+              citazione
+              informazioni
+              immagine {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 600) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+              }
+              titolo
+            }
+            formazione {
+              citazione
+              informazioni
+              immagine {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 600) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+              }
+              titolo
+            }
+            vigilanza {
+              citazione
+              informazioni
+              immagine {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 600) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+              }
+              titolo
+            }
+          }
           badges {
             number
             title
@@ -240,8 +284,8 @@ const Home = () => {
               <Badges badges={content.badges} />
             </MoreInfo>
           </MoreInfoContainer>
-          
-          <ServicePreview />
+
+          <ServicePreview services={content.servizi} />
 
           <SectionTitle sub uri="/clienti">
             Clienti
