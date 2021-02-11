@@ -18,6 +18,7 @@ const SwiperContainer = styled.div`
   align-items: center;
   background-color: ${({ theme }) => theme.navy};
   margin-top: 2rem;
+  margin-bottom: 10rem;
   * {
     color: white;
   }
