@@ -179,6 +179,9 @@ const Left = styled.div`
 const Right = styled.div`
   width: 100%;
   display: flex;
+  @media (min-width: 768px) {
+    height: 700px;
+  }
 `
 
 const Img = styled(Image)`
