@@ -14,11 +14,12 @@ SwiperCore.use([Thumbs])
 
 const SwiperContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: 95%;
   align-items: center;
   background-color: ${({ theme }) => theme.navy};
   margin-top: 2rem;
   margin-bottom: 10rem;
+  margin-right: auto;
   * {
     color: white;
   }
