@@ -1,18 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useLayoutEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Thumbs } from 'swiper'
 import queryString from 'query-string'
 import { useStaticQuery, graphql, navigate } from 'gatsby'
 
+import { motion, useAnimation } from 'framer-motion'
+
+import useViewportScroll from '../../hooks/useViewportScroll'
+import useViewportHeight from '../../hooks/useViewportHeight'
+
 import useViewportWidth from '../../hooks/useViewportWidth'
 import { makeSlug } from '../../utils'
 import Img from '../ImageCut'
 import Video from '../Video'
+import SectionTitle from '../SectionTitle'
 
 SwiperCore.use([Thumbs])
 
-const SwiperContainer = styled.div`
+const SwiperWrapper = styled(motion.div)`
+  width: 100%;
+  transform: translateY(300);
+`
+
+const SwiperContainer = styled(motion.div)`
   display: flex;
   width: 95%;
   align-items: center;
@@ -197,7 +208,59 @@ const Person = styled.p`
   text-align: right;
 `
 
+const wrapperVariants = {
+  hidden: {
+    translateY: 300,
+    opacity: 0,
+  },
+  visible: {
+    translateY: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.3,
+    },
+  },
+}
+
 export default function ClientiPrincipali({ location, home }) {
+  const ref = useRef()
+
+  const [elementStart, setElementStart] = useState()
+
+  const viewportHeight = useViewportHeight()
+  const scrollY = useViewportScroll()
+
+  useLayoutEffect(() => {
+    const rect = ref?.current?.getBoundingClientRect()
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+
+    const offsetStart = rect.top + scrollTop
+
+    setElementStart(offsetStart)
+  }, [])
+
+  const inView = elementStart - viewportHeight <= scrollY
+
+  const controls = useAnimation()
+
+  useLayoutEffect(() => {
+    if (home) {
+      if (inView) {
+        // controls.start('hidden').then(() =>
+        controls.start('visible')
+        // )
+      } else {
+        controls.start('exit').then(() => controls.start('hidden'))
+      }
+    }
+  }, [controls, inView, home])
+
   const data = useStaticQuery(graphql`
     query ClientiPrincipali {
       clientiPage: wpPage(id: { eq: "cG9zdDoxOTc3OQ==" }) {
@@ -260,7 +323,18 @@ export default function ClientiPrincipali({ location, home }) {
   const isMobile = useViewportWidth() < 768
 
   return (
-    <>
+    <SwiperWrapper
+      ref={ref}
+      variants={wrapperVariants}
+      initial="hidden"
+      animate={controls}
+      exit={controls}
+    >
+      {home && (
+        <SectionTitle sub uri="/clienti">
+          Clienti
+        </SectionTitle>
+      )}
       <SwiperContainer>
         <Swiper
           initialSlide={initialSlide}
@@ -368,6 +442,6 @@ export default function ClientiPrincipali({ location, home }) {
           </Swiper>
         </ThumbsContainer>
       )}
-    </>
+    </SwiperWrapper>
   )
 }

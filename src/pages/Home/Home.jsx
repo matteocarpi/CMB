@@ -12,7 +12,6 @@ import ServicePreview from '../../components/ServicePreview'
 import NewsPreview from '../../components/NewsPreview'
 import SlidingLogo from '../../components/SlidingLogo'
 import SlidingLogoMobile from '../../components/SlidingLogoMobile'
-import SectionTitle from '../../components/SectionTitle'
 
 const IntroWrapper = styled.div`
   position: fixed;
@@ -316,9 +315,6 @@ const Home = () => {
 
           <ServicePreview services={content.servizi} />
 
-          <SectionTitle sub uri="/clienti">
-            Clienti
-          </SectionTitle>
           <ClientiPrincipali home />
           <NewsPreview />
         </Content>

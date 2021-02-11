@@ -203,19 +203,19 @@ const wrapperVariants = {
   hidden: {
     translateY: 300,
     opacity: 0,
-    transition: {
-      duration: 0.1,
-    },
   },
   visible: {
     translateY: 0,
     opacity: 1,
     transition: {
-      duration: 1,
+      duration: 0.3,
     },
   },
   exit: {
     opacity: 0,
+    transition: {
+      duration: 0.3,
+    },
   },
 }
 export default function ServicePreview({ services }) {
@@ -241,9 +241,9 @@ export default function ServicePreview({ services }) {
 
   useLayoutEffect(() => {
     if (inView) {
-      controls.start('hidden').then(() => controls.start('visible'))
+      controls.start('visible')
     } else {
-      controls.start('exit')
+      controls.start('exit').then(() => controls.start('hidden'))
     }
   }, [controls, inView])
 
