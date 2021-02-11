@@ -38,7 +38,6 @@ const Image = styled(Img)`
 `
 
 const Description = styled.article`
-  max-width: 1200px;
   p {
     margin-left: 0;
   }
