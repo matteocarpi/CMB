@@ -49,7 +49,7 @@ const TeamImage = styled(Image)`
   position: relative;
   width: 100%;
   z-index: 2;
-  &:after {
+  /* &:after {
     content: '';
     position: absolute;
     background: linear-gradient(
@@ -76,7 +76,7 @@ const TeamImage = styled(Image)`
       rgba(255, 255, 255, 0.8),
       white
     );
-  }
+  } */
 `
 
 const SloganContainer = styled.div`
