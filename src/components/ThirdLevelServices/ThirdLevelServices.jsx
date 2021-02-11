@@ -39,6 +39,17 @@ const NavItem = styled.li`
   margin-bottom: 1rem;
   font-size: 20px;
   font-weight: 300;
+
+  a {
+    display: flex;
+    p {
+      margin: 0;
+      &:first-child {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+  
   ${({ active }) =>
     active &&
     css`
@@ -274,7 +285,8 @@ function ThirdLevelServices({ sottoServizi, location }) {
                   <StyledLink
                     to={`${articleParam}=${slug}&index=${index}#sottoservizio`}
                   >
-                    {sS.titolo}
+                    <p>• </p>
+                    <p>{sS.titolo}</p>
                   </StyledLink>
                 </NavItem>
               )
