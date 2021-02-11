@@ -45,7 +45,7 @@ const TitleContainer = styled.div`
 const Title = styled.h6`
   margin-top: 0.5rem;
   padding-bottom: 0.4rem;
-  text-transform: capitalize;
+  text-align: right;
 `
 
 const Line = styled(motion.div)`
