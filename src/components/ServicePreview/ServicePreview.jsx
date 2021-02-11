@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React, { useRef, useState, useLayoutEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import Image from 'gatsby-image'
+import { motion } from 'framer-motion'
+
+import useViewportScroll from '../../hooks/useViewportScroll'
+import useViewportHeight from '../../hooks/useViewportHeight'
 
 import SectionTitle from '../SectionTitle'
 import IconPlus from '../../assets/icons/plus.svg'
@@ -11,7 +15,8 @@ const Wrapper = styled.div`
   overflow: hidden;
 `
 
-const Container = styled.div`
+const Container = styled(motion.div)`
+  transform: translateY(300);
   margin-top: 4rem;
   width: 100%;
   display: flex;
@@ -194,7 +199,41 @@ const Img = styled(Image)`
   align-self: center;
 `
 
+const wrapperVariants = {
+  hidden: {
+    translateY: 300,
+    opacity: 0,
+  },
+  visible: {
+    translateY: 0,
+    opacity: 1,
+    transition: {
+      duration: 1,
+    },
+  },
+  exit: {
+    opacity: 0,
+  },
+}
 export default function ServicePreview({ services }) {
+  const ref = useRef()
+
+  const [elementStart, setElementStart] = useState()
+
+  const viewportHeight = useViewportHeight()
+  const scrollY = useViewportScroll()
+
+  useLayoutEffect(() => {
+    const rect = ref?.current?.getBoundingClientRect()
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+
+    const offsetStart = rect.top + scrollTop
+
+    setElementStart(offsetStart)
+  }, [])
+
+  const inView = elementStart - viewportHeight <= scrollY
+
   const [currentService, setCurrentService] = useState(0)
 
   const data = useStaticQuery(graphql`
@@ -235,40 +274,47 @@ export default function ServicePreview({ services }) {
     serviziContent.immagine.localFile.childImageSharp.fluid
 
   return (
-    <Wrapper>
-      <Container>
-        <Row>
-          <Left>
-            <SectionTitle sub uri="/servizi">
-              {data.wpPage.title}
-            </SectionTitle>
-            <Menu>
-              {servizi.map((service, index) => (
-                <ButtonWrap
-                  key={service.titolo}
-                  active={index === currentService}
-                >
-                  <Button onClick={() => setCurrentService(index)}>
-                    {service.titolo}
-                  </Button>
-                </ButtonWrap>
-              ))}
-            </Menu>
-          </Left>
-          <Right>
-            <Preview>
-              <PreviewContainer>
-                {/* Magic. Do not touch. */}
-                <Content dangerouslySetInnerHTML={{ __html: description }} />
-                <StyledLink to={`servizi/${uri}`}>
-                  <Plus />
-                </StyledLink>
-              </PreviewContainer>
-            </Preview>
-            <Img fluid={image} />
-          </Right>
-        </Row>
-      </Container>
+    <Wrapper ref={ref}>
+      {inView && (
+        <Container
+          variants={wrapperVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        >
+          <Row>
+            <Left>
+              <SectionTitle sub uri="/servizi">
+                {data.wpPage.title}
+              </SectionTitle>
+              <Menu>
+                {servizi.map((service, index) => (
+                  <ButtonWrap
+                    key={service.titolo}
+                    active={index === currentService}
+                  >
+                    <Button onClick={() => setCurrentService(index)}>
+                      {service.titolo}
+                    </Button>
+                  </ButtonWrap>
+                ))}
+              </Menu>
+            </Left>
+            <Right>
+              <Preview>
+                <PreviewContainer>
+                  {/* Magic. Do not touch. */}
+                  <Content dangerouslySetInnerHTML={{ __html: description }} />
+                  <StyledLink to={`servizi/${uri}`}>
+                    <Plus />
+                  </StyledLink>
+                </PreviewContainer>
+              </Preview>
+              <Img fluid={image} />
+            </Right>
+          </Row>
+        </Container>
+      )}
     </Wrapper>
   )
 }
