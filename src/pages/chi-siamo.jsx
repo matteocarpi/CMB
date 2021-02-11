@@ -62,18 +62,6 @@ const Image = styled(Img)`
   }
 `
 
-const Organigramma = styled.section`
-  width: 100%;
-  margin: 8rem 0;
-  display: flex;
-  flex-direction: column;
-  p {
-    margin: 0 22px;
-  }
-  @media (min-width: 768px) {
-    margin: 8rem 0;
-  }
-`
 const Futura = styled.section`
   width: 100%;
   margin-bottom: 8rem;
@@ -238,19 +226,6 @@ const ChiSiamo = () => {
             <Download url={content.brochure.allegato.mediaItemUrl} />
           </DownloadWrapper>
         </Brochure>
-
-        <Organigramma>
-          <SectionTitle tiny>{content.organigramma.title}</SectionTitle>
-          <Descrizione
-            dangerouslySetInnerHTML={{
-              __html: content.organigramma.descrizione,
-            }}
-          />
-          <DownloadWrapper>
-            <Subtitle>{content.organigramma.subtitle}</Subtitle>
-            <Download url={content.organigramma.allegato.mediaItemUrl} />
-          </DownloadWrapper>
-        </Organigramma>
 
         <Futura>
           <SectionTitle tiny long>
