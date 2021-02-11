@@ -81,8 +81,7 @@ const NavItem = styled.li`
 const ServiceList = styled.section`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  max-width: 1200px;
+  justify-content: space-between;
   margin: 2rem auto;
 `
 
@@ -130,7 +129,6 @@ const PrimaryServicesBlock = ({
           })}
         </ServiceList>
 
-          
         <SectionTitle medium uri="/servizi">
           {sottotitolo}
         </SectionTitle>
