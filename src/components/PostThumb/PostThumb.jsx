@@ -63,15 +63,8 @@ const Overlay = styled.div`
   align-items: center;
 `
 
-const cutWidthSmall = Math.sqrt(25 ** 2 * 2)
-const cutWidthBig = Math.sqrt(50 ** 2 * 2)
-
 const Title = styled.span`
   font-size: 16px;
-  max-width: calc(100% - ${cutWidthSmall}px);
-  @media (min-width: 768px) {
-    max-width: calc(100% - ${cutWidthBig}px);
-  }
   padding: 1rem;
 `
 
