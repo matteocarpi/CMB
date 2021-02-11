@@ -134,7 +134,6 @@ export default function SecondaryServiceThumb({ image, title, uri }) {
           navigate(uri)
         }, 1000)
       }}
-      replace
     >
       <ImageContainer>
         <Img fluid={{ ...image, aspectRatio: 1 }} dr />
@@ -154,7 +153,6 @@ export default function SecondaryServiceThumb({ image, title, uri }) {
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
       to={uri}
-      replace
     >
       <ImageContainer>
         <Img fluid={{ ...image, aspectRatio: 1 }} dr />

@@ -106,11 +106,12 @@ const PrimaryServicesBlock = ({
           {secondaryServices.allWpServizio.edges.map(s => {
             const service = s.node
             const hassottoservizi = service.sottoServizi?.hassottoservizi
-            const baseUrl = `/servizi/${service.servizioContent.categoria}/${service.slug}/`
+            const baseUrl = `${service.slug}/`
             const childSlug =
               hassottoservizi &&
               makeSlug(service.sottoServizi.listasottoservizi[0].titolo)
             const sottoServizioUri = `?article=${childSlug}&index=0`
+
             const uri = hassottoservizi
               ? `${baseUrl}${sottoServizioUri}`
               : baseUrl
