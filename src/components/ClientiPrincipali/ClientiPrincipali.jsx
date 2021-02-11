@@ -191,8 +191,6 @@ const Bit = styled.div`
 `
 
 const Person = styled.p`
-  font-size: 16px;
-  font-weight: 400;
   margin: 2rem;
   margin-right: 2rem;
   align-self: flex-end;
