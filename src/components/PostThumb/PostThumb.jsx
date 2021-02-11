@@ -69,6 +69,7 @@ const Title = styled.span`
 `
 
 const Plus = styled(PlusIcon)`
+  margin-right: 1rem;
   path {
     fill: white;
   }
