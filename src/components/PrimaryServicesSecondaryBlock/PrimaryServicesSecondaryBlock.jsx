@@ -80,20 +80,9 @@ const NavItem = styled.li`
 const ServiceList = styled.section`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 0 auto;
-  margin-bottom: 4rem;
-  @media (min-width: 768px) {
-    &:after {
-      content: '';
-      flex: auto;
-    }
-  }
-`
-
-const Separator = styled.div`
-  border-bottom: solid 1px ${({ theme }) => theme.navy};
-  margin: 5rem 0;
+  background-color: ${({ theme }) => theme.navy};
+  margin: 6rem auto;
+  padding: 2rem 0;
 `
 
 const PrimaryServicesSecondaryBlock = ({
@@ -128,8 +117,6 @@ const PrimaryServicesSecondaryBlock = ({
             )
           })}
         </ServiceList>
-
-        <Separator />
 
         <SectionTitle medium uri="/servizi">
           {sottotitolo}

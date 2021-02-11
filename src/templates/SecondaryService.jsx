@@ -15,11 +15,6 @@ const Container = styled.section`
   }
 `
 
-const Separator = styled.div`
-  border-bottom: solid 1px ${({ theme }) => theme.navy};
-  margin: 5rem 0;
-`
-
 const Image = styled(Img)`
   display: none;
   height: 50vh;
@@ -95,7 +90,6 @@ const SecondaryService = ({ data, pageContext, location }) => {
         )}
       </Container>
 
-      <Separator />
 
       <PrimaryServicesSecondaryBlock
         pageContext={pageContext}

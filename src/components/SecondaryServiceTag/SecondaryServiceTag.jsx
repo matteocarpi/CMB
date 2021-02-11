@@ -6,19 +6,28 @@ import Lg from '../../assets/logo/logo-lines.svg'
 
 const Container = styled(Link)`
   display: flex;
-  flex-basis: 0;
-  flex-grow: 1;
-  justify-content: space-between;
   margin: 1rem;
+  justify-content: space-between;
   align-items: center;
   max-width: 300px;
+
+  &:hover {
+    p {
+      border-bottom: solid 1px ${({ theme }) => theme.gold};
+      padding-bottom: calc(0.5rem - 1px);
+    }
+  }
+
+  @media (min-width: 768px) {
+    min-width: 350px;
+  }
 `
 
-const Title = styled.h5`
-  font-size: 14px;
+const Title = styled.p`
   min-width: 200px;
   font-weight: 300;
-  text-transform: capitalize;
+  padding-bottom: 0.5rem;
+  color: white;
 `
 
 const Logo = styled(Lg)`
