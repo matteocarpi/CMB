@@ -47,8 +47,37 @@ const Content = styled.div`
   background-color: white;
 `
 const TeamImage = styled(Image)`
+  position: relative;
   width: 100%;
   z-index: 2;
+  &:after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.8),
+      white
+    );
+    height: 300px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.8),
+      white
+    );
+  }
 `
 
 const SloganContainer = styled.div`
