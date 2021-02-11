@@ -2,7 +2,7 @@ import React, { useRef, useState, useLayoutEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import Image from 'gatsby-image'
-import { motion } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
 
 import useViewportScroll from '../../hooks/useViewportScroll'
 import useViewportHeight from '../../hooks/useViewportHeight'
@@ -203,6 +203,9 @@ const wrapperVariants = {
   hidden: {
     translateY: 300,
     opacity: 0,
+    transition: {
+      duration: 0.1,
+    },
   },
   visible: {
     translateY: 0,
@@ -233,6 +236,16 @@ export default function ServicePreview({ services }) {
   }, [])
 
   const inView = elementStart - viewportHeight <= scrollY
+
+  const controls = useAnimation()
+
+  useLayoutEffect(() => {
+    if (inView) {
+      controls.start('hidden').then(() => controls.start('visible'))
+    } else {
+      controls.start('exit')
+    }
+  }, [controls, inView])
 
   const [currentService, setCurrentService] = useState(0)
 
@@ -275,46 +288,44 @@ export default function ServicePreview({ services }) {
 
   return (
     <Wrapper ref={ref}>
-      {inView && (
-        <Container
-          variants={wrapperVariants}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-        >
-          <Row>
-            <Left>
-              <SectionTitle sub uri="/servizi">
-                {data.wpPage.title}
-              </SectionTitle>
-              <Menu>
-                {servizi.map((service, index) => (
-                  <ButtonWrap
-                    key={service.titolo}
-                    active={index === currentService}
-                  >
-                    <Button onClick={() => setCurrentService(index)}>
-                      {service.titolo}
-                    </Button>
-                  </ButtonWrap>
-                ))}
-              </Menu>
-            </Left>
-            <Right>
-              <Preview>
-                <PreviewContainer>
-                  {/* Magic. Do not touch. */}
-                  <Content dangerouslySetInnerHTML={{ __html: description }} />
-                  <StyledLink to={`servizi/${uri}`}>
-                    <Plus />
-                  </StyledLink>
-                </PreviewContainer>
-              </Preview>
-              <Img fluid={image} />
-            </Right>
-          </Row>
-        </Container>
-      )}
+      <Container
+        variants={wrapperVariants}
+        initial="hidden"
+        animate={controls}
+        exit={controls}
+      >
+        <Row>
+          <Left>
+            <SectionTitle sub uri="/servizi">
+              {data.wpPage.title}
+            </SectionTitle>
+            <Menu>
+              {servizi.map((service, index) => (
+                <ButtonWrap
+                  key={service.titolo}
+                  active={index === currentService}
+                >
+                  <Button onClick={() => setCurrentService(index)}>
+                    {service.titolo}
+                  </Button>
+                </ButtonWrap>
+              ))}
+            </Menu>
+          </Left>
+          <Right>
+            <Preview>
+              <PreviewContainer>
+                {/* Magic. Do not touch. */}
+                <Content dangerouslySetInnerHTML={{ __html: description }} />
+                <StyledLink to={`servizi/${uri}`}>
+                  <Plus />
+                </StyledLink>
+              </PreviewContainer>
+            </Preview>
+            <Img fluid={image} />
+          </Right>
+        </Row>
+      </Container>
     </Wrapper>
   )
 }
