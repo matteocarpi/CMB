@@ -253,7 +253,9 @@ const ChiSiamo = () => {
         </Organigramma>
 
         <Futura>
-          <SectionTitle tiny>{content.sicurezza.title}</SectionTitle>
+          <SectionTitle tiny long>
+            {content.sicurezza.title}
+          </SectionTitle>
           <Descrizione
             dangerouslySetInnerHTML={{
               __html: content.sicurezza.descrizione,
