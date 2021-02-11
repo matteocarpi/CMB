@@ -272,8 +272,7 @@ function ThirdLevelServices({ sottoServizi, location }) {
                   key={sS.titolo}
                 >
                   <StyledLink
-                    to={`${articleParam}=${slug}&index=${index}`}
-                    state={{ disableScrollUpdate: true }}
+                    to={`${articleParam}=${slug}&index=${index}#sottoservizio`}
                   >
                     {sS.titolo}
                   </StyledLink>
