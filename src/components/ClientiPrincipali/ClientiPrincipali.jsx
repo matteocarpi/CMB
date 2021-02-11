@@ -37,8 +37,7 @@ const Image = styled(Img)`
   width: 20%;
   min-width: 75px;
   min-height: 420px;
-  /* height: 70vh; */
-  max-height: 900px;
+  max-height: 560px;
   @media (min-width: 768px) {
     width: 45%;
     min-height: 700px;
@@ -52,7 +51,7 @@ const StyledVideo = styled(Video)`
   width: 20%;
   min-width: 75px;
   min-height: 420px;
-  max-height: 600px;
+  max-height: 560px;
   @media (min-width: 768px) {
     width: 45%;
     min-height: 700px;
@@ -149,6 +148,7 @@ const ThumbsContainer = styled.section`
       .swiper-wrapper {
         .swiper-slide {
           width: 20% !important;
+          height: 100%;
         }
       }
     }
