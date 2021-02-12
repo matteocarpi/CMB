@@ -21,6 +21,9 @@ SwiperCore.use([Thumbs])
 const SwiperWrapper = styled(motion.div)`
   width: 100%;
   transform: translateY(300);
+  @media (min-width: 768px) {
+    padding-top: 10rem;
+  }
 `
 
 const SwiperContainer = styled(motion.div)`

@@ -22,9 +22,6 @@ const Container = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (min-width: 768px) {
-    margin: 10rem 0;
-  }
   margin-bottom: 4rem;
 `
 const ButtonWrap = styled.div`
