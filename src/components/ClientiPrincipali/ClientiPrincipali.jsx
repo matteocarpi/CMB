@@ -19,11 +19,16 @@ import SectionTitle from '../SectionTitle'
 SwiperCore.use([Thumbs])
 
 const SwiperWrapper = styled(motion.div)`
-  width: 100%;
-  transform: translateY(300);
-  @media (min-width: 768px) {
-    padding-top: 10rem;
-  }
+  ${({ home }) =>
+    home &&
+    css`
+      width: 100%;
+      transform: translateY(300);
+      opacity: 0;
+      @media (min-width: 768px) {
+        padding-top: 10rem;
+      }
+    `}
 `
 
 const SwiperContainer = styled(motion.div)`
@@ -327,9 +332,9 @@ export default function ClientiPrincipali({ location, home }) {
 
   return (
     <SwiperWrapper
+      home={home}
       ref={ref}
       variants={wrapperVariants}
-      initial="hidden"
       animate={controls}
       exit={controls}
     >
