@@ -9,21 +9,21 @@ const Container = styled(Link)`
   margin: 1rem;
   justify-content: space-between;
   align-items: center;
-  max-width: 610px;
+  max-width: 300px;
 
   &:hover {
-    li {
+    p {
       border-bottom: solid 1px ${({ theme }) => theme.gold};
       padding-bottom: calc(0.5rem - 1px);
     }
   }
 
   @media (min-width: 768px) {
-    min-width: 610px;
+    min-width: 350px;
   }
 `
 
-const Title = styled.li`
+const Title = styled.p`
   min-width: 200px;
   font-weight: 300;
   padding-bottom: 0.5rem;
@@ -40,7 +40,7 @@ const Logo = styled(Lg)`
 const SecondaryServiceTag = ({ title, uri }) => (
   <Container to={uri}>
     <Title>{title}</Title>
-    {/* <Logo /> */}
+    <Logo />
   </Container>
 )
 
