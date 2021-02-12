@@ -33,7 +33,7 @@ const SwiperWrapper = styled(motion.div)`
 
 const SwiperContainer = styled(motion.div)`
   display: flex;
-  width: 95%;
+  width: 100%;
   align-items: center;
   background-color: ${({ theme }) => theme.navy};
   margin-top: 2rem;
@@ -41,6 +41,12 @@ const SwiperContainer = styled(motion.div)`
   margin-right: auto;
   * {
     color: white;
+  }
+
+  @media (min-width: 940px) {
+    .swiper-button-next {
+      color: ${({ theme }) => theme.navy};
+    }
   }
 `
 
@@ -51,6 +57,7 @@ const Client = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: stretch;
+    margin-right: 2rem;
   }
 `
 
@@ -110,10 +117,44 @@ const Logo = styled(Img)`
   }
 `
 const TextContainer = styled.div`
+  position: relative;
   flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (min-width: 940px) {
+    &:before {
+      content: '';
+      z-index: 1;
+      width: 50px;
+      height: 50px;
+      background-color: white;
+      ${({ blue }) =>
+        blue &&
+        css`
+          background-color: ${({ theme }) => theme.navy};
+        `}
+
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      transform: scale(2) rotate(45deg) translate(-17.5px, 35.5px);
+    }
+  }
+
+  @media (min-width: 940px) {
+    padding-right: 1rem;
+    &:after {
+      position: absolute;
+      content: '';
+      width: 100px;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      background-color: white;
+    }
+  }
 `
 
 const Text = styled.div`
@@ -124,7 +165,7 @@ const Text = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0 4rem;
+  padding: 0 5rem 0 2.5rem;
   @media (max-width: 767px) {
     padding: 0 1rem;
     margin-top: 0;
