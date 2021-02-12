@@ -26,7 +26,7 @@ const SwiperWrapper = styled(motion.div)`
       transform: translateY(300);
       opacity: 0;
       @media (min-width: 768px) {
-        padding-top: 10rem;
+        padding-top: 5rem;
       }
     `}
 `
@@ -37,7 +37,7 @@ const SwiperContainer = styled(motion.div)`
   align-items: center;
   background-color: ${({ theme }) => theme.navy};
   margin-top: 2rem;
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
   margin-right: auto;
   * {
     color: white;
