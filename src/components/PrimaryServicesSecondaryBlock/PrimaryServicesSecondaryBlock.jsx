@@ -7,9 +7,9 @@ import SectionTitle from '../SectionTitle'
 import SecondaryServiceTag from '../SecondaryServiceTag'
 
 const Content = styled.section`
-  @media (min-width: 768px) {
-    /* padding: 0 1.8rem; */
-  }
+  padding-top: 6rem;
+  margin-top: 6rem;
+  border-top: solid 1px ${({ theme }) => theme.navy};
 `
 
 const Navigation = styled.ul`
@@ -81,7 +81,7 @@ const ServiceList = styled.section`
   display: flex;
   flex-wrap: wrap;
   background-color: ${({ theme }) => theme.navy};
-  margin: 6rem auto;
+  margin-bottom: 2rem;
   padding: 2rem 0;
 `
 
@@ -95,29 +95,6 @@ const PrimaryServicesSecondaryBlock = ({
   return (
     <>
       <Content>
-        <ServiceList>
-          {secondaryServices.allWpServizio.edges.map(s => {
-            const service = s.node
-            const hassottoservizi = service.sottoServizi?.hassottoservizi
-            const baseUrl = `/servizi/${service.servizioContent.categoria}/${service.slug}/`
-            const childSlug =
-              hassottoservizi &&
-              makeSlug(service.sottoServizi.listasottoservizi[0].titolo)
-            const sottoServizioUri = `?article=${childSlug}&index=0`
-            const uri = hassottoservizi
-              ? `${baseUrl}${sottoServizioUri}`
-              : baseUrl
-
-            return (
-              <SecondaryServiceTag
-                key={service.id}
-                title={service.title}
-                uri={uri}
-              />
-            )
-          })}
-        </ServiceList>
-
         <SectionTitle medium uri="/servizi">
           {sottotitolo}
         </SectionTitle>
@@ -143,6 +120,29 @@ const PrimaryServicesSecondaryBlock = ({
             )
           })}
         </Navigation>
+
+        <ServiceList>
+          {secondaryServices.allWpServizio.edges.map(s => {
+            const service = s.node
+            const hassottoservizi = service.sottoServizi?.hassottoservizi
+            const baseUrl = `/servizi/${service.servizioContent.categoria}/${service.slug}/`
+            const childSlug =
+              hassottoservizi &&
+              makeSlug(service.sottoServizi.listasottoservizi[0].titolo)
+            const sottoServizioUri = `?article=${childSlug}&index=0`
+            const uri = hassottoservizi
+              ? `${baseUrl}${sottoServizioUri}`
+              : baseUrl
+
+            return (
+              <SecondaryServiceTag
+                key={service.id}
+                title={service.title}
+                uri={uri}
+              />
+            )
+          })}
+        </ServiceList>
       </Content>
     </>
   )
