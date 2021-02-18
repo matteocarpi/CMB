@@ -7,9 +7,7 @@ import SectionTitle from '../SectionTitle'
 import SecondaryServiceTag from '../SecondaryServiceTag'
 
 const Content = styled.section`
-  padding-top: 6rem;
   margin-top: 6rem;
-  border-top: solid 1px ${({ theme }) => theme.navy};
 `
 
 const Navigation = styled.ul`
