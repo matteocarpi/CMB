@@ -83,6 +83,17 @@ const ServiceList = styled.section`
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 2rem auto;
+
+  ${({ itLimps }) =>
+    itLimps &&
+    css`
+      &:after {
+        content: '';
+        width: 28%;
+        margin: 2rem;
+        margin-bottom: 4rem;
+      }
+    `}
 `
 
 const Description = styled.article``
@@ -97,12 +108,13 @@ const PrimaryServicesBlock = ({
 
   const descrizione = informazioni
 
+  const itLimps = secondaryServices.allWpServizio.edges.length % 3 !== 0
   return (
     <>
       <Content>
         <SectionTitle main>{titolo}</SectionTitle>
         <Description dangerouslySetInnerHTML={{ __html: descrizione }} />
-        <ServiceList>
+        <ServiceList itLimps={itLimps}>
           {secondaryServices.allWpServizio.edges.map(s => {
             const service = s.node
             const hassottoservizi = service.sottoServizi?.hassottoservizi
