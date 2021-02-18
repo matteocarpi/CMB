@@ -35,7 +35,6 @@ const SwiperContainer = styled(motion.div)`
   display: flex;
   width: 100%;
   align-items: center;
-  background-color: ${({ theme }) => theme.navy};
   margin-top: 2rem;
   margin-bottom: 5rem;
   margin-right: auto;
@@ -53,6 +52,7 @@ const SwiperContainer = styled(motion.div)`
 const Client = styled.div`
   width: 100%;
   height: 100%;
+  background-color: ${({ theme }) => theme.navy};
   @media (min-width: 768px) {
     display: flex;
     justify-content: space-between;
@@ -61,33 +61,36 @@ const Client = styled.div`
   }
 `
 
-const Image = styled(Img)`
+const ImageWrapper = styled.div`
   width: 20%;
   min-width: 75px;
   min-height: 420px;
-  max-height: 560px;
+  z-index: 1;
   @media (min-width: 768px) {
     width: 45%;
     min-height: 700px;
-  }
-  @media (max-width: 767px) {
-    float: left;
-    margin: 0 2rem 0 0;
+    height: 100%;
   }
 `
-const StyledVideo = styled(Video)`
-  width: 20%;
-  min-width: 75px;
-  min-height: 420px;
-  max-height: 560px;
-  @media (min-width: 768px) {
-    width: 45%;
-    min-height: 700px;
-  }
+
+const Top = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`
+
+const Bottom = styled.div`
   @media (max-width: 767px) {
-    float: left;
-    margin: 0 2rem 0 0;
+    margin-left: 2rem;
+    padding-bottom: 2rem;
   }
+`
+
+const Image = styled(Img)`
+  height: 100%;
+`
+const StyledVideo = styled(Video)`
+  height: 100%;
 `
 
 const Logo = styled(Img)`
@@ -122,7 +125,7 @@ const TextContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  margin-left: 1rem;
   @media (min-width: 940px) {
     &:before {
       content: '';
@@ -141,9 +144,7 @@ const TextContainer = styled.div`
       right: 0;
       transform: scale(2) rotate(45deg) translate(-17.5px, 35.5px);
     }
-  }
 
-  @media (min-width: 940px) {
     padding-right: 1rem;
     &:after {
       position: absolute;
@@ -155,11 +156,35 @@ const TextContainer = styled.div`
       background-color: white;
     }
   }
+
+  @media (max-width: 940px) {
+    ${({ home }) =>
+      home &&
+      css`
+        &:before {
+          content: '';
+          z-index: 1;
+          width: 50px;
+          height: 50px;
+          background-color: white;
+          ${({ blue }) =>
+            blue &&
+            css`
+              background-color: ${({ theme }) => theme.navy};
+            `}
+
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          transform: rotate(45deg) translate(35px, 0);
+        }
+      `}
+    padding-right: 2rem;
+  }
 `
 
 const Text = styled.div`
-  margin: 1.7rem 1rem;
-  margin-bottom: 0;
+  margin: 0 1rem;
   flex-grow: 1;
   max-width: 1024px;
   display: flex;
@@ -167,8 +192,6 @@ const Text = styled.div`
   align-items: flex-start;
   padding: 0 5rem 0 2.5rem;
   @media (max-width: 767px) {
-    padding: 0 1rem;
-    margin-top: 0;
     margin: 0;
     padding: 0;
   }
@@ -401,58 +424,65 @@ export default function ClientiPrincipali({ location, home }) {
           {clientiprincipali.map(client => (
             <SwiperSlide key={client.cliente}>
               <Client>
-                {client.videoOFoto === 'Foto' ? (
-                  <Image
-                    fluid={client.immagine?.localFile.childImageSharp.fluid}
-                    dr
-                    blue
-                  />
-                ) : (
-                  <StyledVideo
-                    mp4={client.video.mp4.mediaItemUrl}
-                    webm={client.video.webm.mediaItemUrl}
-                    dr
-                    blue
-                  />
-                )}
-                <TextContainer>
-                  <Text>
-                    <SwiperHeader>
-                      <Bit>
-                        <Logo
-                          objectFit="contain"
-                          fluid={client.logo.localFile.childImageSharp.fluid}
-                        />
-                      </Bit>
-                      <Bit>
-                        <Voice>Cliente:</Voice>
-                        <VoiceInfo>{client.cliente}</VoiceInfo>
-                      </Bit>
-                      <Bit>
-                        <Voice>Commissione:</Voice>
-                        <VoiceInfo>{client.commissione}</VoiceInfo>
-                      </Bit>
-                    </SwiperHeader>
-                    {!isMobile && (
-                      <>
-                        <CommissionDescription
-                          dangerouslySetInnerHTML={{
-                            __html: client.descrizione,
-                          }}
-                        />
-                        <Person>{client.persona}</Person>
-                      </>
+                <Top>
+                  <ImageWrapper>
+                    {client.videoOFoto === 'Foto' ? (
+                      <Image
+                        fluid={client.immagine?.localFile.childImageSharp.fluid}
+                        dr
+                        blue
+                      />
+                    ) : (
+                      <StyledVideo
+                        mp4={client.video.mp4.mediaItemUrl}
+                        webm={client.video.webm.mediaItemUrl}
+                        dr
+                        blue
+                      />
                     )}
-                  </Text>
-                </TextContainer>
+                  </ImageWrapper>
+                  <TextContainer home={home}>
+                    <Text>
+                      <SwiperHeader>
+                        <Bit>
+                          <Logo
+                            objectFit="contain"
+                            fluid={client.logo.localFile.childImageSharp.fluid}
+                          />
+                        </Bit>
+                        <Bit>
+                          <Voice>Cliente:</Voice>
+                          <VoiceInfo>{client.cliente}</VoiceInfo>
+                        </Bit>
+                        <Bit>
+                          <Voice>Commissione:</Voice>
+                          <VoiceInfo>{client.commissione}</VoiceInfo>
+                        </Bit>
+                      </SwiperHeader>
+                      {!isMobile && (
+                        <>
+                          <CommissionDescription
+                            dangerouslySetInnerHTML={{
+                              __html: client.descrizione,
+                            }}
+                          />
+                        </>
+                      )}
+                    </Text>
+                  </TextContainer>
+                </Top>
                 {isMobile && !home && (
-                  <CommissionDescription
-                    dangerouslySetInnerHTML={{
-                      __html: client.descrizione,
-                    }}
-                  />
+                  <Bottom>
+                    <>
+                      <CommissionDescription
+                        dangerouslySetInnerHTML={{
+                          __html: client.descrizione,
+                        }}
+                      />
+                      <Person>{client.persona}</Person>
+                    </>
+                  </Bottom>
                 )}
-                {isMobile && !home && <Person>{client.persona}</Person>}
               </Client>
             </SwiperSlide>
           ))}
