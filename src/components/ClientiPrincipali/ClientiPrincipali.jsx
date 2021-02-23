@@ -273,13 +273,6 @@ const Bit = styled.div`
   margin: 1rem 0;
 `
 
-const Person = styled.p`
-  margin: 2rem;
-  margin-right: 2rem;
-  align-self: flex-end;
-  text-align: right;
-`
-
 const wrapperVariants = {
   hidden: {
     translateY: 300,
@@ -372,7 +365,6 @@ export default function ClientiPrincipali({ location, home }) {
               }
             }
             citazione
-            persona
           }
         }
       }
@@ -479,7 +471,6 @@ export default function ClientiPrincipali({ location, home }) {
                           __html: client.descrizione,
                         }}
                       />
-                      <Person>{client.persona}</Person>
                     </>
                   </Bottom>
                 )}
