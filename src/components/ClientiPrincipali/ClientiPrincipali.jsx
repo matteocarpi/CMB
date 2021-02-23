@@ -46,6 +46,9 @@ const SwiperContainer = styled(motion.div)`
     .swiper-button-next {
       color: ${({ theme }) => theme.navy};
     }
+    .swiper-button-prev {
+      display: none;
+    }
   }
 `
 
@@ -407,16 +410,19 @@ export default function ClientiPrincipali({ location, home }) {
       )}
       <SwiperContainer>
         <Swiper
+          loop
           initialSlide={initialSlide}
           navigation
           thumbs={{ swiper: thumbsSwiper }}
           onSlideChangeTransitionEnd={swiper => {
-            navigate(`?client=${clientiList[swiper.activeIndex]}`, {
-              state: {
-                disableScrollUpdate: true,
-              },
-            })
-            setActiveSlide(swiper.activeIndex)
+            if (!home) {
+              navigate(`?client=${clientiList[swiper.activeIndex - 1]}`, {
+                state: {
+                  disableScrollUpdate: true,
+                },
+              })
+              setActiveSlide(swiper.activeIndex)
+            }
           }}
         >
           {clientiprincipali.map(client => (
