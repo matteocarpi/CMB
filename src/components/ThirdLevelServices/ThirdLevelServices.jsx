@@ -49,7 +49,7 @@ const NavItem = styled.li`
       }
     }
   }
-  
+
   ${({ active }) =>
     active &&
     css`
@@ -147,15 +147,23 @@ const Cut = styled.div`
   }
 `
 const Description = styled.article`
-  ul {
-    li {
-      margin-left: 60px;
+  @media (min-width: 768px) {
+    ul {
+      li {
+        margin-left: 60px;
+      }
+    }
+
+    ol {
+      li {
+        margin-left: 60px;
+      }
     }
   }
 
-  ol {
-    li {
-      margin-left: 60px;
+  @media (max-width: 767px) {
+    p {
+      margin: 0;
     }
   }
 `

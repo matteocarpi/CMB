@@ -63,12 +63,6 @@ const Client = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.navy};
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    margin-right: 2rem;
-  }
   padding-bottom: 50px;
   &:after {
     content: '';
@@ -77,6 +71,14 @@ const Client = styled.div`
     height: 50px;
     bottom: 0;
     background-color: white;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-right: 2rem;
+    padding-bottom: 0;
   }
 `
 
