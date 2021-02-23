@@ -77,7 +77,7 @@ const Futura = styled.section`
 
 const Brochure = styled.section`
   width: 100%;
-  margin: 4rem 0 8rem  0;
+  margin: 4rem 0;
   display: flex;
   flex-direction: column;
   p {
