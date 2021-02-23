@@ -1,7 +1,7 @@
 import React, { useState, useRef, useLayoutEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import SwiperCore, { Thumbs } from 'swiper'
+import SwiperCore, { Thumbs, Pagination } from 'swiper'
 import queryString from 'query-string'
 import { useStaticQuery, graphql, navigate } from 'gatsby'
 
@@ -16,9 +16,10 @@ import Img from '../ImageCut'
 import Video from '../Video'
 import SectionTitle from '../SectionTitle'
 
-SwiperCore.use([Thumbs])
+SwiperCore.use([Thumbs, Pagination])
 
 const SwiperWrapper = styled(motion.div)`
+  position: relative;
   ${({ home }) =>
     home &&
     css`
@@ -32,6 +33,7 @@ const SwiperWrapper = styled(motion.div)`
 `
 
 const SwiperContainer = styled(motion.div)`
+  position: relative;
   display: flex;
   width: 100%;
   align-items: center;
@@ -40,6 +42,10 @@ const SwiperContainer = styled(motion.div)`
   margin-right: auto;
   * {
     color: white;
+  }
+  overflow: visible;
+
+  .swiper-pagination {
   }
 
   @media (min-width: 940px) {
@@ -53,6 +59,7 @@ const SwiperContainer = styled(motion.div)`
 `
 
 const Client = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.navy};
@@ -61,6 +68,15 @@ const Client = styled.div`
     justify-content: space-between;
     align-items: stretch;
     margin-right: 2rem;
+  }
+  padding-bottom: 50px;
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    bottom: 0;
+    background-color: white;
   }
 `
 
@@ -379,6 +395,7 @@ export default function ClientiPrincipali({ location, home }) {
       }
     }
   `)
+
   const { clientiprincipali } = data.clientiPage.clientiContent
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
@@ -412,7 +429,8 @@ export default function ClientiPrincipali({ location, home }) {
         <Swiper
           loop
           initialSlide={initialSlide}
-          navigation
+          navigation={!isMobile}
+          pagination={{ clickable: true }}
           thumbs={{ swiper: thumbsSwiper }}
           onSlideChangeTransitionEnd={swiper => {
             if (!home) {

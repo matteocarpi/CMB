@@ -9,6 +9,7 @@ import Footer from './Footer'
 
 import 'swiper/swiper.scss'
 import 'swiper/components/navigation/navigation.scss'
+import 'swiper/components/pagination/pagination.scss'
 import './typography.css'
 
 const GlobalStyle = createGlobalStyle`
@@ -181,6 +182,7 @@ const GlobalStyle = createGlobalStyle`
   :root {
   --swiper-navigation-color: ${({ theme }) => theme.black};
   --swiper-navigation-size: 35px;
+  --swiper-pagination-color: ${({ theme }) => theme.gold}
   }
 
   .swiper-button-disabled {
