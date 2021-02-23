@@ -94,6 +94,10 @@ const StyledVideo = styled(Video)`
 `
 
 const Logo = styled(Img)`
+  max-width: 200px;
+`
+
+const LogoThumb = styled(Img)`
   max-height: 98px;
   min-width: 100px;
   margin-top: 1rem;
@@ -126,6 +130,8 @@ const TextContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-left: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   @media (min-width: 940px) {
     &:before {
       content: '';
@@ -502,7 +508,7 @@ export default function ClientiPrincipali({ location, home }) {
                     })
                   }}
                 >
-                  <Logo
+                  <LogoThumb
                     active={activeSlide === index}
                     fluid={client.logo.localFile.childImageSharp.fluid}
                   />
