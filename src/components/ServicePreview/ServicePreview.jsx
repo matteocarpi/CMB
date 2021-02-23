@@ -1,12 +1,12 @@
 import React, { useRef, useState, useLayoutEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { useStaticQuery, graphql, Link } from 'gatsby'
-import Image from 'gatsby-image'
 import { motion, useAnimation } from 'framer-motion'
 
 import useViewportScroll from '../../hooks/useViewportScroll'
 import useViewportHeight from '../../hooks/useViewportHeight'
 
+import Image from '../ImageCut'
 import SectionTitle from '../SectionTitle'
 import IconPlus from '../../assets/icons/plus.svg'
 
@@ -319,7 +319,7 @@ export default function ServicePreview({ services }) {
                 </StyledLink>
               </PreviewContainer>
             </Preview>
-            <Img fluid={image} />
+            <Img dl blue fluid={image} />
           </Right>
         </Row>
       </Container>
