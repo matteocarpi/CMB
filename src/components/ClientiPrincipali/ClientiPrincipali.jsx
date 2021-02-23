@@ -404,7 +404,7 @@ export default function ClientiPrincipali({ location, home }) {
       exit={controls}
     >
       {home && (
-        <SectionTitle sub uri="/clienti">
+        <SectionTitle sub uri="/clienti-e-partner">
           Clienti
         </SectionTitle>
       )}
