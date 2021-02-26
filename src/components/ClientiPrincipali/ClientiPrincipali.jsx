@@ -276,6 +276,7 @@ const ThumbButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2rem;
   ${({ active }) =>
     active &&
     css`
