@@ -102,8 +102,7 @@ const Top = styled.div`
 
 const Bottom = styled.div`
   @media (max-width: 767px) {
-    margin-left: 2rem;
-    padding-bottom: 2rem;
+    padding: 2rem 0 3rem 0;
   }
 `
 
@@ -285,7 +284,7 @@ const ThumbButton = styled.button`
 `
 
 const CommissionDescription = styled.article`
-  margin: 1rem;
+  margin: 1.5rem;
   p {
     margin-left: 0;
   }
