@@ -16,15 +16,21 @@ const InfoWrapper = styled.section`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  flex-wrap: wrap;
+
+  @media (max-width: 1290px) {
+    flex-direction: column;
+    margin-left: 1rem;
+  }
 `
 const ContactWrapper = styled.p`
-  margin: 0 2rem;
+  margin: 0 15px;
 `
 
 const Contact = styled.a``
 
-const MainLocation = styled.article``
+const MainLocation = styled.article`
+  max-width: 550px;
+`
 
 const OtherLocations = styled.article``
 
@@ -35,11 +41,12 @@ const Location = styled.div`
 const Name = styled.h5`
   text-transform: uppercase;
   font-weight: 400;
-  margin-left: 30px;
+  margin-left: 15px;
 `
 
 const Address = styled.p`
   margin-top: 0;
+  margin: 0 15px;
 `
 
 const Contatti = () => {
