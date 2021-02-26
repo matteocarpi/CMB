@@ -121,7 +121,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  em {
+  em, i {
     font-style: italic;
   }
 

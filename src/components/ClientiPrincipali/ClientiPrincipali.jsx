@@ -45,7 +45,12 @@ const SwiperContainer = styled(motion.div)`
   }
   overflow: visible;
 
-  .swiper-pagination {
+  @media (min-width: 767px) {
+    .swiper-container {
+      .swiper-pagination {
+        display: none !important;
+      }
+    }
   }
 
   @media (min-width: 940px) {
@@ -78,7 +83,6 @@ const Client = styled.div`
     justify-content: space-between;
     align-items: stretch;
     margin-right: 2rem;
-    padding-bottom: 0;
   }
 `
 
@@ -287,6 +291,19 @@ const CommissionDescription = styled.article`
   margin: 1.5rem;
   p {
     margin-left: 0;
+  }
+  span {
+    font-family: Jost, sansf-serif;
+    font-weight: 300 !important;
+    line-height: 2;
+    font-size: 20px;
+    margin: 30px 30px 0 30px;
+    margin-left: 0;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+      line-height: 2;
+    }
   }
   z-index: 5;
 
