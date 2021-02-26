@@ -30,6 +30,10 @@ const Contact = styled.a``
 
 const MainLocation = styled.article`
   max-width: 550px;
+
+  @media (min-width: 1290px) {
+    margin-left: 15px;
+  }
 `
 
 const OtherLocations = styled.article``
