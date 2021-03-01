@@ -286,8 +286,10 @@ const ThumbButton = styled.button`
 
 const CommissionDescription = styled.article`
   margin: 1.5rem;
+  text-align: justify;
   p {
     margin-left: 0;
+    margin-right: 0;
   }
   span {
     font-family: Jost, sansf-serif;
