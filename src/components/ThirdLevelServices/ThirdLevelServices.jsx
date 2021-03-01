@@ -163,7 +163,8 @@ const Description = styled.article`
 
   @media (max-width: 767px) {
     p {
-      margin: 0;
+      margin-left: 0;
+      margin-right: 0;
     }
   }
 `
