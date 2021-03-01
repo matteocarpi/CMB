@@ -30,9 +30,10 @@ const Contact = styled.a``
 
 const MainLocation = styled.article`
   max-width: 550px;
-
+  margin-bottom: 2rem;
   @media (min-width: 1290px) {
     margin-left: 15px;
+    margin-bottom: 0;
   }
 `
 
@@ -101,8 +102,7 @@ const Contatti = () => {
             <Location>
               <Name>{content.sedelegale.nome} (Sede Legale)</Name>
               <Address>{content.sedelegale.indirizzo}</Address>
-              <br />
-              <br />
+
               <ContactWrapper>
                 Tel:{' '}
                 {content.contatti.telefono.map((telefono, index) => (
@@ -120,7 +120,6 @@ const Contatti = () => {
                 Fax: <Contact>{content.contatti.fax}</Contact>
               </ContactWrapper>
 
-              <br />
               <ContactWrapper>
                 Mail:{' '}
                 <Contact href={`mailto:${content.contatti.mail}`}>
