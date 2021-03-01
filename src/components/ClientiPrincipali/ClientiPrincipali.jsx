@@ -117,10 +117,6 @@ const StyledVideo = styled(Video)`
   height: 100%;
 `
 
-const Logo = styled(Img)`
-  max-width: 200px;
-`
-
 const LogoThumb = styled(Img)`
   max-height: 98px;
   min-width: 100px;
@@ -485,12 +481,6 @@ export default function ClientiPrincipali({ location, home }) {
                   <TextContainer home={home}>
                     <Text>
                       <SwiperHeader>
-                        <Bit>
-                          <Logo
-                            objectFit="contain"
-                            fluid={client.logo.localFile.childImageSharp.fluid}
-                          />
-                        </Bit>
                         <Bit>
                           <Voice>Cliente:</Voice>
                           <VoiceInfo>{client.cliente}</VoiceInfo>
