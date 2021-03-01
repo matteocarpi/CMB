@@ -132,13 +132,15 @@ const PrimaryServicesSecondaryBlock = ({
               ? `${baseUrl}${sottoServizioUri}`
               : baseUrl
 
-            return (
-              <SecondaryServiceTag
-                key={service.id}
-                title={service.title}
-                uri={uri}
-              />
-            )
+            if (`${location.pathname}/` !== baseUrl) {
+              return (
+                <SecondaryServiceTag
+                  key={service.id}
+                  title={service.title}
+                  uri={uri}
+                />
+              )
+            }
           })}
         </ServiceList>
       </Content>
