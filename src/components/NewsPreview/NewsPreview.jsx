@@ -32,6 +32,14 @@ const Container = styled.div`
         margin-bottom: 8rem;
       }
     }
+
+    .swiper-button-next:after {
+      margin-right: -1rem;
+    }
+
+    .swiper-button-prev {
+      display: none;
+    }
   }
 `
 
@@ -75,7 +83,7 @@ const Plus = styled(PlusIcon)`
 const News = styled.div`
   margin: 0 auto;
   @media (min-width: 768px) {
-    padding: 1rem;
+    padding-right: 4rem;
     ${({ isActive }) => isActive && css``}
   }
 `
@@ -84,6 +92,7 @@ const SwiperDesktop = styled.div`
   display: none;
   @media (min-width: 768px) {
     display: flex;
+    padding-left: 1rem;
   }
   justify-content: space-around;
   width: 100%;
@@ -186,7 +195,7 @@ export default function NewsPreview() {
 
       <SwiperDesktop>
         {/* Secondary */}
-        <Swiper navigation slidesPerView={5}>
+        <Swiper loop navigation slidesPerView={4}>
           {posts.map(post => {
             const fluid =
               post.node.featuredImage?.node.localFile.childImageSharp.fluid ??
