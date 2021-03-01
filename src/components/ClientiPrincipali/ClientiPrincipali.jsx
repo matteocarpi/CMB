@@ -38,7 +38,7 @@ const SwiperContainer = styled(motion.div)`
   width: 100%;
   align-items: center;
   margin-top: 2rem;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
   margin-right: auto;
   * {
     color: white;

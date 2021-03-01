@@ -10,7 +10,6 @@ import 'swiper/swiper.scss'
 
 const Container = styled.div`
   width: 100%;
-  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +25,7 @@ const Container = styled.div`
     }
   }
   @media (min-width: 768px) {
+    margin-top: 3rem;
     .swiper-button-next,
     .swiper-button-prev {
       &:after {
