@@ -217,6 +217,8 @@ const Text = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 0 9rem 0 2.5rem;
+  border-left: solid 2px ${({ theme }) => theme.gold};
+
   @media (max-width: 767px) {
     margin: 0;
     padding: 0;
