@@ -73,7 +73,6 @@ const ClientiList = styled.ul`
   margin: 0 auto;
 
   @media (min-width: 768px) {
-    max-height: 200px;
     display: flex;
     width: 100%;
     justify-content: center;
@@ -85,7 +84,7 @@ const Cliente = styled.li`
   color: white;
   white-space: nowrap;
   width: min-content;
-  margin-left: 6rem;
+  margin: 1rem 2rem;
 `
 
 const PartnersWrapper = styled.section`
