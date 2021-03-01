@@ -82,6 +82,10 @@ const Plus = styled(PlusIcon)`
 
 const News = styled.div`
   margin: 0 auto;
+
+  @media (max-width: 767px) {
+    padding-right: 2.5rem;
+  }
   @media (min-width: 768px) {
     padding-right: 4rem;
     ${({ isActive }) => isActive && css``}
@@ -114,6 +118,9 @@ const Image = styled(ImageCut)``
 
 const SwiperMobile = styled(Swiper)`
   width: 100%;
+  .swiper-button-prev {
+    display: none;
+  }
   @media (min-width: 767px) {
     display: none;
   }
@@ -161,7 +168,7 @@ export default function NewsPreview() {
         News
       </SectionTitle>
 
-      <SwiperMobile navigation slidesPerView={1}>
+      <SwiperMobile loop navigation slidesPerView={1}>
         {posts.map(post => {
           const fluid =
             post.node.featuredImage?.node.localFile.childImageSharp.fluid ??
