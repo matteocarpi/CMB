@@ -102,7 +102,7 @@ const Contatti = () => {
             <Location>
               <Name>{content.sedelegale.nome} (Sede Legale)</Name>
               <Address>{content.sedelegale.indirizzo}</Address>
-
+              <br />
               <ContactWrapper>
                 Tel:{' '}
                 {content.contatti.telefono.map((telefono, index) => (
@@ -120,6 +120,7 @@ const Contatti = () => {
                 Fax: <Contact>{content.contatti.fax}</Contact>
               </ContactWrapper>
 
+              <br />
               <ContactWrapper>
                 Mail:{' '}
                 <Contact href={`mailto:${content.contatti.mail}`}>
