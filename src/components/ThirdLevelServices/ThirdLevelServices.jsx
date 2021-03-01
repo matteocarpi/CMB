@@ -261,13 +261,7 @@ function ThirdLevelServices({ sottoServizi, location }) {
               styles={selectStyles}
               options={sottoServiziOptions}
               defaultValue={Number(currentIndex)}
-              onChange={({ value }) =>
-                navigate(value, {
-                  state: {
-                    disableScrollUpdate: true,
-                  },
-                })
-              }
+              onChange={({ value }) => navigate(`${value}#sottoservizio`)}
               components={{ ValueContainer, Option }}
               theme={theme => ({
                 ...theme,
