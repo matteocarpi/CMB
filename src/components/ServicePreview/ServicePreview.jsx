@@ -157,7 +157,6 @@ const Plus = styled(IconPlus)`
     }
   }
   align-self: flex-end;
-  margin-top: 3rem;
 `
 
 const Row = styled.div`
@@ -182,7 +181,7 @@ const Right = styled.div`
   width: 100%;
   display: flex;
   @media (min-width: 768px) {
-    height: 700px;
+    height: 650px;
   }
 `
 
