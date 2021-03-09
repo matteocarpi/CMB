@@ -81,7 +81,7 @@ const ContactInfo = styled.li`
   }
 `
 
-const NewsLetterForm = styled.div`
+const NewsLetterForm = styled.form`
   margin-top: 3rem;
   display: flex;
   flex-direction: column;
@@ -97,12 +97,39 @@ const NewsLetterFormTitle = styled.span`
 
 const Input = styled.input`
   margin-top: 1rem;
+  padding: 0.5rem;
   width: 200px;
   height: 38px;
   background-color: transparent;
   color: white;
   border: solid 2px white;
+
+  &::placeholder {
+    color: white;
+  }
 `
+
+const Button = styled.button`
+  margin-top: 1rem;
+  padding: 0.5rem;
+  width: 100px;
+  height: 38px;
+  color: ${({ theme }) => theme.navy};
+  font-weight: 600;
+  background-color: white;
+  text-transform: uppercase;
+`
+
+// const Checkbox = styled.input``
+
+// const Label = styled.label`
+//   color: white;
+//   font-size: 15px;
+//   a {
+//     color: white;
+//     text-decoration: underline;
+//   }
+// `
 
 export default function Footer() {
   const data = useStaticQuery(graphql`
@@ -178,7 +205,14 @@ export default function Footer() {
         <Right>
           <NewsLetterForm>
             <NewsLetterFormTitle>Iscriviti alla newsletter</NewsLetterFormTitle>
-            <Input />
+            <Input placeholder="Nome" />
+            <Input placeholder="Azienda" />
+            <Input placeholder="E-Mail" />
+            {/* <Label htmlfor="privacy">
+              <Checkbox type="checkbox" name="privacy" />
+              Accetto la <Link to="privacy-policy">Privacy Policy</Link>
+            </Label> */}
+            <Button>Iscriviti</Button>
           </NewsLetterForm>
         </Right>
       </Container>
