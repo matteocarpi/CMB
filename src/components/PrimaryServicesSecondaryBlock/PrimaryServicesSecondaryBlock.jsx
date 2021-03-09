@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
 
@@ -83,6 +83,19 @@ const ServiceList = styled.section`
   padding: 2rem 0;
 `
 
+const Subtitle = styled.p`
+  color: white;
+  padding-top: 2rem;
+  margin-left: 46px;
+  font-weight: 400;
+  font-size: 25px;
+`
+
+const ServiceListContainer = styled.div`
+  background-color: ${({ theme }) => theme.navy};
+  box-sizing: border-box;
+`
+
 const PrimaryServicesSecondaryBlock = ({
   pageContext,
   data: secondaryServices,
@@ -90,13 +103,25 @@ const PrimaryServicesSecondaryBlock = ({
 }) => {
   const { sottotitolo, primaryServices } = pageContext
 
+  const activePrimaryService = primaryServices.find(service => {
+    const uri =
+      service.titolo.toLowerCase() === 'vigilanza'
+        ? `/servizi/${service.titolo.toLowerCase()}/vigilanza`
+        : `/servizi/${service.titolo.toLowerCase()}`
+
+    const active = location.pathname.includes(uri)
+
+    if (active) return service.titolo
+  })
+
+  const { titolo: currentCategory } = activePrimaryService
+
   return (
     <>
       <Content>
         <SectionTitle medium uri="/servizi">
           {sottotitolo}
         </SectionTitle>
-
         <Navigation>
           {primaryServices.map(service => {
             const uri =
@@ -119,30 +144,35 @@ const PrimaryServicesSecondaryBlock = ({
           })}
         </Navigation>
 
-        <ServiceList>
-          {secondaryServices.allWpServizio.edges.map(s => {
-            const service = s.node
-            const hassottoservizi = service.sottoServizi?.hassottoservizi
-            const baseUrl = `/servizi/${service.servizioContent.categoria}/${service.slug}/`
-            const childSlug =
-              hassottoservizi &&
-              makeSlug(service.sottoServizi.listasottoservizi[0].titolo)
-            const sottoServizioUri = `?article=${childSlug}&index=0`
-            const uri = hassottoservizi
-              ? `${baseUrl}${sottoServizioUri}`
-              : baseUrl
+        {secondaryServices.allWpServizio.edges.length > 1 && (
+          <ServiceListContainer>
+            <Subtitle>Altri Servizi di {currentCategory}</Subtitle>
+            <ServiceList>
+              {secondaryServices.allWpServizio.edges.map(s => {
+                const service = s.node
+                const hassottoservizi = service.sottoServizi?.hassottoservizi
+                const baseUrl = `/servizi/${service.servizioContent.categoria}/${service.slug}/`
+                const childSlug =
+                  hassottoservizi &&
+                  makeSlug(service.sottoServizi.listasottoservizi[0].titolo)
+                const sottoServizioUri = `?article=${childSlug}&index=0`
+                const uri = hassottoservizi
+                  ? `${baseUrl}${sottoServizioUri}`
+                  : baseUrl
 
-            if (`${location.pathname}/` !== baseUrl) {
-              return (
-                <SecondaryServiceTag
-                  key={service.id}
-                  title={service.title}
-                  uri={uri}
-                />
-              )
-            }
-          })}
-        </ServiceList>
+                if (`${location.pathname}/` !== baseUrl) {
+                  return (
+                    <SecondaryServiceTag
+                      key={service.id}
+                      title={service.title}
+                      uri={uri}
+                    />
+                  )
+                }
+              })}
+            </ServiceList>
+          </ServiceListContainer>
+        )}
       </Content>
     </>
   )
