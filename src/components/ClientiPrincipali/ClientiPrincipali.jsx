@@ -261,7 +261,7 @@ const ThumbsContainer = styled.section`
     .swiper-container {
       .swiper-wrapper {
         .swiper-slide {
-          width: 20% !important;
+          width: 30% !important;
           height: 100%;
         }
       }
@@ -533,7 +533,7 @@ export default function ClientiPrincipali({ location, home }) {
             className="thumbs"
           >
             {clientiprincipali.map((client, index) => (
-              <SwiperSlide key={client.cliente}>
+              <SwiperSlide style={{ width: '30%' }} key={client.cliente}>
                 <ThumbButton
                   active={activeSlide === index}
                   type="button"
