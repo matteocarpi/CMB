@@ -99,6 +99,8 @@ const PartnersContainer = styled.section`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  max-width: 1440px;
+  margin: 0 auto;
 `
 
 const Partner = styled.article`
