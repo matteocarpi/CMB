@@ -20,7 +20,7 @@ steps:
     settings:
       backend: 'filesystem'
       restore: true
-      # cache_key: '{{ checksum "package.json" }}'
+      cache_key: '{{ checksum "package.json" }}'
       archive_format: 'gzip'
       mount:
         - './node_modules'
