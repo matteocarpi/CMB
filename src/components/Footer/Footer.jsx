@@ -140,7 +140,7 @@ export default function Footer() {
           <Menu>
             <MenuItem>
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <Link to="#">News</Link>
+              <Link to="/news">News</Link>
             </MenuItem>
             <MenuItem>
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
