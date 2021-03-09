@@ -19,7 +19,7 @@ const Container = styled.section`
 const Descrizione = styled.article``
 
 const StyledLogo = styled(Logo)`
-  margin: 0 2rem 0 0;
+  margin: 0.7rem 2rem 0 0;
   height: 100%;
   width: 100%;
   @media (max-width: 767px) {
