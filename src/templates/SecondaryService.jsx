@@ -23,7 +23,7 @@ const Image = styled(Img)`
 
   picture {
     img {
-      object-position: top center !important;
+      /* object-position: top center !important; */
     }
   }
 
