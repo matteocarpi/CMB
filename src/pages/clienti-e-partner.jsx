@@ -103,7 +103,7 @@ const PartnersContainer = styled.section`
 
 const Partner = styled.article`
   margin: 4rem 0 0 0;
-  max-width: 500px;
+  max-width: 400px;
 `
 
 const PartnerDescription = styled.article`
