@@ -46,7 +46,7 @@ const LogoContainer = styled.section`
 export default function IntroSlide({ img }) {
   return (
     <Container fluid={img} opacity={0} backgroundPosition="left center">
-      <LogoContainer backgroundColor="rgba(9, 15, 45, 0.9)">
+      <LogoContainer backgroundColor="rgba(9, 15, 45, 1)">
         <SlicedLogo />
       </LogoContainer>
     </Container>

@@ -175,18 +175,16 @@ const StyledSlidingLogoMobile = styled(SlidingLogoMobile)`
 const Home = () => {
   const data = useStaticQuery(graphql`
     {
+      placeholderImage: imageSharp(
+        fluid: { originalName: { eq: "placeholder-image.png" } }
+      ) {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
       wpPage(id: { eq: "cG9zdDo5" }) {
         title
         homeContent {
-          image {
-            localFile {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
           shortBio
           longBio
           slogan1
@@ -259,7 +257,7 @@ const Home = () => {
     <Layout>
       <SEO title={data.wpPage.title} />
       <IntroWrapper>
-        <IntroSlide img={content.image.localFile.childImageSharp.fluid} />
+        <IntroSlide img={data.placeholderImage.fluid} />
       </IntroWrapper>
       <SloganContainer>
         <FirstSlogan dangerouslySetInnerHTML={{ __html: content.slogan1 }} />
