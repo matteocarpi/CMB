@@ -118,8 +118,10 @@ export default function Servizi() {
               index={index}
               servicesNumber={primaryServices.length}
               uri={
-                service.titolo.toLowerCase() === 'vigilanza'
-                  ? `${service.titolo.toLowerCase()}/${vigilanzaUri}`
+                service.titolo.toLowerCase().substring(0, 9) === 'vigilanza'
+                  ? `${service.titolo
+                      .toLowerCase()
+                      .substring(0, 9)}/${vigilanzaUri}`
                   : service.titolo.toLowerCase()
               }
             />
