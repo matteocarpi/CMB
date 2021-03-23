@@ -181,6 +181,20 @@ const ClientiEPartner = ({ location }) => {
             }
             citazione
           }
+          logos {
+            localFile {
+              childImageSharp {
+                fluid {
+                  base64
+                  tracedSVG
+                  srcWebp
+                  srcSetWebp
+                  originalImg
+                  originalName
+                }
+              }
+            }
+          }
           altriClienti {
             cliente
           }
