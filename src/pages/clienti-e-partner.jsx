@@ -131,14 +131,20 @@ const PartnerLogo = styled(Image)`
 
 const Logos = styled.section`
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
 `
 
 const SecondaryLogo = styled.div`
-  width: 25%;
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  max-height: 100px;
+  margin: 2rem 0;
+  @media (min-width: 768px) {
+    width: 25%;
+  }
 `
 
 const otherClientsVariants = {
@@ -232,7 +238,6 @@ const ClientiEPartner = ({ location }) => {
 
   const { clientiContent: content } = clientiPage
 
-  console.log(content.logos)
   return (
     <Layout>
       <Seo
