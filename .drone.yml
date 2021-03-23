@@ -43,6 +43,16 @@ steps:
       - yarn install
       - yarn build
 
+  - name: Deploy
+    image: node
+    environment:
+      NETLIFY_AUTH_TOKEN:
+        from_secret: NETLIFY_AUTH_TOKEN
+      NETLIFY_SITE_ID:
+        from_secret: NETLIFY_SITE_ID
+    commands:
+      - bash deploy.sh
+
   - name: Rebuild Cache
     image: meltwater/drone-cache:dev
     pull: true
@@ -59,16 +69,6 @@ steps:
     volumes:
       - name: cache
         path: /tmp/cache
-
-  - name: Deploy
-    image: node
-    environment:
-      NETLIFY_AUTH_TOKEN:
-        from_secret: NETLIFY_AUTH_TOKEN
-      NETLIFY_SITE_ID:
-        from_secret: NETLIFY_SITE_ID
-    commands:
-      - bash deploy.sh
 
   - name: Notification
     image: plugins/slack
