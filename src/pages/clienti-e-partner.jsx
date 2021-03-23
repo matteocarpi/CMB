@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
 import { motion, AnimatePresence } from 'framer-motion'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
 import Image from 'gatsby-image'
 import Layout from '../components/Layout'
@@ -128,6 +129,18 @@ const PartnerLogo = styled(Image)`
   }
 `
 
+const Logos = styled.section`
+  display: flex;
+  width: 100%;
+`
+
+const SecondaryLogo = styled.div`
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const otherClientsVariants = {
   hidden: {
     scaleY: 0,
@@ -184,14 +197,7 @@ const ClientiEPartner = ({ location }) => {
           logos {
             localFile {
               childImageSharp {
-                fluid {
-                  base64
-                  tracedSVG
-                  srcWebp
-                  srcSetWebp
-                  originalImg
-                  originalName
-                }
+                gatsbyImageData(layout: CONSTRAINED)
               }
             }
           }
@@ -226,6 +232,7 @@ const ClientiEPartner = ({ location }) => {
 
   const { clientiContent: content } = clientiPage
 
+  console.log(content.logos)
   return (
     <Layout>
       <Seo
@@ -237,6 +244,18 @@ const ClientiEPartner = ({ location }) => {
       <Descrizione dangerouslySetInnerHTML={{ __html: content.descrizione }} />
       <ClientiPrincipali location={location} />
 
+      <Logos>
+        {content.logos?.map(logo => (
+          <SecondaryLogo
+            key={logo.localFile.childImageSharp.gatsbyImageData.backgroundColor}
+          >
+            <GatsbyImage
+              image={logo.localFile.childImageSharp.gatsbyImageData}
+              style={{ maxWidth: '100px' }}
+            />
+          </SecondaryLogo>
+        ))}
+      </Logos>
       <AllClients>
         <ShowAllClients
           active={showAllClients}

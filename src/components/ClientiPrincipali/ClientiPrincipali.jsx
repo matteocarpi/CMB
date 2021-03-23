@@ -76,6 +76,7 @@ const Client = styled.div`
     height: 50px;
     bottom: 0;
     background-color: white;
+    z-index: 1;
   }
 
   @media (min-width: 768px) {
