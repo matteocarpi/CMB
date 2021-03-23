@@ -97,11 +97,21 @@ exports.createPages = async function ({ actions, graphql }) {
   const { sottotitolo } = data.wpPage.serviziContent
 
   primaryServices.forEach(service => {
-    const slug = `/servizi/${service.titolo.toLowerCase()}`
+    const isVigilanza =
+      service.titolo.toLowerCase().substring(0, 9) === 'vigilanza'
+
+    const slug = isVigilanza
+      ? `/servizi/${service.titolo.toLowerCase().substring(0, 9)}`
+      : `/servizi/${service.titolo.toLowerCase()}`
     const { titolo } = service
     const category = titolo.toLowerCase()
 
-    const serviceData = data.wpPage.serviziContent[titolo.toLowerCase()]
+    const serviceData =
+      data.wpPage.serviziContent[
+        isVigilanza
+          ? titolo.toLowerCase().substring(0, 9)
+          : titolo.toLowerCase()
+      ]
 
     actions.createPage({
       path: slug,
