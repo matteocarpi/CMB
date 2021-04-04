@@ -30,6 +30,7 @@ export const data = graphql`
   query PrimaryServices($category: String) {
     allWpServizio(
       filter: { servizioContent: { categoria: { eq: $category } } }
+      sort: { fields: servizioContent___ordine, order: ASC }
     ) {
       edges {
         node {

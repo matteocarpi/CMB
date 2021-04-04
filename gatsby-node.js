@@ -62,7 +62,7 @@ exports.createPages = async function ({ actions, graphql }) {
           }
         }
       }
-      allWpServizio {
+      allWpServizio(sort: { fields: servizioContent___ordine, order: ASC }) {
         edges {
           node {
             id
