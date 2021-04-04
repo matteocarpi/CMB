@@ -39,10 +39,11 @@ const NavItem = styled.li`
   margin-bottom: 1rem;
   font-size: 20px;
   font-weight: 300;
-
   a {
     display: flex;
     p {
+      text-transform: uppercase;
+      color: ${({ theme }) => theme.gold};
       margin: 0;
       &:first-child {
         margin-right: 0.5rem;
