@@ -42,8 +42,6 @@ const NavItem = styled.li`
   a {
     display: flex;
     p {
-      text-transform: uppercase;
-      color: ${({ theme }) => theme.gold};
       margin: 0;
       &:first-child {
         margin-right: 0.5rem;
@@ -147,6 +145,12 @@ const Cut = styled.div`
     }
   }
 `
+
+const DescriptionTitle = styled.p`
+  color: ${({ theme }) => theme.gold};
+  text-transform: uppercase;
+`
+
 const Description = styled.article`
   @media (min-width: 768px) {
     ul {
@@ -205,15 +209,19 @@ function ThirdLevelServices({ sottoServizi, location }) {
   const { titolo, listasottoservizi } = sottoServizi
 
   const sottoServiziList = {}
+  const sottoServiziTitles = {}
 
   listasottoservizi.forEach(servizio => {
     const slug = makeSlug(servizio.titolo)
 
     sottoServiziList[`${slug}`] = servizio.descrizione
+
+    sottoServiziTitles[`${slug}`] = servizio.titolo
   })
 
   const currentIndex = isBrowser && queryObj.index
   const description = sottoServiziList[queryObj.article] ?? null
+  const title = sottoServiziTitles[queryObj.article] ?? null
 
   const articleParam = '?article'
 
@@ -300,6 +308,7 @@ function ThirdLevelServices({ sottoServizi, location }) {
 
         {description && (
           <Content>
+            <DescriptionTitle>{title}</DescriptionTitle>
             <Description dangerouslySetInnerHTML={{ __html: description }} />
             <Cut />
           </Content>
