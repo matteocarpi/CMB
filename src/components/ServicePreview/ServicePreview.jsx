@@ -262,8 +262,19 @@ export default function ServicePreview({ services }) {
           }
         }
       }
+      allWpServizio(
+        filter: { servizioContent: { categoria: { eq: "vigilanza" } } }
+      ) {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
     }
   `)
+
+  const vigilanzaUri = data.allWpServizio.edges[0].node.slug
 
   const { serviziContent } = data.wpPage
   const { consulenza, formazione, vigilanza } = services
@@ -276,7 +287,10 @@ export default function ServicePreview({ services }) {
       servizi[currentService]?.informazioni,
     ) ?? serviziContent.descrizione
 
-  const uri = servizi[currentService]?.titolo.toLowerCase() ?? ''
+  const uri =
+    servizi[currentService]?.titolo.toLowerCase() === 'vigilanza'
+      ? `${servizi[currentService]?.titolo.toLowerCase()}/${vigilanzaUri}`
+      : servizi[currentService]?.titolo.toLowerCase() ?? ''
 
   const image =
     servizi[currentService]?.immagine.localFile.childImageSharp.fluid ??
