@@ -57,7 +57,7 @@ const SloganContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-top: -100px;
+  height: calc(100vh - 200px);
   @media (max-width: 980px) {
     background-color: white;
     background: transparent;
@@ -65,12 +65,14 @@ const SloganContainer = styled.div`
 `
 
 const halfDiagonal = Math.sqrt((100 / 2) ** 2 * 2)
+const halfDiagonalBig = Math.sqrt((150 / 2) ** 2 * 2)
 
 const FirstSlogan = styled.h1`
   display: block;
-  padding-bottom: 20vh;
   margin-top: 0;
-  padding-top: calc(100vh - 155.6px);
+  margin-bottom: 0;
+  margin-bottom: ${halfDiagonalBig}px;
+  /* padding-top: calc(100vh - 155.6px); */
   z-index: 1;
   font-size: calc(22px + 2vw);
   @media (max-width: 980px) {
