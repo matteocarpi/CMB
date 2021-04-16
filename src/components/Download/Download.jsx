@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
 import DownloadIcon from '../../assets/icons/download.svg'
 
@@ -12,10 +13,18 @@ const StyledDownloadIcon = styled(DownloadIcon)`
     `}
 `
 
-export default function Download({ url, tiny, className }) {
+export default function Download({ link, url, tiny, className }) {
   return (
-    <Container className={className} tiny={tiny} href={url} target="_blank">
-      <StyledDownloadIcon style={tiny && { width: '20px' }} />
-    </Container>
+    <>
+      {link ? (
+        <Link to={url}>
+          <StyledDownloadIcon style={tiny && { width: '20px' }} />
+        </Link>
+      ) : (
+        <Container className={className} tiny={tiny} href={url} target="_blank">
+          <StyledDownloadIcon style={tiny && { width: '20px' }} />
+        </Container>
+      )}
+    </>
   )
 }

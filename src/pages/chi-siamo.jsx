@@ -246,6 +246,10 @@ const ChiSiamo = () => {
               __html: content.sicurezza.descrizione,
             }}
           />
+          <DownloadWrapper>
+            <Subtitle>Maggiori Informazioni</Subtitle>
+            <Download link url="/centro-futura" />
+          </DownloadWrapper>
         </Futura>
 
         <Certificazioni>
