@@ -252,7 +252,9 @@ const News = () => {
   return (
     <Layout>
       <Seo title="News" uri="/news" />
-      <SectionTitle main>News</SectionTitle>
+      <SectionTitle main>
+        News
+      </SectionTitle>
 
       <Container>
         <TopBar>

@@ -111,7 +111,9 @@ const Post = ({ data }) => {
         <Content dangerouslySetInnerHTML={{ __html: post.content }} />
       </Wrapper>
 
-      <SectionTitle>Articoli Correlati</SectionTitle>
+      <SectionTitle medium long>
+        Articoli Correlati
+      </SectionTitle>
       <RelatedPosts>
         {relatedPosts.map(relatedPost => {
           const image =
