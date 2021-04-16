@@ -7,7 +7,7 @@ const Container = styled.div`
   margin: 1rem;
   h5 {
     margin-bottom: 1rem;
-    font-size: 15px;
+    font-size: 22px;
   }
 
   @media (min-width: 768px) {
