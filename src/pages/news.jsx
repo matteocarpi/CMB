@@ -167,7 +167,11 @@ const News = () => {
 
   const allYears = useMemo(() => data.years.edges.map(y => y.node.date), [data])
 
-  const uniqueYears = useMemo(() => new Set(allYears), [allYears])
+  const currentYear = new Date().getFullYear()
+
+  const lastYears = allYears.filter(year => year >= currentYear - 3)
+
+  const uniqueYears = useMemo(() => new Set(lastYears), [lastYears])
 
   const yearsOptions = useMemo(
     () => [...uniqueYears].map(year => ({ label: year, value: year })),
