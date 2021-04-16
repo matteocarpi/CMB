@@ -128,6 +128,7 @@ export const data = graphql`
     }
     allWpServizio(
       filter: { servizioContent: { categoria: { eq: $category } } }
+      sort: { fields: servizioContent___ordine, order: ASC }
     ) {
       edges {
         node {

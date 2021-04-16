@@ -16,11 +16,13 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
 
   * {
-    -webkit-user-select: none;
+    ${
+      '' /* -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
-    user-select: none;
+    user-select: none; */
+    }
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     color: ${({ theme }) => theme.black};
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
