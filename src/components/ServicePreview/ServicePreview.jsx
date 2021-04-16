@@ -151,6 +151,7 @@ const StyledLink = styled(Link)`
   align-self: flex-end;
 `
 const Plus = styled(IconPlus)`
+  transform: scale(2);
   &:hover {
     path {
       fill: ${({ theme }) => theme.gold};
