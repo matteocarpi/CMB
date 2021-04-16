@@ -19,11 +19,12 @@ const Container = styled.section`
 const Descrizione = styled.article``
 
 const StyledLogo = styled(Logo)`
-  margin: 0.7rem 2rem 0 0;
   height: 100%;
-  width: 100%;
+  display: flex;
+  padding: 0.5rem 0;
+
   @media (max-width: 767px) {
-    margin: 0;
+    height: 200px;
   }
 `
 const LogoWrapper = styled.div`
@@ -35,6 +36,15 @@ const LogoWrapper = styled.div`
     float: left;
     width: 30%;
     margin: 0 1rem 0.5rem 2rem;
+
+    @media (min-width: 768px) {
+      justify-content: flex-end;
+    }
+  }
+
+  @media (min-width: 768px) {
+    height: 200px;
+    width: unset;
   }
 `
 
@@ -42,10 +52,10 @@ const LogoDescription = styled.section`
   margin-top: 2rem;
   p {
     margin-top: 0;
+    max-width: 600px;
   }
 
   @media (min-width: 768px) {
-    width: 60%;
     align-self: flex-end;
     margin-bottom: 2rem;
     display: flex;
