@@ -169,7 +169,7 @@ const News = () => {
 
   const currentYear = new Date().getFullYear()
 
-  const lastYears = allYears.filter(year => year >= currentYear - 3)
+  const lastYears = allYears.filter(year => year > currentYear - 3)
 
   const uniqueYears = useMemo(() => new Set(lastYears), [lastYears])
 
@@ -252,9 +252,7 @@ const News = () => {
   return (
     <Layout>
       <Seo title="News" uri="/news" />
-      <SectionTitle main>
-        News
-      </SectionTitle>
+      <SectionTitle main>News</SectionTitle>
 
       <Container>
         <TopBar>
