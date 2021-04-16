@@ -212,23 +212,23 @@ export default function NewsPreview() {
               <>
                 <SwiperSlide style={{ width: '100%' }} key={post.node.id}>
                   {({ isActive }) => (
-                    <News isActive={isActive}>
-                      <Image
-                        dr
-                        fluid={{
-                          ...fluid,
-                          aspectRatio: 1,
-                        }}
-                      />
+                    <Link to={post.node.slug}>
+                      <News isActive={isActive}>
+                        <Image
+                          dr
+                          fluid={{
+                            ...fluid,
+                            aspectRatio: 1,
+                          }}
+                        />
 
-                      <NewsBottom>
-                        <NewsTitle>{post.node.title}</NewsTitle>
-                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                        <Link to={post.node.slug}>
+                        <NewsBottom>
+                          <NewsTitle>{post.node.title}</NewsTitle>
+                          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                           <Plus />
-                        </Link>
-                      </NewsBottom>
-                    </News>
+                        </NewsBottom>
+                      </News>
+                    </Link>
                   )}
                 </SwiperSlide>
               </>
