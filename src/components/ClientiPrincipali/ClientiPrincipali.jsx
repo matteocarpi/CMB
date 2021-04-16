@@ -497,7 +497,7 @@ export default function ClientiPrincipali({ location, home }) {
                           <VoiceInfo>{client.cliente}</VoiceInfo>
                         </Bit>
                         <Bit>
-                          <Voice>Commissione:</Voice>
+                          <Voice>Servizio:</Voice>
                           <VoiceInfo>{client.commissione}</VoiceInfo>
                         </Bit>
                       </SwiperHeader>
