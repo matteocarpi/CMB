@@ -1,7 +1,7 @@
 import React, { useState, useRef, useLayoutEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import SwiperCore, { Thumbs, Pagination } from 'swiper'
+import SwiperCore, { Thumbs, Pagination, Autoplay, Navigation } from 'swiper'
 import queryString from 'query-string'
 import { useStaticQuery, graphql, navigate } from 'gatsby'
 
@@ -16,7 +16,11 @@ import Img from '../ImageCut'
 import Video from '../Video'
 import SectionTitle from '../SectionTitle'
 
-SwiperCore.use([Thumbs, Pagination])
+import 'swiper/swiper.scss'
+import 'swiper/components/navigation/navigation.scss'
+import 'swiper/components/pagination/pagination.scss'
+
+SwiperCore.use([Navigation, Thumbs, Pagination, Autoplay])
 
 const SwiperWrapper = styled(motion.div)`
   position: relative;
@@ -449,6 +453,7 @@ export default function ClientiPrincipali({ location, home }) {
       <SwiperContainer>
         <Swiper
           loop
+          autoplay={{ delay: 5000 }}
           initialSlide={initialSlide}
           navigation={!isMobile}
           pagination={{ clickable: true }}
