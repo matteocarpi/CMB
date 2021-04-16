@@ -14,23 +14,23 @@ steps:
         from_secret: drone_auth_token
     commands:
       - bash prebuild.sh
-  - name: Restore Cache
-    image: meltwater/drone-cache:dev
-    pull: true
-    settings:
-      backend: 'filesystem'
-      restore: true
-      cache_key: '{{ checksum "package.json" }}'
-      archive_format: 'gzip'
-      mount:
-        - './node_modules'
-        - './.wordpress-cache'
-        - './public'
-        - './.cache'
+  # - name: Restore Cache
+  #   image: meltwater/drone-cache:dev
+  #   pull: true
+  #   settings:
+  #     backend: 'filesystem'
+  #     restore: true
+  #     cache_key: '{{ checksum "package.json" }}'
+  #     archive_format: 'gzip'
+  #     mount:
+  #       - './node_modules'
+  #       - './.wordpress-cache'
+  #       - './public'
+  #       - './.cache'
 
-    volumes:
-      - name: cache
-        path: /tmp/cache
+  #   volumes:
+  #     - name: cache
+  #       path: /tmp/cache
 
   - name: Build
     image: node
