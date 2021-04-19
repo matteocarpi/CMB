@@ -131,6 +131,7 @@ const PartnerLogo = styled(Image)`
 
 const Logos = styled.section`
   display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
   width: 100%;
 `
@@ -143,7 +144,7 @@ const SecondaryLogo = styled.div`
   max-height: 100px;
   margin: 2rem 0;
   @media (min-width: 768px) {
-    width: 25%;
+    width: 30%;
   }
 `
 
@@ -256,7 +257,7 @@ const ClientiEPartner = ({ location }) => {
           >
             <GatsbyImage
               image={logo.localFile.childImageSharp.gatsbyImageData}
-              style={{ maxWidth: '100px' }}
+              style={{ maxWidth: '300px' }}
             />
           </SecondaryLogo>
         ))}

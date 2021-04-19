@@ -123,7 +123,7 @@ const StyledVideo = styled(Video)`
 `
 
 const LogoThumb = styled(Img)`
-  max-height: 98px;
+  /* max-height: 98px; */
   min-width: 100px;
   margin-top: 1rem;
   width: 70%;
@@ -144,7 +144,7 @@ const LogoThumb = styled(Img)`
 
   @media (min-width: 768px) {
     width: min-content;
-    min-width: 200px;
+    min-width: 300px;
     margin-top: 0;
   }
 `
@@ -252,6 +252,7 @@ const ThumbsContainer = styled.section`
     .swiper-wrapper {
       display: flex;
       justify-content: space-around;
+      align-items: center;
       flex-wrap: wrap;
       .swiper-slide {
         width: 50% !important;
@@ -275,8 +276,9 @@ const ThumbsContainer = styled.section`
 `
 
 const ThumbButton = styled.button`
-  width: 50%;
-  height: 110px;
+  width: 300px;
+  height: min-content;
+  /* height: 110px; */
   display: flex;
   justify-content: center;
   align-items: center;
