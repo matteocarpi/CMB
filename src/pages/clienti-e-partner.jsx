@@ -145,6 +145,7 @@ const SecondaryLogo = styled.div`
   margin: 2rem 0;
   @media (min-width: 768px) {
     width: 30%;
+    height: 100px;
   }
 `
 
@@ -257,7 +258,7 @@ const ClientiEPartner = ({ location }) => {
           >
             <GatsbyImage
               image={logo.localFile.childImageSharp.gatsbyImageData}
-              style={{ maxWidth: '300px' }}
+              style={{ maxWidth: '300px', maxHeight: '100px' }}
             />
           </SecondaryLogo>
         ))}

@@ -123,10 +123,9 @@ const StyledVideo = styled(Video)`
 `
 
 const LogoThumb = styled(Img)`
-  /* max-height: 98px; */
+  max-height: 100px;
   min-width: 100px;
   margin-top: 1rem;
-  width: 70%;
   picture {
     img {
       object-fit: contain !important;
@@ -276,13 +275,14 @@ const ThumbsContainer = styled.section`
 `
 
 const ThumbButton = styled.button`
-  width: 300px;
+  width: 50%;
   height: min-content;
-  /* height: 110px; */
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  margin: 1.5rem 0;
   ${({ active }) =>
     active &&
     css`
@@ -291,6 +291,10 @@ const ThumbButton = styled.button`
   &:hover {
     border-bottom: solid 2px ${({ theme }) => theme.gold};
     padding-bottom: -2px;
+  }
+
+  @media (min-width: 768px) {
+    width: 30%;
   }
 `
 
