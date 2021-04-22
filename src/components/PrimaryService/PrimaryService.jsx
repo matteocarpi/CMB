@@ -25,19 +25,19 @@ const ContainerMobile = styled.button`
   width: 100%;
   padding: 0;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   cursor: pointer;
   ${({ reverseRow }) =>
     reverseRow &&
     css`
-      flex-direction: row-reverse;
+      align-items: flex-end;
     `}
 `
 
 const ImageContainer = styled.div`
   position: relative;
   cursor: pointer;
-  width: 15%;
+  width: 90%;
   margin-bottom: -1px;
   z-index: 10;
   @media (min-width: ${breakPoint}px) {
@@ -47,7 +47,8 @@ const ImageContainer = styled.div`
 
 const Overlay = styled.div`
   position: absolute;
-  background-color: ${({ theme }) => theme.transparentNavy};
+  background-color: ${({ theme, transparent }) =>
+    transparent ? 'transparent' : theme.transparentNavy};
   top: 0;
   bottom: 0;
   left: 0;
@@ -63,24 +64,43 @@ const Logo = styled(Lg)`
 `
 
 const Img = styled(Image)`
-  min-height: 500px;
+  @media (max-width: 767px) {
+    align-self: flex-start;
+  }
+  @media (min-width: 768px) {
+    min-height: 500px;
+  }
 `
 
 const Text = styled.section`
   cursor: pointer;
-  width: 80%;
+  width: 90%;
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
+  @media (max-width: 767px) {
+    p {
+      text-align: center;
+    }
 
+    p:last-child {
+      display: none;
+    }
+  }
   @media (min-width: ${breakPoint}px) {
     width: 60%;
     padding: 2rem 4rem 2rem 2rem;
   }
 `
+
 const Title = styled.h3`
   text-align: left;
   font-size: 35px;
+  color: ${({ white }) => white && 'white'};
+  text-shadow: ${({ white }) => white && '0px 0px 10px rgba(0,0,0,0.2)'};
+  @media (max-width: 767px) {
+    text-align: center;
+  }
   @media (min-width: ${breakPoint}px) {
     font-size: 45px;
   }
@@ -191,7 +211,6 @@ export default function PrimaryService({
   servicesNumber,
   uri,
 }) {
-  console.log({ uri })
   const width = useViewportWidth()
   const isMobile = width < breakPoint
   const isRight = index % 2 !== 0
@@ -228,9 +247,13 @@ export default function PrimaryService({
             isHover={isHover}
           />
 
-          {isHover && (
+          {isHover ? (
             <Overlay>
               <Logo />
+            </Overlay>
+          ) : (
+            <Overlay transparent>
+              <Title white>{title}</Title>
             </Overlay>
           )}
         </ImageContainer>
@@ -238,7 +261,6 @@ export default function PrimaryService({
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
-          <Title>{title}</Title>
           <Quote dangerouslySetInnerHTML={{ __html: citazione }} />
 
           <Decorations isRight={isRight}>

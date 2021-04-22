@@ -90,8 +90,6 @@ export default function Servizi() {
   const { formazione } = page.data.serviziContent
   const { vigilanza } = page.data.serviziContent
 
-  const vigilanzaUri = page.vigilanza.edges[0].node.slug
-
   const primaryServices = [consulenza, formazione, vigilanza]
 
   return (
