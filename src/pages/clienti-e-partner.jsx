@@ -203,6 +203,7 @@ const ClientiEPartner = ({ location }) => {
             citazione
           }
           logos {
+            id
             localFile {
               childImageSharp {
                 gatsbyImageData(layout: CONSTRAINED)
@@ -253,10 +254,9 @@ const ClientiEPartner = ({ location }) => {
 
       <Logos>
         {content.logos?.map(logo => (
-          <SecondaryLogo
-            key={logo.localFile.childImageSharp.gatsbyImageData.backgroundColor}
-          >
+          <SecondaryLogo key={logo.id}>
             <GatsbyImage
+              alt=""
               image={logo.localFile.childImageSharp.gatsbyImageData}
               style={{ maxWidth: '300px', maxHeight: '100px' }}
             />
@@ -301,7 +301,7 @@ const ClientiEPartner = ({ location }) => {
         />
         <PartnersContainer>
           {content.convenzioniEPartners.list.map(partner => (
-            <Partner key={partner.logo.localFile.id}>
+            <Partner key={partner.logo.id}>
               <PartnerLogo
                 fluid={partner.logo.localFile.childImageSharp.fluid}
               />
