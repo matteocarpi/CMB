@@ -27,6 +27,9 @@ const ContainerMobile = styled.button`
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  &:not(:last-child) {
+    margin-bottom: 4rem;
+  }
   ${({ reverseRow }) =>
     reverseRow &&
     css`
