@@ -191,6 +191,7 @@ export default function PrimaryService({
   servicesNumber,
   uri,
 }) {
+  console.log({ uri })
   const width = useViewportWidth()
   const isMobile = width < breakPoint
   const isRight = index % 2 !== 0

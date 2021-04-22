@@ -130,7 +130,11 @@ exports.createPages = async function ({ actions, graphql }) {
   const secondaryServices = data.allWpServizio.edges
 
   secondaryServices.forEach(service => {
-    const slug = `/servizi/${service.node.servizioContent.categoria}/${service.node.slug}`
+    const slug =
+      service.node.servizioContent.categoria === 'vigilanza'
+        ? '/vigilanza-antincendio'
+        : `/servizi/${service.node.servizioContent.categoria}/${service.node.slug}`
+
     const category = service.node.servizioContent.categoria
     actions.createPage({
       path: slug,

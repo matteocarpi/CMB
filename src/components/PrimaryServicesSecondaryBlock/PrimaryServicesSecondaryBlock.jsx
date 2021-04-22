@@ -106,7 +106,7 @@ const PrimaryServicesSecondaryBlock = ({
   const activePrimaryService = primaryServices.find(service => {
     const uri =
       service.titolo.toLowerCase().substring(0, 9) === 'vigilanza'
-        ? `/servizi/${service.titolo.toLowerCase().substring(0, 9)}/vigilanza`
+        ? `/vigilanza-antincendio`
         : `/servizi/${service.titolo.toLowerCase()}`
 
     const active = location.pathname.includes(uri)
@@ -126,9 +126,7 @@ const PrimaryServicesSecondaryBlock = ({
           {primaryServices.map(service => {
             const uri =
               service.titolo.toLowerCase().substring(0, 9) === 'vigilanza'
-                ? `/servizi/${service.titolo
-                    .toLowerCase()
-                    .substring(0, 9)}/vigilanza`
+                ? `/vigilanza-antincendio`
                 : `/servizi/${service.titolo.toLowerCase()}`
 
             const active = location.pathname.includes(uri)

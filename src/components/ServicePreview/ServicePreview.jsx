@@ -275,8 +275,6 @@ export default function ServicePreview({ services }) {
     }
   `)
 
-  const vigilanzaUri = data.allWpServizio.edges[0].node.slug
-
   const { serviziContent } = data.wpPage
   const { consulenza, formazione, vigilanza } = services
 
@@ -290,8 +288,13 @@ export default function ServicePreview({ services }) {
 
   const uri =
     servizi[currentService]?.titolo.toLowerCase() === 'vigilanza'
-      ? `${servizi[currentService]?.titolo.toLowerCase()}/${vigilanzaUri}`
+      ? `/vigilanza-antincendio`
       : servizi[currentService]?.titolo.toLowerCase() ?? ''
+
+  const servizioUri =
+    uri === '/vigilanza-antincendio'
+      ? 'vigilanza-antincendio'
+      : `servizi/${uri}`
 
   const image =
     servizi[currentService]?.immagine.localFile.childImageSharp.fluid ??
@@ -328,7 +331,7 @@ export default function ServicePreview({ services }) {
               <PreviewContainer>
                 {/* Magic. Do not touch. */}
                 <Content dangerouslySetInnerHTML={{ __html: description }} />
-                <StyledLink to={`servizi/${uri}`}>
+                <StyledLink to={servizioUri}>
                   <Plus />
                 </StyledLink>
               </PreviewContainer>
