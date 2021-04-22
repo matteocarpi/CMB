@@ -121,11 +121,19 @@ const News = () => {
           ...GatsbyImageSharpFluid
         }
       }
-      categories: allWpCategory {
+      categories: allWpCategory(
+        sort: {
+          fields: wpChildren___nodes___categoryContent___order
+          order: DESC
+        }
+      ) {
         edges {
           node {
             id
             name
+            categoryContent {
+              order
+            }
           }
         }
       }
@@ -138,14 +146,23 @@ const News = () => {
       }
     }
   `)
+
+  const sortedCategories = data.categories.edges.sort(
+    (a, b) => a.node.categoryContent.order - b.node.categoryContent.order,
+  )
+
+  const categories = sortedCategories.filter(
+    category => category.node.name !== 'Uncategorised',
+  )
+
   const allNews = useMemo(
     () =>
       data.allWpPost.edges.map(post => {
-        const categories = post.node.categories.nodes.map(
+        const categoryNames = post.node.categories.nodes.map(
           category => category.name,
         )
 
-        return { ...post.node, categories }
+        return { ...post.node, categories: categoryNames }
       }),
     [data],
   )
@@ -154,7 +171,7 @@ const News = () => {
 
   const newsPerPage = 10
 
-  const allCategories = useMemo(() => data.categories.edges, [data])
+  const allCategories = useMemo(() => categories, [categories])
 
   const categoryOptions = useMemo(
     () =>
