@@ -39,6 +39,8 @@ steps:
         from_secret: GATSBY_MAILGUN_DOMAIN
       GATSBY_MAILGUN_API_KEY:
         from_secret: GATSBY_MAILGUN_API_KEY
+      CRISP_WEBSITE_ID:
+        from_secret: CRISP_WEBSITE_ID
     commands:
       - yarn install
       - yarn build
