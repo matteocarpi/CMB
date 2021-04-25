@@ -1,5 +1,9 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable max-len */
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: 'Gruppo CMB',
@@ -82,6 +86,16 @@ module.exports = {
       },
     },
     `gatsby-plugin-image`,
+    {
+      resolve: 'gatsby-plugin-crisp-chat',
+      options: {
+        // websiteId: process.env.CRISP_WEBSITE_ID,
+        websiteId: process.env.CRISP_WEBSITE_ID,
+        enableDuringDevelop: true, // Optional. Disables Crisp Chat during gatsby develop. Defaults to true.
+        defer: true, // Optional. Sets the Crisp loading script to defer instead of async. Defaults to false.
+        enableImprovedAccessibility: false, // Optional. Sets aria-label attribute on pop-up icon for screen readers. Defaults to true.
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
