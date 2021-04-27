@@ -8,7 +8,7 @@ metadata:
 
 steps:
   - name: Override
-    image: node
+    image: node:12
     environment:
       DRONE_AUTH_TOKEN:
         from_secret: drone_auth_token
