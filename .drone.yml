@@ -33,7 +33,7 @@ steps:
         path: /tmp/cache
 
   - name: Build
-    image: node
+    image: node:12
     environment:
       GATSBY_MAILGUN_DOMAIN:
         from_secret: GATSBY_MAILGUN_DOMAIN
@@ -46,7 +46,7 @@ steps:
       - yarn build
 
   - name: Deploy
-    image: node
+    image: node:12
     environment:
       NETLIFY_AUTH_TOKEN:
         from_secret: NETLIFY_AUTH_TOKEN
