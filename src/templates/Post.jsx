@@ -55,6 +55,10 @@ const Content = styled.article`
   div {
     text-align: justify;
   }
+
+  ul {
+    margin-left: 45px;
+  }
 `
 
 const Image = styled(ImageCut)`
