@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-import Img from 'gatsby-image'
+// import Img from 'gatsby-image'
 import styled from 'styled-components'
 
 import Layout from '../components/Layout'
@@ -63,14 +63,14 @@ const LogoDescription = styled.section`
   }
 `
 
-const Image = styled(Img)`
-  width: 100%;
-  min-height: 80vh;
+// const Image = styled(Img)`
+//   width: 100%;
+//   min-height: 80vh;
 
-  @media (max-width: 767px) {
-    margin: 2rem 0 0 0;
-  }
-`
+//   @media (max-width: 767px) {
+//     margin: 2rem 0 0 0;
+//   }
+// `
 
 const Futura = styled.section`
   width: 100%;
@@ -214,7 +214,7 @@ const ChiSiamo = () => {
           />
         </LogoDescription>
 
-        <Image fluid={content.immagine.localFile.childImageSharp.fluid} />
+        {/* <Image fluid={content.immagine.localFile.childImageSharp.fluid} /> */}
         <Descrizione
           style={{ marginBottom: '2rem' }}
           dangerouslySetInnerHTML={{
