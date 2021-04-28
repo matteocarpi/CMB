@@ -16,7 +16,9 @@ const Container = styled.section`
   flex-direction: column;
 `
 
-const Descrizione = styled.article``
+const Descrizione = styled.article`
+  text-align: justify;
+`
 
 const StyledLogo = styled(Logo)`
   height: 100%;

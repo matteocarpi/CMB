@@ -174,6 +174,10 @@ const StyledSlidingLogoMobile = styled(SlidingLogoMobile)`
   }
 `
 
+const LongBio = styled.p`
+  text-align: justify;
+`
+
 const Home = () => {
   const data = useStaticQuery(graphql`
     {
@@ -276,7 +280,7 @@ const Home = () => {
             <StyledSlidingLogo />
             <MoreInfo>
               <StyledSlidingLogoMobile />
-              <p
+              <LongBio
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{
                   __html: content.longBio,
