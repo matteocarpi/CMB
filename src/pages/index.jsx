@@ -12,6 +12,7 @@ import ServicePreview from '../components/ServicePreview'
 import NewsPreview from '../components/NewsPreview'
 import SlidingLogo from '../components/SlidingLogo'
 import SlidingLogoMobile from '../components/SlidingLogoMobile'
+import Video from '../components/Video'
 
 const IntroWrapper = styled.div`
   position: fixed;
@@ -45,9 +46,11 @@ const Content = styled.div`
   margin-top: -50px;
   background-color: white;
 `
-const TeamImage = styled(Image)`
+const TeamVideo = styled(Video)`
   position: relative;
-  width: 100%;
+  width: 100vw;
+  /* min-height: 80vh; */
+  height: calc(100vw / 16 * 9);
   z-index: 2;
   border-top: solid 2px ${({ theme }) => theme.gold};
 `
@@ -196,12 +199,11 @@ const Home = () => {
           slogan1
           slogan2
           video {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 1920) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+            webm {
+              mediaItemUrl
+            }
+            mp4 {
+              mediaItemUrl
             }
           }
           servizi {
@@ -271,7 +273,11 @@ const Home = () => {
       </SloganContainer>
       <Wrapper>
         <Content>
-          <TeamImage fluid={content.video.localFile.childImageSharp.fluid} />
+          {/* <TeamImage fluid={content.video.localFile.childImageSharp.fluid} /> */}
+          <TeamVideo
+            webm={content.video.webm.mediaItemUrl}
+            mp4={content.video.mp4.mediaItemUrl}
+          />
           <FirstInfoContainer>
             <p>{content.shortBio}</p>
             <SecondSlogan>{content.slogan2}</SecondSlogan>
