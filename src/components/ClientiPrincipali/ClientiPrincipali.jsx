@@ -132,14 +132,20 @@ const LogoThumb = styled(Img)`
     }
   }
 
-  ${({ active }) =>
+  ${({ active, interactive }) =>
     active &&
+    interactive &&
     css`
       margin-bottom: -2px;
     `}
-  &:hover {
-    margin-bottom: -2px;
-  }
+
+  ${({ interactive }) =>
+    interactive &&
+    css`
+      &:hover {
+        margin-bottom: -2px;
+      }
+    `}
 
   @media (min-width: 768px) {
     width: min-content;
@@ -283,15 +289,26 @@ const ThumbButton = styled.button`
   align-items: center;
   padding-bottom: 2rem;
   margin: 1.5rem 0;
-  ${({ active }) =>
+  ${({ active, interactive }) =>
     active &&
+    interactive &&
     css`
       border-bottom: solid 2px ${({ theme }) => theme.gold};
     `}
-  &:hover {
-    border-bottom: solid 2px ${({ theme }) => theme.gold};
-    padding-bottom: -2px;
-  }
+  ${({ interactive }) =>
+    interactive &&
+    css`
+      &:hover {
+        border-bottom: solid 2px ${({ theme }) => theme.gold};
+        padding-bottom: -2px;
+      }
+    `}
+
+    ${({ interactive }) =>
+    !interactive &&
+    css`
+      cursor: default;
+    `}
 
   @media (min-width: 768px) {
     width: 30%;
@@ -422,12 +439,22 @@ export default function ClientiPrincipali({ location, home }) {
             }
             citazione
           }
+          logos {
+            id
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
         }
       }
     }
   `)
 
-  const { clientiprincipali } = data.clientiPage.clientiContent
+  const { clientiprincipali, logos } = data.clientiPage.clientiContent
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const clientiList = clientiprincipali.map(client => makeSlug(client.cliente))
@@ -547,6 +574,7 @@ export default function ClientiPrincipali({ location, home }) {
             {clientiprincipali.map((client, index) => (
               <SwiperSlide style={{ width: '30%' }} key={client.cliente}>
                 <ThumbButton
+                  interactive
                   active={activeSlide === index}
                   type="button"
                   onClick={() => {
@@ -559,9 +587,17 @@ export default function ClientiPrincipali({ location, home }) {
                   }}
                 >
                   <LogoThumb
+                    interactive
                     active={activeSlide === index}
                     fluid={client.logo.localFile.childImageSharp.fluid}
                   />
+                </ThumbButton>
+              </SwiperSlide>
+            ))}
+            {logos.map(logo => (
+              <SwiperSlide style={{ width: '30%' }} key={logo.id}>
+                <ThumbButton type="button" onClick={() => {}}>
+                  <LogoThumb fluid={logo.localFile.childImageSharp.fluid} />
                 </ThumbButton>
               </SwiperSlide>
             ))}

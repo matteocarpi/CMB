@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
 import { motion, AnimatePresence } from 'framer-motion'
-import { GatsbyImage } from 'gatsby-plugin-image'
 
 import Image from 'gatsby-image'
 import Layout from '../components/Layout'
@@ -129,26 +128,6 @@ const PartnerLogo = styled(Image)`
   }
 `
 
-const Logos = styled.section`
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  width: 100%;
-`
-
-const SecondaryLogo = styled.div`
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-height: 100px;
-  margin: 2rem 0;
-  @media (min-width: 768px) {
-    width: 30%;
-    height: 100px;
-  }
-`
-
 const otherClientsVariants = {
   hidden: {
     scaleY: 0,
@@ -202,14 +181,6 @@ const ClientiEPartner = ({ location }) => {
             }
             citazione
           }
-          logos {
-            id
-            localFile {
-              childImageSharp {
-                gatsbyImageData(layout: CONSTRAINED)
-              }
-            }
-          }
           altriClienti {
             cliente
           }
@@ -251,18 +222,6 @@ const ClientiEPartner = ({ location }) => {
       <SectionTitle main>{clientiPage.title}</SectionTitle>
       <Descrizione dangerouslySetInnerHTML={{ __html: content.descrizione }} />
       <ClientiPrincipali location={location} />
-
-      <Logos>
-        {content.logos?.map(logo => (
-          <SecondaryLogo key={logo.id}>
-            <GatsbyImage
-              alt=""
-              image={logo.localFile.childImageSharp.gatsbyImageData}
-              style={{ maxWidth: '300px', maxHeight: '100px' }}
-            />
-          </SecondaryLogo>
-        ))}
-      </Logos>
       <AllClients>
         <ShowAllClients
           active={showAllClients}
