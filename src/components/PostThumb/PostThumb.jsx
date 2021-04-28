@@ -11,7 +11,7 @@ const Container = styled(Link)`
   flex-basis: 0;
   flex-grow: 1;
   margin: 30px;
-
+  max-width: 280px;
   &:hover {
     svg {
       path {

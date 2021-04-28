@@ -74,6 +74,7 @@ const BreadCrumb = styled(Link)`
 const RelatedPosts = styled.section`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 `
 
 const Post = ({ data }) => {
