@@ -82,12 +82,13 @@ const Plus = styled(PlusIcon)`
 
 const News = styled.div`
   margin: 0 auto;
+  max-width: 280px;
 
   @media (max-width: 767px) {
-    padding-right: 2.5rem;
+    margin-right: 2.5rem;
   }
   @media (min-width: 768px) {
-    padding-right: 4rem;
+    margin-right: 4rem;
     ${({ isActive }) => isActive && css``}
   }
 `
@@ -96,7 +97,6 @@ const SwiperDesktop = styled.div`
   display: none;
   @media (min-width: 768px) {
     display: flex;
-    padding-left: 1rem;
   }
   justify-content: space-around;
   width: 100%;
@@ -178,21 +178,21 @@ export default function NewsPreview() {
             <SwiperSlide style={{ width: '100%' }} key={post.node.id}>
               {({ isActive }) => (
                 <News isActive={isActive}>
-                  <Image
-                    dr
-                    fluid={{
-                      ...fluid,
-                      aspectRatio: 16 / 9,
-                    }}
-                  />
+                  <Link to={post.node.slug}>
+                    <Image
+                      dr
+                      fluid={{
+                        ...fluid,
+                        aspectRatio: 16 / 9,
+                      }}
+                    />
 
-                  <NewsBottom>
-                    <NewsTitle>{post.node.title}</NewsTitle>
-                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                    <Link to={post.node.slug}>
+                    <NewsBottom>
+                      <NewsTitle>{post.node.title}</NewsTitle>
+                      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                       <Plus />
-                    </Link>
-                  </NewsBottom>
+                    </NewsBottom>
+                  </Link>
                 </News>
               )}
             </SwiperSlide>
@@ -212,8 +212,8 @@ export default function NewsPreview() {
               <>
                 <SwiperSlide style={{ width: '100%' }} key={post.node.id}>
                   {({ isActive }) => (
-                    <Link to={post.node.slug}>
-                      <News isActive={isActive}>
+                    <News isActive={isActive}>
+                      <Link to={post.node.slug}>
                         <Image
                           dr
                           fluid={{
@@ -227,8 +227,8 @@ export default function NewsPreview() {
                           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                           <Plus />
                         </NewsBottom>
-                      </News>
-                    </Link>
+                      </Link>
+                    </News>
                   )}
                 </SwiperSlide>
               </>
