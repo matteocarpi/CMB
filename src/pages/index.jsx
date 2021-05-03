@@ -277,6 +277,7 @@ const Home = () => {
           <TeamVideo
             webm={content.video.webm.mediaItemUrl}
             mp4={content.video.mp4.mediaItemUrl}
+            audioControl
           />
           <FirstInfoContainer>
             <p>{content.shortBio}</p>

@@ -53,10 +53,22 @@ const VideoBox = styled.video`
   object-fit: cover;
 `
 
-export default function Video({ mp4, webm, className, dr, blue }) {
+const AudioButton = styled.button``
+
+export default function Video({
+  mp4,
+  webm,
+  className,
+  dr,
+  blue,
+  audioControl = false,
+}) {
+  const [audio, setAudio] = useState(false)
+
   return (
     <VideoContainer className={className} dr={dr} blue={blue}>
-      <VideoBox playsInline autoPlay muted loop>
+    {audioControl && <AudioButton onClick={/>}
+      <VideoBox playsInline autoPlay muted={audio} loop>
         <source src={mp4} type="video/mp4" />
         <source src={webm} type="video/webm" />
       </VideoBox>
