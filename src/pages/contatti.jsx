@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
-
 import SectionTitle from '../components/SectionTitle'
 import ContactForm from '../components/ContactForm'
 
@@ -54,12 +55,20 @@ const Address = styled.p`
   margin: 0 15px;
 `
 
+
 const Contatti = () => {
   const data = useStaticQuery(graphql`
     query Contatti {
       wpPage(id: { eq: "cG9zdDoyMDE2Ng==" }) {
         title
         contattiContent {
+          mappa {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+          }
           sedelegale {
             nome
             indirizzo
@@ -86,6 +95,8 @@ const Contatti = () => {
   `)
 
   const { contattiContent: content } = data.wpPage
+
+  const map = getImage(content.mappa.localFile.childImageSharp.gatsbyImageData)
 
   return (
     <Layout>
@@ -160,13 +171,7 @@ const Contatti = () => {
           </OtherLocations>
         </InfoWrapper>
 
-        <iframe
-          title="map"
-          src="https://snazzymaps.com/embed/286904"
-          width="100%"
-          height="600px"
-          style={{ border: 'none', marginTop: '2rem' }}
-        />
+        <GatsbyImage image={map} />
 
         <ContactForm
           titolo={content.form.titolo}
