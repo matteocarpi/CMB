@@ -570,9 +570,15 @@ export default function ClientiPrincipali({ location, home }) {
             watchSlidesProgress
             slidesPerView={clientiprincipali.length}
             className="thumbs"
+            allowSlideNext={false}
+            allowSlidePrev={false}
           >
             {clientiprincipali.map((client, index) => (
-              <SwiperSlide style={{ width: '30%' }} key={client.cliente}>
+              <SwiperSlide
+                style={{ width: '30%' }}
+                key={client.cliente}
+                className="swiper-no-swiping"
+              >
                 <ThumbButton
                   interactive
                   active={activeSlide === index}
@@ -595,7 +601,11 @@ export default function ClientiPrincipali({ location, home }) {
               </SwiperSlide>
             ))}
             {logos.map(logo => (
-              <SwiperSlide style={{ width: '30%' }} key={logo.id}>
+              <SwiperSlide
+                style={{ width: '30%' }}
+                key={logo.id}
+                className="swiper-no-swiping"
+              >
                 <ThumbButton type="button" onClick={() => {}}>
                   <LogoThumb fluid={logo.localFile.childImageSharp.fluid} />
                 </ThumbButton>
