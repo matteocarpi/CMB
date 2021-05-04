@@ -35,7 +35,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress-experimental',
       options: {
-        url: 'https://api-cmb.tametodesign.it/graphql',
+        url: process.env.GRAPHQL_ENDPOINT,
         // allows a fallback url if WPGRAPHQL_URL is not set in the env, this may be a local or remote WP instance.
         schema: {
           // Prefixes all WP Types with "Wp" so "Post and allPost" become "WpPost and allWpPost".

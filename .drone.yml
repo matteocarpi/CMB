@@ -45,19 +45,26 @@ steps:
         from_secret: GOOGLE_ANALYTICS_TRACKING_ID
       MAILCHIMP_ENDPOINT:
         from_secret: MAILCHIMP_ENDPOINT
+      GRAPHQL_ENDPOINT:
+        from_secret: GRAPHQL_ENDPOINT
     commands:
       - yarn install
       - yarn build
 
-  - name: Deploy
-    image: node:12
+  - name: FTP Deploy
+    image: cschlosser/drone-ftps:only-newer
     environment:
-      NETLIFY_AUTH_TOKEN:
-        from_secret: NETLIFY_AUTH_TOKEN
-      NETLIFY_SITE_ID:
-        from_secret: NETLIFY_SITE_ID
-    commands:
-      - bash deploy.sh
+      FTP_USERNAME:
+        from_secret: FTP_USER
+      FTP_PASSWORD:
+        from_secret: FTP_PASSWORD
+      PLUGIN_HOSTNAME:
+        from_secret: FTP_HOST
+      PLUGIN_SECURE: false
+      PLUGIN_VERIFY: false
+      PLUGIN_SRC_DIR: /public
+      PLUGIN_DEST_DIR: /public_html
+    only_newer: true
 
   - name: Rebuild Cache
     image: meltwater/drone-cache:dev
