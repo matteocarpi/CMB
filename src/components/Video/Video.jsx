@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
+import { faVolumeUp, faVolumeMute } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const VideoContainer = styled.div`
   position: relative;
@@ -53,7 +55,26 @@ const VideoBox = styled.video`
   object-fit: cover;
 `
 
-const AudioButton = styled.button``
+const AudioButton = styled.button`
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1;
+
+  * {
+    color: white;
+    font-size: 40px;
+  }
+
+  @media (max-width: 767px) {
+    bottom: 15px;
+    right: 15px;
+
+    * {
+      font-size: 20px;
+    }
+  }
+`
 
 export default function Video({
   mp4,
@@ -67,8 +88,12 @@ export default function Video({
 
   return (
     <VideoContainer className={className} dr={dr} blue={blue}>
-    {audioControl && <AudioButton onClick={/>}
-      <VideoBox playsInline autoPlay muted={audio} loop>
+      {audioControl && (
+        <AudioButton onClick={() => setAudio(!audio)}>
+          <FontAwesomeIcon icon={audio ? faVolumeUp : faVolumeMute} />
+        </AudioButton>
+      )}
+      <VideoBox playsInline autoPlay muted={!audio} loop>
         <source src={mp4} type="video/mp4" />
         <source src={webm} type="video/webm" />
       </VideoBox>
