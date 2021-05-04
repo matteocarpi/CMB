@@ -41,6 +41,8 @@ steps:
         from_secret: GATSBY_MAILGUN_API_KEY
       CRISP_WEBSITE_ID:
         from_secret: CRISP_WEBSITE_ID
+      GOOGLE_ANALYTICS_TRACKING_ID:
+        from_secret: GOOGLE_ANALYTICS_TRACKING_ID
     commands:
       - yarn install
       - yarn build
