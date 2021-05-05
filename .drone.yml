@@ -51,20 +51,15 @@ steps:
       - yarn install
       - yarn build
 
-  - name: FTP Deploy
-    image: cschlosser/drone-ftps:only-newer
+  - name: Deploy
+    image: node:12
     environment:
-      FTP_USERNAME:
-        from_secret: FTP_USER
-      FTP_PASSWORD:
-        from_secret: FTP_PASSWORD
-      PLUGIN_HOSTNAME:
-        from_secret: FTP_HOST
-      PLUGIN_SECURE: false
-      PLUGIN_VERIFY: false
-      PLUGIN_SRC_DIR: /public
-      PLUGIN_DEST_DIR: /public_html
-    only_newer: true
+    NETLIFY_AUTH_TOKEN:
+      from_secret: NETLIFY_AUTH_TOKEN
+    NETLIFY_SITE_ID:
+      from_secret: NETLIFY_SITE_ID
+    commands:
+      - bash deploy.sh
 
   - name: Rebuild Cache
     image: meltwater/drone-cache:dev
