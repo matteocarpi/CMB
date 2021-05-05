@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import LogoSVG from '../../assets/logo/logo-full-light.svg'
+import NewsletterForm from '../NewsletterForm'
 
 const Wrapper = styled.footer`
   width: 100%;
@@ -81,7 +82,7 @@ const ContactInfo = styled.li`
   }
 `
 
-const NewsLetterForm = styled.form`
+const NewsLetterFormContainer = styled.form`
   margin-top: 3rem;
   display: flex;
   flex-direction: column;
@@ -93,31 +94,6 @@ const NewsLetterForm = styled.form`
 const NewsLetterFormTitle = styled.span`
   text-transform: uppercase;
   color: white;
-`
-
-const Input = styled.input`
-  margin-top: 1rem;
-  padding: 0.5rem;
-  width: 200px;
-  height: 38px;
-  background-color: transparent;
-  color: white;
-  border: solid 2px white;
-
-  &::placeholder {
-    color: white;
-  }
-`
-
-const Button = styled.button`
-  margin-top: 1rem;
-  padding: 0.5rem;
-  width: 100px;
-  height: 38px;
-  color: ${({ theme }) => theme.navy};
-  font-weight: 600;
-  background-color: white;
-  text-transform: uppercase;
 `
 
 // const Checkbox = styled.input``
@@ -203,17 +179,10 @@ export default function Footer() {
         </Center>
 
         <Right>
-          <NewsLetterForm>
+          <NewsLetterFormContainer>
             <NewsLetterFormTitle>Iscriviti alla newsletter</NewsLetterFormTitle>
-            <Input placeholder="Nome" />
-            <Input placeholder="Azienda" />
-            <Input placeholder="E-Mail" />
-            {/* <Label htmlfor="privacy">
-              <Checkbox type="checkbox" name="privacy" />
-              Accetto la <Link to="privacy-policy">Privacy Policy</Link>
-            </Label> */}
-            <Button>Iscriviti</Button>
-          </NewsLetterForm>
+            <NewsletterForm />
+          </NewsLetterFormContainer>
         </Right>
       </Container>
       <Bottom>
