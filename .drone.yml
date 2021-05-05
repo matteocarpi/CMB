@@ -43,6 +43,8 @@ steps:
         from_secret: CRISP_WEBSITE_ID
       GOOGLE_ANALYTICS_TRACKING_ID:
         from_secret: GOOGLE_ANALYTICS_TRACKING_ID
+      MAILCHIMP_ENDPOINT:
+        from_secret: MAILCHIMP_ENDPOINT
     commands:
       - yarn install
       - yarn build

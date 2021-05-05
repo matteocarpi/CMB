@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Form, Formik, Field } from 'formik'
 import { Link } from 'gatsby'
 import * as Yup from 'yup'
+import addToMailChimp from 'gatsby-plugin-mailchimp'
+
+import Loader from 'react-loader-spinner'
 
 const Container = styled.div`
   display: flex;
@@ -64,24 +67,56 @@ const ErrorMessage = styled.p`
   font-size: 15px;
 `
 
+const Message = styled.p`
+  color: white;
+  margin: 0;
+  margin-right: 1rem;
+  font-size: 15px;
+
+  a {
+    color: white;
+    text-decoration: underline;
+  }
+`
+
 export default function NewsletterForm() {
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState('')
+  const [error, setError] = useState(false)
+  const [done, setDone] = useState(false)
+
   const initialValues = {
     name: '',
     email: '',
-    company: '',
     privacy: false,
   }
 
   const validationSchema = Yup.object({
-    name: Yup.string().required('Campo Obbligatorio'),
+    firstName: Yup.string().required('Campo Obbligatorio'),
+    lastName: Yup.string().required('Campo Obbligatorio'),
     email: Yup.string()
       .email('Formato email non valido')
       .required('Campo Obbligatorio'),
-    company: Yup.string(),
     privacy: Yup.boolean().required('Campo Obbligatorio'),
   })
 
-  const handleSubscribe = ({ values }) => console.log({ values })
+  const handleSubscribe = ({ values }) => {
+    setLoading(true)
+
+    addToMailChimp(values.email, {
+      FNAME: values.firstName,
+      LNAME: values.lastName,
+    })
+      .then(({ msg }) => {
+        setLoading(false)
+        setDone(true)
+        setMessage(msg)
+      })
+      .catch(({ msg }) => {
+        setError(true)
+        setMessage(msg)
+      })
+  }
 
   return (
     <Formik
@@ -93,44 +128,57 @@ export default function NewsletterForm() {
     >
       {({ touched, errors, values }) => (
         <Form>
-          {console.log({ errors, values })}
           <Container>
-            <FieldWrapper>
-              <Input name="name" placeholder="Nome" />
-              {touched.name && errors.name && (
-                <ErrorMessage>{errors.name}</ErrorMessage>
-              )}
-            </FieldWrapper>
-            <FieldWrapper>
-              <Input name="company" placeholder="Azienda" />
-              {touched.company && errors.company && (
-                <ErrorMessage>{errors.company}</ErrorMessage>
-              )}
-            </FieldWrapper>
-            <FieldWrapper>
-              <Input name="email" placeholder="E-Mail" />
-              {touched.email && errors.email && (
-                <ErrorMessage>{errors.email}</ErrorMessage>
-              )}
-            </FieldWrapper>
-            <FieldWrapper>
-              <Label htmlfor="privacy">
-                <Checkbox type="checkbox" name="privacy" />
-                Accetto la<Link to="privacy-policy">Privacy Policy</Link>.
-              </Label>
-              {errors.privacy && <ErrorMessage>{errors.privacy}</ErrorMessage>}
-            </FieldWrapper>
+            {error && <Message dangerouslySetInnerHTML={{ __html: message }} />}
 
-            <Button
-              disabled={!values.privacy}
-              type="submit"
-              onClick={e => {
-                e.preventDefault()
-                handleSubscribe({ values })
-              }}
-            >
-              Iscriviti
-            </Button>
+            {done && <Message dangerouslySetInnerHTML={{ __html: message }} />}
+
+            {loading && (
+              <Loader type="TailSpin" color="#ffffff" width={50} height={50} />
+            )}
+
+            {!loading && !done && !error && (
+              <>
+                <FieldWrapper>
+                  <Input name="firstName" placeholder="Nome" />
+                  {touched.firstName && errors.firstName && (
+                    <ErrorMessage>{errors.firstName}</ErrorMessage>
+                  )}
+                </FieldWrapper>
+                <FieldWrapper>
+                  <Input name="lastName" placeholder="Cognome" />
+                  {touched.lastName && errors.lastName && (
+                    <ErrorMessage>{errors.lastName}</ErrorMessage>
+                  )}
+                </FieldWrapper>
+                <FieldWrapper>
+                  <Input name="email" placeholder="E-Mail" />
+                  {touched.email && errors.email && (
+                    <ErrorMessage>{errors.email}</ErrorMessage>
+                  )}
+                </FieldWrapper>
+                <FieldWrapper>
+                  <Label htmlfor="privacy">
+                    <Checkbox type="checkbox" name="privacy" />
+                    Accetto la<Link to="privacy-policy">Privacy Policy</Link>.
+                  </Label>
+                  {errors.privacy && (
+                    <ErrorMessage>{errors.privacy}</ErrorMessage>
+                  )}
+                </FieldWrapper>
+
+                <Button
+                  disabled={!values.privacy}
+                  type="submit"
+                  onClick={e => {
+                    e.preventDefault()
+                    handleSubscribe({ values })
+                  }}
+                >
+                  Iscriviti
+                </Button>
+              </>
+            )}
           </Container>
         </Form>
       )}
