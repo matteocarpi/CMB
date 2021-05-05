@@ -96,19 +96,19 @@ module.exports = {
         enableImprovedAccessibility: false, // Optional. Sets aria-label attribute on pop-up icon for screen readers. Defaults to true.
       },
     },
-    process.env.NODE_ENV !== 'development' && {
-      resolve: `gatsby-plugin-google-analytics`,
+    {
+      resolve: `gatsby-plugin-google-analytics-gdpr`,
       options: {
-        // The property ID; the tracking code won't be generated without it
+        // The property ID; the tracking code won't be generated without it.
         trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
-        // Defines where to place the tracking script - `true` in the head and `false` in the body
-        head: true,
-        // Setting this parameter is optional
-        anonymize: true,
-        // Delays sending pageview hits on route update (in milliseconds)
-        pageTransitionDelay: 0,
-        // Defers execution of google analytics script after page load
-        defer: false,
+        enableDevelopment: true,
+        // Optional parameter - Configuration for react-ga and google analytics
+        reactGaOptions: {
+          debug: true,
+          gaOptions: {
+            sampleRate: 10,
+          },
+        },
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

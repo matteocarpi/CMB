@@ -1,11 +1,12 @@
 import React from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
-
+import { CookiesProvider } from 'react-cookie'
 import { defaultTheme } from './Themes/Themes'
 
 import Header from './Header'
 import Footer from './Footer'
+import CookiePopUp from './CookiePopUp/CookiePopUp'
 
 import 'swiper/swiper.scss'
 import 'swiper/components/navigation/navigation.scss'
@@ -204,11 +205,14 @@ const Content = styled.div`
 const Layout = ({ children }) => (
   <ThemeProvider theme={defaultTheme}>
     <GlobalStyle />
-    <Container>
-      <Header />
-      <Content>{children}</Content>
-      <Footer />
-    </Container>
+    <CookiesProvider>
+      <Container>
+        <Header />
+        <Content>{children}</Content>
+        <CookiePopUp />
+        <Footer />
+      </Container>
+    </CookiesProvider>
   </ThemeProvider>
 )
 
