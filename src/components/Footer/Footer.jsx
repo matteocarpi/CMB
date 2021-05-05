@@ -72,6 +72,9 @@ const ContactInfo = styled.li`
   color: white;
   a {
     color: white;
+    &:visited {
+      color: white;
+    }
   }
   margin: 1rem 0;
 
@@ -96,16 +99,12 @@ const NewsLetterFormTitle = styled.span`
   color: white;
 `
 
-// const Checkbox = styled.input``
-
-// const Label = styled.label`
-//   color: white;
-//   font-size: 15px;
-//   a {
-//     color: white;
-//     text-decoration: underline;
-//   }
-// `
+const Mail = styled.a`
+  color: white;
+  &:visited {
+    color: white;
+  }
+`
 
 export default function Footer() {
   const data = useStaticQuery(graphql`
@@ -171,9 +170,9 @@ export default function Footer() {
             </ContactInfo>
             <ContactInfo>Fax {footerContent.fax}</ContactInfo>
             <ContactInfo>
-              <a href={`mailto:${footerContent.email}`}>
+              <Mail href={`mailto:${footerContent.email}`}>
                 Mail {footerContent.email}
-              </a>
+              </Mail>
             </ContactInfo>
           </Contacts>
         </Center>
