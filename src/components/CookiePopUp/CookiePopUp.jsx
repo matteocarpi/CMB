@@ -33,6 +33,7 @@ const Button = styled.button`
       background-color: ${({ theme }) => theme.navy};
       color: white;
     `}
+    
 
   @media (max-width: 767px) {
     margin: 1rem 0;

@@ -11,6 +11,11 @@ const Container = styled.div`
   align-items: flex-start;
   width: 150px;
   height: 350px;
+  svg {
+    svg {
+      display: none;
+    }
+  }
 `
 
 export default function SlidingLogoMobile(props) {

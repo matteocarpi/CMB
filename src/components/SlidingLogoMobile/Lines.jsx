@@ -11,7 +11,7 @@ const ShortPath = styled(motion.path)`
   transform: scaleX(1.9) !important;
 `
 const MediumSvg = styled(motion.svg)`
-  height: 60%;
+  height: 80%;
 `
 const MediumPath = styled(motion.path)`
   fill: ${({ theme }) => theme.gold};

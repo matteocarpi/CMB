@@ -10,7 +10,7 @@ import ClientiPrincipali from '../components/ClientiPrincipali'
 import ServicePreview from '../components/ServicePreview'
 import NewsPreview from '../components/NewsPreview'
 import SlidingLogo from '../components/SlidingLogo'
-import SlidingLogoMobile from '../components/SlidingLogoMobile'
+import LogoMobile from '../assets/logo/logo-lines.svg'
 import Video from '../components/Video'
 
 const IntroWrapper = styled.div`
@@ -164,15 +164,16 @@ const StyledSlidingLogo = styled(SlidingLogo)`
     display: none;
   }
 `
-const StyledSlidingLogoMobile = styled(SlidingLogoMobile)`
+
+const StyledLogo = styled(LogoMobile)`
   margin: 0 2rem;
-  margin-top: 0.5rem;
   width: 100px;
-  max-height: 200px;
+  max-height: 180px;
+  height: min-content;
   display: none;
   float: left;
   @media (max-width: 768px) {
-    display: flex;
+    display: block;
   }
 `
 
@@ -285,7 +286,7 @@ const Home = () => {
           <MoreInfoContainer>
             <StyledSlidingLogo />
             <MoreInfo>
-              <StyledSlidingLogoMobile />
+              <StyledLogo />
               <LongBio
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{
