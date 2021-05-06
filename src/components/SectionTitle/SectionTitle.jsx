@@ -126,9 +126,11 @@ export default function SectionTitle({
   className,
   longer,
   longest,
+  style,
 }) {
   return (
     <Wrapper
+      style={style}
       className={className}
       small={small}
       onClick={e => (uri ? navigate(uri) : e.preventDefault())}

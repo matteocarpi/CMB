@@ -20,6 +20,7 @@ const Navigation = styled.ul`
     padding: 1rem 0;
     padding-left: 1rem;
   }
+  margin-left: 16px;
 `
 
 const NavItem = styled.li`
@@ -119,7 +120,7 @@ const PrimaryServicesSecondaryBlock = ({
   return (
     <>
       <Content>
-        <SectionTitle medium uri="/servizi">
+        <SectionTitle medium uri="/servizi" style={{ marginLeft: '32px' }}>
           {sottotitolo}
         </SectionTitle>
         <Navigation>
