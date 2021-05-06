@@ -13,6 +13,10 @@ const Container = styled.div`
   padding: 1rem;
   border-top: 1px solid white;
   z-index: 1000;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 `
 
 const Button = styled.button`
@@ -29,6 +33,10 @@ const Button = styled.button`
       background-color: ${({ theme }) => theme.navy};
       color: white;
     `}
+
+  @media (max-width: 767px) {
+    margin: 1rem 0;
+  }
 `
 
 const Info = styled.span`
