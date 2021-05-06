@@ -169,11 +169,12 @@ const StyledLogo = styled(LogoMobile)`
   margin: 0 2rem;
   width: 100px;
   max-height: 180px;
-  height: min-content;
   display: none;
   float: left;
   @media (max-width: 768px) {
     display: block;
+
+    padding-top: ${({ isSafari }) => isSafari && '1rem'};
   }
 `
 
@@ -261,6 +262,10 @@ const Home = () => {
 
   const content = data.wpPage.homeContent
 
+  const ua = navigator.userAgent.toLowerCase()
+
+  const isSafari = ua.indexOf('chrome') === -1
+
   return (
     <Layout>
       <SEO title={data.wpPage.title} />
@@ -286,7 +291,7 @@ const Home = () => {
           <MoreInfoContainer>
             <StyledSlidingLogo />
             <MoreInfo>
-              <StyledLogo />
+              <StyledLogo isSafafri={isSafari} />
               <LongBio
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{
