@@ -266,7 +266,7 @@ const Home = () => {
 
   const ua = isBrowser && navigator?.userAgent.toLowerCase()
 
-  const isSafari = ua?.indexOf('chrome') === -1
+  const isSafari = isBrowser && ua?.indexOf('chrome') === -1
 
   return (
     <Layout>
