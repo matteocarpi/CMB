@@ -262,7 +262,9 @@ const Home = () => {
 
   const content = data.wpPage.homeContent
 
-  const ua = navigator?.userAgent.toLowerCase()
+  const isBrowser = typeof window !== 'undefined'
+
+  const ua = isBrowser && navigator?.userAgent.toLowerCase()
 
   const isSafari = ua.indexOf('chrome') === -1
 
