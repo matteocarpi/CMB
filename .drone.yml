@@ -52,12 +52,12 @@ steps:
       - yarn build
 
   - name: Deploy
-    image: node:12
+    image: node:15
     environment:
-    NETLIFY_AUTH_TOKEN:
-      from_secret: NETLIFY_AUTH_TOKEN
-    NETLIFY_SITE_ID:
-      from_secret: NETLIFY_SITE_ID
+      NETLIFY_AUTH_TOKEN:
+        from_secret: NETLIFY_AUTH_TOKEN
+      NETLIFY_SITE_ID:
+        from_secret: NETLIFY_SITE_ID
     commands:
       - bash deploy.sh
 
