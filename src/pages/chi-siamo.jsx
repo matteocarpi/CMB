@@ -250,7 +250,7 @@ const ChiSiamo = () => {
           />
           <DownloadWrapper>
             <Subtitle>Maggiori Informazioni</Subtitle>
-            <Download link url="/centro-futura" />
+            <Download link url="/centro-gestione-sicurezza-futura" />
           </DownloadWrapper>
         </Futura>
 
