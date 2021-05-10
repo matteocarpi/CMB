@@ -75,7 +75,6 @@ export default function SlidingLogo(props) {
     [0, 1],
   )
 
-  console.log({ fadeShort, fadeMedium })
   return (
     <Container ref={ref} {...props}>
       <Short
