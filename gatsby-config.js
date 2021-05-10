@@ -11,8 +11,9 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-google-analytics-gdpr`,
+      resolve: `gatsby-plugin-google-analytics`,
       options: {
+        // The property ID; the tracking code won't be generated without it
         trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
       },
     },
@@ -102,6 +103,31 @@ module.exports = {
         enableImprovedAccessibility: false, // Optional. Sets aria-label attribute on pop-up icon for screen readers. Defaults to true.
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-google-analytics-gdpr`,
+    //   options: {
+    //     // The property ID; the tracking code won't be generated without it.
+    //     trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+    //     enableDevelopment: true,
+    //     // Optional parameter - Configuration for react-ga and google analytics
+    //     reactGaOptions: {
+    //       debug: true,
+    //       gaOptions: {
+    //         sampleRate: 10,
+    //       },
+    //     },
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-plugin-google-gtag`,
+    //   options: {
+    //     // You can add multiple tracking ids and a pageview event will be fired for all of them.
+    //     trackingIds: [
+    //       process.env.GOOGLE_ANALYTICS_TRACKING_ID, // Google Analytics / GA
+    //     ],
+    //   },
+    // },
+
     {
       resolve: 'gatsby-plugin-mailchimp',
       options: {
