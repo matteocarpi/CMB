@@ -33,7 +33,6 @@ const Button = styled.button`
       background-color: ${({ theme }) => theme.navy};
       color: white;
     `}
-    
 
   @media (max-width: 767px) {
     margin: 1rem 0;
@@ -55,7 +54,7 @@ const Info = styled.span`
 export default function CookiePopUp() {
   const [visited, setVisited] = useState(true)
 
-  const analyticsCookie = 'gatsby-plugin-google-analytics-gdpr_cookies-enabled'
+  const analyticsCookie = 'gatsby-gdpr-google-analytics'
 
   const [cookies, setCookie] = useCookies([analyticsCookie, 'visited'])
 
