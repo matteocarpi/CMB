@@ -293,7 +293,7 @@ const Home = () => {
           <MoreInfoContainer>
             <StyledSlidingLogo />
             <MoreInfo>
-              <StyledLogo isSafafri={isSafari} />
+              <StyledLogo isSafari={isSafari} />
               <LongBio
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{

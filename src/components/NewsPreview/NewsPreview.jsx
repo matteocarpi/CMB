@@ -168,7 +168,7 @@ export default function NewsPreview() {
         News
       </SectionTitle>
 
-      <SwiperMobile loop navigation slidesPerView={1}>
+      <SwiperMobile key="swiper-mobile" loop navigation slidesPerView={1}>
         {posts.map(post => {
           const fluid =
             post.node.featuredImage?.node.localFile.childImageSharp.fluid ??
@@ -209,7 +209,7 @@ export default function NewsPreview() {
               data.placeholderImage.fluid
 
             return (
-              <>
+              <React.Fragment key={post.node.id}>
                 <SwiperSlide style={{ width: '100%' }} key={post.node.id}>
                   {({ isActive }) => (
                     <News isActive={isActive}>
@@ -231,7 +231,7 @@ export default function NewsPreview() {
                     </News>
                   )}
                 </SwiperSlide>
-              </>
+              </React.Fragment>
             )
           })}
         </Swiper>

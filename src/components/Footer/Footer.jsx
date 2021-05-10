@@ -85,7 +85,7 @@ const ContactInfo = styled.li`
   }
 `
 
-const NewsLetterFormContainer = styled.form`
+const NewsLetterFormContainer = styled.div`
   margin-top: 3rem;
   display: flex;
   flex-direction: column;
