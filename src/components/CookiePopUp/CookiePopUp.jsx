@@ -84,9 +84,9 @@ export default function CookiePopUp() {
             Accetta
           </Button>
 
-          <Button lighter type="button" onClick={() => acceptCookie(false)}>
+          {/* <Button lighter type="button" onClick={() => acceptCookie(false)}>
             Rifiuta
-          </Button>
+          </Button> */}
         </Container>
       )}
     </>
