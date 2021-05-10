@@ -54,7 +54,7 @@ const Info = styled.span`
 export default function CookiePopUp() {
   const [visited, setVisited] = useState(true)
 
-  const analyticsCookie = 'gatsby-gdpr-google-analytics'
+  const analyticsCookie = 'gatsby-plugin-google-analytics-gdpr_cookies-enabled'
 
   const [cookies, setCookie] = useCookies([analyticsCookie, 'visited'])
 
@@ -84,9 +84,9 @@ export default function CookiePopUp() {
             Accetta
           </Button>
 
-          {/* <Button lighter type="button" onClick={() => acceptCookie(false)}>
+          <Button lighter type="button" onClick={() => acceptCookie(false)}>
             Rifiuta
-          </Button> */}
+          </Button>
         </Container>
       )}
     </>
