@@ -65,6 +65,12 @@ const SwiperContainer = styled(motion.div)`
       display: none;
     }
   }
+
+  @media (max-width: 767px) {
+    .swiper-button-next {
+      display: none;
+    }
+  }
 `
 
 const Client = styled.div`
@@ -488,7 +494,7 @@ export default function ClientiPrincipali({ location, home }) {
           loop
           autoplay={{ delay: 5000 }}
           initialSlide={initialSlide}
-          navigation={!isMobile}
+          navigation
           pagination={{ clickable: true }}
           thumbs={{ swiper: thumbsSwiper }}
           onSlideChangeTransitionEnd={swiper => {
@@ -498,8 +504,8 @@ export default function ClientiPrincipali({ location, home }) {
                   disableScrollUpdate: true,
                 },
               })
-              setActiveSlide(swiper.activeIndex)
             }
+            setActiveSlide(swiper.activeIndex)
           }}
         >
           {clientiprincipali.map(client => (
