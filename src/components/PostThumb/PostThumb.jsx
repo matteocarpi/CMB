@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, navigate } from 'gatsby'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import useViewportWidth from '../../hooks/useViewportWidth'
 import ImageCut from '../ImageCut'
@@ -37,14 +37,7 @@ const ImageContainer = styled.div`
   position: relative;
 `
 
-const Image = styled(ImageCut)`
-  max-height: 300px;
-  ${({ large }) =>
-    !large &&
-    css`
-      max-width: 300px;
-    `}
-`
+const Image = styled(ImageCut)``
 
 const Logo = styled(Lg)`
   width: 20%;
