@@ -88,7 +88,7 @@ const SearchBox = styled.input`
 const News = () => {
   const data = useStaticQuery(graphql`
     query News {
-      allWpPost {
+      allWpPost(sort: { fields: date, order: DESC }) {
         edges {
           node {
             id
