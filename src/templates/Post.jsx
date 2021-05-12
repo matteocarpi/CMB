@@ -92,8 +92,10 @@ const Post = ({ data }) => {
   return (
     <Layout>
       <Seo
-        title={post.title}
-        description={data.wpPost.excerpt.slice(3, 140)}
+        title={data.wpPost.seo?.title ?? post.title}
+        description={
+          data.wpPost.seo?.metaDesc ?? data.wpPost.excerpt.slice(3, 140)
+        }
         uri={data.wpPost.uri}
         post
         date={data.wpPost.date}
@@ -149,6 +151,10 @@ export const data = graphql`
       excerpt
       uri
       date
+      seo {
+        metaDesc
+        title
+      }
       featuredImage {
         node {
           sourceUrl
