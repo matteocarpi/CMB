@@ -77,6 +77,7 @@ exports.createPages = async function ({ actions, graphql }) {
         edges {
           node {
             id
+            uri
             slug
             categories {
               nodes {
@@ -152,7 +153,7 @@ exports.createPages = async function ({ actions, graphql }) {
 
   newsList.forEach(news => {
     actions.createPage({
-      path: news.node.slug,
+      path: news.node.uri,
       component: require.resolve(`./src/templates/Post.jsx`),
       context: { id: news.node.id, category: news.node.categories.nodes[0].id },
     })
