@@ -171,7 +171,7 @@ export default function NewsPreview() {
       <SwiperMobile loop navigation slidesPerView={1}>
         {posts.map(post => {
           const fluid =
-            post.node.featuredImage?.node.localFile.childImageSharp.fluid ??
+            post.node.featuredImage?.node?.localFile?.childImageSharp?.fluid ??
             data.placeholderImage.fluid
 
           return (
