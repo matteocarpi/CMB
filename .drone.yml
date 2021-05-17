@@ -25,9 +25,9 @@ steps:
       archive_format: 'gzip'
       mount:
         - './node_modules'
-        - './.wordpress-cache'
-        - './public'
-        - './.cache'
+        # - './.wordpress-cache'
+        # - './public'
+        # - './.cache'
 
     volumes:
       - name: cache
@@ -72,9 +72,9 @@ steps:
       archive_format: 'gzip'
       mount:
         - './node_modules'
-        - './.wordpress-cache'
-        - './public'
-        - './.cache'
+        # - './.wordpress-cache'
+        # - './public'
+        # - './.cache'
     volumes:
       - name: cache
         path: /tmp/cache
