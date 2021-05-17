@@ -171,7 +171,7 @@ export default function Footer() {
             <ContactInfo>Fax {footerContent.fax}</ContactInfo>
             <ContactInfo>
               <Mail href={`mailto:${footerContent.email}`}>
-                Mail {footerContent.email}
+                Mail: {footerContent.email}
               </Mail>
             </ContactInfo>
           </Contacts>
