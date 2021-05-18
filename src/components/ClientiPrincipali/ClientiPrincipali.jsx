@@ -61,7 +61,13 @@ const SwiperContainer = styled(motion.div)`
     .swiper-button-next {
       color: ${({ theme }) => theme.navy};
     }
-    .swiper-button-prev {
+  }
+  .swiper-button-prev {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    .swiper-button-next {
       display: none;
     }
   }
@@ -488,7 +494,7 @@ export default function ClientiPrincipali({ location, home }) {
           loop
           autoplay={{ delay: 5000 }}
           initialSlide={initialSlide}
-          navigation={!isMobile}
+          navigation
           pagination={{ clickable: true }}
           thumbs={{ swiper: thumbsSwiper }}
           onSlideChangeTransitionEnd={swiper => {
