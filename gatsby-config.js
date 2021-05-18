@@ -40,7 +40,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-wordpress-experimental',
+      resolve: 'gatsby-source-wordpress',
       options: {
         url: process.env.GRAPHQL_ENDPOINT,
         // allows a fallback url if WPGRAPHQL_URL is not set in the env, this may be a local or remote WP instance.
