@@ -1,7 +1,7 @@
 import React, { useState, useRef, useLayoutEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import SwiperCore, { Thumbs, Pagination, Autoplay, Navigation } from 'swiper'
+import SwiperCore, { Thumbs, Pagination, Autoplay } from 'swiper'
 import queryString from 'query-string'
 import { useStaticQuery, graphql, navigate } from 'gatsby'
 
@@ -17,10 +17,9 @@ import Video from '../Video'
 import SectionTitle from '../SectionTitle'
 
 import 'swiper/swiper.scss'
-import 'swiper/components/navigation/navigation.scss'
 import 'swiper/components/pagination/pagination.scss'
 
-SwiperCore.use([Navigation, Thumbs, Pagination, Autoplay])
+SwiperCore.use([Thumbs, Pagination, Autoplay])
 
 const SwiperWrapper = styled(motion.div)`
   position: relative;
@@ -48,14 +47,6 @@ const SwiperContainer = styled(motion.div)`
     color: white;
   }
   overflow: visible;
-
-  @media (min-width: 767px) {
-    .swiper-container {
-      .swiper-pagination {
-        display: none !important;
-      }
-    }
-  }
 
   @media (min-width: 940px) {
     .swiper-button-next {
@@ -494,7 +485,6 @@ export default function ClientiPrincipali({ location, home }) {
           loop
           autoplay={{ delay: 5000 }}
           initialSlide={initialSlide}
-          navigation
           pagination={{ clickable: true }}
           thumbs={{ swiper: thumbsSwiper }}
           onSlideChangeTransitionEnd={swiper => {
