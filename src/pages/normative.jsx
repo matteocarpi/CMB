@@ -79,7 +79,10 @@ const PrivacyPolicy = () => {
             {area.normative.map(normativa => (
               <Normativa key={uuidv4()}>
                 <NormativaTitle>{normativa.nome}</NormativaTitle>
-                <DownloadNormativa tiny url={normativa.allegato.mediaItemUrl} />
+                <DownloadNormativa
+                  tiny
+                  url={normativa.allegato?.mediaItemUrl}
+                />
               </Normativa>
             ))}
           </NormativeArea>
