@@ -45,6 +45,11 @@ const Content = styled.div`
   margin-top: -50px;
   background-color: white;
 `
+
+const VideoWrapper = styled.div`
+  background-color: ${({ theme }) => theme.navy};
+  z-index: 1;
+`
 const TeamVideo = styled(Video)`
   position: relative;
   width: 100vw;
@@ -280,12 +285,13 @@ const Home = () => {
       </SloganContainer>
       <Wrapper>
         <Content>
-          {/* <TeamImage fluid={content.video.localFile.childImageSharp.fluid} /> */}
-          <TeamVideo
-            webm={content.video.webm.mediaItemUrl}
-            mp4={content.video.mp4.mediaItemUrl}
-            audioControl
-          />
+          <VideoWrapper>
+            <TeamVideo
+              webm={content.video.webm.mediaItemUrl}
+              mp4={content.video.mp4.mediaItemUrl}
+              audioControl
+            />
+          </VideoWrapper>
           <FirstInfoContainer>
             <p>{content.shortBio}</p>
             <SecondSlogan>{content.slogan2}</SecondSlogan>
