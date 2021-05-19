@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
 
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
@@ -55,6 +57,16 @@ const Address = styled.p`
   margin: 0 15px;
 `
 
+const SocialContainer = styled.div`
+  display: flex;
+`
+
+const SocialIcon = styled(FontAwesomeIcon)`
+  margin-right: 1rem;
+  path {
+    fill: ${({ theme }) => theme.navy};
+  }
+`
 
 const Contatti = () => {
   const data = useStaticQuery(graphql`
@@ -140,6 +152,25 @@ const Contatti = () => {
               </ContactWrapper>
               <ContactWrapper>
                 Pec: <Contact>{content.contatti.pec}</Contact>
+              </ContactWrapper>
+
+              <ContactWrapper>
+                <SocialContainer>
+                  <a
+                    href="https://www.facebook.com/CMB.Consulting.srl/?ref=page_internal"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <SocialIcon icon={faFacebookF} />
+                  </a>
+                  <a
+                    href="https://it.linkedin.com/company/gruppo-cmb-consulting"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <SocialIcon icon={faLinkedinIn} />
+                  </a>
+                </SocialContainer>
               </ContactWrapper>
             </Location>
           </MainLocation>

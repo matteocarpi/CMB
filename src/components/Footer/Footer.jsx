@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
 import LogoSVG from '../../assets/logo/logo-full-light.svg'
 import NewsletterForm from '../NewsletterForm'
 
@@ -106,6 +108,16 @@ const Mail = styled.a`
   }
 `
 
+const SocialContainer = styled.div`
+  display: flex;
+`
+
+const SocialIcon = styled(FontAwesomeIcon)`
+  margin-right: 1rem;
+  path {
+    fill: white;
+  }
+`
 export default function Footer() {
   const data = useStaticQuery(graphql`
     query Footer {
@@ -174,6 +186,23 @@ export default function Footer() {
                 Mail {footerContent.email}
               </Mail>
             </ContactInfo>
+
+            <SocialContainer>
+              <a
+                href="https://www.facebook.com/CMB.Consulting.srl/?ref=page_internal"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <SocialIcon icon={faFacebookF} />
+              </a>
+              <a
+                href="https://it.linkedin.com/company/gruppo-cmb-consulting"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <SocialIcon icon={faLinkedinIn} />
+              </a>
+            </SocialContainer>
           </Contacts>
         </Center>
 
