@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
@@ -161,14 +161,14 @@ const Contatti = () => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <SocialIcon icon={faFacebookF} />
+                    <SocialIcon icon={faFacebook} />
                   </a>
                   <a
                     href="https://it.linkedin.com/company/gruppo-cmb-consulting"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <SocialIcon icon={faLinkedinIn} />
+                    <SocialIcon icon={faLinkedin} />
                   </a>
                 </SocialContainer>
               </ContactWrapper>

@@ -9370,6 +9370,11 @@ gatsby-plugin-crisp-chat@^3.2.2:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-crisp-chat/-/gatsby-plugin-crisp-chat-3.2.2.tgz#227b6f1f1311bbb37d392298e0b5a12ba9279a8d"
   integrity sha512-7bFR/dEBu2u33kw6nGwoZN07Fy/LakB1k6f9SX4y6IZlzmNA4srbMCY/JMRz6yl0qskO7FfFP+xl01MXdEKkZw==
 
+gatsby-plugin-facebook-pixel@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-facebook-pixel/-/gatsby-plugin-facebook-pixel-1.0.7.tgz#a2f3c12e8ddba66d76b297dcbce33547310eef15"
+  integrity sha512-KzCQLDHPE1RmqtmPTO7wIGdMxODn42wJuh/YQfI5aPjh2EF+3NjhYjbf4mlkSV34rl/3kLrv3ifLk3IBBXq7eA==
+
 gatsby-plugin-gatsby-cloud@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-gatsby-cloud/-/gatsby-plugin-gatsby-cloud-2.5.0.tgz#b4e8c2d0e356e9dfbdae4d8f2d1b72e3f8ed45a5"

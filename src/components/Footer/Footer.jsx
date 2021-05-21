@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookF, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import LogoSVG from '../../assets/logo/logo-full-light.svg'
 import NewsletterForm from '../NewsletterForm'
 
@@ -193,14 +193,14 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <SocialIcon icon={faFacebookF} />
+                <SocialIcon icon={faFacebook} />
               </a>
               <a
                 href="https://it.linkedin.com/company/gruppo-cmb-consulting"
                 target="_blank"
                 rel="noreferrer"
               >
-                <SocialIcon icon={faLinkedinIn} />
+                <SocialIcon icon={faLinkedin} />
               </a>
             </SocialContainer>
           </Contacts>

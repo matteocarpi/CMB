@@ -17,6 +17,12 @@ module.exports = {
         trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
       },
     },
+    {
+      resolve: `gatsby-plugin-facebook-pixel`,
+      options: {
+        pixelId: process.env.FACEBOOK_PIXEL,
+      },
+    },
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-filesystem',
