@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { Formik, Field, Form } from 'formik'
 import * as Yup from 'yup'
@@ -33,6 +34,7 @@ const TextArea = styled.div`
   width: 100%;
   min-width: 300px;
   textarea {
+    min-height: 228px;
     font-weight: 200;
     border: solid 1px ${({ theme }) => theme.navy};
     width: 100%;
@@ -103,6 +105,32 @@ const Sottotitolo = styled.span`
   margin: 1rem;
   line-height: 2;
 `
+const Checkbox = styled(Field)``
+
+const Label = styled.label`
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: ${({ theme }) => theme.navy};
+  font-size: 15px;
+  a {
+    margin-left: 0.5rem;
+    color: ${({ theme }) => theme.navy};
+    text-decoration: underline;
+    white-space: nowrap;
+    &:visited {
+      color: white;
+      text-decoration: underline;
+    }
+  }
+  * {
+    flex-grow: 0;
+  }
+`
+
+const Right = styled.div``
+
 export default function ContactForm({ titolo, sottotitolo }) {
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState(false)
@@ -155,6 +183,7 @@ export default function ContactForm({ titolo, sottotitolo }) {
     email: '',
     company: '',
     content: '',
+    privacy: false,
   }
 
   const validationSchema = Yup.object({
@@ -165,6 +194,7 @@ export default function ContactForm({ titolo, sottotitolo }) {
       .required('Campo Obbligatorio'),
     company: Yup.string(),
     content: Yup.string().required('Campo Obbligatorio'),
+    privacy: Yup.boolean().oneOf([true], 'Campo Obbligatorio'),
   })
 
   return (
@@ -206,18 +236,29 @@ export default function ContactForm({ titolo, sottotitolo }) {
 
                 <FieldWrapper>
                   <Input name="company" placeholder="Azienda" />
-                  {errors.company && touched.email && (
-                    <ErrorMessage>{errors.firstName}</ErrorMessage>
+                  {errors.company && touched.company && (
+                    <ErrorMessage>{errors.company}</ErrorMessage>
                   )}
                 </FieldWrapper>
               </Info>
+              <Right>
+                <TextArea>
+                  <Field name="content" as="textarea" placeholder="Messaggio" />
+                </TextArea>
+                {errors.content && touched.content && (
+                  <ErrorMessage>{errors.firstName}</ErrorMessage>
+                )}
 
-              <TextArea>
-                <Field name="content" as="textarea" placeholder="Messaggio" />
-              </TextArea>
-              {errors.content && touched.content && (
-                <ErrorMessage>{errors.firstName}</ErrorMessage>
-              )}
+                <FieldWrapper>
+                  <Label htmlfor="privacy">
+                    <Checkbox type="checkbox" name="privacy" />
+                    Accetto la<Link to="privacy-policy">Privacy Policy</Link>.
+                  </Label>
+                  {errors.privacy && (
+                    <ErrorMessage>{errors.privacy}</ErrorMessage>
+                  )}
+                </FieldWrapper>
+              </Right>
             </FormContainer>
 
             <SubmitButton type="submit">Invio</SubmitButton>
