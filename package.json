@@ -39,7 +39,7 @@
     "gatsby-plugin-styled-components": "^4.4.0",
     "gatsby-plugin-wpgraphql-seo": "^1.1.7",
     "gatsby-source-filesystem": "^3.4.0",
-    "gatsby-source-wordpress": "^5.5.0",
+    "gatsby-source-wordpress": "^5.7.0",
     "gatsby-transformer-sharp": "^3.4.0",
     "global": "^4.4.0",
     "husky": "^6.0.0",
