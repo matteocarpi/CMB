@@ -32,7 +32,7 @@ const SwiperWrapper = styled(motion.div)`
       @media (min-width: 768px) {
         padding-top: 5rem;
       }
-    `}
+    `};
 `
 
 const SwiperContainer = styled(motion.div)`
@@ -43,6 +43,7 @@ const SwiperContainer = styled(motion.div)`
   margin-top: 2rem;
   margin-bottom: 4rem;
   margin-right: auto;
+  background-color: ${({ theme }) => theme.navy};
   * {
     color: white;
   }
@@ -61,6 +62,14 @@ const SwiperContainer = styled(motion.div)`
     .swiper-button-next {
       display: none;
     }
+
+    .swiper-pagination-bullet {
+      background: white;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: ${({ theme }) => theme.gold};
+    }
   }
 `
 
@@ -70,14 +79,7 @@ const Client = styled.div`
   height: 100%;
   background-color: ${({ theme }) => theme.navy};
   padding-bottom: 50px;
-  &:after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    bottom: 0;
-    background-color: white;
-    z-index: 1;
+  @media (min-width: 767px) {
   }
 
   @media (min-width: 768px) {
@@ -85,6 +87,15 @@ const Client = styled.div`
     justify-content: space-between;
     align-items: stretch;
     margin-right: 2rem;
+    &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 50px;
+      bottom: 0;
+      background-color: white;
+      z-index: 1;
+    }
   }
 `
 
@@ -98,12 +109,28 @@ const ImageWrapper = styled.div`
     min-height: 700px;
     height: 100%;
   }
+
+  ${({ home }) =>
+    !home &&
+    css`
+      @media (max-width: 767px) {
+        width: 100%;
+      }
+    `}
 `
 
 const Top = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+
+  ${({ home }) =>
+    !home &&
+    css`
+      @media (max-width: 767px) {
+        flex-direction: column;
+      }
+    `}
 `
 
 const Bottom = styled.div`
@@ -114,9 +141,11 @@ const Bottom = styled.div`
 
 const Image = styled(Img)`
   height: 100%;
+  min-height: 420px;
 `
 const StyledVideo = styled(Video)`
   height: 100%;
+  min-height: 420px;
 `
 
 const LogoThumb = styled(Img)`
@@ -483,7 +512,7 @@ export default function ClientiPrincipali({ location, home }) {
       <SwiperContainer>
         <Swiper
           loop
-          autoplay={{ delay: 5000 }}
+          // autoplay={{ delay: 5000 }}
           initialSlide={initialSlide}
           pagination={{ clickable: true }}
           thumbs={{ swiper: thumbsSwiper }}
@@ -500,9 +529,9 @@ export default function ClientiPrincipali({ location, home }) {
         >
           {clientiprincipali.map(client => (
             <SwiperSlide key={client.cliente}>
-              <Client>
-                <Top>
-                  <ImageWrapper>
+              <Client home={home}>
+                <Top home={home}>
+                  <ImageWrapper home={home}>
                     {client.videoOFoto === 'Foto' ? (
                       <Image
                         fluid={client.immagine?.localFile.childImageSharp.fluid}
@@ -518,7 +547,7 @@ export default function ClientiPrincipali({ location, home }) {
                       />
                     )}
                   </ImageWrapper>
-                  <TextContainer home={home}>
+                  <TextContainer blue={isMobile} home={home}>
                     <Text>
                       <SwiperHeader>
                         <Bit>

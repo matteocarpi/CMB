@@ -69,9 +69,11 @@ const GlobalStyle = createGlobalStyle`
   h4 {
     font-size: 25px;
 
-    ${'' /* @media (min-width: 768px) {
+    ${
+      '' /* @media (min-width: 768px) {
       font-size: 40px;
-    } */}
+    } */
+    }
   }
 
   h5, h6 {
