@@ -4,6 +4,8 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
+console.log('!!! -------> ', process.env.RUNNER_TYPE)
+
 module.exports = {
   siteMetadata: {
     title: 'Gruppo CMB',
@@ -81,6 +83,9 @@ module.exports = {
             },
           },
         ],
+        debug: {
+          preview: true,
+        },
       },
     },
     {
