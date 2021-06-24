@@ -73,7 +73,7 @@ module.exports = {
         presets: [
           {
             presetName: 'PREVIEW',
-            useIf: () => process.env.RUNNER_TYPE === 'PREVIEW',
+            useIf: () => process.env.RUNNER_TYPE === 'INCREMENTAL_PREVIEWS',
             options: {
               type: {
                 _all: {
