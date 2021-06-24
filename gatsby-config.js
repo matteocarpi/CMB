@@ -4,7 +4,7 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-console.log('!!! -------> ', process.env.RUNNER_TYPE)
+console.log('!!! -------> ', process.env.RUNNER_TYPE === 'INCREMENTAL_PREVIEWS')
 
 module.exports = {
   siteMetadata: {
@@ -77,6 +77,9 @@ module.exports = {
             options: {
               type: {
                 _all: {
+                  limit: 5,
+                },
+                Post: {
                   limit: 5,
                 },
               },
