@@ -63,29 +63,14 @@ module.exports = {
         type: {
           Post: {
             limit:
-              process.env.NODE_ENV === 'development'
+              process.env.NODE_ENV === 'development' ||
+              process.env.RUNNER_TYPE === 'INCREMENTAL_PREVIEWS'
                 ? // Lets just pull 50 posts in development to make it easy on ourselves (aka. faster).
-                  20
+                  5
                 : // and we don't actually need more than 5000 in production for this particular site
                   5000,
           },
         },
-        presets: [
-          {
-            presetName: 'PREVIEW',
-            useIf: () => process.env.RUNNER_TYPE === 'INCREMENTAL_PREVIEWS',
-            options: {
-              type: {
-                _all: {
-                  limit: 5,
-                },
-                Post: {
-                  limit: 5,
-                },
-              },
-            },
-          },
-        ],
         debug: {
           preview: true,
         },
