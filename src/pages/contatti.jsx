@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useStaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faLinkedin } from '@fortawesome/free-brands-svg-icons'
@@ -68,44 +68,7 @@ const SocialIcon = styled(FontAwesomeIcon)`
   }
 `
 
-const Contatti = () => {
-  const data = useStaticQuery(graphql`
-    query Contatti {
-      wpPage(id: { eq: "cG9zdDoyMDE2Ng==" }) {
-        title
-        contattiContent {
-          mappa {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-          }
-          sedelegale {
-            nome
-            indirizzo
-          }
-          sedi {
-            indirizzo
-            nome
-          }
-          contatti {
-            telefono {
-              numero
-            }
-            fax
-            mail
-            pec
-          }
-          form {
-            titolo
-            sottotitolo
-          }
-        }
-      }
-    }
-  `)
-
+const Contatti = ({ data }) => {
   const { contattiContent: content } = data.wpPage
 
   const map = getImage(content.mappa.localFile.childImageSharp.gatsbyImageData)
@@ -214,3 +177,40 @@ const Contatti = () => {
 }
 
 export default Contatti
+
+export const data = graphql`
+  query Contatti {
+    wpPage(id: { eq: "cG9zdDoyMDE2Ng==" }) {
+      title
+      contattiContent {
+        mappa {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+        sedelegale {
+          nome
+          indirizzo
+        }
+        sedi {
+          indirizzo
+          nome
+        }
+        contatti {
+          telefono {
+            numero
+          }
+          fax
+          mail
+          pec
+        }
+        form {
+          titolo
+          sottotitolo
+        }
+      }
+    }
+  }
+`

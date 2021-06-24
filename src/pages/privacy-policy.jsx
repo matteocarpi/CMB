@@ -1,23 +1,11 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import SimplePage from '../components/SimplePage'
 
-const PrivacyPolicy = () => {
-  const data = useStaticQuery(graphql`
-    query PrivacyPolicy {
-      privacy: wpPage(id: { eq: "cG9zdDoyMDkxOA==" }) {
-        id
-        title
-        privacyPolicyContent {
-          contenuto
-        }
-      }
-    }
-  `)
-
+const PrivacyPolicy = ({ data }) => {
   const { title } = data.privacy
   const content = data.privacy.privacyPolicyContent.contenuto
 
@@ -30,3 +18,15 @@ const PrivacyPolicy = () => {
 }
 
 export default PrivacyPolicy
+
+export const data = graphql`
+  query PrivacyPolicy {
+    privacy: wpPage(id: { eq: "cG9zdDoyMDkxOA==" }) {
+      id
+      title
+      privacyPolicyContent {
+        contenuto
+      }
+    }
+  }
+`

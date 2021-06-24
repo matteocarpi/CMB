@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import InfiniteScroll from 'react-infinite-scroller'
 import ReactSelect from 'react-select'
@@ -85,68 +85,7 @@ const SearchBox = styled.input`
   margin-bottom: 1rem;
 `
 
-const News = () => {
-  const data = useStaticQuery(graphql`
-    query News {
-      allWpPost(sort: { fields: date, order: DESC }) {
-        edges {
-          node {
-            id
-            title
-            slug
-            date(formatString: "Y")
-            categories {
-              nodes {
-                name
-              }
-            }
-            featuredImage {
-              node {
-                localFile {
-                  childImageSharp {
-                    fluid {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      placeholderImage: imageSharp(
-        fluid: { originalName: { eq: "placeholder-image.png" } }
-      ) {
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
-      }
-      categories: allWpCategory(
-        sort: {
-          fields: wpChildren___nodes___categoryContent___order
-          order: DESC
-        }
-      ) {
-        edges {
-          node {
-            id
-            name
-            categoryContent {
-              order
-            }
-          }
-        }
-      }
-      years: allWpPost {
-        edges {
-          node {
-            date(formatString: "Y")
-          }
-        }
-      }
-    }
-  `)
-
+const News = ({ data }) => {
   const sortedCategories = data.categories.edges.sort(
     (a, b) => a.node.categoryContent.order - b.node.categoryContent.order,
   )
@@ -364,3 +303,64 @@ const News = () => {
 }
 
 export default News
+
+export const data = graphql`
+  query News {
+    allWpPost(sort: { fields: date, order: DESC }) {
+      edges {
+        node {
+          id
+          title
+          slug
+          date(formatString: "Y")
+          categories {
+            nodes {
+              name
+            }
+          }
+          featuredImage {
+            node {
+              localFile {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    placeholderImage: imageSharp(
+      fluid: { originalName: { eq: "placeholder-image.png" } }
+    ) {
+      fluid {
+        ...GatsbyImageSharpFluid
+      }
+    }
+    categories: allWpCategory(
+      sort: {
+        fields: wpChildren___nodes___categoryContent___order
+        order: DESC
+      }
+    ) {
+      edges {
+        node {
+          id
+          name
+          categoryContent {
+            order
+          }
+        }
+      }
+    }
+    years: allWpPost {
+      edges {
+        node {
+          date(formatString: "Y")
+        }
+      }
+    }
+  }
+`

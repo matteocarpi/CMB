@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
-import { useStaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import Image from 'gatsby-image'
@@ -140,72 +140,7 @@ const otherClientsVariants = {
   },
 }
 
-const ClientiEPartner = ({ location }) => {
-  const data = useStaticQuery(graphql`
-    query MyQuery {
-      clientiPage: wpPage(id: { eq: "cG9zdDoxOTc3OQ==" }) {
-        title
-        clientiContent {
-          descrizione
-          clientiprincipali {
-            cliente
-            logo {
-              localFile {
-                id
-                childImageSharp {
-                  fluid {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-            commissione
-            descrizione
-            videoOFoto
-            video {
-              mp4 {
-                mediaItemUrl
-              }
-              webm {
-                mediaItemUrl
-              }
-            }
-            immagine {
-              localFile {
-                childImageSharp {
-                  fluid {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-            citazione
-          }
-          altriClienti {
-            cliente
-          }
-          convenzioniEPartners {
-            titolo
-            descrizione
-            list {
-              logo {
-                id
-                localFile {
-                  childImageSharp {
-                    fluid {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-              }
-              descrizione
-            }
-          }
-        }
-      }
-    }
-  `)
-
+const ClientiEPartner = ({ data, location }) => {
   const [showAllClients, setShowAllClients] = useState(false)
 
   const { clientiPage } = data
@@ -276,3 +211,68 @@ const ClientiEPartner = ({ location }) => {
 }
 
 export default ClientiEPartner
+
+export const data = graphql`
+  query MyQuery {
+    clientiPage: wpPage(id: { eq: "cG9zdDoxOTc3OQ==" }) {
+      title
+      clientiContent {
+        descrizione
+        clientiprincipali {
+          cliente
+          logo {
+            localFile {
+              id
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          commissione
+          descrizione
+          videoOFoto
+          video {
+            mp4 {
+              mediaItemUrl
+            }
+            webm {
+              mediaItemUrl
+            }
+          }
+          immagine {
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          citazione
+        }
+        altriClienti {
+          cliente
+        }
+        convenzioniEPartners {
+          titolo
+          descrizione
+          list {
+            logo {
+              id
+              localFile {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+            descrizione
+          }
+        }
+      }
+    }
+  }
+`

@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
+import { graphql } from 'gatsby'
 // import Img from 'gatsby-image'
 import styled from 'styled-components'
 
@@ -125,67 +125,7 @@ const AttachmentWrapper = styled.section`
   }
 `
 
-const ChiSiamo = () => {
-  const data = useStaticQuery(graphql`
-    query ChiSiamo {
-      chiSiamo: wpPage(id: { eq: "cG9zdDoyMDE0NQ==" }) {
-        title
-        chiSiamoContent {
-          descrizione1
-          descrizione2
-          immagine {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 1920) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          descrizione3
-          brochure {
-            title
-            subtitle
-            descrizione
-            allegato {
-              mediaItemUrl
-            }
-          }
-          organigramma {
-            title
-            subtitle
-            descrizione
-            allegato {
-              mediaItemUrl
-            }
-          }
-          certificazioni {
-            title
-            descrizione
-            allegati {
-              nomeCertificazione
-              file {
-                mediaItemUrl
-              }
-            }
-          }
-          sicurezza {
-            title
-            descrizione
-          }
-        }
-      }
-      home: wpPage(id: { eq: "cG9zdDo5" }) {
-        homeContent {
-          badges {
-            number
-            title
-          }
-        }
-      }
-    }
-  `)
-
+const ChiSiamo = ({ data }) => {
   const content = data.chiSiamo.chiSiamoContent
 
   const { badges } = data.home.homeContent
@@ -276,3 +216,63 @@ const ChiSiamo = () => {
   )
 }
 export default ChiSiamo
+
+export const data = graphql`
+  query ChiSiamo {
+    chiSiamo: wpPage(id: { eq: "cG9zdDoyMDE0NQ==" }) {
+      title
+      chiSiamoContent {
+        descrizione1
+        descrizione2
+        immagine {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 1920) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+        descrizione3
+        brochure {
+          title
+          subtitle
+          descrizione
+          allegato {
+            mediaItemUrl
+          }
+        }
+        organigramma {
+          title
+          subtitle
+          descrizione
+          allegato {
+            mediaItemUrl
+          }
+        }
+        certificazioni {
+          title
+          descrizione
+          allegati {
+            nomeCertificazione
+            file {
+              mediaItemUrl
+            }
+          }
+        }
+        sicurezza {
+          title
+          descrizione
+        }
+      }
+    }
+    home: wpPage(id: { eq: "cG9zdDo5" }) {
+      homeContent {
+        badges {
+          number
+          title
+        }
+      }
+    }
+  }
+`

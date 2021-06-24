@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -34,27 +34,7 @@ const NormativaTitle = styled.span`
 const DownloadNormativa = styled(Download)`
   margin-left: 1rem;
 `
-const PrivacyPolicy = () => {
-  const data = useStaticQuery(graphql`
-    query Normative {
-      normative: wpPage(id: { eq: "cG9zdDoyMTU5Nw==" }) {
-        title
-        normativeContent {
-          descrizione
-          aree {
-            titolo
-            normative {
-              nome
-              allegato {
-                mediaItemUrl
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
-
+const PrivacyPolicy = ({ data }) => {
   const { title } = data.normative
 
   return (
@@ -93,3 +73,23 @@ const PrivacyPolicy = () => {
 }
 
 export default PrivacyPolicy
+
+export const data = graphql`
+  query Normative {
+    normative: wpPage(id: { eq: "cG9zdDoyMTU5Nw==" }) {
+      title
+      normativeContent {
+        descrizione
+        aree {
+          titolo
+          normative {
+            nome
+            allegato {
+              mediaItemUrl
+            }
+          }
+        }
+      }
+    }
+  }
+`

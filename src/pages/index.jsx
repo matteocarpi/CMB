@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
 import Layout from '../components/Layout'
@@ -187,84 +187,7 @@ const LongBio = styled.p`
   text-align: justify;
 `
 
-const Home = () => {
-  const data = useStaticQuery(graphql`
-    {
-      placeholderImage: imageSharp(
-        fluid: { originalName: { eq: "placeholder-image.png" } }
-      ) {
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
-      }
-      wpPage(id: { eq: "cG9zdDo5" }) {
-        title
-        homeContent {
-          shortBio
-          longBio
-          slogan1
-          slogan2
-          video {
-            webm {
-              mediaItemUrl
-            }
-            mp4 {
-              mediaItemUrl
-            }
-          }
-          servizi {
-            consulenza {
-              citazione
-              informazioni
-              immagine {
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 600) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-              }
-              titolo
-            }
-            formazione {
-              citazione
-              informazioni
-              immagine {
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 600) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-              }
-              titolo
-            }
-            vigilanza {
-              citazione
-              informazioni
-              immagine {
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 600) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-              }
-              titolo
-            }
-          }
-          badges {
-            number
-            title
-          }
-        }
-      }
-    }
-  `)
-
+const Home = ({ data }) => {
   const content = data.wpPage.homeContent
 
   const isBrowser = typeof window !== 'undefined'
@@ -321,3 +244,80 @@ const Home = () => {
 }
 
 export default Home
+
+export const data = graphql`
+  {
+    placeholderImage: imageSharp(
+      fluid: { originalName: { eq: "placeholder-image.png" } }
+    ) {
+      fluid {
+        ...GatsbyImageSharpFluid
+      }
+    }
+    wpPage(id: { eq: "cG9zdDo5" }) {
+      title
+      homeContent {
+        shortBio
+        longBio
+        slogan1
+        slogan2
+        video {
+          webm {
+            mediaItemUrl
+          }
+          mp4 {
+            mediaItemUrl
+          }
+        }
+        servizi {
+          consulenza {
+            citazione
+            informazioni
+            immagine {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 600) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+            titolo
+          }
+          formazione {
+            citazione
+            informazioni
+            immagine {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 600) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+            titolo
+          }
+          vigilanza {
+            citazione
+            informazioni
+            immagine {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 600) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+            titolo
+          }
+        }
+        badges {
+          number
+          title
+        }
+      }
+    }
+  }
+`
