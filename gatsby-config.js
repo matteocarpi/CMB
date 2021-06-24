@@ -68,6 +68,19 @@ module.exports = {
                   5000,
           },
         },
+        presets: [
+          {
+            presetName: 'PREVIEW',
+            useIf: () => process.env.RUNNER_TYPE === 'PREVIEW',
+            options: {
+              type: {
+                _all: {
+                  limit: 5,
+                },
+              },
+            },
+          },
+        ],
       },
     },
     {
