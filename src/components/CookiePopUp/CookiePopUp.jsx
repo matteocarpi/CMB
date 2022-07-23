@@ -76,9 +76,9 @@ export default function CookiePopUp() {
         <Container>
           <Info>
             Questo sito utilizza cookies per migliorare la tua esperienza.{' '}
-            <Link to="/cookies">Cookies</Link>
+            <Link to="https://www.iubenda.com/privacy-policy/728053/cookie-policy">Cookies</Link>
             {' - '}
-            <Link to="https://www.iubenda.com/privacy-policy/728053/cookie-policy">Cookie Policy</Link>
+            <Link to="https://www.iubenda.com/privacy-policy/728053">Privacy Policy</Link>
           </Info>
           <Button type="button" onClick={() => acceptCookie(true)}>
             Accetta
