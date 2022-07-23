@@ -158,11 +158,11 @@ export default function Footer() {
             </MenuItem>
             <MenuItem>
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <Link to="/privacy-policy">Privacy</Link>
+              <Link to="https://www.iubenda.com/privacy-policy/728053/full-legal">Privacy</Link>
             </MenuItem>
             <MenuItem>
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <Link to="/cookies">Cookie</Link>
+              <Link to="https://www.iubenda.com/privacy-policy/728053/cookie-policy">Cookie</Link>
             </MenuItem>
             <MenuItem>
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
