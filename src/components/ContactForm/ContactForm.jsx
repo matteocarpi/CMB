@@ -252,7 +252,7 @@ export default function ContactForm({ titolo, sottotitolo }) {
                 <FieldWrapper>
                   <Label htmlfor="privacy">
                     <Checkbox type="checkbox" name="privacy" />
-                    Accetto la<Link to="privacy-policy">Privacy Policy</Link>.
+                    Accetto la<Link to="https://www.iubenda.com/privacy-policy/728053">Privacy Policy</Link>.
                   </Label>
                   {errors.privacy && (
                     <ErrorMessage>{errors.privacy}</ErrorMessage>
