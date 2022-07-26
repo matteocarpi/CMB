@@ -1,3 +1,3 @@
-import CookiePopUp from './CookiePopUp'
+/*import CookiePopUp from './CookiePopUp'
 
-export default CookiePopUp
+export default CookiePopUp*/
