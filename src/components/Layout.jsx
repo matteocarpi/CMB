@@ -205,14 +205,11 @@ const Content = styled.div`
 const Layout = ({ children }) => (
   <ThemeProvider theme={defaultTheme}>
     <GlobalStyle />
-    <CookiesProvider>
       <Container>
         <Header />
         <Content>{children}</Content>
-        <CookiePopUp />
         <Footer />
       </Container>
-    </CookiesProvider>
   </ThemeProvider>
 )
 
