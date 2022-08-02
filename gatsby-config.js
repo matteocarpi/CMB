@@ -1,130 +1,221 @@
-/* eslint-disable operator-linebreak */
-/* eslint-disable max-len */
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+import React from 'react'
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
+import reset from 'styled-reset'
+import { CookiesProvider } from 'react-cookie'
+import { defaultTheme } from './Themes/Themes'
 
-console.log('!!! -------> ', process.env.RUNNER_TYPE === 'INCREMENTAL_PREVIEWS')
+import Header from './Header'
+import Footer from './Footer'
+import CookiePopUp from './CookiePopUp/CookiePopUp'
 
-module.exports = {
-  siteMetadata: {
-    title: 'Gruppo CMB',
-    siteUrl: 'https://www.gruppocmb.com',
-  },
-  plugins: [
-   /* {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        // The property ID; the tracking code won't be generated without it
-        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
-      },
-    },*/
-    {
-      resolve: `gatsby-plugin-facebook-pixel`,
-      options: {
-        pixelId: process.env.FACEBOOK_PIXEL,
-      },
-    },
-    'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'images',
-        path: `${__dirname}/src/assets`,
-      },
-    },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'cmb-group',
-        short_name: 'cmb',
-        start_url: '/',
-        background_color: '#ffffff',
-        theme_color: '#040818',
-        display: 'minimal-ui',
-        icon: 'src/assets/logo/favicon.png', // This path is relative to the root of the site.
-      },
-    },
-    {
-      resolve: 'gatsby-source-wordpress',
-      options: {
-        url: process.env.GRAPHQL_ENDPOINT,
-        // allows a fallback url if WPGRAPHQL_URL is not set in the env, this may be a local or remote WP instance.
-        schema: {
-          // Prefixes all WP Types with "Wp" so "Post and allPost" become "WpPost and allWpPost".
-          typePrefix: 'Wp',
-        },
-        develop: {
-          // caches media files outside of Gatsby's default cache an thus allows them to persist through a cache reset.
-          hardCacheMediaFiles: true,
-        },
-        type: {
-          Post: {
-            limit:
-              process.env.NODE_ENV === 'development' ||
-              process.env.RUNNER_TYPE === 'INCREMENTAL_PREVIEWS'
-                ? // Lets just pull 50 posts in development to make it easy on ourselves (aka. faster).
-                  5
-                : // and we don't actually need more than 5000 in production for this particular site
-                  5000,
-          },
-        },
-        debug: {
-          preview: true,
-        },
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-react-svg',
-      options: {
-        rule: {
-          include: `${__dirname}/src/assets`,
-        },
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-google-fonts-v2',
-      options: {
-        fonts: [
-          // Cinzel is local
-          {
-            family: 'Jost:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&',
-          },
-        ],
-      },
-    },
-    'gatsby-plugin-sass',
-    `gatsby-plugin-styled-components`,
-    `gatsby-plugin-advanced-sitemap`,
-    {
-      resolve: 'gatsby-plugin-robots-txt',
-      options: {
-        policy: [{ userAgent: '*', allow: '/' }],
-      },
-    },
-    `gatsby-plugin-image`,
-    {
-      resolve: 'gatsby-plugin-crisp-chat',
-      options: {
-        // websiteId: process.env.CRISP_WEBSITE_ID,
-        websiteId: process.env.CRISP_WEBSITE_ID,
-        enableDuringDevelop: true, // Optional. Disables Crisp Chat during gatsby develop. Defaults to true.
-        defer: true, // Optional. Sets the Crisp loading script to defer instead of async. Defaults to false.
-        enableImprovedAccessibility: false, // Optional. Sets aria-label attribute on pop-up icon for screen readers. Defaults to true.
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-mailchimp',
-      options: {
-        endpoint: process.env.MAILCHIMP_ENDPOINT, // string; add your MC list endpoint here; see instructions below
-        timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
-      },
-    },
-    'gatsby-plugin-gatsby-cloud',
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
-  ],
-}
+import 'swiper/swiper.scss'
+import 'swiper/components/navigation/navigation.scss'
+import 'swiper/components/pagination/pagination.scss'
+import './typography.css'
+
+const GlobalStyle = createGlobalStyle`
+  ${reset}
+
+  * {
+    ${
+      '' /* -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none; */
+    }
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    color: ${({ theme }) => theme.black};
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+  }
+  body {
+    box-sizing: border-box;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cinzel', serif;
+    color: ${({ theme }) => theme.black};
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  
+
+  h1 {
+    font-size: 40px;
+    margin: 15px;
+
+    @media (min-width: 768px) {
+      font-size: 60px;
+    }
+  }
+
+  h2 {
+    font-size: 47px;
+    @media (min-width: 768px) {
+      font-size: 40px;
+    }
+  }
+
+  h3 {
+    font-size: 25px;
+
+    @media (min-width: 768px) {
+      font-size: 60px;
+    }
+  }
+  
+  h4 {
+    font-size: 25px;
+
+    ${
+      '' /* @media (min-width: 768px) {
+      font-size: 40px;
+    } */
+    }
+  }
+
+  h5, h6 {
+    font-family: Jost, sans-serif;
+    color: ${({ theme }) => theme.black};
+    line-height: 1.2;
+  }
+
+  h5 {
+    font-size: 18px;
+    font-weight: 200;
+    text-transform: uppercase;
+    @media (min-width: 768px) {
+      font-size: 25px;
+    }
+  }
+
+  h6 {
+    font-size: 18px;
+    font-weight: 200;
+  }
+
+  span {
+      font-size: 14px;
+      font-family: Jost, sansf-serif;
+      font-weight: 300;
+
+      @media (min-width: 768px) {
+        font-size: 25px;
+      }
+  }
+  div {
+    font-family: Jost, sansf-serif;
+    font-weight: 300;
+    line-height: 2;
+    font-size: 20px;
+    color: ${({ theme }) => theme.black};
+  }
+  p {
+    font-family: Jost, sansf-serif;
+    font-weight: 300;
+    line-height: 2;
+    font-size: 20px;
+    color: ${({ theme }) => theme.black};
+    margin: 30px 30px 0 30px;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+      line-height: 2;
+    }
+  }
+
+  em, i {
+    font-style: italic;
+  }
+
+  strong {
+    font-weight: 400;
+  }
+
+  a {
+    text-decoration: none;
+    font-family: Jost, sans-serif;
+    color: ${({ theme }) => theme.black};
+    &:visited {
+    color: ${({ theme }) => theme.black};
+    }
+  }
+
+  li {
+    font-family: Jost, sans-serif;
+    font-weight: 300;
+    line-height: 2;
+    font-size: 20px;
+    margin-left: 2rem;
+    color: ${({ theme }) => theme.black};
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+      line-height: 2;
+    }
+  }
+
+  ul {
+    li {
+      list-style: disc;
+    }
+  }
+
+  input, textarea {
+    font-family: Jost, sans-serif;
+    font-size: 14px;
+  }
+  button {
+    cursor: pointer;
+    font-family: Jost, sans-serif;
+    background-color: transparent;
+    border: none;
+    font-weight: 200;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .logo {
+  height: 200px;
+  overflow: visible;
+  }
+  position: relative;
+
+  :root {
+  --swiper-navigation-color: ${({ theme }) => theme.black};
+  --swiper-navigation-size: 35px;
+  --swiper-pagination-color: ${({ theme }) => theme.gold}
+  }
+
+  .swiper-button-disabled {
+    display: none;
+  }
+`
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+`
+
+const Content = styled.div`
+  margin-top: 100px;
+`
+const Layout = ({ children }) => (
+  <ThemeProvider theme={defaultTheme}>
+    <GlobalStyle />
+    <CookiesProvider>
+      <Container>
+        <Header />
+        <Content>{children}</Content>
+        <CookiePopUp />
+        <Footer />
+      </Container>
+    </CookiesProvider>
+  </ThemeProvider>
+)
+
+export default Layout
