@@ -10,7 +10,6 @@ import BurgerSVG from '../../assets/icons/burger.svg'
 import CloseSVG from '../../assets/icons/close.svg'
 
 const Container = styled.header`
-<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="38db8364-4db7-4614-9bd5-81a612d544a9" data-blockingmode="auto" type="text/javascript"></script>
   position: fixed;
   width: 100%;
   top: 0;
