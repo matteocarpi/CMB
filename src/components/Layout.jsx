@@ -1,3 +1,4 @@
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="38db8364-4db7-4614-9bd5-81a612d544a9" data-blockingmode="auto" type="text/javascript"></script>
 import React from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
