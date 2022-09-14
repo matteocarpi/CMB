@@ -12,14 +12,7 @@ module.exports = {
     siteUrl: 'https://www.gruppocmb.com',
   },
   plugins: [
-   /* {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        // The property ID; the tracking code won't be generated without it
-        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
-      },
-    },*/
-	{
+  {
     resolve: "gatsby-plugin-cookiebot",
     options: {
       cookiebotId: "38db8364-4db7-4614-9bd5-81a612d544a9", // Required. Site's Cookiebot ID.
@@ -29,6 +22,13 @@ module.exports = {
       pluginDebug: true, // Optional. Debug mode for plugin development. Defaults to false.
     },
   },
+   /* {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // The property ID; the tracking code won't be generated without it
+        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+      },
+    },*/
     {
       resolve: `gatsby-plugin-facebook-pixel`,
       options: {
