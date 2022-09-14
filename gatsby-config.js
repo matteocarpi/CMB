@@ -138,4 +138,4 @@ module.exports = {
       pluginDebug: true, // Optional. Debug mode for plugin development. Defaults to false.
     },
   },
-],
+];
