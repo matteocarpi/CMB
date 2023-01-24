@@ -23,3 +23,4 @@ if [[ "$DRONE_BRANCH" = main ]]; then
 fi
   
 npx netlify deploy "${args[@]}"
+
